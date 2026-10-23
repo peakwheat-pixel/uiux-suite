@@ -1,0 +1,152 @@
+{
+  "schema_version": "1.3.3",
+  "evidence_id": "EV-T3.3-QPA",
+  "kind": "tool_log",
+  "generated_at": "2026-10-23T20:02:06.707913+00:00",
+  "git": {
+    "commit": "295ae9abf97a8e984f4f659dd90151797b406dfe",
+    "dirty": true
+  },
+  "python": "3.14.0",
+  "runs": {
+    "1.0": {
+      "ok": true,
+      "runtime_level": "NATIVE_QPA",
+      "platform": "windows",
+      "qt_version": "6.8.3",
+      "screen": {
+        "dpi": 96.0,
+        "device_pixel_ratio": 1.0,
+        "width": 2560,
+        "height": 1440
+      },
+      "fonts": {
+        "count": 127,
+        "cjk_yahei": true
+      },
+      "metrics": {
+        "label_size_hint": [
+          133,
+          21
+        ],
+        "label_font_height": 21,
+        "edit_height": 21,
+        "window_size": [
+          640,
+          360
+        ]
+      },
+      "focus": {
+        "label": 0,
+        "edit": 11,
+        "edit_focusable": true
+      },
+      "scale_factor_env": "1.0",
+      "screenshot": {
+        "path": "G:\\AI\\universal-uiux-engineering\\evidence\\T3.3\\qt-scale-1.0.png",
+        "sha256": "f6abaf5a91383d6c44ef5890c2356ca23e563259324c63280a47a6dfd86ee222",
+        "size": [
+          640,
+          360
+        ]
+      },
+      "exit_code": 0,
+      "stderr_tail": ""
+    },
+    "1.25": {
+      "ok": true,
+      "runtime_level": "NATIVE_QPA",
+      "platform": "windows",
+      "qt_version": "6.8.3",
+      "screen": {
+        "dpi": 96.0,
+        "device_pixel_ratio": 1.25,
+        "width": 2048,
+        "height": 1152
+      },
+      "fonts": {
+        "count": 127,
+        "cjk_yahei": true
+      },
+      "metrics": {
+        "label_size_hint": [
+          133,
+          22
+        ],
+        "label_font_height": 21,
+        "edit_height": 20,
+        "window_size": [
+          640,
+          360
+        ]
+      },
+      "focus": {
+        "label": 0,
+        "edit": 11,
+        "edit_focusable": true
+      },
+      "scale_factor_env": "1.25",
+      "screenshot": {
+        "path": "G:\\AI\\universal-uiux-engineering\\evidence\\T3.3\\qt-scale-1.25.png",
+        "sha256": "5b67ab53f34c192bf8d90016c062476c084c1a7bbf38bcf18515d1ec94e85554",
+        "size": [
+          800,
+          450
+        ]
+      },
+      "exit_code": 0,
+      "stderr_tail": ""
+    },
+    "1.5": {
+      "ok": true,
+      "runtime_level": "NATIVE_QPA",
+      "platform": "windows",
+      "qt_version": "6.8.3",
+      "screen": {
+        "dpi": 96.0,
+        "device_pixel_ratio": 1.5,
+        "width": 1707,
+        "height": 960
+      },
+      "fonts": {
+        "count": 127,
+        "cjk_yahei": true
+      },
+      "metrics": {
+        "label_size_hint": [
+          133,
+          22
+        ],
+        "label_font_height": 21,
+        "edit_height": 20,
+        "window_size": [
+          640,
+          360
+        ]
+      },
+      "focus": {
+        "label": 0,
+        "edit": 11,
+        "edit_focusable": true
+      },
+      "scale_factor_env": "1.5",
+      "screenshot": {
+        "path": "G:\\AI\\universal-uiux-engineering\\evidence\\T3.3\\qt-scale-1.5.png",
+        "sha256": "f4ef410ef99349214e394508a2cf5d690c3b94ac70bb6c93e6b961454c3de5cb",
+        "size": [
+          960,
+          540
+        ]
+      },
+      "exit_code": 0,
+      "stderr_tail": ""
+    }
+  },
+  "ok": true,
+  "generator_sha256": "a5e17bd2c790519875ef2eb733991841e2c703fabf15c215b349d33c6ffbc0a6",
+  "limitations": [
+    "100% is the current monitor's native QPA measurement; 125%/150% are simulated with QT_SCALE_FACTOR, not a physical monitor DPI change.",
+    "No click-through or focus traversal; widget focus policies are read, not exercised.",
+    "No visual-regression baseline beyond the captured PNG hashes."
+  ]
+}

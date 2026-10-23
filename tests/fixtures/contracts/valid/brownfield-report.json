@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.3.3",
+  "project_id": "legacy-app",
+  "generated_at": "2026-10-24T00:00:00+00:00",
+  "entries": [
+    {
+      "name": "color-bg-canvas",
+      "suite_value": "#ffffff",
+      "existing_value": "#f7f7f7",
+      "action": "KEEP_LOCAL",
+      "priority": "PROJECT",
+      "rationale": "existing project token wins for brand surfaces"
+    },
+    {
+      "name": "space-2",
+      "suite_value": "8px",
+      "existing_value": null,
+      "action": "ADOPT",
+      "priority": "SUITE",
+      "rationale": "new token"
+    }
+  ],
+  "summary": {"adopted": 1, "overridden": 0, "kept": 1, "conflicts": 0}
+}

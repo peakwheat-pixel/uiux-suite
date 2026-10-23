@@ -8,7 +8,7 @@
 |---|---|---|
 | T3.1 受控改造与 G4 范围校验 | **DONE** | `modify.py` + change-plan schema；10 用例（scope/traversal/hash/回退/dry-run） |
 | T3.2 Tauri + WDIO Native IPC | **IN_PROGRESS（UNVERIFIED）** | 本机无 Tauri 示例/驱动，未伪造 |
-| T3.3 PySide6 Native QPA/DPI | **IN_PROGRESS（UNVERIFIED）** | 本机未安装 PySide6 |
+| T3.3 PySide6 Native QPA/DPI | **DONE** | `qt_probe.py` + `collect_qt_evidence.py`；`evidence/T3.3/qt-qpa-evidence.json`：NATIVE_QPA、DPR 1/1.25/1.5、CJK 字体；125/150 为 QT_SCALE_FACTOR 模拟 |
 | T3.4 OS 集成/UIA | **PARTIAL** | 真实 Win11 Notepad（WinUI 3） UIA 只读树（`evidence/T3.4/uia-probe.json`，NATIVE_UIA，53 元素）；WinUI/WPF/Qt 未验证 |
 | T3.5 证据 Vault 退化 | **DONE** | `vault.py`；字节级哈希、隔离、缺失检测（14 用例含 integrity/safety） |
 | T3.6 独立审查隔离 | **DONE** | `integrity.py`；user_attested 拒绝、reviewed_head 绑定、host_verified 证据要求 |
@@ -20,7 +20,7 @@
 ```powershell
 cd <repo>
 $env:PYTHONPATH='runtime'
-.\.venv\Scripts\python.exe -m pytest tests -q     # 当时 405 passed
+.\.venv\Scripts\python.exe -m pytest tests -q     # 当时 405 passed（当前 447）
 pwsh -NoProfile -File scripts\collect_uia_evidence.ps1 -ProcessId <notepad-pid>
 ```
 

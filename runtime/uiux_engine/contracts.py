@@ -39,6 +39,8 @@ SCHEMA_FILES: dict[str, str] = {
     "prototype": "prototype.v1.3.3.schema.json",
     "design-options": "design-options.v1.3.3.schema.json",
     "change-plan": "change-plan.v1.3.3.schema.json",
+    "knowledge-index": "knowledge-index.v1.3.3.schema.json",
+    "brownfield-report": "brownfield-report.v1.3.3.schema.json",
 }
 
 

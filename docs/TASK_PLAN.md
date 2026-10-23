@@ -22,13 +22,13 @@
 | T1.7 | Stage 1 | DONE | Stage 1 Exit | T1.1, T1.2, T1.3, T1.4 | 混淆矩阵、CI 与误报/漏报报告 | TP/FP/TN/FN 输出；CI 显示每条样本预期与实际；Windows runner |
 | T2.1 | Stage 2 | DONE | Stage 2 Exit | T1.3 | 页面/窗口/路由识别与三源能力比对 | 功能地图；源码/运行/契约差异报告 |
 | T2.2 | Stage 2 | DONE | Stage 2 Exit | T1.3 | flows.json 设计工具与状态推导 | 按能力派生状态；可测试路径生成；review required 记录 |
-| T2.3 | Stage 2 | IN_PROGRESS | Stage 2 Exit | T1.2 | DTCG Token 与 CSS/Tailwind/PySide6 编译器 | 明暗主题与 CJK 字体测试；Token 可编译 |
-| T2.4 | Stage 2 | IN_PROGRESS | Stage 2 Exit | T0.5 | 离线知识库消费接口与合规来源 | knowledge index schema；来源/许可/checksum 可核查；无许可则自建量表 |
+| T2.3 | Stage 2 | DONE | Stage 2 Exit | T1.2 | DTCG Token 与 CSS/Tailwind/PySide6 编译器 | 明暗主题与 CJK 字体测试；Token 可编译 |
+| T2.4 | Stage 2 | DONE | Stage 2 Exit | T0.5 | 离线知识库消费接口与合规来源 | knowledge index schema；来源/许可/checksum 可核查；无许可则自建量表 |
 | T2.5 | Stage 2 | DONE | Stage 2 Exit | T2.2, T2.3 | design-only 与 prototype（≥2 方案比较） | 两套可比较原型与取舍证据；不先写生产代码 |
-| T2.6 | Stage 2 | IN_PROGRESS | Stage 2 Exit | T2.3 | 设计系统权威与存量组件采纳/漂移检测 | brownfield 采纳流程；token drift 检查；冲突优先级 |
+| T2.6 | Stage 2 | DONE | Stage 2 Exit | T2.3 | 设计系统权威与存量组件采纳/漂移检测 | brownfield 采纳流程；token drift 检查；冲突优先级 |
 | T3.1 | Stage 3 | DONE | Stage 3 Exit | T2.5 | 受控改造与 G4 范围校验 | 改动在 write scope 内；可回退；G4 证据完整 |
 | T3.2 | Stage 3 | IN_PROGRESS | Stage 3 Exit | T3.1 | Tauri .exe + WDIO Native IPC 验证 | 至少一个非 Mock Rust IPC 场景；驱动握手与权限记录 |
-| T3.3 | Stage 3 | IN_PROGRESS | Stage 3 Exit | T3.1 | PySide6 Windows Native QPA 与 DPI 验证 | 100/125/150% DPI、中文字体、分栏与焦点 |
+| T3.3 | Stage 3 | DONE | Stage 3 Exit | T3.1 | PySide6 Windows Native QPA 与 DPI 验证 | 100/125/150% DPI、中文字体、分栏与焦点 |
 | T3.4 | Stage 3 | IN_PROGRESS | Stage 3 Exit | T3.2, T3.3 | OS 集成测试（原生对话框/菜单） | 隔离测试环境；UIA 优先；物理输入默认禁用；TOCTOU 说明 |
 | T3.5 | Stage 3 | DONE | Stage 3 Exit | T3.1 | 证据生命周期、脱敏与 Vault 退化验证 | 删除 Vault 后不得重新签发 PASS；脱敏后扫描；保留期策略 |
 | T3.6 | Stage 3 | DONE | Stage 3 Exit | T3.4 | 独立审查隔离验证 | 自报 session 不能签发独立 PASS；隔离证明与 reviewed_head 绑定 |
@@ -51,8 +51,8 @@
 | M8 | Stage 3 | TODO | Stage 3 Exit | T0.1 | 不可信项目构建执行模型 | 只读模式构建沙箱/副本；执行清单；网络与清理策略；SECURITY.md |
 | M9 | Stage 0 | DONE | T0.4 | T0.1 | CLI 退出码、--json 与阶段验收命令 | 退出码表写入 docs/CLI.md；doctor/finalize --json schema；每个 Stage Exit 三列化 |
 | M10 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T1.1 | CI 骨架与 Windows runner | CI 显示每条 fixture 预期/实际；Artifacts 归档 |
-| M11 | Stage 2 | IN_PROGRESS | Stage 2 Exit | T0.5 | 第三方知识来源、许可与消费接口 | 来源锁 commit/许可；knowledge index；无法锁许可则自建 |
-| M12 | Stage 2 | IN_PROGRESS | Stage 2 Exit | T2.3 | 存量设计系统采纳与 token drift | brownfield 流程；drift 检查器；冲突优先级 |
+| M11 | Stage 2 | DONE | Stage 2 Exit | T0.5 | 第三方知识来源、许可与消费接口 | 来源锁 commit/许可；knowledge index；无法锁许可则自建 |
+| M12 | Stage 2 | DONE | Stage 2 Exit | T2.3 | 存量设计系统采纳与 token drift | brownfield 流程；drift 检查器；冲突优先级 |
 | M13 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T1.0 | 靶场 GT 独立标注与阻断种子 | 标注流程与分歧仲裁；阻断种子清单；零误判硬 FAIL |
 | M14 | Stage 3 | IN_PROGRESS | Stage 3 Exit | T0.1 | P0–P3 分级与可观测安全指标 | qa-report schema；数据写入 0 次可证；Release 判定 |
 | M15 | Stage 0 | DONE | T0.1 | — | DAG 循环与遗漏修复 | T1.0 作为共同上游；DAG 补齐 T0.4/T0.6/T1.7/T2.4/T2.6；编号修正 |
@@ -73,6 +73,6 @@
 | 状态 | 数量 |
 |---|---|
 | BLOCKED | 0 |
-| DONE | 32 |
-| IN_PROGRESS | 20 |
+| DONE | 38 |
+| IN_PROGRESS | 14 |
 | TODO | 9 |

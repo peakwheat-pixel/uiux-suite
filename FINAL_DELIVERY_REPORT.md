@@ -6,7 +6,7 @@
 
 | 交付物 | 位置 |
 |---|---|
-| 可安装 ZIP（120 载荷 + manifest（ZIP 121 项），含 7 wheels） | [`dist/uiux-suite-1.3.3-win64.zip`](dist/uiux-suite-1.3.3-win64.zip) |
+| 可安装 ZIP（129 载荷 + manifest（ZIP 130 项），含 7 wheels） | [`dist/uiux-suite-1.3.3-win64.zip`](dist/uiux-suite-1.3.3-win64.zip) |
 | ZIP 与逐文件 SHA256 | [`dist/SHA256SUMS.txt`](dist/SHA256SUMS.txt) |
 | 规范 | [`SPEC_V1.3.3.md`](SPEC_V1.3.3.md) |
 | 安装/CLI/规则/兼容文档 | [`docs/INSTALL.md`](docs/INSTALL.md)、[`docs/CLI.md`](docs/CLI.md)、[`docs/RULES.md`](docs/RULES.md)、[`docs/COMPATIBILITY.md`](docs/COMPATIBILITY.md) |
@@ -16,7 +16,7 @@
 
 ## 2. 已实现能力
 
-- **契约**：23 份 JSON Schema、枚举唯一来源、Mode×Gate、G0–G6 派生规则、证据生命周期、L4 独立审查。
+- **契约**：25 份 JSON Schema、枚举唯一来源、Mode×Gate、G0–G6 派生规则、证据生命周期、L4 独立审查。
 - **安装**：`uiux` + `uiux-verify` 双入口；版本化 `versions/<ver>/`；install/doctor/repair/upgrade/rollback/uninstall；中文/空格/junction/长路径；UNC 稳定拒绝。
 - **检测器**（SIMULATED 标注）：
   - `style_token_linter`（10 规则，QSS/Web/TSX）；
@@ -33,7 +33,7 @@
 ```powershell
 cd <repo>
 $env:PYTHONPATH='runtime'
-.\.venv\Scripts\python.exe -m pytest tests -q            # 418 passed
+.\.venv\Scripts\python.exe -m pytest tests -q            # 447 passed
 .\.venv\Scripts\python.exe scripts\run_attack_suite.py   # 11/11 攻击被拒
 .\.venv\Scripts\python.exe scripts\run_stage1_suite.py   # TP38/FP0/TN8/FN0
 .\.venv\Scripts\python.exe scripts\build_release.py      # ZIP 重建 + 安装/启动/doctor exit 0

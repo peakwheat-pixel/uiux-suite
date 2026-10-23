@@ -17,7 +17,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from . import compat, contracts, enums, external, gates, integrity, modify, policy, rules, safety, snapshot, validation, vault
+from . import compat, contracts, enums, external, gates, integrity, knowledge, modify, policy, rules, safety, snapshot, token_compiler, validation, vault
 
 EXIT_OK = 0
 EXIT_USAGE = 2
@@ -169,6 +169,25 @@ def cmd_safety(args: argparse.Namespace) -> int:
 
 def cmd_compat(args: argparse.Namespace) -> int:
     _emit(compat.degradation_report(args.agents_home))
+    return EXIT_OK
+
+
+def cmd_knowledge(args: argparse.Namespace) -> int:
+    try:
+        index = knowledge.load_index(args.index)
+    except (OSError, ValueError) as exc:
+        return _invalid([str(exc)], context="knowledge index")
+    result = knowledge.verify(index, args.root)
+    _emit(result)
+    return EXIT_OK if result["ok"] else EXIT_INVALID
+
+
+def cmd_tokens(args: argparse.Namespace) -> int:
+    try:
+        path = token_compiler.compile_tokens(args.format, args.out)
+    except (OSError, ValueError) as exc:
+        return _invalid([str(exc)], context="token compiler")
+    _emit({"ok": True, "format": args.format, "out": str(path)})
     return EXIT_OK
 
 
@@ -433,6 +452,16 @@ def build_parser() -> argparse.ArgumentParser:
     p_snapshot.add_argument("--backup", help="copy tree to this new directory (rollback copy)")
     p_snapshot.add_argument("--diff", nargs=2, metavar=("BEFORE", "AFTER"))
     p_snapshot.set_defaults(func=cmd_snapshot)
+
+    p_knowledge = sub.add_parser("knowledge", help="verify the knowledge index/checksums (T2.4)")
+    p_knowledge.add_argument("--index")
+    p_knowledge.add_argument("--root")
+    p_knowledge.set_defaults(func=cmd_knowledge)
+
+    p_tokens = sub.add_parser("tokens", help="compile design tokens to css/tailwind/pyside6 (T2.3)")
+    p_tokens.add_argument("--format", required=True, choices=["css", "tailwind", "pyside6"])
+    p_tokens.add_argument("--out", required=True)
+    p_tokens.set_defaults(func=cmd_tokens)
 
     p_modify = sub.add_parser("modify", help="validate/apply/revert a controlled change plan (T3.1)")
     p_modify.add_argument("--root", required=True)

@@ -4,7 +4,7 @@
 
 | 产物 | 路径 |
 |---|---|
-| Windows 安装包 | `dist/uiux-suite-1.3.3-win64.zip`（120 个载荷文件 + `RELEASE_MANIFEST.json`（ZIP 共 121 项），含 7 个运行时 wheel） |
+| Windows 安装包 | `dist/uiux-suite-1.3.3-win64.zip`（129 个载荷文件 + `RELEASE_MANIFEST.json`（ZIP 共 130 项），含 7 个运行时 wheel） |
 | 校验和 | `dist/SHA256SUMS.txt` |
 | 发行清单 | ZIP 内 `RELEASE_MANIFEST.json`（每文件 SHA256/size/role） |
 | 安装验证 | `evidence/T5.5/release-verification.json` + `release-install.txt` |
@@ -27,12 +27,12 @@ python skills\uiux\scripts\launch.py doctor --scope user
 
 ## 已验证
 
-- 418 项 pytest 全绿；T0.1 契约测试 160/160（历史冻结证据）。
+- 447 项 pytest 全绿；T0.1 契约测试 160/160（历史冻结证据）。
 - 安装/双入口/doctor/卸载/升级回滚/长路径/junction/UNC 拒绝。
 - 规则目录冻结 20 条；T1.2–T1.7 检测器、负向攻击 11/11、混淆矩阵 TP38/FP0/TN8/FN0。
 - Stage 2 discovery/design system/prototype/options。
 - Stage 3 受控改动/回滚、Vault 字节校验、完整性链、安全分级、真实 Win11 Notepad（WinUI 3）UIA 只读证据。
-- 发行包内安装、双入口、doctor 均 exit 0（临时隔离目录，120 个载荷文件 + `RELEASE_MANIFEST.json`（ZIP 共 121 项））。
+- 发行包内安装、双入口、doctor 均 exit 0（临时隔离目录，129 个载荷文件 + `RELEASE_MANIFEST.json`（ZIP 共 130 项））。
 
 ## 未验证（不得宣称 PASS）
 

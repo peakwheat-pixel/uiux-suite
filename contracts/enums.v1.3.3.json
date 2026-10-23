@@ -284,6 +284,18 @@
     "ChangeAction": {
       "values": ["create", "modify", "delete"]
     },
+    "KnowledgeKind": {
+      "values": ["design_tokens", "rule_catalog", "guideline", "reference", "example"]
+    },
+    "LicenseKind": {
+      "values": ["internal", "cc-by-4.0", "mit", "apache-2.0", "proprietary", "unknown"]
+    },
+    "AdoptionAction": {
+      "values": ["ADOPT", "OVERRIDE", "KEEP_LOCAL", "CONFLICT"]
+    },
+    "AdoptionPriority": {
+      "values": ["SUITE", "PROJECT"]
+    },
     "Capability": {
       "values": ["async_load", "collection_display", "user_mutation", "long_running_task", "destructive_operations", "canvas_rendering"]
     },
