@@ -3,13 +3,13 @@
   "evidence_id": "EV-T5.1-WORKBENCH-STATIC",
   "kind": "tool_log",
   "runtime_level": "STATIC",
-  "generated_at": "2026-10-23T20:11:25.453274+00:00",
+  "generated_at": "2026-10-23T20:11:37.059809+00:00",
   "source_workbench": "G:\\CODEX\\New Manga",
   "isolated_copy": "G:\\AI\\uiux-stage5-sandbox\\new-manga-src",
   "isolation": "copied src/docs/tests/config only; apps/test_assets/weights/verification excluded; original never modified",
   "git": {
-    "commit": "895bf34998c811235dca5814bfe74107a517bef5",
-    "dirty": true,
+    "commit": "6e5dc7fa30f720de86eb54dc86238c968d2d7773",
+    "dirty": false,
     "dirty_scope": "tracked files excluding evidence/ (collectors rewrite evidence)"
   },
   "file_count_copied": 5583,
