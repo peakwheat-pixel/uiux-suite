@@ -19,8 +19,8 @@
 | Mode×Gate 机器策略 | `contracts/mode-gate-policy.v1.3.3.json` | `tests/unit/test_policy.py` |
 | finalize/Gate 引擎 | `runtime/uiux_engine/` | `tests/integration/test_finalize.py`、`test_cli.py` |
 | 正反 fixtures | `tests/fixtures/`（14 valid / 15 invalid / 5 semantic） | `_build_fixtures.py`、Schema 测试 |
-| 契约+安装测试 | `tests/`（157 项） | `.venv\Scripts\python.exe -m pytest tests -q` |
-| 契约测试证据 | `evidence/T0.1/contract-test-evidence.json` | 157/157 PASS，exit 0（以 evidence 为准） |
+| 契约+安装测试 | `tests/`（160 项） | `.venv\Scripts\python.exe -m pytest tests -q` |
+| 契约测试证据 | `evidence/T0.1/contract-test-evidence.json` | 160/160 PASS，exit 0（以 evidence 为准） |
 | 双 Skill 入口与启动器 | `skills/uiux`、`skills/uiux-verify` | `tests/integration/test_install.py`（launch enums） |
 | 安装/卸载/升级/回滚 | `scripts/setup_skill.py`、`scripts/uninstall_skill.py` | 版本并存、删除源码后仍可启动、未知 Skill 不覆盖 |
 | doctor | `scripts/setup_skill.py doctor` | `host-capability.v1.3.3` 校验、root/rank/shadowed_by |
@@ -44,7 +44,7 @@
 | F-01 | production-code 的 L4 未强制独立 | `policy.l4_independent_required()` 按 `deliverable_tier` 派生；策略拆为 `review_policy` 与 `design_review_policy` | `test_production_code_l4_selftest_reviewer_is_rejected` |
 | F-02 | coverage 可自报层级 | coverage 与 manifest provenance/tool-log 交叉校验；gate observed 不得超过证据层级 | `test_coverage_claiming_native_without_native_provenance_is_rejected`、`test_gate_observed_level_above_evidence_is_rejected` |
 | F-03 | WARN 处置未 Schema 校验/未绑 HEAD | CLI 文件走同一 `warn_review` Schema；`reviewed_head` 必须等于冻结指纹 | `test_warn_review_missing_fields_is_rejected`、`test_warn_review_bound_to_wrong_head_is_rejected` |
-| F-04 | 文档计数漂移 | 计数统一为 157；evidence 输入集加入 SPEC/docs/plan | `run_contract_tests.py` |
+| F-04 | 文档计数漂移 | 计数统一为 160；evidence 输入集加入 SPEC/docs/plan | `run_contract_tests.py` |
 | F-05 | 顶层 `g6` 未被拒 | 删除顶层 `g6` property | `test_top_level_g6_is_rejected` |
 | F-06 | AVAILABLE 字节校验口径 | 明确 T3.5 实现；T0.1 只做清单/引用哈希 | SPEC §3.6/§15 |
 | F-07 | ISOLATED_REVIEW_VERIFIED 不可达 | 有效 ISOLATED_SESSION 审查可产生该状态 | `test_isolated_session_delivery_is_reachable` |

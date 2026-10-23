@@ -8,7 +8,7 @@
 |---|---|---|---|---|---|---|
 | T0.1 | Stage 0 | DONE | — | — | Contract Closure：Schema、枚举、Gate 引擎、覆盖矩阵、L4、证据生命周期 | B1–B6 机器测试全绿；B5/B6 Schema 与时点锁定；独立契约复核无未解决阻断；evidence/T0.1/contract-test-evidence.json ... |
 | T0.2 | Stage 0 | DONE | Stage 0 Exit | T0.1 | 版本化发行根、双启动器、安装/卸载/升级/回滚 | 删除开发仓后用户级安装可运行；版本并存；升级/回滚；卸载只删登记文件；manifest 哈希校验；M1/M3/M4/M5/M6(字段)关闭 |
-| T0.3 | Stage 0 | DONE | Stage 0 Exit | T0.2, T0.4 | DSH 实机安装与双入口发现 | DSH 实际发现 uiux 与 uiux-verify；doctor 输出真实 root/rank；不依赖开发仓；中文/空格/UNC 用例 |
+| T0.3 | Stage 0 | DONE | Stage 0 Exit | T0.2, T0.4 | DSH 实机安装与双入口发现 | DSH 实际发现 uiux 与 uiux-verify；doctor 输出真实 root/rank；不依赖开发仓；中文/空格用例通过（UNC 由 M5 覆盖） |
 | T0.4 | Stage 0 | DONE | Stage 0 Exit | T0.1 | doctor：能力、根目录、遮蔽、退出码与 --json | READY/MISSING/INCOMPATIBLE/UNVERIFIED 逐项输出；解析 DSH_AGENTS_HOME/DSH_HOME；遮蔽列表；host-capabi... |
 | T0.5 | Stage 0 | DONE | Stage 0 Exit | T0.1 | 许可证清单、离线依赖与版本锁定 | THIRD_PARTY_NOTICES.md 逐文件来源/许可；requirements.lock；离线安装路径可复现 |
 | T0.6 | Stage 0 | DONE | Stage 0 Exit | T0.2, T0.3 | 独立运行验证（删除开发仓回归） | 删除/移动开发仓后安装实例仍可 doctor + 最小 CLI；失败原因可诊断 |
@@ -45,7 +45,7 @@
 | M2 | Stage 0 | DONE | T0.4 | T0.1 | DSH_HOME/AGENTS_HOME 与项目根/遮蔽检测 | 解析环境变量；5 级 rank；shadowed_by；非 Git/monorepo 说明 |
 | M3 | Stage 0 | DONE | T0.2 | T0.1 | install 根分离与写根登记 | install_write_root 入 policy/schema；快照与写范围排除；只读模式不写项目 |
 | M4 | Stage 0 | DONE | T0.4 | T0.1 | Python/Node 版本锁定与依赖清单 | 版本区间写入 doctor；requirements.lock/package-lock；离线包 |
-| M5 | Stage 0 | IN_PROGRESS | T0.2 | T0.1 | 相对/绝对/UNC/junction/MAX_PATH 路径鲁棒性 | suite-link 基准固定；UNC/漫游/失效链接用例；长路径检查 |
+| M5 | Stage 0 | DONE | T0.2 | T0.1 | 相对/绝对/UNC/junction/MAX_PATH 路径鲁棒性 | suite-link 基准固定；UNC/漫游/失效链接用例；长路径检查 |
 | M6 | Stage 3 | TODO | Stage 3 Exit | T0.1 | OS 输入分权与桌面隔离证明 | UIA 与物理输入分离；desktop_isolation_proof；授权记录；T3.4 验收 |
 | M7 | Stage 0 | DONE | T0.1 | T0.1 | 四类根权限优先级与 finalize 校验 | read/report/sandbox/install 四根入 schema 与语义校验；allowed_write_globs 单一来源；越权拒绝 |
 | M8 | Stage 3 | TODO | Stage 3 Exit | T0.1 | 不可信项目构建执行模型 | 只读模式构建沙箱/副本；执行清单；网络与清理策略；SECURITY.md |
@@ -73,6 +73,6 @@
 | 状态 | 数量 |
 |---|---|
 | BLOCKED | 0 |
-| DONE | 16 |
-| IN_PROGRESS | 2 |
+| DONE | 17 |
+| IN_PROGRESS | 1 |
 | TODO | 43 |

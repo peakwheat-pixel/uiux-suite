@@ -3,7 +3,7 @@
 面向 DSH（DeepSeek Harness）的 UI/UX 工程能力包：双 Skill 入口、7 模式契约、G0–G6 门禁、原生/模拟证据分层、L4 设计评审与可复核的安装/验收链路。
 
 > 当前版本：**1.3.3（Contract Closure）**
-> 状态：T0.1 已由独立复核签发 PASS；Stage 0 收尾中，Stage 1–5 按 `docs/TASK_PLAN.md` 推进。
+> 状态：Stage 0 DONE（T0.1 独立复核 PASS；T0.2–T0.6 与 M5 均有机器证据）；Stage 1 进行中，按 `docs/TASK_PLAN.md` 推进。
 > 基线：`SPEC_V1.3.2.md`（不可变，SHA256 `70f5f339…9411ea04`），修订规范 `SPEC_V1.3.3.md`。
 
 ## 快速开始
@@ -34,7 +34,7 @@ $env:USERPROFILE\.agents\skills\uiux-verify\scripts\launch.py enums
 | `runtime/uiux_engine/` | 契约加载、策略、Gate/finalize、证据、CLI |
 | `skills/uiux`、`skills/uiux-verify` | 双 Skill 入口与启动器 |
 | `scripts/` | 安装/doctor/卸载/证据/任务登记脚本 |
-| `tests/` | 157 项契约、Gate、安装与宿主测试 |
+| `tests/` | 160 项契约、Gate、安装与宿主测试 |
 | `evidence/` | T0.1/T0.3 机器可复核证据 |
 | `docs/` | 规范、任务计划、审核记录、交付文档 |
 | `dist/` | 本地发行包与离线 wheels（不入 Git） |

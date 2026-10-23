@@ -41,11 +41,12 @@ $env:PYTHONPATH = "runtime"
 ## 非 Git 快照（M17）
 
 ```powershell
-python -m uiux_engine.cli snapshot --root "G:\project" --out "G:\project\.uiux\state\snapshot.json"
+python -m uiux_engine.cli snapshot --root "G:\project" --out "G:\project\.uiux\state\snapshot.json" --backup "G:\backup\project"
 python -m uiux_engine.cli snapshot --diff before.json after.json
 ```
 
-- `snapshot` 输出 `file_count` 与 `digest`；忽略 `.git/.venv/__pycache__/node_modules`。
+- `snapshot` 输出 `file_count` 与 `digest`；忽略 `.git/.venv/__pycache__/node_modules` 与符号链接。
+- `--backup` 复制一份可回滚副本（目标必须不存在）；回滚即把备份副本拷回目标目录（显式运维操作）。
 - `--diff` 输出 added/removed/changed；一致退出 0，有差异退出 11。
 
 ## 安装 / doctor / 启动器（T0.2 起）
@@ -82,6 +83,7 @@ python %USERPROFILE%\.agents\skills\uiux\scripts\launch.py enums
 | 4 | `RELEASE_ROOT_MISSING` / `VERSION_MISMATCH` |
 | 5 | `PYTHON_EXE_MISSING` |
 | 6 | `MANIFEST_MISMATCH` / `MANIFEST_CORRUPT` |
+| 7 | `INSTALLED_DOCTOR_MISSING`（suite 内 doctor 缺失，需重装/修复） |
 
 ### setup/doctor 退出码
 

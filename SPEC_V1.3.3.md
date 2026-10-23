@@ -4,7 +4,7 @@
 > 日期：2026-10-24
 > 前版：`SPEC_V1.3.2.md`（不可变基线，commit `e7e921e`，tag `v1.3.2-baseline`，SHA256 `70f5f3399079ad138685295c9ec2915544c03e77b7cf49f08e5959bc9411ea04`）
 > 本版分支：`v1.3.3-contract-closure`
-> 实施证据：`evidence/T0.1/contract-test-evidence.json`（157 项契约+安装测试通过，exit_code=0）
+> 实施证据：`evidence/T0.1/contract-test-evidence.json`（160 项契约+安装测试通过，exit_code=0）
 > 适用对象：DSH（首选实测宿主）、Codex / Claude Code / ZCode / Antigravity / Qoder（逐项验证，未测即 `UNVERIFIED`）
 
 ---
@@ -416,13 +416,13 @@ g6 = derive(...)
 
 ### Stage 0｜契约闭环、安装闭环与 DSH 预检
 
-- **T0.1（DONE，第 2 轮独立复核 PASS）**：Schema、枚举、Gate 引擎、覆盖矩阵、L4、证据生命周期；契约+安装测试 157/157。
+- **T0.1（DONE，第 2 轮独立复核 PASS）**：Schema、枚举、Gate 引擎、覆盖矩阵、L4、证据生命周期；契约+安装测试 160/160。
 - T0.2 发行根/双启动器/安装卸载/升级回滚；M1/M3/M4/M5/M17。
 - T0.3 DSH 实机安装与双入口发现；M2/m6/m7 部分已由实机证据关闭。
 - T0.4 doctor：能力、根目录、遮蔽、退出码/JSON；M9。
 - T0.5 许可证与离线依赖锁定。
 - T0.6 删除开发仓后的独立运行验证。
-- **Stage 0 Exit**：删除开发仓后仍可 doctor + 最小 CLI；中文/空格/UNC 通过；无外部编排器也通过。
+- **Stage 0 Exit**：T0.1–T0.6 全部 DONE；删除开发仓后仍可 doctor + 最小 CLI（代理验证见 `docs/STAGE0_ACCEPTANCE.md`）；中文/空格/junction/长路径通过，UNC 缺失路径返回稳定 `RELEASE_ROOT_MISSING`；无外部编排器也通过。
 
 ### Stage 1｜确定性检测器与靶场
 
@@ -533,7 +533,7 @@ Release 必交付：可安装/卸载/修复的发行包、双 Skill、快速上�
 
 | ID | 用例 | 本版结果 | 证据 |
 |---|---|---|---|
-| C-01 | 双 Skill 发现 | 未执行（T0.3） | — |
+| C-01 | 双 Skill 发现 | PASS（DSH 会话技能目录出现双入口） | `evidence/T0.3/host-install-evidence.json` |
 | C-02 | launch.py 与 suite-link 路径关系 | PASS（安装实例启动） | `test_install_doctor_launch_and_uninstall`、`test_launch_works_after_source_tree_is_deleted` |
 | C-03 | 发行文件哈希错配 | PASS（launch/doctor 拒绝） | `test_launch_rejects_manifest_hash_mismatch` |
 | C-04 | 全部样例校验 | PASS | 14 valid / 15 invalid fixtures |
@@ -545,11 +545,11 @@ Release 必交付：可安装/卸载/修复的发行包、双 Skill、快速上�
 | C-10 | 证据缺失/哈希不符/过期 | PASS | `test_expired_evidence_cannot_support_pass` |
 | C-11 | L4 required 但缺失 / production-code 自审 | PASS | `test_required_l4_review_missing_blocks_complete`、`test_production_code_l4_selftest_reviewer_is_rejected` |
 | C-12 | 非 Git/外部 caller 策略 | PASS（策略层） | `test_caller_managed_must_match_policy` |
-| C-13 | DSH_AGENTS_HOME 与遮蔽 | 部分：doctor 遮蔽判定 PASS；真实 DSH 待 T0.3/T0.4 | `test_shadow_detection_reports_project_skill` |
+| C-13 | DSH_AGENTS_HOME 与遮蔽 | PASS（真实 root/rank/shadow；custom rank 300 用例） | `evidence/T0.3/host-install-evidence.json`、`test_custom_rank_300` |
 | C-14 | 四类写根缺失/越权 | PASS | `test_semantic_violations_are_rejected` |
-| C-15 | 中文/空格/UNC 路径 | 部分：中文/空格 PASS；UNC/长路径待 T0.2/T0.3 | `test_project_scope_with_chinese_and_space_path` |
+| C-15 | 中文/空格/UNC 路径 | PASS（中文/空格/junction/长路径；UNC 缺失稳定拒绝） | `test_project_scope_with_chinese_and_space_path`、`tests/integration/test_paths.py` |
 
-**结论**：B1–B6 的契约与引擎具有机器测试证据；C-01/C-13/C-15 的真实宿主/UNC 部分尚未执行，**不得据此宣称 Stage 0 PASS**。T0.1 需在返修后通过独立只读复核才能标记 DONE。
+**结论**：B1–B6 的契约与引擎具有机器测试证据；T0.1 已由第 2 轮独立只读复核 PASS。Stage 0 Exit 以 `docs/STAGE0_ACCEPTANCE.md` 与第 4 轮最终确认为准；UNC 缺失路径按"稳定拒绝"验收，不声明可读写 UNC 共享。
 
 ## 附录 B：状态恢复与证据索引
 

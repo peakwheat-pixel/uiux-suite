@@ -47,7 +47,12 @@ def python_works(candidate: str | Path) -> bool:
     env["PYTHONDONTWRITEBYTECODE"] = "1"
     try:
         proc = subprocess.run(
-            [str(path), "-c", "import jsonschema, sys; sys.exit(0)"],
+            [
+                str(path),
+                "-c",
+                "import sys, importlib.metadata as m; v=m.version('jsonschema').split('.'); "
+                "sys.exit(0 if sys.version_info >= (3, 10) and v[0] == '4' and int(v[1]) >= 20 else 3)",
+            ],
             capture_output=True,
             env=env,
             timeout=15,
@@ -63,6 +68,23 @@ def python_version_of(exe: str | Path | None) -> str | None:
     try:
         proc = subprocess.run(
             [str(exe), "-c", "import sys; print(sys.version.split()[0])"],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=15,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+    return proc.stdout.strip() if proc.returncode == 0 else None
+
+
+def dependency_version_of(exe: str | Path | None, package: str) -> str | None:
+    if not exe or not Path(exe).is_file():
+        return None
+    try:
+        proc = subprocess.run(
+            [str(exe), "-c", f"import importlib.metadata as m; print(m.version({package!r}))"],
             capture_output=True,
             text=True,
             encoding="utf-8",
@@ -434,12 +456,20 @@ def scan_skill_root(root: Path) -> list[dict]:
 def host_roots(project_root: Path) -> list[dict]:
     dsh_home = Path(os.environ.get("DSH_HOME", str(Path.home() / ".dsh"))).expanduser().resolve()
     agents_home = Path(os.environ.get("DSH_AGENTS_HOME", str(Path.home() / ".agents"))).expanduser().resolve()
-    return [
+    roots = [
         {"source": "project-dsh", "rank": 100, "path": project_root / ".dsh" / "skills"},
         {"source": "project-agents", "rank": 200, "path": project_root / ".agents" / "skills"},
-        {"source": "user-dsh", "rank": 400, "path": dsh_home / "skills"},
-        {"source": "user-agents", "rank": 500, "path": agents_home / "skills"},
     ]
+    custom = os.environ.get("UIUX_CUSTOM_SKILLS_HOME")
+    if custom:
+        roots.append({"source": "custom", "rank": 300, "path": Path(custom).expanduser().resolve()})
+    roots.extend(
+        [
+            {"source": "user-dsh", "rank": 400, "path": dsh_home / "skills"},
+            {"source": "user-agents", "rank": 500, "path": agents_home / "skills"},
+        ]
+    )
+    return roots
 
 
 def check_link(agents_home: Path, skill: str) -> tuple[dict | None, list[str]]:
@@ -544,6 +574,29 @@ def cmd_doctor(args: argparse.Namespace) -> int:
     )
     if not python_ok:
         problems.append(f"python: unusable or below 3.10: {linked_python}")
+    jsonschema_version = dependency_version_of(linked_python, "jsonschema")
+    try:
+        jsonschema_ok = bool(jsonschema_version) and tuple(
+            int(part) for part in jsonschema_version.split(".")[:2]
+        ) >= (4, 20) and int(jsonschema_version.split(".")[0]) == 4
+    except (ValueError, IndexError):
+        jsonschema_ok = False
+    checks.append(
+        {
+            "id": "jsonschema",
+            "status": "READY" if jsonschema_ok else "INCOMPATIBLE",
+            "detail": jsonschema_version or "not importable",
+        }
+    )
+    if not jsonschema_ok:
+        problems.append(f"jsonschema: requires >=4.20,<5, found {jsonschema_version or 'none'}")
+    checks.append(
+        {
+            "id": "python_runner",
+            "status": "READY",
+            "detail": f"{sys.executable} ({sys.version.split()[0]})",
+        }
+    )
     node = shutil.which("node")
     node_version = None
     if node:
@@ -592,7 +645,7 @@ def cmd_doctor(args: argparse.Namespace) -> int:
         "host": args.host,
         "host_version": None,
         "os": f"{os.name}-{sys.platform}",
-        "python": f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}",
+        "python": python_version or f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}",
         "node": node,
         "skill_roots": [
             {"path": str(root["path"]), "rank": root["rank"], "source": root["source"], "exists": root["path"].is_dir()}

@@ -31,7 +31,7 @@
 .\.venv\Scripts\python.exe scripts\setup_skill.py --host generic install --scope project --project "G:\demo" --version 1.3.3
 ```
 
-项目根 = 含 `.git` 的最近祖先；非 Git 项目需 `--project` 指向 cwd 根。
+项目根 = 含 `.git` 的最近祖先；非 Git 项目需 `--project` 指向 cwd 根。Monorepo 建议对具体子项目执行 `--project <子项目根>`，避免在仓库总根生成 `.agents`。
 
 ## 4. doctor
 

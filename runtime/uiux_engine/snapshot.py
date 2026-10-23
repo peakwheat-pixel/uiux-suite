@@ -29,7 +29,7 @@ def iter_files(root: Path, ignore: Iterable[str] = DEFAULT_IGNORE) -> list[Path]
     ignored = set(ignore)
     files: list[Path] = []
     for path in sorted(root.rglob("*")):
-        if not path.is_file():
+        if path.is_symlink() or not path.is_file():
             continue
         relative_parts = path.relative_to(root).parts
         if any(part in ignored for part in relative_parts):

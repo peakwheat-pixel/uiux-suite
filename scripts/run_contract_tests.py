@@ -61,6 +61,8 @@ def collect_inputs() -> dict[str, str]:
         "scripts/setup_skill.py",
         "scripts/uninstall_skill.py",
         "scripts/build_task_registry.py",
+        "scripts/collect_host_evidence.py",
+        "scripts/collect_offline_evidence.py",
         "skills/**/*.md",
         "skills/**/*.py",
         "SPEC_V1.3.3.md",

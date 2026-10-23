@@ -59,7 +59,7 @@
       "title": "DSH 实机安装与双入口发现",
       "stage": "Stage 0",
       "status": "DONE",
-      "acceptance": "DSH 实际发现 uiux 与 uiux-verify；doctor 输出真实 root/rank；不依赖开发仓；中文/空格/UNC 用例",
+      "acceptance": "DSH 实际发现 uiux 与 uiux-verify；doctor 输出真实 root/rank；不依赖开发仓；中文/空格用例通过（UNC 由 M5 覆盖）",
       "depends_on": [
         "T0.2",
         "T0.4"
@@ -68,7 +68,7 @@
       "evidence": "evidence/T0.3/host-install-evidence.json",
       "files": [],
       "source": "V133-01",
-      "note": "用户级安装后 DSH 会话技能目录出现双入口；doctor 输出 rank 500；UNC 仍记 M5。"
+      "note": "用户级安装后 DSH 会话技能目录出现双入口；doctor 输出 rank 500；UNC/junction/长路径见 M5。"
     },
     {
       "id": "T0.4",
@@ -98,10 +98,10 @@
         "T0.1"
       ],
       "due_before": "Stage 0 Exit",
-      "evidence": "THIRD_PARTY_NOTICES.md; requirements.lock; dist/wheels/; docs/INSTALL.md",
+      "evidence": "THIRD_PARTY_NOTICES.md; requirements.lock; dist/wheels/; evidence/T0.5/offline-install-evidence.json",
       "files": [],
       "source": "M4/m3",
-      "note": "离线 venv 实测成功；无第三方字体随包分发。"
+      "note": "离线 venv + --no-index 实测成功；wheel 清单/SHA256/日志入 evidence；无第三方字体随包分发。"
     },
     {
       "id": "T0.6",
@@ -588,10 +588,10 @@
         "T0.1"
       ],
       "due_before": "T0.4",
-      "evidence": "evidence/T0.3/host-install-evidence.json",
+      "evidence": "evidence/T0.3/host-install-evidence.json; tests/integration/test_paths.py",
       "files": [],
       "source": "MAJOR",
-      "note": "真实 DSH 根/rank/遮蔽已输出；非 Git 项目规则见 docs/INSTALL.md"
+      "note": "5 级 rank（含 custom 300）与遮蔽已测；monorepo 说明见 docs/INSTALL.md"
     },
     {
       "id": "M3",
@@ -618,25 +618,25 @@
         "T0.1"
       ],
       "due_before": "T0.4",
-      "evidence": "requirements.lock; dist/wheels/; scripts/setup_skill.py",
+      "evidence": "requirements.lock; dist/wheels/; evidence/T0.5/offline-install-evidence.json",
       "files": [],
       "source": "MAJOR",
-      "note": "Python>=3.10、Node>=20 由 doctor 校验；离线 wheels 实测安装。"
+      "note": "Python>=3.10、Node>=20、jsonschema 4.20–4.x 由 doctor 校验；离线 wheels 实测。"
     },
     {
       "id": "M5",
       "title": "相对/绝对/UNC/junction/MAX_PATH 路径鲁棒性",
       "stage": "Stage 0",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "acceptance": "suite-link 基准固定；UNC/漫游/失效链接用例；长路径检查",
       "depends_on": [
         "T0.1"
       ],
       "due_before": "T0.2",
-      "evidence": "tests/integration/test_install.py",
+      "evidence": "tests/integration/test_paths.py; tests/integration/test_install.py",
       "files": [],
       "source": "MAJOR",
-      "note": "相对/绝对与中文空格路径已实测；UNC/junction/MAX_PATH 待补（Stage 0 后）。"
+      "note": "中文空格、junction、>260 长路径通过；UNC 缺失路径稳定 RELEASE_ROOT_MISSING。"
     },
     {
       "id": "M6",
@@ -814,7 +814,7 @@
       "evidence": "runtime/uiux_engine/snapshot.py; tests/unit/test_snapshot.py",
       "files": [],
       "source": "MAJOR",
-      "note": "snapshot/diff/backup 已实现；CLI snapshot 退出码 0/11。"
+      "note": "snapshot/diff/backup 已实现；CLI 支持 --out/--backup/--diff；回滚=备份副本拷回（显式运维命令）。"
     },
     {
       "id": "M18",

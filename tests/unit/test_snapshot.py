@@ -59,16 +59,32 @@ def test_backup_tree_copies_and_refuses_existing(tmp_path: Path):
 def test_cli_snapshot_and_diff(tmp_path: Path):
     root = make_tree(tmp_path / "project")
     out = tmp_path / "snap1.json"
+    backup = tmp_path / "backup"
     env = {"PYTHONPATH": str(REPO_ROOT / "runtime"), "PYTHONUTF8": "1"}
     first = subprocess.run(
-        [sys.executable, "-m", "uiux_engine.cli", "snapshot", "--root", str(root), "--out", str(out)],
+        [
+            sys.executable,
+            "-m",
+            "uiux_engine.cli",
+            "snapshot",
+            "--root",
+            str(root),
+            "--out",
+            str(out),
+            "--backup",
+            str(backup),
+        ],
         capture_output=True,
         text=True,
         encoding="utf-8",
         env={**__import__("os").environ, **env},
     )
     assert first.returncode == 0, first.stdout + first.stderr
-    assert json.loads(first.stdout)["file_count"] == 2
+    payload = json.loads(first.stdout)
+    assert payload["file_count"] == 2
+    assert payload["backup"] == str(backup)
+    assert (backup / "src" / "a.py").is_file()
+    assert not (backup / ".git").exists()
 
     (root / "src" / "a.py").write_text("changed\n", encoding="utf-8")
     second = subprocess.run(

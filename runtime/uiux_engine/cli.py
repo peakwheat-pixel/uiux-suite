@@ -115,6 +115,9 @@ def cmd_snapshot(args: argparse.Namespace) -> int:
         return EXIT_USAGE
     try:
         data = snapshot.build_snapshot(args.root)
+        backup = None
+        if args.backup:
+            backup = str(snapshot.backup_tree(args.root, args.backup))
         if args.out:
             snapshot.write_snapshot(args.root, args.out)
     except (OSError, ValueError) as exc:
@@ -126,6 +129,7 @@ def cmd_snapshot(args: argparse.Namespace) -> int:
             "file_count": data["file_count"],
             "digest": contracts.sha256_json(data["files"]),
             "out": args.out,
+            "backup": backup,
         }
     )
     return EXIT_OK
@@ -350,6 +354,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_snapshot = sub.add_parser("snapshot", help="non-Git directory digest / snapshot diff (M17)")
     p_snapshot.add_argument("--root")
     p_snapshot.add_argument("--out")
+    p_snapshot.add_argument("--backup", help="copy tree to this new directory (rollback copy)")
     p_snapshot.add_argument("--diff", nargs=2, metavar=("BEFORE", "AFTER"))
     p_snapshot.set_defaults(func=cmd_snapshot)
 

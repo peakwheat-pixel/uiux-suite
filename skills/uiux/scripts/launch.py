@@ -18,6 +18,7 @@ import os
 import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 
@@ -59,6 +60,14 @@ def verify_manifest(suite_root: Path, manifest_path: Path, expected_version: str
     return None
 
 
+def extended_path(path: str | Path) -> str:
+    """Use the Windows extended-length prefix for long cwd/script paths."""
+    text = str(path)
+    if os.name == "nt" and len(text) >= 248 and not text.startswith("\\\\?\\"):
+        return "\\\\?\\" + text
+    return text
+
+
 def python_usable(exe: str | Path) -> bool:
     path = Path(exe)
     if not path.is_file():
@@ -67,7 +76,12 @@ def python_usable(exe: str | Path) -> bool:
     env["PYTHONDONTWRITEBYTECODE"] = "1"
     try:
         proc = subprocess.run(
-            [str(path), "-c", "import jsonschema"],
+            [
+                str(path),
+                "-c",
+                "import sys, importlib.metadata as m; v=m.version('jsonschema').split('.'); "
+                "sys.exit(0 if sys.version_info >= (3, 10) and v[0] == '4' and int(v[1]) >= 20 else 3)",
+            ],
             capture_output=True,
             env=env,
             timeout=15,
@@ -126,20 +140,24 @@ def main(argv: list[str]) -> int:
     env["PYTHONPATH"] = str(suite_root / "runtime")
     env["PYTHONDONTWRITEBYTECODE"] = "1"
 
+    # A long suite path is fine for PYTHONPATH/imports, but some Windows
+    # CreateProcess versions reject cwd beyond MAX_PATH; use a short cwd.
+    short_cwd = tempfile.gettempdir()
+
     if argv and argv[0] == "doctor":
         installed_doctor = suite_root / "setup_skill.py"
         if not installed_doctor.is_file():
             return emit(7, "INSTALLED_DOCTOR_MISSING", str(installed_doctor))
         completed = subprocess.run(
-            [python_exe, str(installed_doctor), "doctor", *argv[1:]],
-            cwd=str(suite_root),
+            [python_exe, extended_path(installed_doctor), "doctor", *argv[1:]],
+            cwd=short_cwd,
             env=env,
         )
         return completed.returncode
 
     completed = subprocess.run(
         [python_exe, "-m", "uiux_engine.cli", *argv],
-        cwd=str(suite_root),
+        cwd=short_cwd,
         env=env,
     )
     return completed.returncode

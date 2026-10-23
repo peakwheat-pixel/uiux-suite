@@ -83,37 +83,60 @@ def main() -> int:
         print(json.dumps({"ok": False, "problems": problems}, ensure_ascii=False, indent=2))
         return 1
 
+    git_info = {
+        "commit": _git("rev-parse", "HEAD"),
+        "branch": _git("rev-parse", "--abbrev-ref", "HEAD"),
+        "dirty": bool(_git("status", "--porcelain")),
+    }
+
     link = json.loads(link_path.read_text(encoding="utf-8"))
     record = json.loads(record_path.read_text(encoding="utf-8"))
     suite_root = Path(record["suite_root"])
 
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    raw_dir = OUT_DIR / "raw"
+    raw_dir.mkdir(parents=True, exist_ok=True)
+
     launcher_runs = {}
     for skill in ("uiux", "uiux-verify"):
         launcher = agents_home / "skills" / skill / "scripts" / "launch.py"
-        launcher_runs[skill] = run([sys.executable, str(launcher), "enums"])
+        result = run([sys.executable, str(launcher), "enums"])
+        stdout_file = raw_dir / f"{skill}-enums.stdout.json"
+        stdout_file.write_text(result["stdout"], encoding="utf-8")
+        result["stdout_file"] = str(stdout_file.relative_to(REPO_ROOT))
+        result["stdout_file_sha256"] = sha256_file(stdout_file)
+        launcher_runs[skill] = result
 
     doctor = run([sys.executable, str(SETUP), "doctor", "--scope", "user"])
+    doctor_raw = raw_dir / "doctor.stdout.json"
+    doctor_raw.write_text(doctor["stdout"], encoding="utf-8")
     try:
         doctor_payload = json.loads(doctor["stdout"])
     except json.JSONDecodeError:
         doctor_payload = None
 
     dsh_version = run(["powershell", "-NoProfile", "-Command", "dsh --version"])
+    dsh_version_file = raw_dir / "dsh-version.stdout.txt"
+    dsh_version_file.write_text(dsh_version["stdout"], encoding="utf-8")
 
     with tempfile.TemporaryDirectory() as temp_dir:
         external_doctor = run(
             [sys.executable, str(agents_home / "skills" / "uiux" / "scripts" / "launch.py"), "doctor", "--scope", "user"],
             cwd=Path(temp_dir),
         )
-    repo_references = sorted(
-        {
-            str(REPO_ROOT)
-            for path in (link_path, record_path)
-            if str(REPO_ROOT) in path.read_text(encoding="utf-8")
-        }
-    )
 
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    repo_references: list[str] = []
+    for path in sorted(suite_root.rglob("*")):
+        if not path.is_file() or path.is_symlink() or path.stat().st_size > 2 * 1024 * 1024:
+            continue
+        try:
+            text = path.read_text(encoding="utf-8", errors="ignore")
+        except OSError:
+            continue
+        if str(REPO_ROOT) in text:
+            repo_references.append(path.relative_to(suite_root).as_posix())
+
+    manifest_path = suite_root / record.get("manifest_relpath", "RELEASE_MANIFEST.json")
     (OUT_DIR / "doctor.json").write_text(json.dumps(doctor_payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     evidence = {
@@ -121,11 +144,9 @@ def main() -> int:
         "evidence_id": "EV-T0.3-HOST-INSTALL",
         "kind": "tool_log",
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "git": {
-            "commit": _git("rev-parse", "HEAD"),
-            "branch": _git("rev-parse", "--abbrev-ref", "HEAD"),
-            "dirty": bool(_git("status", "--porcelain")),
-        },
+        "git": git_info,
+        "privacy": "local_private_unredacted: contains machine-specific absolute paths; not for distribution",
+        "generator_sha256": sha256_file(Path(__file__)),
         "host": {
             "kind": "dsh",
             "dsh_version": dsh_version["stdout"].strip(),
@@ -152,14 +173,16 @@ def main() -> int:
         "launchers": {
             skill: {
                 "exit_code": run_result["exit_code"],
-                "stdout_sha256": run_result["stdout_sha256"],
+                "stdout_file": run_result["stdout_file"],
+                "stdout_file_sha256": run_result["stdout_file_sha256"],
                 "schema_version": _schema_version(run_result["stdout"]),
             }
             for skill, run_result in launcher_runs.items()
         },
         "doctor": {
             "exit_code": doctor["exit_code"],
-            "stdout_sha256": doctor["stdout_sha256"],
+            "stdout_file": str(doctor_raw.relative_to(REPO_ROOT)),
+            "stdout_file_sha256": sha256_file(doctor_raw),
             "overall_status": (doctor_payload or {}).get("overall_status"),
             "links": (doctor_payload or {}).get("links"),
             "entries_contain_both_skills": _contains_both(doctor_payload),
@@ -170,6 +193,12 @@ def main() -> int:
             ],
             "capabilities": ((doctor_payload or {}).get("host_capability") or {}).get("capabilities"),
         },
+        "inputs_sha256": {
+            "suite_manifest": sha256_file(manifest_path),
+            "install_record": sha256_file(record_path),
+            "suite_link": sha256_file(link_path),
+            "generator": sha256_file(Path(__file__)),
+        },
         "host_catalog_observation": {
             "detail": "After install, the running DSH session exposed 'uiux' and 'uiux-verify' in its skill catalog (user-agents rank 500).",
             "skills": ["uiux", "uiux-verify"],
@@ -178,11 +207,13 @@ def main() -> int:
             "external_cwd_doctor_exit_code": external_doctor["exit_code"],
             "external_cwd_doctor_stdout_sha256": external_doctor["stdout_sha256"],
             "source_checkout_absolute_references": repo_references,
+            "source_checkout_scan_scope": "all install-root files under suite_root (<=2MB, text-decodable)",
             "independent_of_source_checkout": external_doctor["exit_code"] == 0 and not repo_references,
         },
         "limitations": [
             "GUI click-through/MCP/resume capabilities are UNVERIFIED until Stage 4.",
             "This evidence does not prove behavior on other hosts; see T4.2 matrix.",
+            "Raw stdout files are stored under evidence/T0.3/raw and hashed by file.",
         ],
     }
     out_path = OUT_DIR / "host-install-evidence.json"

@@ -26,4 +26,5 @@
 ## 离线安装
 
 - `requirements.txt` / `requirements-dev.txt` 固定版本；`requirements.lock` 为当前验证环境的完整锁定。
-- 离线环境需预置对应 wheel（Stage 5 打包时纳入 `dist/wheels/`）；本轮尚未附带 wheel 缓存，登记为 T0.5 剩余项。
+- `dist/wheels/` 已包含运行时依赖 wheel（win_amd64，cp312 + cp314）；wheels 不入 Git，文件名与 SHA256 记录在 `evidence/T0.5/offline-install-evidence.json`，并附一次 `--no-index` 安装日志（`evidence/T0.5/offline-install.log`）。
+- 重新获取 wheel：`python -m pip download -r requirements.txt -d dist/wheels --only-binary=:all:`。
