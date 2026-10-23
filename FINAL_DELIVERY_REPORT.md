@@ -33,7 +33,7 @@
 ```powershell
 cd <repo>
 $env:PYTHONPATH='runtime'
-.\.venv\Scripts\python.exe -m pytest tests -q            # 413 passed
+.\.venv\Scripts\python.exe -m pytest tests -q            # 418 passed
 .\.venv\Scripts\python.exe scripts\run_attack_suite.py   # 11/11 攻击被拒
 .\.venv\Scripts\python.exe scripts\run_stage1_suite.py   # TP38/FP0/TN8/FN0
 .\.venv\Scripts\python.exe scripts\build_release.py      # ZIP 重建 + 安装/启动/doctor exit 0

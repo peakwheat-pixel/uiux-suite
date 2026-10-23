@@ -34,7 +34,7 @@ $env:USERPROFILE\.agents\skills\uiux-verify\scripts\launch.py enums
 | `runtime/uiux_engine/` | 契约加载、策略、Gate/finalize、证据、CLI |
 | `skills/uiux`、`skills/uiux-verify` | 双 Skill 入口与启动器 |
 | `scripts/` | 安装/doctor/卸载/证据/任务登记脚本 |
-| `tests/` | 413 项契约、Gate、安装与宿主测试 |
+| `tests/` | 418 项契约、Gate、安装与宿主测试 |
 | `evidence/` | T0.1/T0.3 机器可复核证据 |
 | `docs/` | 规范、任务计划、审核记录、交付文档 |
 | `dist/` | 本地发行包与离线 wheels（不入 Git） |

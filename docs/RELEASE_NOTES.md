@@ -27,7 +27,7 @@ python skills\uiux\scripts\launch.py doctor --scope user
 
 ## 已验证
 
-- 413 项 pytest 全绿；T0.1 契约测试 160/160（历史冻结证据）。
+- 418 项 pytest 全绿；T0.1 契约测试 160/160（历史冻结证据）。
 - 安装/双入口/doctor/卸载/升级回滚/长路径/junction/UNC 拒绝。
 - 规则目录冻结 20 条；T1.2–T1.7 检测器、负向攻击 11/11、混淆矩阵 TP38/FP0/TN8/FN0。
 - Stage 2 discovery/design system/prototype/options。
