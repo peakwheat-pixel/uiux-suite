@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.3.3",
+  "host": "dsh",
+  "host_version": "1.0.0",
+  "os": "Windows 11 23H2",
+  "python": "3.12.14",
+  "node": null,
+  "skill_roots": [
+    {
+      "path": "G:/fixtures/demo/.agents/skills",
+      "rank": 200,
+      "source": "project-agents",
+      "exists": true
+    },
+    {
+      "path": "C:/Users/test/.agents/skills",
+      "rank": 500,
+      "source": "user-agents",
+      "exists": true
+    }
+  ],
+  "entries": [
+    {
+      "name": "uiux",
+      "root": "C:/Users/test/.agents/skills/uiux",
+      "rank": 500,
+      "shadowed_by": null
+    }
+  ],
+  "capabilities": {
+    "skill_discovery": "READY",
+    "script_exec": "READY",
+    "gui_access": "READY",
+    "mcp": "UNVERIFIED",
+    "file_permissions": "READY",
+    "resume": "UNVERIFIED"
+  },
+  "checks": [
+    {
+      "id": "python",
+      "status": "READY",
+      "detail": "Python 3.12.14 on PATH"
+    },
+    {
+      "id": "gui",
+      "status": "READY",
+      "detail": "interactive desktop available"
+    }
+  ],
+  "doctor_version": "1.3.3",
+  "overall_status": "READY",
+  "checked_at": "2026-10-23T12:00:00+00:00"
+}

@@ -1,0 +1,169 @@
+{
+  "schema_version": "1.3.3",
+  "run_id": "UIUX-20261023-001",
+  "evidence_policy": {
+    "profile": "local_private",
+    "retention_days": 30,
+    "release_retention_days": 180
+  },
+  "items": [
+    {
+      "id": "EV-G0",
+      "status": "REDACTED_ONLY",
+      "kind": "tool_log",
+      "storage_class": "evidence",
+      "source_sha256": "9e8110315b3cf81afefde282aef790477e6adeef6e7f14cb18a23e8286ce25b5",
+      "redacted_sha256": null,
+      "references": [
+        "tests/fixtures/scenarios/complete-redesign/ev-g0.json"
+      ],
+      "created_at": "2026-10-23T12:00:00+00:00",
+      "retention_policy": "release_audit",
+      "expiry_at": "2027-10-23T12:00:00+00:00",
+      "redaction": {
+        "kind": "path",
+        "method": "automated",
+        "recheck_status": "PASS"
+      },
+      "provenance": {
+        "producer": "uiux-engine",
+        "probe_id": "P-G0",
+        "execution_level": "NONE",
+        "tool_log_ref": "TL-G0",
+        "environment_digest": "b77349bf1fa9b26d45d545d7d64dad96737e9cfbb3cbb5f5d10fb77b0fcc44ad"
+      }
+    },
+    {
+      "id": "EV-G1",
+      "status": "AVAILABLE",
+      "kind": "screenshot",
+      "storage_class": "vault",
+      "source_sha256": "43fd973aea7206503e0402dd0d13948a4e79b9481343ae6b70da61d3a76f21d2",
+      "redacted_sha256": "fd618d436d3a4d00869b7b6c6aa8a6b35bb79ccc695bb520fb0d3cffcbd5877a",
+      "references": [
+        "tests/fixtures/scenarios/complete-redesign/ev-g1.json"
+      ],
+      "created_at": "2026-10-23T12:00:00+00:00",
+      "retention_policy": "release_audit",
+      "expiry_at": "2027-10-23T12:00:00+00:00",
+      "redaction": {
+        "kind": "image",
+        "method": "automated",
+        "recheck_status": "PASS"
+      },
+      "provenance": {
+        "producer": "uiux-engine",
+        "probe_id": "P-G1",
+        "execution_level": "NATIVE_APP",
+        "tool_log_ref": "TL-G1",
+        "environment_digest": "b77349bf1fa9b26d45d545d7d64dad96737e9cfbb3cbb5f5d10fb77b0fcc44ad"
+      }
+    },
+    {
+      "id": "EV-G2",
+      "status": "AVAILABLE",
+      "kind": "coverage_matrix",
+      "storage_class": "evidence",
+      "source_sha256": "85690c84df148ea75abc222f77be3c24734ca4664c19176a6b474d0bb7197144",
+      "redacted_sha256": "2a320bcd9f41bd370a98ee8e6339887bd2d2fb4e400560fd256b34b8eb5183f8",
+      "references": [
+        "tests/fixtures/scenarios/complete-redesign/ev-g2.json"
+      ],
+      "created_at": "2026-10-23T12:00:00+00:00",
+      "retention_policy": "release_audit",
+      "expiry_at": "2027-10-23T12:00:00+00:00",
+      "redaction": {
+        "kind": "image",
+        "method": "automated",
+        "recheck_status": "PASS"
+      },
+      "provenance": {
+        "producer": "uiux-engine",
+        "probe_id": "P-G2",
+        "execution_level": "NATIVE_APP",
+        "tool_log_ref": "TL-G2",
+        "environment_digest": "b77349bf1fa9b26d45d545d7d64dad96737e9cfbb3cbb5f5d10fb77b0fcc44ad"
+      }
+    },
+    {
+      "id": "EV-G3",
+      "status": "AVAILABLE",
+      "kind": "tool_log",
+      "storage_class": "evidence",
+      "source_sha256": "0e9c578b733e2147f7307bb93db2edabef512add90c8a5724eb8656f0cc34557",
+      "redacted_sha256": "4546474fc5c00fead1f49102d9ba7b08120298dcf7f4b90ffab0d980cf480317",
+      "references": [
+        "tests/fixtures/scenarios/complete-redesign/ev-g3.json"
+      ],
+      "created_at": "2026-10-23T12:00:00+00:00",
+      "retention_policy": "release_audit",
+      "expiry_at": "2027-10-23T12:00:00+00:00",
+      "redaction": {
+        "kind": "path",
+        "method": "automated",
+        "recheck_status": "PASS"
+      },
+      "provenance": {
+        "producer": "uiux-engine",
+        "probe_id": "P-G3",
+        "execution_level": "NONE",
+        "tool_log_ref": "TL-G3",
+        "environment_digest": "b77349bf1fa9b26d45d545d7d64dad96737e9cfbb3cbb5f5d10fb77b0fcc44ad"
+      }
+    },
+    {
+      "id": "EV-G4",
+      "status": "AVAILABLE",
+      "kind": "diff",
+      "storage_class": "evidence",
+      "source_sha256": "a2e56d6cd3dd7c45c510bcc62bab5b8be2eb9aba7511afecf4f6470edbf505d8",
+      "redacted_sha256": "96cb1fe1d220fb1d8730d0ccd7616ac2e99623c7bd1fd5f4c1369e32e29f2f9d",
+      "references": [
+        "tests/fixtures/scenarios/complete-redesign/ev-g4.json"
+      ],
+      "created_at": "2026-10-23T12:00:00+00:00",
+      "retention_policy": "release_audit",
+      "expiry_at": "2027-10-23T12:00:00+00:00",
+      "redaction": {
+        "kind": "path",
+        "method": "automated",
+        "recheck_status": "PASS"
+      },
+      "provenance": {
+        "producer": "uiux-engine",
+        "probe_id": "P-G4",
+        "execution_level": "NONE",
+        "tool_log_ref": "TL-G4",
+        "environment_digest": "b77349bf1fa9b26d45d545d7d64dad96737e9cfbb3cbb5f5d10fb77b0fcc44ad"
+      }
+    },
+    {
+      "id": "EV-G5",
+      "status": "AVAILABLE",
+      "kind": "test_log",
+      "storage_class": "evidence",
+      "source_sha256": "d728309494296d782e04796afbe15deedcf95b621eb2e1cd2673ed2e61a19d22",
+      "redacted_sha256": "00fca586b4cde06156c301fab239e1e163e74ca78afab609f0c2018afac97cd1",
+      "references": [
+        "tests/fixtures/scenarios/complete-redesign/ev-g5.json"
+      ],
+      "created_at": "2026-10-23T12:00:00+00:00",
+      "retention_policy": "release_audit",
+      "expiry_at": "2027-10-23T12:00:00+00:00",
+      "redaction": {
+        "kind": "path",
+        "method": "automated",
+        "recheck_status": "PASS"
+      },
+      "provenance": {
+        "producer": "uiux-engine",
+        "probe_id": "P-G5",
+        "execution_level": "NATIVE_APP",
+        "tool_log_ref": "TL-G5",
+        "environment_digest": "b77349bf1fa9b26d45d545d7d64dad96737e9cfbb3cbb5f5d10fb77b0fcc44ad"
+      }
+    }
+  ],
+  "created_at": "2026-10-23T12:00:00+00:00",
+  "updated_at": "2026-10-23T12:00:00+00:00"
+}

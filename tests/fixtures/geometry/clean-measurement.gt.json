@@ -1,0 +1,7 @@
+{
+  "measurement": "clean-measurement.json",
+  "description": "Legal-negative sample: every measurement is valid, so the probe must report zero FAIL findings.",
+  "runtime_level": "SIMULATED",
+  "expected_fail_count": 0,
+  "expected_findings": []
+}

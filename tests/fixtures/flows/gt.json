@@ -1,0 +1,14 @@
+{
+  "good.json": {
+    "expected_rules": [],
+    "expected_fail": 0
+  },
+  "unreachable.json": {
+    "expected_rules": ["UX-FLOW-001", "UX-FLOW-003", "UX-STATE-002"],
+    "expected_fail": 2
+  },
+  "destructive-missing.json": {
+    "expected_rules": ["UX-FLOW-002"],
+    "expected_fail": 1
+  }
+}

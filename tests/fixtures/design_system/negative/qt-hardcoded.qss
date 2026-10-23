@@ -1,0 +1,8 @@
+/* Violating QSS sample: hardcoded colors and off-token spacing. */
+QLineEdit {
+    color: #123456;
+    background-color: #ffffff;
+    padding: 6px;
+    font-size: 12px;
+    border: 1px solid #abcdef;
+}

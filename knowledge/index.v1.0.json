@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.3.3",
+  "index_version": "1.0",
+  "generated_at": "2026-10-24T00:00:00+00:00",
+  "policy": "self-authored knowledge only; third-party content is referenced, never bundled without a verified license",
+  "entries": [
+    {
+      "id": "KN-RULES-001",
+      "kind": "rule_catalog",
+      "title": "Frozen UI/UX rule catalog",
+      "source": "self-authored",
+      "license": "internal",
+      "path": "knowledge/rules/catalog.v1.0.json",
+      "checksum": "d71fe8111ac4e380765b8016349793b564ec36d910fc1fff1d1951c4a3fb374b",
+      "commit": null,
+      "usage": "detectors must only emit these rule ids"
+    },
+    {
+      "id": "KN-TOKENS-001",
+      "kind": "design_tokens",
+      "title": "Design tokens v1.0",
+      "source": "self-authored",
+      "license": "internal",
+      "path": "knowledge/design-system/tokens.v1.0.json",
+      "checksum": "fdd73b16c24ea25d971626d2a307231c3f7e06fc2a40d4dcfb6b0f50d84847d9",
+      "commit": null,
+      "usage": "design-system audit and token compilers"
+    },
+    {
+      "id": "KN-LICENSE-001",
+      "kind": "guideline",
+      "title": "Suite license",
+      "source": "self-authored",
+      "license": "internal",
+      "path": "LICENSE",
+      "checksum": "4b10d86e0b4905727bc50d47dd72683f09f154abf3e94e3287ec42b55f3c7cf0",
+      "commit": null,
+      "usage": "distribution terms"
+    },
+    {
+      "id": "KN-WCAG22",
+      "kind": "reference",
+      "title": "WCAG 2.2",
+      "source": "https://www.w3.org/TR/WCAG22/",
+      "license": "unknown",
+      "checksum": null,
+      "commit": null,
+      "usage": "external reference only; no content bundled until license is verified"
+    }
+  ]
+}

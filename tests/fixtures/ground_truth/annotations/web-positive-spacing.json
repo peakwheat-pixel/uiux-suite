@@ -1,0 +1,24 @@
+{
+  "schema_version": "uiux.style-ground-truth.v1",
+  "fixture": "web/positive/spacing.css",
+  "stack": "web",
+  "case_kind": "positive",
+  "environment": {
+    "host": "windows",
+    "python": "3.12",
+    "renderer": "static-css-scan",
+    "runtime_evidence_level": "SIMULATED"
+  },
+  "annotation": {
+    "annotated_by": "stage1-linter",
+    "method": "manual-rule-review",
+    "independent": false,
+    "frozen_at": "2026-10-24T00:00:00+00:00"
+  },
+  "expected": [
+    {"rule_id": "UX-SPACE-001", "line": 2, "severity": "WARNING"},
+    {"rule_id": "UX-SPACE-001", "line": 3, "severity": "WARNING"},
+    {"rule_id": "UX-SPACE-001", "line": 4, "severity": "WARNING"}
+  ],
+  "notes": "Three declarations off the 4px token grid, one finding per declaration."
+}

@@ -1,0 +1,130 @@
+{
+  "schema_version": "1.3.3",
+  "token_set_version": "1.0",
+  "theme": "both",
+  "colors": {
+    "color-neutral-0": "#ffffff",
+    "color-neutral-50": "#f6f8fa",
+    "color-neutral-100": "#eaeef2",
+    "color-neutral-300": "#d0d7de",
+    "color-neutral-500": "#6e7781",
+    "color-neutral-700": "#57606a",
+    "color-neutral-900": "#1f2328",
+    "color-neutral-950": "#0d1117",
+    "color-blue-300": "#54aeff",
+    "color-blue-500": "#0969da",
+    "color-blue-700": "#0550ae",
+    "color-green-600": "#1a7f37",
+    "color-red-600": "#cf222e",
+    "color-amber-600": "#9a6700",
+    "color-text-primary": "var(--color-neutral-900)",
+    "color-text-secondary": "var(--color-neutral-700)",
+    "color-text-muted": "var(--color-neutral-500)",
+    "color-text-on-accent": "var(--color-neutral-0)",
+    "color-bg-canvas": "var(--color-neutral-0)",
+    "color-bg-subtle": "var(--color-neutral-50)",
+    "color-border-default": "var(--color-neutral-300)",
+    "color-border-strong": "var(--color-neutral-500)",
+    "color-accent": "var(--color-blue-500)",
+    "color-accent-hover": "var(--color-blue-700)",
+    "color-success": "var(--color-green-600)",
+    "color-danger": "var(--color-red-600)",
+    "color-warning": "var(--color-amber-600)",
+    "color-text-primary-dark": "var(--color-neutral-100)",
+    "color-text-secondary-dark": "var(--color-neutral-300)",
+    "color-text-muted-dark": "var(--color-neutral-500)",
+    "color-bg-canvas-dark": "var(--color-neutral-950)",
+    "color-bg-subtle-dark": "var(--color-neutral-900)",
+    "color-border-default-dark": "var(--color-neutral-700)",
+    "color-accent-dark": "var(--color-blue-300)"
+  },
+  "spacing": {
+    "space-0": 0,
+    "space-1": 4,
+    "space-2": 8,
+    "space-3": 12,
+    "space-4": 16,
+    "space-6": 24,
+    "space-8": 32,
+    "space-12": 48
+  },
+  "typography": {
+    "caption": {
+      "fontSize": 12,
+      "lineHeight": 1.4,
+      "fontWeight": 400,
+      "fontFamily": "\"Segoe UI\", \"Microsoft YaHei\", \"PingFang SC\", system-ui, sans-serif"
+    },
+    "label": {
+      "fontSize": 13,
+      "lineHeight": 1.45,
+      "fontWeight": 500,
+      "fontFamily": "\"Segoe UI\", \"Microsoft YaHei\", \"PingFang SC\", system-ui, sans-serif"
+    },
+    "body": {
+      "fontSize": 14,
+      "lineHeight": 1.5,
+      "fontWeight": 400,
+      "fontFamily": "\"Segoe UI\", \"Microsoft YaHei\", \"PingFang SC\", system-ui, sans-serif"
+    },
+    "body-lg": {
+      "fontSize": 16,
+      "lineHeight": 1.6,
+      "fontWeight": 400,
+      "fontFamily": "\"Segoe UI\", \"Microsoft YaHei\", \"PingFang SC\", system-ui, sans-serif"
+    },
+    "heading-3": {
+      "fontSize": 20,
+      "lineHeight": 1.3,
+      "fontWeight": 600,
+      "fontFamily": "\"Segoe UI\", \"Microsoft YaHei\", \"PingFang SC\", system-ui, sans-serif"
+    },
+    "heading-2": {
+      "fontSize": 24,
+      "lineHeight": 1.25,
+      "fontWeight": 600,
+      "fontFamily": "\"Segoe UI\", \"Microsoft YaHei\", \"PingFang SC\", system-ui, sans-serif"
+    },
+    "heading-1": {
+      "fontSize": 32,
+      "lineHeight": 1.2,
+      "fontWeight": 700,
+      "fontFamily": "\"Segoe UI\", \"Microsoft YaHei\", \"PingFang SC\", system-ui, sans-serif"
+    },
+    "mono": {
+      "fontSize": 13,
+      "lineHeight": 1.45,
+      "fontWeight": 400,
+      "fontFamily": "\"Cascadia Mono\", Consolas, \"Microsoft YaHei\", monospace"
+    }
+  },
+  "radii": {
+    "none": 0,
+    "sm": 4,
+    "md": 8,
+    "lg": 12,
+    "full": 999
+  },
+  "motion": {
+    "instant": {
+      "duration_ms": 0,
+      "easing": "linear"
+    },
+    "fast": {
+      "duration_ms": 120,
+      "easing": "ease-out"
+    },
+    "base": {
+      "duration_ms": 200,
+      "easing": "cubic-bezier(0.2, 0, 0, 1)"
+    },
+    "slow": {
+      "duration_ms": 320,
+      "easing": "ease-in-out"
+    },
+    "reduced": {
+      "duration_ms": 0,
+      "easing": "linear"
+    }
+  }
+}

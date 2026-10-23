@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Ops Dashboard</title>
+  <link rel="stylesheet" href="../styles/app.css" />
+</head>
+<body>
+  <main data-page-id="dashboard">
+    <h1>Operations</h1>
+    <table class="data-table" data-testid="orders-table">
+      <thead><tr><th>Order</th><th>State</th></tr></thead>
+      <tbody><tr><td>#1</td><td>open</td></tr></tbody>
+    </table>
+    <canvas id="sparkline" data-testid="sparkline-canvas" width="240" height="80"></canvas>
+    <nav>
+      <a href="/orders">Orders</a>
+      <a href="/reports">Reports</a>
+    </nav>
+  </main>
+  <dialog class="modal" id="filter-dialog">
+    <form method="get" data-testid="filter-form">
+      <label>Query <input name="q" data-testid="filter-q" /></label>
+      <button type="submit">Apply filter</button>
+    </form>
+  </dialog>
+</body>
+</html>

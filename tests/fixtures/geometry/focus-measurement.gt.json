@@ -1,0 +1,12 @@
+{
+  "measurement": "focus-measurement.json",
+  "description": "Focus visibility and target-size defects with legal negatives: 24x24 boundary target, non-interactive focus field, element without focus info, focus ring resolved against a dark ancestor surface.",
+  "runtime_level": "SIMULATED",
+  "expected_fail_count": 3,
+  "expected_findings": [
+    {"rule_id": "UX-A11Y-003", "element_id": "invisible-focus-btn"},
+    {"rule_id": "UX-A11Y-003", "element_id": "low-contrast-ring-btn"},
+    {"rule_id": "UX-SPACE-002", "element_id": "small-target-btn"}
+  ],
+  "must_not_match": ["boundary-target-btn", "good-focus-btn", "non-interactive-note", "never-focused-btn", "nested-ring-btn"]
+}

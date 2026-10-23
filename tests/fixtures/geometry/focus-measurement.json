@@ -1,0 +1,127 @@
+{
+  "name": "focus-and-target",
+  "description": "Keyboard-focus defects and target-size defects with legal negatives: exact 24x24 target, focus ring on a dark ancestor surface, non-interactive focus fields, and elements without focus information.",
+  "runtime_level": "SIMULATED",
+  "viewport": {"w": 800, "h": 600},
+  "background": "#ffffff",
+  "elements": [
+    {
+      "id": "invisible-focus-btn",
+      "role": "button",
+      "rect": {"x": 32, "y": 32, "w": 120, "h": 40},
+      "text": "保存",
+      "interactive": true,
+      "styles": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#ffffff",
+        "bgColor": "#1d4ed8",
+        "focusVisible": false
+      }
+    },
+    {
+      "id": "low-contrast-ring-btn",
+      "role": "button",
+      "rect": {"x": 168, "y": 32, "w": 120, "h": 40},
+      "text": "取消",
+      "interactive": true,
+      "styles": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#1f2937",
+        "bgColor": "#ffffff",
+        "focusVisible": true,
+        "focusColor": "#cccccc"
+      }
+    },
+    {
+      "id": "good-focus-btn",
+      "role": "button",
+      "rect": {"x": 304, "y": 32, "w": 120, "h": 40},
+      "text": "提交",
+      "interactive": true,
+      "styles": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#ffffff",
+        "bgColor": "#1d4ed8",
+        "focusVisible": true,
+        "focusColor": "#1d4ed8"
+      }
+    },
+    {
+      "id": "small-target-btn",
+      "role": "button",
+      "rect": {"x": 440, "y": 32, "w": 20, "h": 20},
+      "text": "×",
+      "interactive": true,
+      "styles": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#111827",
+        "bgColor": "#f3f4f6",
+        "focusVisible": true,
+        "focusColor": "#1d4ed8"
+      }
+    },
+    {
+      "id": "boundary-target-btn",
+      "role": "button",
+      "rect": {"x": 480, "y": 32, "w": 24, "h": 24},
+      "interactive": true,
+      "styles": {"focusVisible": true, "focusColor": "#1d4ed8"}
+    },
+    {
+      "id": "non-interactive-note",
+      "role": "text",
+      "rect": {"x": 32, "y": 96, "w": 400, "h": 20},
+      "text": "仅说明文字",
+      "styles": {"fontSize": 14, "lineHeight": 20, "color": "#1f2937", "focusVisible": false}
+    },
+    {
+      "id": "focusable-link",
+      "role": "link",
+      "rect": {"x": 32, "y": 128, "w": 160, "h": 32},
+      "text": "查看详情",
+      "interactive": true,
+      "styles": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#1d4ed8",
+        "bgColor": "#ffffff",
+        "focusVisible": true,
+        "focusColor": "#1d4ed8"
+      }
+    },
+    {
+      "id": "never-focused-btn",
+      "role": "button",
+      "rect": {"x": 32, "y": 168, "w": 120, "h": 40},
+      "text": "帮助",
+      "interactive": true,
+      "styles": {"fontSize": 14, "lineHeight": 20, "color": "#1f2937", "bgColor": "#f3f4f6"}
+    },
+    {
+      "id": "dark-surface",
+      "role": "region",
+      "rect": {"x": 600, "y": 32, "w": 160, "h": 120},
+      "styles": {"bgColor": "#111827"}
+    },
+    {
+      "id": "nested-ring-btn",
+      "role": "button",
+      "rect": {"x": 616, "y": 48, "w": 120, "h": 40},
+      "text": "深色区域",
+      "parentId": "dark-surface",
+      "interactive": true,
+      "styles": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#ffffff",
+        "bgColor": "#1d4ed8",
+        "focusVisible": true,
+        "focusColor": "#f9fafb"
+      }
+    }
+  ]
+}

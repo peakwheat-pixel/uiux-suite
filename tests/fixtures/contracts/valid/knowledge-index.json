@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.3.3",
+  "index_version": "1.0",
+  "generated_at": "2026-10-24T00:00:00+00:00",
+  "policy": "self-authored knowledge only; third-party content is referenced, never bundled without a verified license",
+  "entries": [
+    {
+      "id": "KN-RULES-001",
+      "kind": "rule_catalog",
+      "title": "Frozen UI/UX rule catalog",
+      "source": "self-authored",
+      "license": "internal",
+      "path": "knowledge/rules/catalog.v1.0.json",
+      "checksum": null,
+      "usage": "detectors must only emit these rule ids"
+    }
+  ]
+}

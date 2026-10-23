@@ -1,0 +1,20 @@
+{
+  "schema_version": "uiux.style-ground-truth.v1",
+  "fixture": "web/negative/a11y.html",
+  "stack": "web",
+  "case_kind": "negative",
+  "environment": {
+    "host": "windows",
+    "python": "3.12",
+    "renderer": "static-html-scan",
+    "runtime_evidence_level": "SIMULATED"
+  },
+  "annotation": {
+    "annotated_by": "stage1-linter",
+    "method": "manual-rule-review",
+    "independent": false,
+    "frozen_at": "2026-10-24T00:00:00+00:00"
+  },
+  "expected": [],
+  "notes": "Sequential headings, aria-label button, label-bound input, and actionable error copy: zero findings expected."
+}

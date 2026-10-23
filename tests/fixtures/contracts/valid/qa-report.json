@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.3.3",
+  "generated_at": "2026-10-24T00:00:00+00:00",
+  "runs": [
+    {
+      "run_id": "run-1",
+      "mode": "verification",
+      "status": "PARTIAL",
+      "real_user_data_writes": 0,
+      "protected_root_writes": 0,
+      "blocked_actions": 2
+    }
+  ],
+  "summary": {
+    "real_user_data_writes": 0,
+    "protected_root_writes": 0,
+    "blocked_actions": 2,
+    "zero_write": true
+  },
+  "ok": true
+}

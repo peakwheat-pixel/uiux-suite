@@ -1,0 +1,9 @@
+/* Violating alias sample: local custom properties bypass token aliases. */
+:root {
+  --brand-accent: #ff0000;
+  --brand-gap: 10px;
+}
+.button {
+  color: var(--brand-accent);
+  padding: var(--brand-gap);
+}

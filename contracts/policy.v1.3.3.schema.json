@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uiux-suite.local/contracts/policy.v1.3.3.schema.json",
+  "title": "UIUX Execution Policy V1.3.3",
+  "type": "object",
+  "required": ["schema_version", "policy_id", "roots", "permissions", "git", "evidence", "allowed_modes", "created_at"],
+  "properties": {
+    "schema_version": {"$ref": "common.v1.3.3.schema.json#/$defs/schema_version"},
+    "policy_id": {"type": "string", "pattern": "^POL-[A-Za-z0-9._-]{3,64}$"},
+    "description": {"type": "string"},
+    "roots": {
+      "type": "object",
+      "required": ["read_roots", "report_write_root", "sandbox_write_root", "install_write_root", "source_write_scope"],
+      "properties": {
+        "read_roots": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "common.v1.3.3.schema.json#/$defs/abs_path"}
+        },
+        "report_write_root": {"$ref": "common.v1.3.3.schema.json#/$defs/abs_path"},
+        "sandbox_write_root": {"$ref": "common.v1.3.3.schema.json#/$defs/abs_path"},
+        "install_write_root": {"$ref": "common.v1.3.3.schema.json#/$defs/abs_path"},
+        "source_write_scope": {
+          "type": "object",
+          "required": ["allowed_globs", "denied_globs"],
+          "properties": {
+            "allowed_globs": {
+              "type": "array",
+              "items": {"$ref": "common.v1.3.3.schema.json#/$defs/rel_path"}
+            },
+            "denied_globs": {
+              "type": "array",
+              "items": {"$ref": "common.v1.3.3.schema.json#/$defs/rel_path"}
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "permissions": {
+      "type": "object",
+      "required": ["allow_network", "allow_external_commands", "deny_external_commands", "os_input", "max_repair_cycles"],
+      "properties": {
+        "allow_network": {"type": "boolean"},
+        "allow_external_commands": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "deny_external_commands": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "os_input": {
+          "type": "object",
+          "required": ["uia_patterns", "physical", "target_allowlist"],
+          "properties": {
+            "uia_patterns": {"type": "boolean", "description": "允许 UIA 模式方法（非物理输入）"},
+            "physical": {"type": "boolean", "description": "允许物理鼠标/键盘模拟；需 authorization 覆盖 os_input_physical"},
+            "target_allowlist": {
+              "type": "array",
+              "items": {"type": "string", "minLength": 1},
+              "uniqueItems": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "max_repair_cycles": {"type": "integer", "minimum": 0, "maximum": 2}
+      },
+      "additionalProperties": false
+    },
+    "authorization": {
+      "anyOf": [
+        {"$ref": "common.v1.3.3.schema.json#/$defs/authorization"},
+        {"type": "null"}
+      ]
+    },
+    "git": {
+      "type": "object",
+      "required": ["management", "snapshot_policy"],
+      "properties": {
+        "management": {"enum": ["standalone", "caller_managed"]},
+        "snapshot_policy": {"enum": ["git_commit", "dir_digest"]}
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["profile", "retention_days", "release_retention_days"],
+      "properties": {
+        "profile": {"enum": ["local_private", "portable_redacted", "release_audit"]},
+        "retention_days": {"type": "integer", "minimum": 1, "maximum": 3650},
+        "release_retention_days": {"type": "integer", "minimum": 30, "maximum": 36500}
+      },
+      "additionalProperties": false
+    },
+    "allowed_modes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"enum": ["audit", "design-only", "prototype", "new-build", "redesign", "targeted-fix", "verify"]}
+    },
+    "created_at": {"$ref": "common.v1.3.3.schema.json#/$defs/iso8601"}
+  },
+  "additionalProperties": false
+}

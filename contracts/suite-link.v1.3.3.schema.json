@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uiux-suite.local/contracts/suite-link.v1.3.3.schema.json",
+  "title": "UIUX Suite Link V1.3.3",
+  "type": "object",
+  "required": [
+    "schema_version", "suite_id", "active_version", "path_kind",
+    "suite_root", "manifest_relpath", "python_exe", "created_by_installer", "created_at"
+  ],
+  "properties": {
+    "schema_version": {"$ref": "common.v1.3.3.schema.json#/$defs/schema_version"},
+    "suite_id": {"const": "universal-uiux-engineering"},
+    "active_version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "path_kind": {"enum": ["relative_to_skill_root", "absolute"]},
+    "suite_root": {"type": "string", "minLength": 1},
+    "manifest_relpath": {"$ref": "common.v1.3.3.schema.json#/$defs/rel_path"},
+    "python_exe": {"type": ["string", "null"]},
+    "created_by_installer": {"type": "boolean"},
+    "created_at": {"$ref": "common.v1.3.3.schema.json#/$defs/iso8601"},
+    "install_record_relpath": {"type": ["string", "null"]}
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {"properties": {"path_kind": {"const": "relative_to_skill_root"}}, "required": ["path_kind"]},
+      "then": {"properties": {"suite_root": {"$ref": "common.v1.3.3.schema.json#/$defs/relative_locator"}}}
+    },
+    {
+      "if": {"properties": {"path_kind": {"const": "absolute"}}, "required": ["path_kind"]},
+      "then": {"properties": {"suite_root": {"$ref": "common.v1.3.3.schema.json#/$defs/abs_path"}}}
+    }
+  ]
+}

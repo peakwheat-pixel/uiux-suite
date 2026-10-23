@@ -1,0 +1,19 @@
+{
+  "measurement": "clipped-overlap-measurement.json",
+  "description": "Seeded clipping/overlap/target/focus defects with legal negatives (contained child, nested targets, adjacent targets, legal ellipsis).",
+  "runtime_level": "SIMULATED",
+  "expected_fail_count": 6,
+  "expected_findings": [
+    {"rule_id": "UX-GEOM-001", "element_id": "card-text"},
+    {"rule_id": "UX-GEOM-001", "element_id": "clipped-label"},
+    {"rule_id": "UX-GEOM-001", "element_id": "explicit-clipped"},
+    {
+      "rule_id": "UX-GEOM-002",
+      "element_id": "toolbar-action-1",
+      "related_element_id": "toolbar-action-2"
+    },
+    {"rule_id": "UX-SPACE-002", "element_id": "small-target"},
+    {"rule_id": "UX-A11Y-003", "element_id": "focus-invisible"}
+  ],
+  "must_not_match": ["card-ok", "ellipsis-legal", "nested-toggle", "nested-toggle-icon", "adjacent-a", "adjacent-b"]
+}

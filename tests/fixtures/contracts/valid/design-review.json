@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.3.3",
+  "run_id": "UIUX-20261023-001",
+  "scenario_id": "redesign-import-panel",
+  "rubric_version": "1.0",
+  "reviewer": {
+    "identity": "independent-reviewer-01",
+    "role": "UX expert reviewer",
+    "source": "independent_agent",
+    "independence_proof_ref": "ATTEST-REVIEW-001"
+  },
+  "dimensions": [
+    {
+      "dimension_id": "goal_discoverability",
+      "verdict": "PASS",
+      "evidence_refs": [
+        "EV-G1"
+      ],
+      "notes": "goal_discoverability: evidence-backed pass",
+      "confidence": 0.9
+    },
+    {
+      "dimension_id": "task_completeness",
+      "verdict": "PASS",
+      "evidence_refs": [
+        "EV-G1"
+      ],
+      "notes": "task_completeness: evidence-backed pass",
+      "confidence": 0.9
+    },
+    {
+      "dimension_id": "mental_model_ia",
+      "verdict": "PASS",
+      "evidence_refs": [
+        "EV-G1"
+      ],
+      "notes": "mental_model_ia: evidence-backed pass",
+      "confidence": 0.9
+    },
+    {
+      "dimension_id": "error_recovery",
+      "verdict": "PASS",
+      "evidence_refs": [
+        "EV-G1"
+      ],
+      "notes": "error_recovery: evidence-backed pass",
+      "confidence": 0.9
+    },
+    {
+      "dimension_id": "continuity_resume",
+      "verdict": "PASS",
+      "evidence_refs": [
+        "EV-G1"
+      ],
+      "notes": "continuity_resume: evidence-backed pass",
+      "confidence": 0.9
+    },
+    {
+      "dimension_id": "keyboard_efficiency",
+      "verdict": "PASS",
+      "evidence_refs": [
+        "EV-G1"
+      ],
+      "notes": "keyboard_efficiency: evidence-backed pass",
+      "confidence": 0.9
+    },
+    {
+      "dimension_id": "visual_hierarchy",
+      "verdict": "PASS",
+      "evidence_refs": [
+        "EV-G1"
+      ],
+      "notes": "visual_hierarchy: evidence-backed pass",
+      "confidence": 0.9
+    },
+    {
+      "dimension_id": "information_density",
+      "verdict": "PASS",
+      "evidence_refs": [
+        "EV-G1"
+      ],
+      "notes": "information_density: evidence-backed pass",
+      "confidence": 0.9
+    },
+    {
+      "dimension_id": "learning_cost",
+      "verdict": "PASS",
+      "evidence_refs": [
+        "EV-G1"
+      ],
+      "notes": "learning_cost: evidence-backed pass",
+      "confidence": 0.9
+    },
+    {
+      "dimension_id": "professional_fit",
+      "verdict": "PASS",
+      "evidence_refs": [
+        "EV-G1"
+      ],
+      "notes": "professional_fit: evidence-backed pass",
+      "confidence": 0.9
+    }
+  ],
+  "overall_verdict": "PASS",
+  "dissent": [],
+  "open_questions": [],
+  "evidence_refs": [
+    "EV-G1",
+    "EV-G5"
+  ],
+  "created_at": "2026-10-23T12:00:00+00:00"
+}

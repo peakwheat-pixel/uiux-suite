@@ -1,0 +1,206 @@
+[
+  {
+    "schema_version": "1.3.3",
+    "log_id": "TL-G0",
+    "run_id": "UIUX-20261023-001",
+    "tool": "uiux-probe",
+    "tool_version": "1.3.3",
+    "command": [
+      "uiux-probe",
+      "run",
+      "P-G0"
+    ],
+    "cwd": "G:/fixtures/demo",
+    "env_digest": "b77349bf1fa9b26d45d545d7d64dad96737e9cfbb3cbb5f5d10fb77b0fcc44ad",
+    "input_digest": "e431609aa877d741153e6fd784ab62fb7673e5e3114ec78d437e895ed61c5655",
+    "output_digest": "deb3121e43d0ba05c06441ef521fd2fe12a3e0c2ed18f284b5731528682297b8",
+    "exit_code": 0,
+    "started_at": "2026-10-23T12:00:00+00:00",
+    "finished_at": "2026-10-23T12:00:00+00:00",
+    "duration_ms": 1000,
+    "execution_level": "NONE",
+    "probe_id": "P-G0",
+    "evidence_refs": [
+      "EV-G0"
+    ],
+    "log_sha256": "d6248ca48aa8b8d5ba8e31bb0d2423930ecec75aa70ea8ce6485fd599843e97f",
+    "stdout_ref": null,
+    "stderr_ref": null,
+    "redaction": {
+      "applied": true,
+      "kinds": [
+        "path"
+      ]
+    }
+  },
+  {
+    "schema_version": "1.3.3",
+    "log_id": "TL-G1",
+    "run_id": "UIUX-20261023-001",
+    "tool": "uiux-probe",
+    "tool_version": "1.3.3",
+    "command": [
+      "uiux-probe",
+      "run",
+      "P-G1"
+    ],
+    "cwd": "G:/fixtures/demo",
+    "env_digest": "b77349bf1fa9b26d45d545d7d64dad96737e9cfbb3cbb5f5d10fb77b0fcc44ad",
+    "input_digest": "413bd09a36d9ddb163c8884bd37dcff78515e25dc38b865e0858af2f901d610c",
+    "output_digest": "7d0b2151bd93a6741c2f8987c58c3a01bf7320a7474e196134187b25b1150d38",
+    "exit_code": 0,
+    "started_at": "2026-10-23T12:00:00+00:00",
+    "finished_at": "2026-10-23T12:00:00+00:00",
+    "duration_ms": 1001,
+    "execution_level": "NATIVE_APP",
+    "probe_id": "P-G1",
+    "evidence_refs": [
+      "EV-G1"
+    ],
+    "log_sha256": "c9f7340cd5fb09eeda2eac029cc4a8427252668011d4c048145d55f5d151659d",
+    "stdout_ref": null,
+    "stderr_ref": null,
+    "redaction": {
+      "applied": true,
+      "kinds": [
+        "path"
+      ]
+    }
+  },
+  {
+    "schema_version": "1.3.3",
+    "log_id": "TL-G2",
+    "run_id": "UIUX-20261023-001",
+    "tool": "uiux-probe",
+    "tool_version": "1.3.3",
+    "command": [
+      "uiux-probe",
+      "run",
+      "P-G2"
+    ],
+    "cwd": "G:/fixtures/demo",
+    "env_digest": "b77349bf1fa9b26d45d545d7d64dad96737e9cfbb3cbb5f5d10fb77b0fcc44ad",
+    "input_digest": "f66c48cb18e91e7bacf4a96c6e7333c12fe5c03a857fef3c6afa0966cf5a4ace",
+    "output_digest": "71cdf2a5b8ab34c5727cad5036b9c3aa4031e3f56ca71cf3ea17345ae89a15e2",
+    "exit_code": 0,
+    "started_at": "2026-10-23T12:00:00+00:00",
+    "finished_at": "2026-10-23T12:00:00+00:00",
+    "duration_ms": 1002,
+    "execution_level": "NATIVE_APP",
+    "probe_id": "P-G2",
+    "evidence_refs": [
+      "EV-G2"
+    ],
+    "log_sha256": "831d4b38f6890de8e11f8320f5a56432de6befd06a1f66526035ea9cb8c9c084",
+    "stdout_ref": null,
+    "stderr_ref": null,
+    "redaction": {
+      "applied": true,
+      "kinds": [
+        "path"
+      ]
+    }
+  },
+  {
+    "schema_version": "1.3.3",
+    "log_id": "TL-G3",
+    "run_id": "UIUX-20261023-001",
+    "tool": "uiux-probe",
+    "tool_version": "1.3.3",
+    "command": [
+      "uiux-probe",
+      "run",
+      "P-G3"
+    ],
+    "cwd": "G:/fixtures/demo",
+    "env_digest": "b77349bf1fa9b26d45d545d7d64dad96737e9cfbb3cbb5f5d10fb77b0fcc44ad",
+    "input_digest": "712ea397ffe5f98fd99dc9bd3cf2e8ad80467fa0cae8749e671d6b205e895e62",
+    "output_digest": "a556fc50e32183ac655cbd907e2ec082a4010cb51dd520084d02404add8388b1",
+    "exit_code": 0,
+    "started_at": "2026-10-23T12:00:00+00:00",
+    "finished_at": "2026-10-23T12:00:00+00:00",
+    "duration_ms": 1003,
+    "execution_level": "NONE",
+    "probe_id": "P-G3",
+    "evidence_refs": [
+      "EV-G3"
+    ],
+    "log_sha256": "c68e40df7e5c18cb94e2e13a8903968c845a791764502b0fabe15ec426287bc6",
+    "stdout_ref": null,
+    "stderr_ref": null,
+    "redaction": {
+      "applied": true,
+      "kinds": [
+        "path"
+      ]
+    }
+  },
+  {
+    "schema_version": "1.3.3",
+    "log_id": "TL-G4",
+    "run_id": "UIUX-20261023-001",
+    "tool": "uiux-probe",
+    "tool_version": "1.3.3",
+    "command": [
+      "uiux-probe",
+      "run",
+      "P-G4"
+    ],
+    "cwd": "G:/fixtures/demo",
+    "env_digest": "b77349bf1fa9b26d45d545d7d64dad96737e9cfbb3cbb5f5d10fb77b0fcc44ad",
+    "input_digest": "0291dc94c998c503924a72d8e30916fa09d82fdd50fbd497b0d8b10d58c31bbf",
+    "output_digest": "83fb86ddb37a5c704983137311e9a2059116d1e52cdf3adb46176295913c8aae",
+    "exit_code": 0,
+    "started_at": "2026-10-23T12:00:00+00:00",
+    "finished_at": "2026-10-23T12:00:00+00:00",
+    "duration_ms": 1004,
+    "execution_level": "NONE",
+    "probe_id": "P-G4",
+    "evidence_refs": [
+      "EV-G4"
+    ],
+    "log_sha256": "3cfa42ce79331d49ddaa17d204472837e9b28acf6d32d3b5c1ca769f85750d35",
+    "stdout_ref": null,
+    "stderr_ref": null,
+    "redaction": {
+      "applied": true,
+      "kinds": [
+        "path"
+      ]
+    }
+  },
+  {
+    "schema_version": "1.3.3",
+    "log_id": "TL-G5",
+    "run_id": "UIUX-20261023-001",
+    "tool": "uiux-probe",
+    "tool_version": "1.3.3",
+    "command": [
+      "uiux-probe",
+      "run",
+      "P-G5"
+    ],
+    "cwd": "G:/fixtures/demo",
+    "env_digest": "b77349bf1fa9b26d45d545d7d64dad96737e9cfbb3cbb5f5d10fb77b0fcc44ad",
+    "input_digest": "efe09ce09079aada17ba5db95caf47f909eabbb48b14ac3805c48be6ab7dce8c",
+    "output_digest": "6e211e55dd60f62077f5ed4daab3bb804680941a7e9955855a1b74367eb58c38",
+    "exit_code": 0,
+    "started_at": "2026-10-23T12:00:00+00:00",
+    "finished_at": "2026-10-23T12:00:00+00:00",
+    "duration_ms": 1005,
+    "execution_level": "NATIVE_APP",
+    "probe_id": "P-G5",
+    "evidence_refs": [
+      "EV-G5"
+    ],
+    "log_sha256": "6f4b0a1b8a6decdab2052dffcfb48c231a17aabb2e32d540077fc94337fec746",
+    "stdout_ref": null,
+    "stderr_ref": null,
+    "redaction": {
+      "applied": true,
+      "kinds": [
+        "path"
+      ]
+    }
+  }
+]

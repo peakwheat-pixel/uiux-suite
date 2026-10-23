@@ -1,0 +1,23 @@
+{
+  "schema_version": "uiux.style-ground-truth.v1",
+  "fixture": "qt/positive/type_spacing.qss",
+  "stack": "qt",
+  "case_kind": "positive",
+  "environment": {
+    "host": "windows",
+    "python": "3.12",
+    "renderer": "static-qss-scan",
+    "runtime_evidence_level": "SIMULATED"
+  },
+  "annotation": {
+    "annotated_by": "stage1-linter",
+    "method": "manual-rule-review",
+    "independent": false,
+    "frozen_at": "2026-10-24T00:00:00+00:00"
+  },
+  "expected": [
+    {"rule_id": "UX-TYPE-001", "line": 2, "severity": "WARNING"},
+    {"rule_id": "UX-SPACE-001", "line": 6, "severity": "WARNING"}
+  ],
+  "notes": "10px QSS font and 13px QFrame padding seeded in two rules."
+}

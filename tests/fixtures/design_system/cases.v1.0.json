@@ -1,0 +1,75 @@
+{
+  "schema_version": "uiux.design-system-fixtures.v1",
+  "token_set_version": "1.0",
+  "cases": [
+    {
+      "file": "positive/web-tokens.css",
+      "stack": "web",
+      "case_kind": "compliant",
+      "expected": []
+    },
+    {
+      "file": "positive/qt-theme.qss",
+      "stack": "qt",
+      "case_kind": "compliant",
+      "expected": []
+    },
+    {
+      "file": "positive/tsx-theme.tsx",
+      "stack": "web",
+      "case_kind": "compliant",
+      "expected": []
+    },
+    {
+      "file": "positive/unknown-values.css",
+      "stack": "web",
+      "case_kind": "compliant",
+      "expected": []
+    },
+    {
+      "file": "negative/web-deviations.css",
+      "stack": "web",
+      "case_kind": "violation",
+      "expected": [
+        {"line": 3, "dimension": "color_token"},
+        {"line": 5, "rule_id": "UX-SPACE-001"},
+        {"line": 6, "rule_id": "UX-TYPE-001"},
+        {"line": 7, "rule_id": "UX-TYPE-002"},
+        {"line": 8, "rule_id": "UX-MOTION-001"},
+        {"line": 11, "dimension": "font_size_token"},
+        {"line": 12, "dimension": "line_height_token"}
+      ]
+    },
+    {
+      "file": "negative/qt-hardcoded.qss",
+      "stack": "qt",
+      "case_kind": "violation",
+      "expected": [
+        {"line": 3, "dimension": "color_token"},
+        {"line": 5, "rule_id": "UX-SPACE-001"},
+        {"line": 7, "dimension": "color_token"}
+      ]
+    },
+    {
+      "file": "negative/tsx-inline.tsx",
+      "stack": "web",
+      "case_kind": "violation",
+      "expected": [
+        {"line": 5, "dimension": "color_token"},
+        {"line": 5, "rule_id": "UX-SPACE-001"},
+        {"line": 5, "dimension": "font_size_token"},
+        {"line": 5, "rule_id": "UX-TYPE-002"},
+        {"line": 5, "rule_id": "UX-MOTION-001"}
+      ]
+    },
+    {
+      "file": "negative/local-alias.css",
+      "stack": "web",
+      "case_kind": "violation",
+      "expected": [
+        {"line": 7, "dimension": "color_token"},
+        {"line": 8, "rule_id": "UX-SPACE-001"}
+      ]
+    }
+  ]
+}

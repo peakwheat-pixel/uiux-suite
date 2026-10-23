@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>CanvasView</class>
+  <widget class="QWidget" name="CanvasView">
+    <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+        <widget class="QGraphicsView" name="graphicsView"/>
+      </item>
+    </layout>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

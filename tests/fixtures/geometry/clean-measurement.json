@@ -1,0 +1,167 @@
+{
+  "name": "clean-legal-negatives",
+  "description": "Legal-negative measurement: contained children, adjacent targets, exact 24x24 boundary, legal ellipsis and scrollable areas, large-text contrast threshold.",
+  "runtime_level": "SIMULATED",
+  "viewport": {"w": 1280, "h": 800},
+  "background": "#ffffff",
+  "elements": [
+    {
+      "id": "page-title",
+      "role": "heading",
+      "rect": {"x": 40, "y": 32, "w": 420, "h": 40},
+      "text": "订单管理",
+      "styles": {"fontSize": 32, "lineHeight": 40, "color": "#1f2937", "bgColor": "#ffffff"}
+    },
+    {
+      "id": "intro-text",
+      "role": "text",
+      "rect": {"x": 40, "y": 88, "w": 520, "h": 20},
+      "text": "选择需要处理的订单",
+      "styles": {"fontSize": 14, "lineHeight": 20, "color": "#4b5563"}
+    },
+    {
+      "id": "primary-cta",
+      "role": "button",
+      "rect": {"x": 40, "y": 132, "w": 88, "h": 32},
+      "text": "新建订单",
+      "interactive": true,
+      "styles": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#ffffff",
+        "bgColor": "#1d4ed8",
+        "focusVisible": true,
+        "focusColor": "#1d4ed8"
+      }
+    },
+    {
+      "id": "secondary-cta",
+      "role": "button",
+      "rect": {"x": 136, "y": 132, "w": 96, "h": 32},
+      "text": "批量导出",
+      "interactive": true,
+      "styles": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#1f2937",
+        "bgColor": "#f3f4f6",
+        "focusVisible": true,
+        "focusColor": "#1d4ed8"
+      }
+    },
+    {
+      "id": "tab-open",
+      "role": "tab",
+      "rect": {"x": 40, "y": 196, "w": 120, "h": 32},
+      "text": "全部",
+      "interactive": true,
+      "styles": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#1f2937",
+        "bgColor": "#ffffff",
+        "focusVisible": true,
+        "focusColor": "#1d4ed8"
+      }
+    },
+    {
+      "id": "tab-closed",
+      "role": "tab",
+      "rect": {"x": 160, "y": 196, "w": 120, "h": 32},
+      "text": "待处理",
+      "interactive": true,
+      "styles": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#1f2937",
+        "bgColor": "#ffffff",
+        "focusVisible": true,
+        "focusColor": "#1d4ed8"
+      }
+    },
+    {
+      "id": "filter-button",
+      "role": "button",
+      "rect": {"x": 300, "y": 196, "w": 24, "h": 24},
+      "interactive": true,
+      "styles": {"focusVisible": true, "focusColor": "rgb(29, 78, 216)"}
+    },
+    {
+      "id": "card",
+      "role": "region",
+      "rect": {"x": 40, "y": 260, "w": 400, "h": 160},
+      "overflow": {"hidden": true}
+    },
+    {
+      "id": "card-label",
+      "role": "text",
+      "rect": {"x": 56, "y": 276, "w": 180, "h": 20},
+      "text": "卡片标题",
+      "parentId": "card",
+      "styles": {"fontSize": 14, "lineHeight": 20, "color": "#111827", "bgColor": "#ffffff"}
+    },
+    {
+      "id": "hidden-badge",
+      "role": "text",
+      "rect": {"x": 300, "y": 276, "w": 60, "h": 18},
+      "text": "新",
+      "parentId": "card",
+      "styles": {"fontSize": 12, "lineHeight": 18, "color": "#ffffff", "bgColor": "#b91c1c"}
+    },
+    {
+      "id": "overflow-equal",
+      "role": "text",
+      "rect": {"x": 40, "y": 440, "w": 200, "h": 20},
+      "text": "无溢出文本",
+      "styles": {"fontSize": 13, "lineHeight": 20, "color": "#374151"},
+      "overflow": {"scrollWidth": 200, "clientWidth": 200, "scrollHeight": 20, "clientHeight": 20}
+    },
+    {
+      "id": "ellipsis-text",
+      "role": "text",
+      "rect": {"x": 40, "y": 468, "w": 100, "h": 20},
+      "text": "很长的分类名称…",
+      "styles": {"fontSize": 13, "lineHeight": 20, "color": "#374151"},
+      "overflow": {
+        "scrollWidth": 180,
+        "clientWidth": 100,
+        "scrollHeight": 20,
+        "clientHeight": 20,
+        "ellipsis": true
+      }
+    },
+    {
+      "id": "scroll-text",
+      "role": "text",
+      "rect": {"x": 40, "y": 500, "w": 200, "h": 20},
+      "text": "滚动区域内容",
+      "styles": {"fontSize": 13, "lineHeight": 20, "color": "#374151"},
+      "overflow": {
+        "scrollWidth": 200,
+        "clientWidth": 200,
+        "scrollHeight": 280,
+        "clientHeight": 20,
+        "scrollable": true
+      }
+    },
+    {
+      "id": "noninteractive-icon",
+      "role": "icon",
+      "rect": {"x": 700, "y": 40, "w": 16, "h": 16}
+    },
+    {
+      "id": "large-text-medium-contrast",
+      "role": "text",
+      "rect": {"x": 40, "y": 560, "w": 300, "h": 32},
+      "text": "大号说明文字",
+      "styles": {"fontSize": 28, "lineHeight": 32, "color": "#808080"}
+    },
+    {
+      "id": "bold-large-medium-contrast",
+      "role": "text",
+      "rect": {"x": 360, "y": 560, "w": 300, "h": 24},
+      "text": "粗体说明",
+      "styles": {"fontSize": 19, "lineHeight": 24, "color": "#808080", "fontWeight": 700}
+    }
+  ]
+}

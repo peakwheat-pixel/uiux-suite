@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.3.3",
+  "view_id": "import-panel",
+  "view_archetype": "mobile_page",
+  "capabilities": {
+    "async_load": true,
+    "collection_display": true,
+    "user_mutation": false,
+    "long_running_task": true,
+    "destructive_operations": false,
+    "canvas_rendering": false
+  },
+  "capability_evidence": [
+    {
+      "capability": "async_load",
+      "source": {
+        "kind": "file",
+        "ref": "src/ui/import/ImportPanel.tsx",
+        "locator": "useEffect"
+      },
+      "discovery": "static",
+      "confidence": 0.9
+    },
+    {
+      "capability": "long_running_task",
+      "source": {
+        "kind": "runtime",
+        "ref": "import_progress"
+      },
+      "discovery": "runtime",
+      "confidence": 0.8
+    },
+    {
+      "capability": "collection_display",
+      "source": {
+        "kind": "file",
+        "ref": "src/ui/import/ImportPanel.tsx"
+      },
+      "discovery": "static",
+      "confidence": 0.7
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "import-folder",
+      "actor_goal": "选择本地目录并导入图库",
+      "entry_point": "toolbar.import",
+      "steps": [
+        "open-dialog",
+        "select-folder",
+        "confirm",
+        "wait-progress",
+        "review-result"
+      ],
+      "states": [
+        "empty",
+        "loading",
+        "ready",
+        "error",
+        "progress",
+        "cancelled"
+      ],
+      "runtime_assertions": [
+        {
+          "assertion_id": "import-dialog-opens",
+          "description": "导入对话框可打开",
+          "expected_states": [
+            "ready"
+          ],
+          "probe_id": "P-G5"
+        }
+      ],
+      "destructive_operations": []
+    }
+  ],
+  "ui_anchors": [
+    {
+      "semantic_id": "import.progress",
+      "testid": "import-progress"
+    }
+  ]
+}

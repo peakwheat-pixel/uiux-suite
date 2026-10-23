@@ -1,0 +1,42 @@
+name: stage1-contract-and-detectors
+
+on:
+  push:
+    branches: ["v1.3.3-contract-closure", "main"]
+  pull_request:
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-dev.txt
+      - name: Contract and detector tests
+        shell: pwsh
+        run: |
+          $env:PYTHONPATH = "runtime"
+          python -m pytest tests -q
+      - name: Negative-attack evidence
+        shell: pwsh
+        run: |
+          $env:PYTHONPATH = "runtime"
+          python scripts/run_attack_suite.py
+      - name: Stage 1 confusion matrix (if detectors present)
+        shell: pwsh
+        run: |
+          $env:PYTHONPATH = "runtime"
+          if (Test-Path scripts/run_stage1_suite.py) { python scripts/run_stage1_suite.py }
+      - name: Upload evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage1-evidence
+          path: |
+            evidence/T1.6/
+            qa/
+          if-no-files-found: warn

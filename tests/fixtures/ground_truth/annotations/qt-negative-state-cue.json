@@ -1,0 +1,20 @@
+{
+  "schema_version": "uiux.style-ground-truth.v1",
+  "fixture": "qt/negative/state_cue.qss",
+  "stack": "qt",
+  "case_kind": "negative",
+  "environment": {
+    "host": "windows",
+    "python": "3.12",
+    "renderer": "static-qss-scan",
+    "runtime_evidence_level": "SIMULATED"
+  },
+  "annotation": {
+    "annotated_by": "stage1-linter",
+    "method": "manual-rule-review",
+    "independent": false,
+    "frozen_at": "2026-10-24T00:00:00+00:00"
+  },
+  "expected": [],
+  "notes": "Error state adds a border and bold weight beyond color, so UX-COLOR-002 must not fire."
+}

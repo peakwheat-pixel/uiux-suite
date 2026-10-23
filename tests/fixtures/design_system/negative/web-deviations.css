@@ -1,0 +1,13 @@
+/* Violating sample: hardcoded color + off-token spacing/type/motion. */
+.card {
+  color: #ff0000;
+  background-color: #ffffff;
+  padding: 13px 16px;
+  font-size: 11px;
+  line-height: 1.15;
+  transition: all 333ms ease-in;
+}
+.note {
+  font-size: 15px;
+  line-height: 1.7;
+}

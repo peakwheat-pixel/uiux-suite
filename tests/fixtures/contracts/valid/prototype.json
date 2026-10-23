@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.3.3",
+  "prototype_id": "orders-prototype",
+  "kind": "html",
+  "flows_ref": "flows/orders.json",
+  "states": ["list", "empty", "error", "loading"],
+  "anchors": [
+    {"semantic_id": "orders.list", "testid": "orders-list", "selector": null}
+  ],
+  "accessibility": {"keyboard": "VERIFIED", "labels": "VERIFIED", "contrast": "UNVERIFIED"},
+  "checks": [
+    {"check_id": "states-rendered", "status": "PASS", "detail": "all states render in static harness"},
+    {"check_id": "runtime-clickthrough", "status": "UNVERIFIED", "detail": "deferred to Stage 3"}
+  ]
+}

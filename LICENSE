@@ -1,0 +1,11 @@
+# License
+
+Copyright (c) 2026. All rights reserved.
+
+This repository and the `uiux-suite` distribution are provided for the owner's
+internal evaluation and use. No license is granted to redistribute, sublicense,
+or publish the package or its contents unless the owner has authorized it in
+writing.
+
+Third-party components retain their own licenses; see `THIRD_PARTY_NOTICES.md`.
+No third-party fonts are bundled with this package.

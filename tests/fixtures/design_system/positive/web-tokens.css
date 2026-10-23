@@ -1,0 +1,16 @@
+/* Compliant: every declaration resolves to a frozen design token. */
+.card {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-canvas);
+  border: 1px solid var(--color-border-default);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 0 0 24px 0;
+  font-size: 14px;
+  line-height: 1.5;
+  transition: background-color 120ms ease-out;
+}
+.card-link {
+  color: #0969da;
+  gap: 0.5rem;
+}

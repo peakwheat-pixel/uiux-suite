@@ -1,0 +1,22 @@
+{
+  "schema_version": "uiux.style-ground-truth.v1",
+  "fixture": "web/positive/inline_style.html",
+  "stack": "web",
+  "case_kind": "positive",
+  "environment": {
+    "host": "windows",
+    "python": "3.12",
+    "renderer": "static-html-scan",
+    "runtime_evidence_level": "SIMULATED"
+  },
+  "annotation": {
+    "annotated_by": "stage1-linter",
+    "method": "manual-rule-review",
+    "independent": false,
+    "frozen_at": "2026-10-24T00:00:00+00:00"
+  },
+  "expected": [
+    {"rule_id": "UX-COLOR-001", "line": 9, "severity": "FAIL"}
+  ],
+  "notes": "Low-contrast pair declared only through an inline style attribute."
+}
