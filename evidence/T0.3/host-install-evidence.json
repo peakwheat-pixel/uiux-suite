@@ -2,7 +2,12 @@
   "schema_version": "1.3.3",
   "evidence_id": "EV-T0.3-HOST-INSTALL",
   "kind": "tool_log",
-  "generated_at": "2026-10-23T17:40:42.336069+00:00",
+  "generated_at": "2026-10-23T17:49:30.073753+00:00",
+  "git": {
+    "commit": "d058ba7713dcc4649ed1b5aeb04cce071ecc24e5",
+    "branch": "v1.3.3-contract-closure",
+    "dirty": true
+  },
   "host": {
     "kind": "dsh",
     "dsh_version": "0.2.1-alpha.4",
@@ -13,14 +18,14 @@
   "suite_root": "C:\\Users\\49745\\.agents\\uiux-suite\\versions\\1.3.3",
   "suite_link": {
     "path": "C:\\Users\\49745\\.agents\\skills\\uiux\\suite-link.json",
-    "sha256": "8c7e3bd8c177b0859fd962f59fbfbc7165259a6153c01ac9f4acebd23d3d5b9b",
+    "sha256": "cabcc70e26550f3af571ff478fad7e28b0c8c728cff09e92bc9f2471b249f673",
     "active_version": "1.3.3",
     "path_kind": "relative_to_skill_root"
   },
   "install_record": {
     "path": "C:\\Users\\49745\\.agents\\uiux-suite\\state\\install-1.3.3.json",
-    "sha256": "828c57d37ad657188f59397386f2741ecbacb6df93302f99b6801feace3e9ea2",
-    "files": 44,
+    "sha256": "252009bd201ad8d9cc0704a4400fb6b99ec90e37f1f71f35588016d19ff294b3",
+    "files": 45,
     "scope": "user",
     "host": "dsh",
     "python_exe": "C:\\Python314\\python.EXE",
@@ -40,7 +45,7 @@
   },
   "doctor": {
     "exit_code": 0,
-    "stdout_sha256": "6b2d2e99cd3e8fd32301132430228b4dc4aa0e787b53be5515417a3390c8cb25",
+    "stdout_sha256": "f40f651b158f3a9ca302d50f7bfd8c8d32901f9f4159910869a2b91d3f03ee78",
     "overall_status": "UNVERIFIED",
     "links": {
       "uiux": {
@@ -76,7 +81,7 @@
   },
   "repo_independence": {
     "external_cwd_doctor_exit_code": 0,
-    "external_cwd_doctor_stdout_sha256": "fa6ed64b164f4c3cc0f600988f68cd590879c4d1ffa20812ca7157414e072e97",
+    "external_cwd_doctor_stdout_sha256": "97398d1f86d03f3296db932aefcf7ef6662d39591a502fb00e91fe95d7943142",
     "source_checkout_absolute_references": [],
     "independent_of_source_checkout": true
   },
