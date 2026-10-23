@@ -98,6 +98,51 @@ class MoveItemCommand(QUndoCommand):
         self.window.refresh()
 
 
+class CanvasView(QGraphicsView):
+    """Canvas with a real mouse drag that records an undoable move."""
+
+    def __init__(self, window: "MainWindow") -> None:
+        super().__init__()
+        self.window = window
+        self._drag_item = None
+        self._start = None
+        self._origin = None
+        self._moved = False
+
+    def mousePressEvent(self, event) -> None:  # noqa: N802 - Qt API
+        item = self.itemAt(event.position().toPoint())
+        if item is not None:
+            self._drag_item = item
+            self._start = event.position()
+            self._origin = item.pos()
+            self._moved = False
+            event.accept()
+            return
+        super().mousePressEvent(event)
+
+    def mouseMoveEvent(self, event) -> None:  # noqa: N802 - Qt API
+        if self._drag_item is not None and self._start is not None:
+            delta = event.position() - self._start
+            self._drag_item.setPos(self._origin + delta)
+            self._moved = True
+            event.accept()
+            return
+        super().mouseMoveEvent(event)
+
+    def mouseReleaseEvent(self, event) -> None:  # noqa: N802 - Qt API
+        if self._drag_item is not None and self._moved:
+            index = self.window.scene_items.index(self._drag_item)
+            item = self.window.document.items[index]
+            old = (item.x, item.y)
+            new = (self._drag_item.pos().x(), self._drag_item.pos().y())
+            self.window.undo_stack.push(MoveItemCommand(self.window, item, old, new))
+        self._drag_item = None
+        self._start = None
+        self._origin = None
+        self._moved = False
+        super().mouseReleaseEvent(event)
+
+
 class MainWindow(QMainWindow):
     def __init__(self, theme: str = "after") -> None:
         super().__init__()
@@ -139,10 +184,11 @@ class MainWindow(QMainWindow):
         self.table.itemSelectionChanged.connect(self._selection_changed)
         body.addWidget(self.table, 2)
 
-        self.canvas = QGraphicsView()
+        self.canvas = CanvasView(self)
         self.canvas.setObjectName("canvasView")
         self.scene = QGraphicsScene(self)
         self.canvas.setScene(self.scene)
+        self.scene_items: list = []
         body.addWidget(self.canvas, 3)
         layout.addLayout(body)
 
@@ -276,8 +322,11 @@ class MainWindow(QMainWindow):
             self.table.setItem(row, 1, QTableWidgetItem(item.name))
             self.table.setItem(row, 2, QTableWidgetItem(f"{item.x:.0f},{item.y:.0f}"))
         self.scene.clear()
+        self.scene_items = []
         for item in self.document.items:
-            self.scene.addRect(item.x, item.y, 120, 60, QPen(QColor("#0969da")), QColor("#ddf4ff"))
+            rect = self.scene.addRect(0, 0, 120, 60, QPen(QColor("#0969da")), QColor("#ddf4ff"))
+            rect.setPos(item.x, item.y)
+            self.scene_items.append(rect)
         self.scene.update()
         if self.document.items and self.table.currentRow() < 0:
             self.table.selectRow(0)

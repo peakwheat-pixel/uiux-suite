@@ -32,7 +32,7 @@ def test_workbench_end_to_end(tmp_path: Path):
     evidence = json.loads((tmp_path / "evidence" / "workbench-e2e-evidence.json").read_text(encoding="utf-8"))
     assert evidence["all_steps_ok"] is True
     assert evidence["runtime_level"] == "NATIVE_QT_APP"
-    assert len(evidence["steps"]) == 9
+    assert len(evidence["steps"]) == 12
     assert all(step["ok"] for step in evidence["steps"])
     before = evidence["before_after"]["before"]
     after = evidence["before_after"]["after"]

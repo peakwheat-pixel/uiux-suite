@@ -127,6 +127,58 @@ def main() -> int:
         assert scene_after > scene_before, (scene_before, scene_after)
         return f"scene items {scene_before}->{scene_after}"
 
+    def canvas_drag() -> str:
+        app.processEvents()
+        rect = after.scene_items[-1]
+        origin = rect.pos()
+        after.canvas.centerOn(rect.rect().center())
+        app.processEvents()
+        point = after.canvas.mapFromScene(rect.rect().center())
+        assert after.canvas.itemAt(point) is not None, f"no item at {point}"
+        QPoint = __import__("PySide6.QtCore", fromlist=["QPoint"]).QPoint
+        target = point + QPoint(60, 40)
+        QTest.mousePress(after.canvas.viewport(), Qt.LeftButton, pos=point, delay=50)
+        app.processEvents()
+        assert after.canvas._drag_item is not None, "press did not hit an item"
+        QTest.mouseMove(after.canvas.viewport(), target, delay=50)
+        app.processEvents()
+        moved_flag = after.canvas._moved
+        visual = rect.pos()
+        QTest.mouseRelease(after.canvas.viewport(), Qt.LeftButton, pos=target, delay=50)
+        app.processEvents()
+        moved = after.scene_items[0].pos() != origin
+        assert moved, f"origin={origin} visual={visual} moved_flag={moved_flag} model={after.document.items[0]}"
+        return f"drag delta {(after.scene_items[0].pos().x() - origin.x()):.0f},{(after.scene_items[0].pos().y() - origin.y()):.0f}"
+
+    def keyboard_shortcut() -> str:
+        from PySide6.QtGui import QKeySequence
+
+        assert after.undo_action.shortcut() == QKeySequence("Ctrl+Z")
+        assert after.redo_action.shortcut() == QKeySequence("Ctrl+Y")
+        before_index = after.undo_stack.index()
+        after.undo_action.trigger()
+        app.processEvents()
+        assert after.undo_stack.index() == before_index - 1, (before_index, after.undo_stack.index())
+        after.redo_action.trigger()
+        app.processEvents()
+        assert after.undo_stack.index() == before_index
+        return "Ctrl+Z / Ctrl+Y actions (shortcut metadata + trigger)"
+
+    def focus_order() -> str:
+        after.raise_()
+        after.activateWindow()
+        after.name_edit.setFocus()
+        app.processEvents()
+        names = []
+        for _ in range(6):
+            widget = app.focusWidget()
+            names.append(widget.objectName() if widget is not None else "None")
+            if not after.focusNextChild():
+                break
+            app.processEvents()
+        assert len(set(names)) > 1, names
+        return " -> ".join(names)
+
     def edit() -> str:
         after.table.selectRow(0)
         app.processEvents()
@@ -153,15 +205,13 @@ def main() -> int:
 
     def undo_redo() -> str:
         before_count = len(after.document.items)
-        after.undo_action.trigger()
-        app.processEvents()
-        after.undo_action.trigger()
-        app.processEvents()
+        for _ in range(3):
+            after.undo_action.trigger()
+            app.processEvents()
         assert len(after.document.items) == before_count - 1
-        after.redo_action.trigger()
-        app.processEvents()
-        after.redo_action.trigger()
-        app.processEvents()
+        for _ in range(3):
+            after.redo_action.trigger()
+            app.processEvents()
         assert len(after.document.items) == before_count
         return f"undo/redo around {before_count} items"
 
@@ -185,11 +235,14 @@ def main() -> int:
         ("import", import_ok),
         ("browse_list", browse),
         ("canvas_add", canvas_add),
+        ("canvas_drag", canvas_drag),
         ("edit", edit),
         ("save", save),
         ("export", export),
         ("undo_redo", undo_redo),
+        ("keyboard_shortcut", keyboard_shortcut),
         ("error_handling", error_handling),
+        ("focus_order", focus_order),
         ("screenshots", screenshots),
     ]
     results = [step(name, action) for name, action in actions]
@@ -228,8 +281,10 @@ def main() -> int:
         "duration_ms": round((time.perf_counter() - started) * 1000, 2),
         "limitations": [
             "Synthetic reference application; this is not the real New Manga workbench.",
-            "QTest sends Qt-level events to widgets; no OS-level physical mouse/keyboard or UIA click-through.",
+            "QTest sends Qt-level events; the canvas drag is Qt-level, not OS physical mouse input.",
+            "Ctrl+Z/Ctrl+Y verify QAction shortcut metadata and trigger; the OS-level shortcut map is not exercised.",
             "The invalid-import modal dialog is auto-accepted in the harness; visual dialog interaction is not measured.",
+            "Focus traversal uses Qt focusNextChild, not OS-level keyboard navigation.",
             "Screenshots are QWidget.grab() renders, not OS screen captures.",
         ],
     }
