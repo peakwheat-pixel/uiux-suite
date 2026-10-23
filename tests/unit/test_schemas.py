@@ -27,6 +27,7 @@ INVALID_CASES = {
     "contracts/invalid/task-request-absolute-scope.json": "task-request",
     "contracts/invalid/gate-results-warning-token.json": "gate-results",
     "contracts/invalid/gate-results-with-g6.json": "gate-results",
+    "contracts/invalid/gate-results-top-level-g6.json": "gate-results",
     "contracts/invalid/task-result-complete-with-blockers.json": "task-result",
     "contracts/invalid/task-result-independent-no-attestation.json": "task-result",
     "contracts/invalid/evidence-available-no-hash.json": "evidence-manifest",
@@ -58,10 +59,30 @@ def test_g6_cannot_be_supplied_as_input_gate():
     assert any("G6" in error for error in errors)
 
 
+def test_top_level_g6_is_rejected():
+    data = load_fixture("contracts/invalid/gate-results-top-level-g6.json")
+    errors = contracts.validation_errors("gate-results", data)
+    assert errors, "top-level g6 must be rejected"
+
+
 def test_mixed_warning_and_gate_state_is_rejected():
     data = load_fixture("contracts/invalid/gate-results-warning-token.json")
     errors = contracts.validation_errors("gate-results", data)
     assert any("WARNING" in error for error in errors)
+
+
+def test_malformed_datetime_is_rejected():
+    data = load_fixture("contracts/valid/gate-results.json")
+    data["created_at"] = "not-a-timestamp"
+    errors = contracts.validation_errors("gate-results", data)
+    assert errors, "date-time format must be enforced"
+
+
+def test_gate_results_require_request_digest():
+    data = load_fixture("contracts/valid/gate-results.json")
+    data.pop("request_digest")
+    errors = contracts.validation_errors("gate-results", data)
+    assert any("request_digest" in error for error in errors)
 
 
 def test_every_valid_fixture_file_is_covered():

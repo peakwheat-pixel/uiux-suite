@@ -20,6 +20,12 @@
 | D-014 | 2026-10-24 | 项目依赖安装进 `.venv`，jsonschema/pytest 版本固定并在证据中记录 | 可复现；后续补 requirements.lock（M4） | Accepted |
 | D-015 | 2026-10-24 | 本地 finalize 只声明"一致派生 + 防意外损坏"，不宣称不可绕过 | 同权 Agent 可改 Runner/证据；高可信签发交独立校验器/CI（ADR-03 边界） | Accepted |
 | D-016 | 2026-10-24 | 对外部编排器只保留被动兼容，删除主动集成任务（原 T4.3 改为被动调用契约测试） | 用户架构约束；避免把外部系统作为 Release 前提 | Accepted |
+| D-017 | 2026-10-24 | production-code 的 L4 独立性由 `deliverable_tier` 派生；运行级独立验收由 `review_policy` 单独判定 | 修复 F-01：两者语义不同，混用会漏掉 production-code 自审；拆分为 `design_review_policy` 与 `review_policy` | Accepted |
+| D-018 | 2026-10-24 | coverage 的 `observed_runtime_level` 必须由同 probe 的 evidence provenance + tool-log 支撑；gate observed 不得超过证据层级 | 修复 F-02：跨层证据不能由 coverage 自报，红线 3 要求工具日志核验 | Accepted |
+| D-019 | 2026-10-24 | WARN 处置文件与内嵌记录统一走 `common#/$defs/warn_review` Schema，且 `reviewed_head` 必须等于冻结指纹；REJECTED 需反证 | 修复 F-03：缺字段/旧 HEAD 不得解除 WARN；REJECTED 是有效处置而非死枚举 | Accepted |
+| D-020 | 2026-10-24 | `gate-results.request_digest` 绑定 TaskRequest；不一致即 `REQUEST_DIGEST_MISMATCH` | 修复 F-14：阻止事后重生成 request 调低 runtime_targets | Accepted |
+| D-021 | 2026-10-24 | B6 的原件字节校验明确为 T3.5 实现；T0.1 只校验清单/引用哈希一致性 | 修复 F-06：避免把分期能力写成已实现；SPEC §3.6 与 §15 已同步 | Accepted |
+| D-022 | 2026-10-24 | 明确失败（MANDATORY/REVIEW_ONLY FAIL、L4 FAIL）统一输出 FAILED | 修复 F-09：机器策略与引擎状态升级规则一致 | Accepted |
 
 ## 待决事项
 

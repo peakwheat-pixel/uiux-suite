@@ -3,8 +3,11 @@
 Design rules:
 - G0–G5 are input gate results; G6 is derived here and never read as an input.
 - All state is computed from evidence, tool logs, coverage records and policy.
-- WARN_REVIEW_REQUIRED is only discharged by a valid warn review record.
-- Mock/Offscreen evidence can never satisfy a NATIVE_APP/OS_INTEGRATION requirement.
+- WARN_REVIEW_REQUIRED is only discharged by a schema-valid review bound to the
+  frozen source fingerprint.
+- Mock/Offscreen evidence can never satisfy a NATIVE_APP/OS_INTEGRATION
+  requirement: coverage records are cross-checked against manifest provenance
+  and tool-log execution levels.
 - COMPLETE is a combination of mandatory gates, evidence availability, coverage,
   L4 design review and (when required) verified review isolation.
 """
@@ -14,12 +17,10 @@ from datetime import datetime, timezone
 from typing import Any
 
 from . import contracts, evidence, policy
-from .enums import RANKED_ENUMS, rank
+from .enums import rank
 
 GATES = ("G0", "G1", "G2", "G3", "G4", "G5")
 RUNTIME_KINDS = {"test_log", "tool_log", "screenshot", "coverage_matrix"}
-REVIEW_ONLY_STATES = {"PASS", "WARN_REVIEW_REQUIRED", "UNVERIFIED"}
-WARN_DISPOSITIONS = {"FIXED", "ACCEPTED_RISK", "NOT_APPLICABLE"}
 
 
 class RunEvaluation:
@@ -38,23 +39,22 @@ class RunEvaluation:
         self.gate_notes.setdefault(gate, []).append(code)
 
 
-def _parse_time(value: str | None) -> datetime | None:
-    return evidence.parse_time(value)
-
-
-def _warn_review_problems(review: dict[str, Any], now: datetime) -> list[str]:
+def _warn_review_problems(review: dict[str, Any], now: datetime, fingerprint: dict[str, Any]) -> list[str]:
     problems: list[str] = []
-    if review.get("disposition") not in WARN_DISPOSITIONS:
-        problems.append("WARN_REVIEW_INVALID")
-    expires = _parse_time(review.get("expires_at"))
+    problems.extend("WARN_REVIEW_INVALID" for _ in contracts.fragment_errors("common", "warn_review", review))
+    if problems:
+        return problems
+    expires = evidence.parse_time(review.get("expires_at"))
     if expires is None or expires <= now:
         problems.append("WARN_REVIEW_INVALID")
     disposition = review.get("disposition")
     source = review.get("reviewer_source")
     if disposition in ("ACCEPTED_RISK", "NOT_APPLICABLE") and source == "selftest":
         problems.append("WARN_REVIEW_INVALID")
-    if disposition == "FIXED" and not review.get("evidence_refs"):
+    if disposition in ("FIXED", "REJECTED") and not review.get("evidence_refs"):
         problems.append("WARN_REVIEW_INVALID")
+    if str(review.get("reviewed_head")) != str(fingerprint.get("value")):
+        problems.append("REVIEWED_HEAD_MISMATCH")
     return problems
 
 
@@ -68,7 +68,7 @@ def _warn_reviews_by_gate(warn_reviews: list[dict[str, Any]]) -> dict[str, dict[
 def _design_review_status(
     request: dict[str, Any],
     design_review: dict[str, Any] | None,
-    independent_required: bool,
+    l4_independent: bool,
     run: RunEvaluation,
 ) -> str:
     if not policy.l4_required(run.mode, run.policy):
@@ -88,9 +88,9 @@ def _design_review_status(
         run.add("G6", "DESIGN_REVIEW_INSUFFICIENT", "not all 10 required dimensions are present exactly once")
         return "INCOMPLETE"
     reviewer = design_review.get("reviewer", {})
-    if independent_required:
+    if l4_independent:
         if reviewer.get("source") not in ("independent_agent", "external_system", "human_expert"):
-            run.add("G6", "REVIEW_NOT_INDEPENDENT", "L4 reviewer is not independent")
+            run.add("G6", "REVIEW_NOT_INDEPENDENT", "production-code L4 reviewer is not independent")
             return "INCOMPLETE"
         if not reviewer.get("independence_proof_ref"):
             run.add("G6", "REVIEW_SOURCE_MISSING", "L4 reviewer lacks independence proof")
@@ -125,8 +125,7 @@ def _review_status(
         return "UNVERIFIED", "UNVERIFIED"
 
     isolation = attestation.get("isolation_level")
-    isolation_ok = isolation in ("ISOLATED_SESSION", "INDEPENDENT_AGENT")
-    if not isolation_ok:
+    if isolation not in ("ISOLATED_SESSION", "INDEPENDENT_AGENT"):
         if required:
             run.add("G6", "REVIEW_NOT_INDEPENDENT", "attestation isolation level is not sufficient")
         return "INDEPENDENCE_UNVERIFIED", isolation
@@ -135,8 +134,7 @@ def _review_status(
         run.add("G6", "SOURCE_CHANGED_DURING_REVIEW", "reviewed source changed")
         return "INDEPENDENCE_UNVERIFIED", isolation
 
-    reviewed_head = str(attestation.get("reviewed_head"))
-    if reviewed_head != str(fingerprint.get("value")):
+    if str(attestation.get("reviewed_head")) != str(fingerprint.get("value")):
         run.add("G6", "REVIEWED_HEAD_MISMATCH", "reviewed_head does not match frozen source fingerprint")
         return "INDEPENDENCE_UNVERIFIED", isolation
 
@@ -172,6 +170,62 @@ def _aggregate_runtime_level(records: list[dict[str, Any]]) -> str:
     return min(levels, key=lambda level: rank("RuntimeEvidenceLevel", level))
 
 
+def _max_evidence_level(refs: list[dict[str, Any]]) -> str:
+    levels = [ref.get("evidence_level", "NONE") for ref in refs]
+    if not levels:
+        return "NONE"
+    return max(levels, key=lambda level: rank("RuntimeEvidenceLevel", level))
+
+
+def _coverage_layer_problems(
+    records: list[dict[str, Any]],
+    manifest_index: dict[str, dict[str, Any]],
+    logs_by_probe: dict[str, dict[str, Any]],
+) -> list[tuple[str, str]]:
+    """Cross-check coverage claims against manifest provenance and tool logs."""
+    out: list[tuple[str, str]] = []
+    for record in records:
+        if record.get("test_state") == "NOT_APPLICABLE":
+            continue
+        observed = record.get("observed_runtime_level", "NONE")
+        probe_id = record.get("probe_id")
+        matching_origin = False
+        for evidence_id in record.get("evidence_refs", []):
+            item = manifest_index.get(evidence_id)
+            if item is None:
+                out.append(("MISSING_EVIDENCE", f"coverage references unknown evidence {evidence_id}"))
+                continue
+            provenance = item.get("provenance") or {}
+            if provenance.get("probe_id") != probe_id:
+                out.append(("PROBE_ID_MISSING", f"coverage probe {probe_id} differs from evidence provenance"))
+                continue
+            if rank("RuntimeEvidenceLevel", provenance.get("execution_level", "NONE")) >= rank(
+                "RuntimeEvidenceLevel", observed
+            ):
+                matching_origin = True
+        if observed != "NONE" and not matching_origin:
+            out.append(
+                ("LAYER_SPOOF_OR_MISSING", f"coverage claims {observed} without matching evidence provenance")
+            )
+        if rank("RuntimeEvidenceLevel", observed) >= rank("RuntimeEvidenceLevel", "NATIVE_APP"):
+            log = logs_by_probe.get(probe_id)
+            if log is None:
+                out.append(("TOOL_LOG_MISSING", f"coverage probe {probe_id} has no tool log"))
+            else:
+                if log.get("exit_code") != 0:
+                    out.append(("TOOL_EXIT_NONZERO", f"tool log {log.get('log_id')} exit {log.get('exit_code')}"))
+                if rank("RuntimeEvidenceLevel", log.get("execution_level", "NONE")) < rank(
+                    "RuntimeEvidenceLevel", observed
+                ):
+                    out.append(
+                        (
+                            "LAYER_SPOOF_OR_MISSING",
+                            f"coverage claims {observed} but tool log is {log.get('execution_level')}",
+                        )
+                    )
+    return out
+
+
 def evaluate_run(
     request: dict[str, Any],
     gate_results: dict[str, Any],
@@ -181,6 +235,7 @@ def evaluate_run(
     design_review: dict[str, Any] | None = None,
     review_attestation: dict[str, Any] | None = None,
     warn_reviews: list[dict[str, Any]] | None = None,
+    repair_cycles: int = 0,
     now: datetime | None = None,
 ) -> dict[str, Any]:
     now = now or datetime.now(timezone.utc)
@@ -189,6 +244,10 @@ def evaluate_run(
     manifest_digest = evidence.manifest_digest(manifest)
     fingerprint = gate_results.get("source_fingerprint", request.get("source_fingerprint"))
 
+    if gate_results.get("request_digest"):
+        if gate_results["request_digest"] != contracts.sha256_json(request):
+            run.add("G6", "REQUEST_DIGEST_MISMATCH", "gate-results request_digest differs from current request")
+
     for problem in evidence.semantic_problems(manifest):
         run.add("G0", "EVIDENCE_MANIFEST_INVALID", problem)
 
@@ -196,8 +255,11 @@ def evaluate_run(
     for log in tool_logs:
         logs_by_probe.setdefault(log.get("probe_id"), log)
 
+    review_only_states = set(run.policy["complete_policy"]["review_only_gate_acceptable_states"])
     gate_effective_pass: dict[str, bool] = {gate: False for gate in GATES}
     gate_states: dict[str, str] = {}
+    mandatory_failed = False
+    review_only_failed = False
 
     for gate in GATES:
         gr = gate_results["gates"][gate]
@@ -219,27 +281,39 @@ def evaluate_run(
         for code in evidence.check_gate_evidence(gr, manifest_index, now, require_available):
             run.add(gate, code, f"evidence check failed for gate {gate}")
 
+        observed_level = gr.get("observed_runtime_level", "NONE")
+        if observed_level and observed_level != "NONE":
+            max_level = _max_evidence_level(gr.get("evidence_refs", []))
+            if rank("RuntimeEvidenceLevel", observed_level) > rank("RuntimeEvidenceLevel", max_level):
+                run.add(
+                    gate,
+                    "LAYER_SPOOF_OR_MISSING",
+                    f"gate {gate} claims {observed_level} but evidence max is {max_level}",
+                )
+
         if expected == "MANDATORY":
             if state == "PASS":
                 gate_effective_pass[gate] = True
             elif state == "WARN_REVIEW_REQUIRED":
                 pass  # discharged below
-            elif state in ("BLOCKED", "FAIL", "UNVERIFIED"):
-                code = {
-                    "BLOCKED": "ENVIRONMENT_UNAVAILABLE",
-                    "FAIL": "GATE_STATE_INVALID",
-                    "UNVERIFIED": "MISSING_EVIDENCE",
-                }[state]
-                run.add(gate, code, f"mandatory gate {gate} is {state}")
+            elif state == "FAIL":
+                mandatory_failed = True
+                run.add(gate, "GATE_STATE_INVALID", f"mandatory gate {gate} is FAIL")
+            elif state == "BLOCKED":
+                run.add(gate, "ENVIRONMENT_UNAVAILABLE", f"mandatory gate {gate} is BLOCKED")
+            elif state == "UNVERIFIED":
+                run.add(gate, "MISSING_EVIDENCE", f"mandatory gate {gate} is UNVERIFIED")
         elif expected == "REVIEW_ONLY":
-            if state not in REVIEW_ONLY_STATES:
+            if state == "FAIL":
+                review_only_failed = True
+                run.add(gate, "GATE_STATE_INVALID", f"review-only gate {gate} is FAIL")
+            elif state not in review_only_states:
                 run.add(gate, "GATE_STATE_INVALID", f"review-only gate {gate} has state {state}")
             elif state in ("PASS", "WARN_REVIEW_REQUIRED"):
                 gate_effective_pass[gate] = True
 
         if gate == "G5":
             required_level = policy.gate_min_level(run.mode, "G5", run.facts, run.policy)
-            observed_level = gr.get("observed_runtime_level", "NONE")
             if rank("RuntimeEvidenceLevel", observed_level) < rank("RuntimeEvidenceLevel", required_level):
                 run.add(gate, "RUNTIME_LEVEL_BELOW_REQUIRED", f"G5 observed {observed_level} < required {required_level}")
 
@@ -251,7 +325,10 @@ def evaluate_run(
         if review is None:
             run.add(gate, "WARN_REVIEW_MISSING", "WARN_REVIEW_REQUIRED has no disposition record")
             continue
-        problems = _warn_review_problems(review, now)
+        if review.get("gate") not in (None, gate):
+            run.add(gate, "WARN_REVIEW_INVALID", f"warn review gate mismatch: {review.get('gate')}")
+            continue
+        problems = _warn_review_problems(review, now, fingerprint)
         if problems:
             for code in problems:
                 run.add(gate, code, f"warn review for {gate} is invalid")
@@ -259,7 +336,7 @@ def evaluate_run(
         if run.resolved[gate] == "MANDATORY":
             gate_effective_pass[gate] = True
 
-    # Tool log consistency and layer spoof detection.
+    # Tool log consistency and layer spoof detection for gate evidence.
     for gate in GATES:
         gr = gate_results["gates"][gate]
         if gr["state"] not in ("PASS", "WARN_REVIEW_REQUIRED"):
@@ -278,7 +355,7 @@ def evaluate_run(
             ):
                 run.add(gate, "LAYER_SPOOF_OR_MISSING", "evidence level exceeds tool execution level")
 
-    # Coverage matrix.
+    # Coverage matrix: required levels, target coverage, and provenance bindings.
     records = coverage.get("records", [])
     if coverage.get("source_fingerprint") != gate_results.get("source_fingerprint"):
         run.add("G6", "SOURCE_FINGERPRINT_MISMATCH", "coverage source_fingerprint differs from gate-results")
@@ -289,9 +366,8 @@ def evaluate_run(
             "RuntimeEvidenceLevel", record.get("required_runtime_level", "NONE")
         ):
             run.add("G6", "RUNTIME_LEVEL_BELOW_REQUIRED", f"record {record.get('scenario_id')} below required level")
-        for evidence_id in record.get("evidence_refs", []):
-            if evidence_id not in manifest_index:
-                run.add("G6", "MISSING_EVIDENCE", f"coverage record references unknown evidence {evidence_id}")
+    for code, detail in _coverage_layer_problems(records, manifest_index, logs_by_probe):
+        run.add("G6", code, detail)
     for target in request["runtime_targets"]:
         covered = any(
             record.get("test_state") == "PASS"
@@ -320,7 +396,8 @@ def evaluate_run(
     ]
 
     independent_required = policy.independent_review_required(run.mode, request, run.policy)
-    design_status = _design_review_status(request, design_review, independent_required, run)
+    l4_independent = policy.l4_independent_required(run.mode, request, run.policy)
+    design_status = _design_review_status(request, design_review, l4_independent, run)
     independent_status, isolation = _review_status(
         request, review_attestation, manifest_digest, fingerprint, run
     )
@@ -336,19 +413,14 @@ def evaluate_run(
         for reason in run.reasons
     )
     coverage_ok = not any(
-        reason["code"] in {"RUNTIME_TARGET_NOT_COVERED", "RUNTIME_LEVEL_BELOW_REQUIRED", "SOURCE_FINGERPRINT_MISMATCH"}
+        reason["code"]
+        in {"RUNTIME_TARGET_NOT_COVERED", "RUNTIME_LEVEL_BELOW_REQUIRED", "SOURCE_FINGERPRINT_MISMATCH", "REQUEST_DIGEST_MISMATCH"}
         for reason in run.reasons
     )
     design_ok = design_status in ("NOT_REQUIRED", "PASS")
-    review_ok = independent_status in ("NOT_APPLICABLE", "INDEPENDENT_REVIEW_PASS")
-    if independent_required and independent_status != "INDEPENDENT_REVIEW_PASS":
-        review_ok = False
+    review_ok = (not independent_required) or independent_status == "INDEPENDENT_REVIEW_PASS"
 
     blocked = any(reason["code"] in {"ENVIRONMENT_UNAVAILABLE", "PERMISSION_DENIED"} for reason in run.reasons)
-    failed = any(
-        reason["code"] == "GATE_STATE_INVALID" and "mandatory gate" in reason["detail"]
-        for reason in run.reasons
-    )
 
     complete = (
         mandatory_ok and evidence_ok and coverage_ok and design_ok and review_ok
@@ -357,7 +429,7 @@ def evaluate_run(
     )
     if blocked:
         status = "BLOCKED"
-    elif failed and not mandatory_ok:
+    elif mandatory_failed or review_only_failed or design_status == "FAIL":
         status = "FAILED"
     elif complete:
         status = "COMPLETE"
@@ -427,6 +499,7 @@ def evaluate_run(
         "review_attestation_ref": "review-attestation.json" if review_attestation else None,
         "evidence_manifest_ref": ".uiux/evidence/manifest.json",
         "manifest_digest": manifest_digest,
+        "repair_cycles": repair_cycles,
         "resolved_gates": run.resolved,
         "gate_effective_pass": gate_effective_pass,
         "required_gates": policy.required_gates(run.mode, run.facts, run.policy),

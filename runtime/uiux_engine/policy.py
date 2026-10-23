@@ -25,6 +25,11 @@ def load_mode_gate_policy() -> dict[str, Any]:
     return doc
 
 
+def deliverable_tier(mode: str, policy: dict[str, Any] | None = None) -> str:
+    policy = policy or load_mode_gate_policy()
+    return policy["modes"][mode]["deliverable_tier"]
+
+
 def facts_from_request(request: dict[str, Any]) -> dict[str, Any]:
     mode = request["mode"]
     project = request.get("project") or {}
@@ -34,6 +39,7 @@ def facts_from_request(request: dict[str, Any]) -> dict[str, Any]:
     execution = request["execution_policy"]
     return {
         "mode": mode,
+        "deliverable_tier": deliverable_tier(mode),
         "project.has_existing_ui": bool(has_ui),
         "request.read_only_source": bool(execution["read_only_source"]),
         "request.target_scope_nonempty": bool(request.get("target_scope")),
@@ -45,6 +51,7 @@ def facts_from_request(request: dict[str, Any]) -> dict[str, Any]:
         "caller.git_management": request["caller"]["git_management"],
         "caller.kind": request["caller"]["kind"],
         "review.independent_required": bool(request["review"]["independent_required"]),
+        "request.review.independent_required": bool(request["review"]["independent_required"]),
     }
 
 
@@ -131,11 +138,24 @@ def independent_review_required(
     policy: dict[str, Any] | None = None,
 ) -> bool:
     policy = policy or load_mode_gate_policy()
-    if policy["modes"][mode].get("independent_review_required"):
-        return True
-    if request["review"]["independent_required"]:
-        return True
     facts = facts_from_request(request)
+    facts["mode"] = mode
+    facts["deliverable_tier"] = deliverable_tier(mode, policy)
+    condition = policy["review_policy"].get("independent_review_required_when")
+    return bool(condition and eval_condition(condition, facts))
+
+
+def l4_independent_required(
+    mode: str,
+    request: dict[str, Any],
+    policy: dict[str, Any] | None = None,
+) -> bool:
+    policy = policy or load_mode_gate_policy()
+    if not l4_required(mode, policy):
+        return False
+    facts = facts_from_request(request)
+    facts["mode"] = mode
+    facts["deliverable_tier"] = deliverable_tier(mode, policy)
     condition = policy["design_review_policy"].get("independent_review_when")
     return bool(condition and eval_condition(condition, facts))
 
@@ -157,10 +177,3 @@ def gate_min_level(
             if rank("RuntimeEvidenceLevel", candidate) > rank("RuntimeEvidenceLevel", level):
                 level = candidate
     return level
-
-
-def derive_runtime_targets(request: dict[str, Any]) -> list[str]:
-    targets = list(request["runtime_targets"])
-    if request["execution_policy"]["require_native_for_production_complete"] and "NATIVE_APP" not in targets:
-        targets.append("NATIVE_APP")
-    return targets

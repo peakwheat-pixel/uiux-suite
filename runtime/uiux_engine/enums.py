@@ -12,11 +12,6 @@ SUITE_ROOT = RUNTIME_DIR.parent
 CONTRACTS_DIR = SUITE_ROOT / "contracts"
 ENUMS_PATH = CONTRACTS_DIR / "enums.v1.3.3.json"
 
-RANKED_ENUMS = {
-    "RuntimeEvidenceLevel": {"NONE": 0, "SIMULATED": 1, "NATIVE_APP": 2, "OS_INTEGRATION": 3},
-    "ReviewIsolationLevel": {"UNVERIFIED": 0, "SELFTEST": 1, "ISOLATED_SESSION": 2, "INDEPENDENT_AGENT": 3},
-}
-
 
 @lru_cache(maxsize=1)
 def load_enums() -> dict[str, Any]:
@@ -49,11 +44,9 @@ def require(name: str, value: Any) -> str:
 
 
 def rank(name: str, value: str) -> int:
-    table = RANKED_ENUMS.get(name)
+    table = load_enums()["enums"][name].get("rank")
     if table is None:
-        table = load_enums()["enums"][name].get("rank")
-        if table is None:
-            raise KeyError(f"enum {name!r} has no rank order")
+        raise KeyError(f"enum {name!r} has no rank order")
     return int(table[value])
 
 

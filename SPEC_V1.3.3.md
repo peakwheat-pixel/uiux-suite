@@ -4,7 +4,7 @@
 > 日期：2026-10-24
 > 前版：`SPEC_V1.3.2.md`（不可变基线，commit `e7e921e`，tag `v1.3.2-baseline`，SHA256 `70f5f3399079ad138685295c9ec2915544c03e77b7cf49f08e5959bc9411ea04`）
 > 本版分支：`v1.3.3-contract-closure`
-> 实施证据：`evidence/T0.1/contract-test-evidence.json`（98/98 契约测试通过，exit_code=0）
+> 实施证据：`evidence/T0.1/contract-test-evidence.json`（133 项契约+安装测试通过，exit_code=0）
 > 适用对象：DSH（首选实测宿主）、Codex / Claude Code / ZCode / Antigravity / Qoder（逐项验证，未测即 `UNVERIFIED`）
 
 ---
@@ -22,7 +22,7 @@ V1.3.2 的 6 项 BLOCKER、18 项 MAJOR、8 项 MINOR 中，**B1–B6 的契约�
 | B3 | Gate 语义不可执行 | `mode-gate-policy.v1.3.3.json` 机器矩阵；`WARN` 解除规则；`COMPLETE` 组合约束；G6 改为 finalize 派生 | `tests/unit/test_policy.py`、`tests/integration/test_finalize.py` |
 | B4 | 跨层/跨路径证据不成立 | `coverage-matrix` 逐 task/scenario/level 记录；`probe_id`、`evidence_level`、最弱层汇总、`LAYER_SPOOF_OR_MISSING` | `test_mock_only_coverage_cannot_claim_native_target`、`test_layer_spoof_mock_log_claiming_native_is_rejected` |
 | B5 | L4 评审无落点 | `design-review.v1.3.3.schema.json`：10 维量表、证据引用、来源/独立性、分歧；`design_review_status` + G6 检查 | `test_required_l4_review_missing_blocks_complete` |
-| B6 | 证据生命周期不可执行 | `evidence-manifest.v1.3.3.schema.json` 状态机、`AVAILABLE` 必须可校验字节、过期即失效、脱敏不得冒充原件 | `test_expired_evidence_cannot_support_pass`、`test_invalid_fixtures_are_rejected` |
+| B6 | 证据生命周期不可执行 | `evidence-manifest.v1.3.3.schema.json` 状态机、`AVAILABLE` 清单/引用哈希一致性（原件字节校验 T3.5）、过期即失效、脱敏不得冒充原件 | `test_expired_evidence_cannot_support_pass`、`test_invalid_fixtures_are_rejected` |
 
 ### 0.2 与 V1.3.2 的边界
 
@@ -183,9 +183,11 @@ L1–L3 全绿不能替代 L4；L4 也不能覆盖 L1/L3 硬失败。
 
 汇总规则：**最弱必选路径**。任一必选路径未 PASS，整体 `runtime_evidence_level` 降为 `NONE`；单条 Native PASS 不能代表整体 Native PASS。
 
+交叉校验（V1.3.3 返修）：`observed_runtime_level` 不是自报值——每条记录必须至少一条同 `probe_id` 的 evidence provenance 达到该层级，且 `NATIVE_APP/OS_INTEGRATION` 记录必须有对应 tool-log 且 `execution_level ≥ observed`、退出码为 0；否则 `LAYER_SPOOF_OR_MISSING / TOOL_LOG_MISSING`。Gate 结果中的 `observed_runtime_level` 同样不得超过其证据引用的最大层级。
+
 ### 3.6 证据生命周期（B6）
 
-- `AVAILABLE` 必须可访问原件并校验 `source_sha256`；`REDACTED_ONLY` 仅作上下文，不能支撑 PASS。
+- `AVAILABLE` 必须给出 `source_sha256` 且与证据引用一致；**原件字节级校验在 T3.5 生效**（T0.1 只做清单/引用哈希一致性校验），`REDACTED_ONLY` 仅作上下文，不能支撑 PASS。
 - `expiry_at` 到期自动视为 `EXPIRED`；原件删除且无替代 → `SOURCE_EVIDENCE_UNAVAILABLE`；哈希不符 → `INVALID_HASH`；敏感风险 → `QUARANTINED`。
 - 历史已验收结果保留为带时点记录；重新签发必须提供满足**当前策略**的有效证据。
 - 三区：`state`（可变）、`vault`（本地原件，默认不入 Git）、`evidence`（脱敏可移交）。截图打码、DOM/UIA 字段过滤、CSV/JSON 列级脱敏、脱敏后扫描缺一不可。
@@ -196,7 +198,7 @@ L1–L3 全绿不能替代 L4；L4 也不能覆盖 L1/L3 硬失败。
 `design-review` 必含：`scenario_id`、`rubric_version`、10 个维度（目标可发现性、任务完整、心智模型/IA、异常恢复、连续性、键盘效率、视觉层级、信息密度、学习成本、专业适配）、每维证据引用与判定、评审者来源与独立性证明、总体结论、分歧、待验证问题。
 
 - L4 结论不得机械求和替代 L1/L3；硬 Gate 失败不因 L4 PASS 而消除。
-- `deliverable_tier=production-code` 或 profile 要求独立时，L4 评审者必须独立并附证明；否则 `INCOMPLETE`。
+- `deliverable_tier=production-code` 或 profile 要求独立时，L4 评审者必须独立并附证明；否则 `INCOMPLETE`。该判定由 `policy.l4_independent_required()` 按 `deliverable_tier` 派生，不读取 `request.review.independent_required`（后者只约束运行级独立验收）。
 
 ### 3.8 ReasonCode
 
@@ -269,7 +271,8 @@ L1–L3 全绿不能替代 L4；L4 也不能覆盖 L1/L3 硬失败。
 `WARN_REVIEW_REQUIRED` 必须绑定处置记录：`finding_id`、`gate`、`disposition(FIXED|ACCEPTED_RISK|NOT_APPLICABLE|REJECTED)`、评审来源与身份、`reviewed_head`、证据引用、`expires_at`、理由。
 
 - `ACCEPTED_RISK / NOT_APPLICABLE` 不得由 `selftest` 来源裁决。
-- `FIXED` 必须有回归证据。
+- `FIXED` 必须有回归证据；`REJECTED` 必须给出反证（`evidence_refs` 非空）。
+- 处置记录必须通过 `common#/$defs/warn_review` Schema 校验，`reviewed_head` 必须等于冻结源码指纹；缺失字段或旧 HEAD → `WARN_REVIEW_INVALID / REVIEWED_HEAD_MISMATCH`。
 - 无有效记录 → `WARN_REVIEW_MISSING`，阻断 COMPLETE；过期记录 → `WARN_REVIEW_INVALID`。
 
 ### 5.3 COMPLETE 组合约束
@@ -278,18 +281,22 @@ L1–L3 全绿不能替代 L4；L4 也不能覆盖 L1/L3 硬失败。
 
 1. 所有 `MANDATORY` Gate 为 PASS（或 WARN 且处置有效）；
 2. 每个必选 Gate 至少一条 `AVAILABLE` 有效证据且哈希/过期/探针一致；
-3. 覆盖矩阵满足 `runtime_targets` 与 G5 最低层级；
-4. L4 要求的模式 `design_review_status=PASS`；
+3. 覆盖矩阵满足 `runtime_targets` 与 G5 最低层级，且逐路径 provenance 校验通过；
+4. L4 要求的模式 `design_review_status=PASS`（production-code 要求独立 L4）；
 5. 独立验收要求时 `independent_review_status=INDEPENDENT_REVIEW_PASS`；
-6. 源码指纹一致、审查期间未变更；
+6. 源码指纹一致、审查期间未变更、`gate-results.request_digest` 与当前请求一致；
 7. 无阻塞原因、无必选未验证路径。
 
-`COMPLETE ≠ INDEPENDENT_REVIEW_PASS`：只有模式/交付层级或 profile 要求独立时才强制后者；否则明确为 `SELFTEST_VERIFIED` 的范围内完成。
+`COMPLETE ≠ INDEPENDENT_REVIEW_PASS`：只有模式/交付层级或 profile 要求独立时才强制后者。有效 `ISOLATED_SESSION` 审查可产生 `ISOLATED_REVIEW_VERIFIED`；否则为 `SELFTEST_VERIFIED` 的范围内完成。
+
+存在明确失败（MANDATORY/REVIEW_ONLY Gate FAIL 或 L4 FAIL）时输出 `FAILED`，不得降级为 `PARTIAL`。
 
 ### 5.4 运行层级与跨层冒充
 
 - G5 最低层级：audit/prototype 默认 `SIMULATED`；new-build/redesign/targeted-fix/verify 默认 `NATIVE_APP`；请求 `OS_INTEGRATION` 或 `require_native_for_production_complete` 时提升。
 - 证据声明的 `evidence_level` 必须与 `tool-log.execution_level`、`probe_id` 来源一致；低于要求 → `LAYER_SPOOF_OR_MISSING`。
+- Gate 的 `observed_runtime_level` 不得超过其证据引用的最大层级。
+- 覆盖记录的 `observed_runtime_level` 必须有同 probe 的 provenance/tool-log 支撑；仅改 coverage 字段抬高层级 → `LAYER_SPOOF_OR_MISSING`。
 - 工具日志缺失 → `TOOL_LOG_MISSING`；退出码非零 → `TOOL_EXIT_NONZERO`。
 
 ### 5.5 G6 派生
@@ -302,18 +309,19 @@ g6.checks = [gate:G0..G5, coverage:targets, evidence:available,
 g6.state  = PASS 仅当 run.status == COMPLETE
 ```
 
-输入中出现 G6 → Schema 拒绝（`additionalProperties`）。
+`gate-results` 中出现 `gates.G6` 或顶层 `g6` 字段 → Schema 拒绝（`additionalProperties` 与 enum 双重约束）。
 
 ### 5.6 finalize 判定（摘要）
 
 ```python
 validate(request, gate_results, coverage, manifest, tool_logs, design_review, attestation)
+verify request_digest == sha256(request)          # 禁止事后调低 runtime_targets
 resolved = mode_gate_policy.resolve(mode, facts)
 check_applicability_and_states()
-discharge_warn_reviews_or_block()
+discharge_warn_reviews_or_block()                 # schema + reviewed_head + expiry
 verify_evidence(available, expiry, hash, probe, layer)
-aggregate_coverage(weakest_required_path)
-design_status = l4_policy(...)
+aggregate_coverage(weakest_required_path)         # provenance-bound observed levels
+design_status = l4_policy(...)                    # production-code ⇒ independent reviewer
 review_status, isolation = review_policy(attestation, manifest_digest, fingerprint)
 status = COMPLETE | PARTIAL | FAILED | BLOCKED
 g6 = derive(...)
@@ -406,7 +414,7 @@ g6 = derive(...)
 
 ### Stage 0｜契约闭环、安装闭环与 DSH 预检
 
-- **T0.1（本版完成，待独立复核）**：Schema、枚举、Gate 引擎、覆盖矩阵、L4、证据生命周期；契约测试 98/98。
+- **T0.1（本版完成，待独立复核）**：Schema、枚举、Gate 引擎、覆盖矩阵、L4、证据生命周期；契约+安装测试 133/133。
 - T0.2 发行根/双启动器/安装卸载/升级回滚；M1/M3/M4/M5。
 - T0.3 DSH 实机安装与双入口发现；M2/m6/m7 部分。
 - T0.4 doctor：能力、根目录、遮蔽、退出码/JSON；M9。
@@ -490,7 +498,7 @@ T0.1 Contract Closure
 | B3 Gate 语义 | DONE | §5、`mode-gate-policy`、WARN/COMPLETE/G6 测试 |
 | B4 跨层证据 | DONE | §3.5/§5.4、coverage/evidence 测试 |
 | B5 L4 评审 | Schema DONE，实现 Stage 1–3 | §3.7、`design-review` |
-| B6 证据生命周期 | Schema DONE，实现 Stage 3 | §3.6、`evidence-manifest` |
+| B6 证据生命周期 | Schema DONE；T0.1 做清单/引用哈希一致性，原件字节校验 T3.5 | §3.6、`evidence-manifest` |
 | M1–M18 / m1–m8 | 已登记任务 | `plan/tasks.v1.3.3.json`、§12 |
 
 ---
@@ -524,22 +532,22 @@ Release 必交付：可安装/卸载/修复的发行包、双 Skill、快速上�
 | ID | 用例 | 本版结果 | 证据 |
 |---|---|---|---|
 | C-01 | 双 Skill 发现 | 未执行（T0.3） | — |
-| C-02 | launch.py 与 suite-link 路径关系 | Schema/规则已定义，实现 T0.2 | `suite-link` schema + 相对定位测试 |
-| C-03 | 发行文件哈希错配 | 契约已定义，校验器 T0.2 | `release-manifest` schema |
-| C-04 | 全部样例校验 | PASS | 14 valid / 14 invalid fixtures |
+| C-02 | launch.py 与 suite-link 路径关系 | PASS（安装实例启动） | `test_install_doctor_launch_and_uninstall`、`test_launch_works_after_source_tree_is_deleted` |
+| C-03 | 发行文件哈希错配 | PASS（launch/doctor 拒绝） | `test_launch_rejects_manifest_hash_mismatch` |
+| C-04 | 全部样例校验 | PASS | 14 valid / 15 invalid fixtures |
 | C-05 | 混用 WARNING 与 WARN_REVIEW_REQUIRED | PASS（拒绝） | `test_mixed_warning_and_gate_state_is_rejected` |
-| C-06 | WARN 未解除直接 COMPLETE | PASS（拒绝） | `test_warn_without_disposition_blocks_complete` |
-| C-07 | G6 自循环 | PASS（拒绝输入 G6） | `test_g6_cannot_be_supplied_as_input_gate` |
+| C-06 | WARN 未解除直接 COMPLETE | PASS（拒绝） | `test_warn_without_disposition_blocks_complete`、`test_warn_review_missing_fields_is_rejected` |
+| C-07 | G6 自循环 | PASS（拒绝 gates.G6 与顶层 g6） | `test_g6_cannot_be_supplied_as_input_gate`、`test_top_level_g6_is_rejected` |
 | C-08 | audit/redesign 必选 Gate 不完整 | PASS | `test_audit_without_runtime_environment_is_partial_not_complete` |
-| C-09 | 单点 Native 冒充整体 Native | PASS（最弱层汇总） | `test_mock_only_coverage_cannot_claim_native_target` |
+| C-09 | 单点 Native 冒充整体 Native | PASS（最弱层汇总 + provenance 校验） | `test_mock_only_coverage_cannot_claim_native_target`、`test_coverage_claiming_native_without_native_provenance_is_rejected` |
 | C-10 | 证据缺失/哈希不符/过期 | PASS | `test_expired_evidence_cannot_support_pass` |
-| C-11 | L4 required 但缺失 | PASS | `test_required_l4_review_missing_blocks_complete` |
+| C-11 | L4 required 但缺失 / production-code 自审 | PASS | `test_required_l4_review_missing_blocks_complete`、`test_production_code_l4_selftest_reviewer_is_rejected` |
 | C-12 | 非 Git/外部 caller 策略 | PASS（策略层） | `test_caller_managed_must_match_policy` |
-| C-13 | DSH_AGENTS_HOME 与遮蔽 | 未执行（T0.4） | — |
+| C-13 | DSH_AGENTS_HOME 与遮蔽 | 部分：doctor 遮蔽判定 PASS；真实 DSH 待 T0.3/T0.4 | `test_shadow_detection_reports_project_skill` |
 | C-14 | 四类写根缺失/越权 | PASS | `test_semantic_violations_are_rejected` |
-| C-15 | 中文/空格/UNC 路径 | 部分（schema），实现 T0.2/T0.3 | `relative_locator` |
+| C-15 | 中文/空格/UNC 路径 | 部分：中文/空格 PASS；UNC/长路径待 T0.2/T0.3 | `test_project_scope_with_chinese_and_space_path` |
 
-**结论**：B1–B4 的契约与引擎具有机器测试证据；C-01/C-02/C-03/C-13/C-15 的真实安装/宿主/路径部分尚未执行，**不得据此宣称 Stage 0 PASS**。T0.1 由独立只读复核签发后才能标记 DONE。
+**结论**：B1–B6 的契约与引擎具有机器测试证据；C-01/C-13/C-15 的真实宿主/UNC 部分尚未执行，**不得据此宣称 Stage 0 PASS**。T0.1 需在返修后通过独立只读复核才能标记 DONE。
 
 ## 附录 B：状态恢复与证据索引
 

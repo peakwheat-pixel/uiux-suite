@@ -24,13 +24,18 @@ def test_reason_codes_are_unique_and_grouped():
 
 
 @pytest.mark.parametrize("schema_name", sorted(contracts.SCHEMA_FILES))
-def test_every_schema_enum_value_belongs_to_dictionary(schema_name):
-    all_values = set()
-    for spec in enums.load_enums()["enums"].values():
-        all_values.update(spec["values"])
+def test_every_schema_enum_belongs_to_one_dictionary_namespace(schema_name):
+    namespaces = {name: set(spec["values"]) for name, spec in enums.load_enums()["enums"].items()}
     for path, values in contracts.collect_enum_values(schema_name):
-        unknown = [value for value in values if value not in all_values]
-        assert not unknown, f"{schema_name}{path} has values absent from enums.v1.3.3.json: {unknown}"
+        value_set = set(values)
+        matches = [name for name, allowed in namespaces.items() if value_set <= allowed]
+        assert matches, f"{schema_name}{path} does not fit any enum namespace: {sorted(value_set)}"
+
+
+def test_gate_state_does_not_accept_rule_severity_warning():
+    assert "WARNING" not in enums.values("GateState")
+    assert "WARNING" in enums.values("RuleSeverity")
+    assert enums.mapping("rule_severity_to_gate_state")["WARNING"] == "WARN_REVIEW_REQUIRED"
 
 
 def test_rule_severity_maps_to_gate_state_without_mixing():

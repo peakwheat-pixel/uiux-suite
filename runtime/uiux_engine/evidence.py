@@ -9,7 +9,7 @@ Rules implemented here:
 from __future__ import annotations
 
 from datetime import datetime, timezone
-from typing import Any, Iterable
+from typing import Any
 
 from .contracts import sha256_json
 from .enums import is_valid
@@ -21,7 +21,10 @@ def parse_time(value: str | None) -> datetime | None:
     if not value:
         return None
     text = value.replace("Z", "+00:00")
-    parsed = datetime.fromisoformat(text)
+    try:
+        parsed = datetime.fromisoformat(text)
+    except ValueError:
+        return None
     if parsed.tzinfo is None:
         parsed = parsed.replace(tzinfo=timezone.utc)
     return parsed
@@ -138,7 +141,3 @@ def usable_evidence_ids(manifest: dict[str, Any], now: datetime) -> set[str]:
         for item in manifest.get("items", [])
         if effective_status(item, now) in PASS_USABLE
     }
-
-
-def _unused(_: Iterable[str]) -> None:  # pragma: no cover - keeps linters quiet
-    return None

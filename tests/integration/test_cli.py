@@ -79,6 +79,8 @@ def test_cli_finalize_complete_happy_path(tmp_path: Path):
         str(SCENARIO / "review-attestation.json"),
         "--now",
         "2026-10-23T12:00:00+00:00",
+        "--repair-cycles",
+        "1",
         "--out",
         str(out),
         expect=0,
@@ -90,6 +92,7 @@ def test_cli_finalize_complete_happy_path(tmp_path: Path):
     data = json.loads(out.read_text(encoding="utf-8"))
     assert contracts.validation_errors("task-result", data) == []
     assert data["derived_g6"]["state"] == "PASS"
+    assert data["repair_cycles"] == 1
 
 
 def test_cli_missing_l4_review_is_partial(tmp_path: Path):
@@ -163,3 +166,100 @@ def test_cli_unknown_schema_is_usage_error():
     run_cli("validate", "--schema", "gate-results", "--instance", str(SCENARIO / "gate-results.json"), expect=0)
     proc = run_cli("validate", "--schema", "bogus", "--instance", str(SCENARIO / "gate-results.json"), expect=2)
     assert proc.returncode == 2
+
+
+def _finalize(scenario, extra: list[str], expect: int):
+    return run_cli(
+        "finalize",
+        "--request",
+        str(scenario / "request.json"),
+        "--gate-results",
+        str(scenario / "gate-results.json"),
+        "--coverage",
+        str(scenario / "coverage.json"),
+        "--evidence-manifest",
+        str(scenario / "evidence-manifest.json"),
+        "--tool-logs",
+        str(scenario / "tool-logs.json"),
+        "--design-review",
+        str(scenario / "design-review.json"),
+        "--review-attestation",
+        str(scenario / "review-attestation.json"),
+        "--now",
+        "2026-10-23T12:00:00+00:00",
+        *extra,
+        expect=expect,
+    )
+
+
+def test_cli_rejects_invalid_now_timestamp():
+    proc = run_cli(
+        "finalize",
+        "--request",
+        str(SCENARIO / "request.json"),
+        "--gate-results",
+        str(SCENARIO / "gate-results.json"),
+        "--coverage",
+        str(SCENARIO / "coverage.json"),
+        "--evidence-manifest",
+        str(SCENARIO / "evidence-manifest.json"),
+        "--now",
+        "not-a-timestamp",
+        expect=2,
+    )
+    assert "invalid --now" in proc.stdout
+
+
+def test_cli_rejects_invalid_warn_review_file(tmp_path: Path):
+    warn_file = tmp_path / "warn-reviews.json"
+    warn_file.write_text(
+        json.dumps([{"finding_id": "F-1", "gate": "G5", "disposition": "FIXED"}]),
+        encoding="utf-8",
+    )
+    proc = _finalize(SCENARIO, ["--warn-reviews", str(warn_file)], expect=10)
+    payload = json.loads(proc.stdout)
+    assert any("warn_reviews" in error for error in payload["errors"])
+
+
+def test_cli_rejects_request_digest_mismatch(tmp_path: Path):
+    gate_results = json.loads((SCENARIO / "gate-results.json").read_text(encoding="utf-8"))
+    gate_results["request_digest"] = "0" * 64
+    tampered = tmp_path / "gate-results.json"
+    tampered.write_text(json.dumps(gate_results), encoding="utf-8")
+    proc = run_cli(
+        "finalize",
+        "--request",
+        str(SCENARIO / "request.json"),
+        "--gate-results",
+        str(tampered),
+        "--coverage",
+        str(SCENARIO / "coverage.json"),
+        "--evidence-manifest",
+        str(SCENARIO / "evidence-manifest.json"),
+        "--tool-logs",
+        str(SCENARIO / "tool-logs.json"),
+        "--design-review",
+        str(SCENARIO / "design-review.json"),
+        "--review-attestation",
+        str(SCENARIO / "review-attestation.json"),
+        expect=10,
+    )
+    assert "REQUEST_DIGEST_MISMATCH" in proc.stdout
+
+
+def test_cli_rejects_repair_cycles_out_of_range():
+    proc = run_cli(
+        "finalize",
+        "--request",
+        str(SCENARIO / "request.json"),
+        "--gate-results",
+        str(SCENARIO / "gate-results.json"),
+        "--coverage",
+        str(SCENARIO / "coverage.json"),
+        "--evidence-manifest",
+        str(SCENARIO / "evidence-manifest.json"),
+        "--repair-cycles",
+        "3",
+        expect=2,
+    )
+    assert "--repair-cycles" in proc.stdout

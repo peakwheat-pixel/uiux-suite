@@ -346,6 +346,7 @@
     {"code": "SOURCE_CHANGED_DURING_REVIEW", "group": "review", "meaning": "审查期间源码发生变化"},
 
     {"code": "SOURCE_FINGERPRINT_MISMATCH", "group": "source", "meaning": "源码指纹与基线不一致"},
+    {"code": "REQUEST_DIGEST_MISMATCH", "group": "source", "meaning": "TaskRequest 摘要与 gate-results 记录不一致（禁止事后调低 runtime_targets）"},
     {"code": "WRITE_SCOPE_VIOLATION", "group": "source", "meaning": "写入越出授权范围"},
     {"code": "UNAUTHORIZED_PATH", "group": "source", "meaning": "路径未在授权根内"},
     {"code": "READ_ONLY_VIOLATION", "group": "source", "meaning": "只读模式发生源码/生产数据写入"},

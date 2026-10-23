@@ -64,10 +64,13 @@ def _load_list(path: str | None) -> list[dict[str, Any]]:
     return out
 
 
-def _parse_now(value: str | None) -> datetime:
+def _parse_now(value: str | None) -> datetime | None:
     if not value:
         return datetime.now(timezone.utc)
-    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    try:
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return None
     if parsed.tzinfo is None:
         parsed = parsed.replace(tzinfo=timezone.utc)
     return parsed
@@ -106,6 +109,7 @@ def cmd_policy(args: argparse.Namespace) -> int:
         mode = args.mode
         facts = {
             "mode": mode,
+            "deliverable_tier": policy.deliverable_tier(mode),
             "project.has_existing_ui": mode in ("audit", "redesign", "targeted-fix", "verify"),
             "request.read_only_source": mode in ("audit", "design-only", "prototype", "verify"),
             "request.target_scope_nonempty": True,
@@ -115,6 +119,7 @@ def cmd_policy(args: argparse.Namespace) -> int:
             "caller.git_management": "standalone",
             "caller.kind": "direct",
             "review.independent_required": False,
+            "request.review.independent_required": False,
         }
     resolved = policy.resolve_mode_gates(mode, facts)
     levels = {
@@ -139,6 +144,12 @@ def cmd_policy(args: argparse.Namespace) -> int:
 
 def cmd_finalize(args: argparse.Namespace) -> int:
     now = _parse_now(args.now)
+    if now is None:
+        _emit({"ok": False, "errors": [f"invalid --now timestamp: {args.now!r}"]})
+        return EXIT_USAGE
+    if args.repair_cycles is not None and not (0 <= args.repair_cycles <= 2):
+        _emit({"ok": False, "errors": ["--repair-cycles must be within 0..2"]})
+        return EXIT_USAGE
     loaded: dict[str, Any] = {}
     schema_errors: list[str] = []
     required_inputs = {
@@ -188,6 +199,9 @@ def cmd_finalize(args: argparse.Namespace) -> int:
         warn_reviews = _load_list(args.warn_reviews)
     except Exception as exc:  # noqa: BLE001
         schema_errors.append(f"warn_reviews: {exc}")
+    for index, review in enumerate(warn_reviews):
+        for error in contracts.fragment_errors("common", "warn_review", review):
+            schema_errors.append(f"warn_reviews[{index}]: {error}")
 
     if schema_errors:
         return _invalid(schema_errors, context="finalize inputs")
@@ -199,6 +213,8 @@ def cmd_finalize(args: argparse.Namespace) -> int:
 
     for problem in validation.request_semantic_errors(request):
         schema_errors.append(f"request: {problem['code']}: {problem['detail']}")
+    for problem in validation.gate_results_semantic_errors(gate_results):
+        schema_errors.append(f"gate_results: {problem['code']}: {problem['detail']}")
 
     run_ids = {
         "request": request["run_id"],
@@ -210,6 +226,8 @@ def cmd_finalize(args: argparse.Namespace) -> int:
         schema_errors.append(f"run_id mismatch across inputs: {run_ids}")
     if gate_results["mode"] != request["mode"]:
         schema_errors.append("gate_results.mode differs from request.mode")
+    if gate_results.get("request_digest") and gate_results["request_digest"] != contracts.sha256_json(request):
+        schema_errors.append("REQUEST_DIGEST_MISMATCH: gate_results.request_digest differs from current request")
 
     if schema_errors:
         return _invalid(schema_errors, context="finalize cross-checks")
@@ -223,6 +241,7 @@ def cmd_finalize(args: argparse.Namespace) -> int:
         design_review=design_review,
         review_attestation=attestation,
         warn_reviews=warn_reviews,
+        repair_cycles=args.repair_cycles or 0,
         now=now,
     )
 
@@ -246,7 +265,7 @@ def cmd_finalize(args: argparse.Namespace) -> int:
         "evidence_manifest": args.evidence_manifest,
         "design_review_ref": args.design_review,
         "review_attestation_ref": args.review_attestation,
-        "repair_cycles": 0,
+        "repair_cycles": outcome["repair_cycles"],
         "created_at": now.isoformat(),
     }
 
@@ -306,6 +325,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_finalize.add_argument("--design-review")
     p_finalize.add_argument("--review-attestation")
     p_finalize.add_argument("--warn-reviews")
+    p_finalize.add_argument("--repair-cycles", type=int, help="actual repair cycles performed (0..2)")
     p_finalize.add_argument("--now", help="frozen ISO8601 timestamp for reproducible tests")
     p_finalize.add_argument("--out")
     p_finalize.set_defaults(func=cmd_finalize)

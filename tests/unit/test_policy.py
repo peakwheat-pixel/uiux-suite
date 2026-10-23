@@ -68,13 +68,12 @@ def test_runtime_min_level_production_requires_native():
 
 
 def test_independent_review_required_for_verify_and_release_audit():
-    assert policy.independent_review_required("verify", REQUEST) is True
     request = load_fixture("contracts/valid/task-request-redesign.json")
+    request["review"]["independent_required"] = False
+    assert policy.independent_review_required("verify", request) is True
+    assert policy.independent_review_required("redesign", request) is False
     request["evidence_policy"]["profile"] = "release_audit"
     assert policy.independent_review_required("redesign", request) is True
-    request["evidence_policy"]["profile"] = "local_private"
-    request["review"]["independent_required"] = False
-    assert policy.independent_review_required("redesign", request) is False
 
 
 def test_l4_required_by_mode():
@@ -82,3 +81,24 @@ def test_l4_required_by_mode():
     assert policy.l4_required("design-only") is True
     assert policy.l4_required("audit") is False
     assert policy.l4_required("targeted-fix") is False
+
+
+def test_production_code_requires_independent_l4_review():
+    request = load_fixture("contracts/valid/task-request-redesign.json")
+    request["review"]["independent_required"] = False
+    assert policy.l4_independent_required("redesign", request) is True
+    request["evidence_policy"]["profile"] = "release_audit"
+    assert policy.l4_independent_required("redesign", request) is True
+
+    design_only = load_fixture("contracts/valid/task-request-redesign.json")
+    design_only["mode"] = "design-only"
+    design_only["review"]["independent_required"] = False
+    # design-spec is not production-code; L4 is required but may be self-reviewed
+    assert policy.l4_required("design-only") is True
+    assert policy.l4_independent_required("design-only", design_only) is False
+
+
+def test_deliverable_tier_fact_is_derived_from_mode():
+    assert policy.facts_from_request(REQUEST)["deliverable_tier"] == "production-code"
+    audit = load_fixture("contracts/valid/task-request-audit.json")
+    assert policy.facts_from_request(audit)["deliverable_tier"] == "report-only"

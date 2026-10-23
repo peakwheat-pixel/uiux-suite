@@ -33,8 +33,10 @@
 ```powershell
 $env:PYTHONPATH = "runtime"
 .\.venv\Scripts\python.exe -m uiux_engine.cli validate --schema task-request --instance tests\fixtures\contracts\valid\task-request-redesign.json
-.\.venv\Scripts\python.exe -m uiux_engine.cli finalize --request ... --gate-results ... --coverage ... --evidence-manifest ... --tool-logs ... --design-review ... --review-attestation ... --now 2026-10-23T12:00:00+00:00 --out result.json
+.\.venv\Scripts\python.exe -m uiux_engine.cli finalize --request ... --gate-results ... --coverage ... --evidence-manifest ... --tool-logs ... --design-review ... --review-attestation ... --warn-reviews ... --repair-cycles 0 --now 2026-10-23T12:00:00+00:00 --out result.json
 ```
+
+`gate-results.request_digest` 必须等于 `sha256(canonical TaskRequest)`；不匹配时退出码 10（`REQUEST_DIGEST_MISMATCH`），阻止事后调低 `runtime_targets`。`--repair-cycles` 只接受 0..2。
 
 ## 安装 / doctor / 启动器（T0.2 起）
 

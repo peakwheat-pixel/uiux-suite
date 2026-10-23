@@ -31,6 +31,10 @@
     "mode": {
       "type": "enum:Mode"
     },
+    "deliverable_tier": {
+      "type": "enum:DeliverableTier",
+      "description": "由 mode 对应的交付层级派生；production-code 要求 L4 独立评审"
+    },
     "runtime_targets": {
       "type": "array:RuntimeTarget"
     }
@@ -243,17 +247,33 @@
     ],
     "independent_review_when": {
       "any": [
-        {"fact": "request.evidence_policy.profile", "op": "eq", "value": "release_audit"},
-        {"fact": "mode", "op": "eq", "value": "verify"}
+        {"fact": "deliverable_tier", "op": "eq", "value": "production-code"},
+        {"fact": "request.evidence_policy.profile", "op": "eq", "value": "release_audit"}
       ]
     },
     "rule": "L4 评审不得替代 L1–L3 硬 Gate；硬 Gate 失败时 L4 结论不改变 COMPLETE 判定。"
   },
+  "review_policy": {
+    "independent_review_required_when": {
+      "any": [
+        {"fact": "mode", "op": "eq", "value": "verify"},
+        {"fact": "request.review.independent_required", "op": "eq", "value": true},
+        {"fact": "request.evidence_policy.profile", "op": "eq", "value": "release_audit"}
+      ]
+    },
+    "rule": "运行级独立验收只在模式、显式请求或发布审计 profile 要求时强制；COMPLETE 本身不等于 INDEPENDENT_REVIEW_PASS。"
+  },
   "complete_policy": {
     "mandatory_gate_pass_states": ["PASS"],
-    "review_only_gate_acceptable_states": ["PASS", "WARN_REVIEW_REQUIRED", "UNVERIFIED", "NOT_APPLICABLE"],
+    "review_only_gate_acceptable_states": ["PASS", "WARN_REVIEW_REQUIRED", "UNVERIFIED"],
     "warn_requires_review": true,
-    "warn_dispositions_allowed_for_complete": ["FIXED", "ACCEPTED_RISK", "NOT_APPLICABLE"],
+    "warn_dispositions_allowed_for_complete": ["FIXED", "ACCEPTED_RISK", "NOT_APPLICABLE", "REJECTED"],
+    "failed_when": [
+      "任一 MANDATORY Gate 为 FAIL",
+      "L4 design_review_status=FAIL",
+      "任一 REVIEW_ONLY Gate 为 FAIL",
+      "存在明确失败且不可在本次范围修复"
+    ],
     "evidence_usable_for_pass": ["AVAILABLE"],
     "production_complete_rules": [
       "所有 MANDATORY Gate 必须 PASS",

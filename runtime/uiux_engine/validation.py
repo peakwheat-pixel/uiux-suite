@@ -89,6 +89,22 @@ def request_semantic_errors(request: dict[str, Any]) -> list[dict[str, str]]:
     return problems
 
 
+def gate_results_semantic_errors(gate_results: dict[str, Any]) -> list[dict[str, str]]:
+    problems: list[dict[str, str]] = []
+    known = reason_codes()
+    for gate in ("G0", "G1", "G2", "G3", "G4", "G5"):
+        result = gate_results.get("gates", {}).get(gate, {})
+        for code in result.get("reason_codes", []):
+            if code not in known:
+                problems.append(
+                    {
+                        "code": "GATE_STATE_INVALID",
+                        "detail": f"{gate} carries unregistered reason code {code!r}",
+                    }
+                )
+    return problems
+
+
 def result_semantic_errors(
     result: dict[str, Any],
     request: dict[str, Any],
@@ -112,11 +128,16 @@ def result_semantic_errors(
     if result["status"] != "COMPLETE" and g6_state == "PASS":
         add("RESULT_INVALID", "G6 must not be PASS when run status is not COMPLETE")
 
+    known = reason_codes()
     for reason in result.get("blocking_reasons", []):
         code = reason.get("code")
         if not isinstance(code, str) or not code:
             add("RESULT_INVALID", "blocking reason code must be a non-empty string")
-        elif code not in reason_codes():
+        elif code not in known:
             add("RESULT_INVALID", f"blocking reason code is not registered: {code}")
+    for path in result.get("unverified_paths", []):
+        code = path.get("reason_code")
+        if code not in known:
+            add("RESULT_INVALID", f"unverified path carries unregistered reason code: {code}")
 
     return problems

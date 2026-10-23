@@ -83,3 +83,22 @@ def test_unregistered_reason_code_is_rejected():
     tampered["blocking_reasons"] = [{"gate": "G5", "code": "MADE_UP_CODE", "detail": "fake"}]
     codes = [problem["code"] for problem in validation.result_semantic_errors(tampered, REQUEST, GATE_RESULTS)]
     assert "RESULT_INVALID" in codes
+
+
+def test_unverified_path_reason_code_must_be_registered():
+    tampered = copy.deepcopy(RESULT)
+    tampered["status"] = "PARTIAL"
+    tampered["delivery_status"] = "PARTIAL_VERIFIED"
+    tampered["derived_g6"]["state"] = "UNVERIFIED"
+    tampered["unverified_paths"] = [
+        {"task_id": "import", "scenario_id": "native-import", "reason_code": "MADE_UP", "detail": "fake"}
+    ]
+    codes = [problem["code"] for problem in validation.result_semantic_errors(tampered, REQUEST, GATE_RESULTS)]
+    assert "RESULT_INVALID" in codes
+
+
+def test_gate_reason_codes_must_be_registered():
+    tampered = copy.deepcopy(GATE_RESULTS)
+    tampered["gates"]["G5"]["reason_codes"] = ["MADE_UP_CODE"]
+    codes = [problem["code"] for problem in validation.gate_results_semantic_errors(tampered)]
+    assert "GATE_STATE_INVALID" in codes

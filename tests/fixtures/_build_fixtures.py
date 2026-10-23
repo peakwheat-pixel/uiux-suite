@@ -187,7 +187,7 @@ def make_evidence_ref(evidence_id: str) -> dict:
     }
 
 
-def make_gate_results() -> dict:
+def make_gate_results(request: dict) -> dict:
     gate_ids = [f"G{i}" for i in range(6)]
     gate_states = {
         "G0": "PASS",
@@ -202,6 +202,7 @@ def make_gate_results() -> dict:
         "run_id": "UIUX-20261023-001",
         "mode": "redesign",
         "source_fingerprint": FP,
+        "request_digest": contracts.sha256_json(request),
         "gates": {
             gate: {
                 "gate_id": gate,
@@ -489,7 +490,7 @@ def build() -> dict:
     request = make_request("redesign", read_only=False)
     audit_request = make_request("audit", read_only=True)
     manifest = make_evidence_manifest()
-    gate_results = make_gate_results()
+    gate_results = make_gate_results(request)
     coverage = make_coverage()
     tool_logs = make_tool_logs()
     design_review = make_design_review()
@@ -563,6 +564,14 @@ def build() -> dict:
     g6_input = copy.deepcopy(gate_results)
     g6_input["gates"]["G6"] = copy.deepcopy(g6_input["gates"]["G0"])
     write("contracts/invalid/gate-results-with-g6.json", g6_input)
+
+    top_level_g6 = copy.deepcopy(gate_results)
+    top_level_g6["g6"] = {
+        "state": "PASS",
+        "checks": [{"id": "fake", "state": "PASS", "detail": "model-supplied"}],
+        "computed_at": CREATED,
+    }
+    write("contracts/invalid/gate-results-top-level-g6.json", top_level_g6)
 
     complete_with_blockers = copy.deepcopy(result)
     complete_with_blockers["blocking_reasons"] = [

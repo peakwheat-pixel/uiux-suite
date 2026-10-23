@@ -7,6 +7,7 @@
     "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     "algorithm": "git-sha1"
   },
+  "request_digest": "c346ab66b3c4e0ecfb390b214b77438a74f58a9c2bd7f2aea2153ae466aa7c01",
   "gates": {
     "G0": {
       "gate_id": "G0",

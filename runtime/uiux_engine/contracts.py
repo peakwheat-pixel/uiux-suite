@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from datetime import datetime
 from functools import lru_cache
 from pathlib import Path
 from typing import Any, Iterable
@@ -32,13 +33,29 @@ SCHEMA_FILES: dict[str, str] = {
 
 
 def schema_path(name: str) -> Path:
-    filename = SCHEMA_FILES.get(name, name)
-    if not filename.endswith(".json"):
-        filename = SCHEMA_FILES.get(name, "")
+    filename = SCHEMA_FILES.get(name)
+    if filename is None:
+        raise FileNotFoundError(f"unknown schema {name!r}; expected one of {sorted(SCHEMA_FILES)}")
     path = CONTRACTS_DIR / filename
     if not path.is_file():
-        raise FileNotFoundError(f"unknown schema {name!r}; expected one of {sorted(SCHEMA_FILES)}")
+        raise FileNotFoundError(path)
     return path
+
+
+def _is_datetime(value: object) -> bool:
+    if not isinstance(value, str):
+        return True
+    try:
+        datetime.fromisoformat(value.replace("Z", "+00:00"))
+        return True
+    except ValueError:
+        return False
+
+
+def _format_checker() -> FormatChecker:
+    checker = FormatChecker()
+    checker.checks("date-time")(_is_datetime)
+    return checker
 
 
 @lru_cache(maxsize=1)
@@ -80,7 +97,7 @@ def validator_for(name: str) -> Draft202012Validator:
     return Draft202012Validator(
         schema_document(name),
         registry=registry,
-        format_checker=FormatChecker(),
+        format_checker=_format_checker(),
     )
 
 
@@ -93,6 +110,18 @@ def validation_errors(name: str, instance: Any) -> list[str]:
         )
         out.append(f"{location}: {err.message}")
     return out
+
+
+def fragment_errors(schema_name: str, def_name: str, instance: Any) -> list[str]:
+    """Validate an instance against one $defs entry of a bundled schema."""
+    registry, _, _ = _bundle()
+    wrapped = {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$ref": f"https://uiux-suite.local/contracts/{SCHEMA_FILES[schema_name]}#/$defs/{def_name}",
+    }
+    validator = Draft202012Validator(wrapped, registry=registry, format_checker=_format_checker())
+    errors = sorted(validator.iter_errors(instance), key=lambda e: list(e.absolute_path))
+    return [f"{list(err.absolute_path)}: {err.message}" for err in errors]
 
 
 def is_valid(name: str, instance: Any) -> bool:
