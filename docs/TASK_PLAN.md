@@ -33,7 +33,7 @@
 | T3.5 | Stage 3 | DONE | Stage 3 Exit | T3.1 | 证据生命周期、脱敏与 Vault 退化验证 | 删除 Vault 后不得重新签发 PASS；脱敏后扫描；保留期策略 |
 | T3.6 | Stage 3 | DONE | Stage 3 Exit | T3.4 | 独立审查隔离验证 | 自报 session 不能签发独立 PASS；隔离证明与 reviewed_head 绑定 |
 | T4.1 | Stage 4 | DONE | Stage 4 Exit | T0.3 | DSH 宿主兼容实测 | 两入口发现/脚本执行/GUI/MCP/断点恢复逐项记录 |
-| T4.2 | Stage 4 | IN_PROGRESS | Stage 4 Exit | T4.1 | 其他 Agent 兼容矩阵与降级入口 | Codex/Claude/ZCode/Antigravity/Qoder 未测标 UNVERIFIED |
+| T4.2 | Stage 4 | DONE | Stage 4 Exit | T4.1 | 其他 Agent 兼容矩阵与降级入口 | 宿主发现/安装/启动/工具寻址/异常降级 |
 | T4.3 | Stage 4 | DONE | Stage 4 Exit | T0.1 | 被动外部调用契约（不依赖外部编排器） | 外部 caller 传 task_id/role/artifact_dir 时不改其分支/证据治理；无外部系统时核心正常 |
 | T4.4 | Stage 4 | DONE | Stage 4 Exit | T4.1 | 退化路径（缺 Node/GUI/旧宿主/离线/软链） | 每项返回稳定 ReasonCode 与可恢复建议 |
 | T5.1 | Stage 5 | DONE | Stage 5 Exit | T3.3 | 真实复杂工作台试点（隔离副本） | 启动真实 New Manga；导入/浏览/阅读/编辑与真实界面基线 |
@@ -73,6 +73,6 @@
 | 状态 | 数量 |
 |---|---|
 | BLOCKED | 0 |
-| DONE | 58 |
-| IN_PROGRESS | 3 |
+| DONE | 59 |
+| IN_PROGRESS | 2 |
 | TODO | 0 |

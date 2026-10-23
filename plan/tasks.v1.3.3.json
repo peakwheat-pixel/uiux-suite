@@ -442,16 +442,16 @@
       "id": "T4.2",
       "title": "其他 Agent 兼容矩阵与降级入口",
       "stage": "Stage 4",
-      "status": "IN_PROGRESS",
-      "acceptance": "Codex/Claude/ZCode/Antigravity/Qoder 未测标 UNVERIFIED",
+      "status": "DONE",
+      "acceptance": "宿主发现/安装/启动/工具寻址/异常降级",
       "depends_on": [
         "T4.1"
       ],
       "due_before": "Stage 4 Exit",
-      "evidence": "runtime/uiux_engine/compat.py; docs/COMPATIBILITY.md",
+      "evidence": "evidence/T4.2/host-matrix.json",
       "files": [],
       "source": null,
-      "note": "矩阵与 UNVERIFIED 原因已实现；其他宿主未实测。"
+      "note": "DSH VERIFIED；Antigravity 1.4.4 VERIFIED（skill 发现 + launch.py enums exit 0）；Codex 0.162.0 PARTIAL（发现并读取 SKILL.md，运行被其 sandbox helper 阻断）；Claude/ZCode/Qoder UNVERIFIED。"
     },
     {
       "id": "T4.3",
