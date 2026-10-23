@@ -6,7 +6,7 @@
 
 | 交付物 | 位置 |
 |---|---|
-| 可安装 ZIP（121 文件，含 7 wheels） | [`dist/uiux-suite-1.3.3-win64.zip`](dist/uiux-suite-1.3.3-win64.zip) |
+| 可安装 ZIP（120 载荷 + manifest（ZIP 121 项），含 7 wheels） | [`dist/uiux-suite-1.3.3-win64.zip`](dist/uiux-suite-1.3.3-win64.zip) |
 | ZIP 与逐文件 SHA256 | [`dist/SHA256SUMS.txt`](dist/SHA256SUMS.txt) |
 | 规范 | [`SPEC_V1.3.3.md`](SPEC_V1.3.3.md) |
 | 安装/CLI/规则/兼容文档 | [`docs/INSTALL.md`](docs/INSTALL.md)、[`docs/CLI.md`](docs/CLI.md)、[`docs/RULES.md`](docs/RULES.md)、[`docs/COMPATIBILITY.md`](docs/COMPATIBILITY.md) |
@@ -26,12 +26,12 @@
   - `design_system`（token + 漂移检查）；
   - `component_matrix`/`prototype`/`options`。
 - **证据与安全**：Vault 字节校验与隔离、哈希链、独立性绑定、P0–P3 安全分级、受控改动与回滚。
-- **真实证据**：Win32/Notepad UIA 只读树（NATIVE_UIA，53 元素）——`evidence/T3.4/uia-probe.json`。
+- **真实证据**：Win11 Notepad（WinUI 3） UIA 只读树（NATIVE_UIA，53 元素）——`evidence/T3.4/uia-probe.json`。
 
 ## 3. 机器验收
 
 ```powershell
-cd G:\AI\universal-uiux-engineering
+cd <repo>
 $env:PYTHONPATH='runtime'
 .\.venv\Scripts\python.exe -m pytest tests -q            # 413 passed
 .\.venv\Scripts\python.exe scripts\run_attack_suite.py   # 11/11 攻击被拒
@@ -45,7 +45,7 @@ $env:PYTHONPATH='runtime'
 |---|---|---|
 | T3.2 Tauri + WDIO Native IPC | UNVERIFIED | 本机无 Tauri 示例/驱动 |
 | T3.3 PySide6 QPA/DPI | UNVERIFIED | 未安装 PySide6 |
-| T3.4 原生对话框/WinUI/WPF/Qt | PARTIAL | 仅 Win32/Notepad 实测 |
+| T3.4 原生对话框/WinUI/WPF/Qt | PARTIAL | 仅 Win11 Notepad（WinUI 3） 实测 |
 | T5.1/T5.2 真实工作台试点/前后测量 | UNVERIFIED | 无授权隔离副本 |
 | T5.3 真实项目数据安全 | PARTIAL | 仅代码/测试级回滚 |
 | T5.4 独立 G6 | IN_PROGRESS | 需独立 Reviewer 签发 |

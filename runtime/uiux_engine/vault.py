@@ -24,7 +24,10 @@ def verify(manifest: dict[str, Any], root: str | Path, *, quarantine_dir: str | 
     for item in manifest["items"]:
         if item.get("status") != AVAILABLE:
             continue
-        expected = {value for value in (item.get("source_sha256"), item.get("redacted_sha256")) if value}
+        expected = {item["source_sha256"]} if item.get("source_sha256") else set()
+        if not expected:
+            report["missing"].append({"id": item["id"], "reason": "AVAILABLE item has no source_sha256"})
+            continue
         refs = _refs(item)
         if not refs:
             report["missing"].append({"id": item["id"], "reason": "no references"})

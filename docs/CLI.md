@@ -10,6 +10,13 @@
 | `validate --schema <name> --instance <path>` | 校验单个实例；`task-request` 额外执行交叉字段语义 |
 | `policy --mode <mode> [--request <path>]` | 解析 Mode×Gate 矩阵、派生 Gate、最低运行层级 |
 | `finalize --request ... --gate-results ... --coverage ... --evidence-manifest ... [--tool-logs ...] [--design-review ...] [--review-attestation ...] [--warn-reviews ...] [--now ...] [--out ...]` | 从证据派生 G6 与 TaskResult |
+| `rules` | 校验冻结规则目录与冻结摘要 |
+| `snapshot --root ... [--out ...] [--backup ...] [--diff A B]` | 非 Git 目录摘要/备份/差异 |
+| `modify --root ... --plan ... [--apply] [--backup DIR] [--revert DIR]` | 受控改动：写作用域/哈希/回滚（T3.1） |
+| `vault --root ... --manifest ... [--quarantine DIR]` | 证据字节校验/隔离（T3.5） |
+| `integrity --chain ... [--attestation ...] [--commit ...]` | 持久化哈希链与审查绑定校验（T3.6） |
+| `safety --plan ...` | 变更计划 P0–P3 分级（T3.7） |
+| `compat [--agents-home ...]` | 宿主退化检查（T4.4） |
 
 ## 退出码（稳定契约）
 

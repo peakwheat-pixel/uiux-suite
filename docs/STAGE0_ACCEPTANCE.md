@@ -17,7 +17,7 @@
 ## 2. 机器验收命令
 
 ```powershell
-cd G:\AI\universal-uiux-engineering
+cd <repo>
 $env:PYTHONPATH='runtime'
 .\.venv\Scripts\python.exe -m pytest tests -q
 .\.venv\Scripts\python.exe scripts\run_contract_tests.py

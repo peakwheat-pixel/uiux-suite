@@ -395,7 +395,7 @@
       "evidence": "evidence/T3.4/uia-probe.json; runtime/uiux_engine/uia.py; tests/unit/test_uia.py",
       "files": [],
       "source": "M6/M8",
-      "note": "真实 Win32/Notepad UIA 只读树已采（NATIVE_UIA，53 元素）；原生对话框/WinUI/WPF/Qt 未验证。"
+      "note": "真实 Win11 Notepad（WinUI 3）UIA 控制视图只读快照已采（NATIVE_UIA，53 元素）；点击/焦点顺序、WPF/Qt/原生对话框未验证。"
     },
     {
       "id": "T3.5",
@@ -561,7 +561,7 @@
       "evidence": "dist/uiux-suite-1.3.3-win64.zip; evidence/T5.5/release-verification.json; docs/RELEASE_NOTES.md",
       "files": [],
       "source": null,
-      "note": "117 文件 ZIP，安装/启动/doctor 实测 exit 0；交付报告随最终复核更新。"
+      "note": "120 载荷 + RELEASE_MANIFEST（ZIP 共 121 项），安装/启动/doctor 实测 exit 0；交付报告随最终复核更新。"
     },
     {
       "id": "M1",

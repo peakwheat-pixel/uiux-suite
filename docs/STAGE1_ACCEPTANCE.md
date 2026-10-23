@@ -21,9 +21,9 @@
 ## 2. 机器验收
 
 ```powershell
-cd G:\AI\universal-uiux-engineering
+cd <repo>
 $env:PYTHONPATH='runtime'
-.\.venv\Scripts\python.exe -m pytest tests -q            # 292 passed
+.\.venv\Scripts\python.exe -m pytest tests -q            # 当时 292 passed
 .\.venv\Scripts\python.exe scripts\run_attack_suite.py   # 11/11, exit 0
 .\.venv\Scripts\python.exe scripts\run_stage1_suite.py   # TP38/FP0/TN8/FN0, exit 0
 ```

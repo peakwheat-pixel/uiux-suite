@@ -17,8 +17,11 @@ def accept_call(call: dict[str, Any], root: str | Path) -> dict[str, Any]:
         problems.append(f"invalid role: {role}")
     request_path = call.get("request_path")
     if isinstance(request_path, str):
-        path = Path(root) / request_path
-        if not path.is_file():
+        root_path = Path(root).resolve()
+        path = (root_path / request_path).resolve()
+        if root_path not in path.parents and path != root_path:
+            problems.append(f"request outside root: {request_path}")
+        elif not path.is_file():
             problems.append(f"request not found: {request_path}")
     return {
         "accepted": not problems,

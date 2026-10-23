@@ -4,7 +4,7 @@
 
 | 产物 | 路径 |
 |---|---|
-| Windows 安装包 | `dist/uiux-suite-1.3.3-win64.zip`（121 文件，含 7 个运行时 wheel） |
+| Windows 安装包 | `dist/uiux-suite-1.3.3-win64.zip`（120 个载荷文件 + `RELEASE_MANIFEST.json`（ZIP 共 121 项），含 7 个运行时 wheel） |
 | 校验和 | `dist/SHA256SUMS.txt` |
 | 发行清单 | ZIP 内 `RELEASE_MANIFEST.json`（每文件 SHA256/size/role） |
 | 安装验证 | `evidence/T5.5/release-verification.json` + `release-install.txt` |
@@ -31,17 +31,21 @@ python skills\uiux\scripts\launch.py doctor --scope user
 - 安装/双入口/doctor/卸载/升级回滚/长路径/junction/UNC 拒绝。
 - 规则目录冻结 20 条；T1.2–T1.7 检测器、负向攻击 11/11、混淆矩阵 TP38/FP0/TN8/FN0。
 - Stage 2 discovery/design system/prototype/options。
-- Stage 3 受控改动/回滚、Vault 字节校验、完整性链、安全分级、真实 Win32 UIA 只读证据。
-- 发行包内安装、双入口、doctor 均 exit 0（临时隔离目录，121 文件）。
+- Stage 3 受控改动/回滚、Vault 字节校验、完整性链、安全分级、真实 Win11 Notepad（WinUI 3）UIA 只读证据。
+- 发行包内安装、双入口、doctor 均 exit 0（临时隔离目录，120 个载荷文件 + `RELEASE_MANIFEST.json`（ZIP 共 121 项））。
 
 ## 未验证（不得宣称 PASS）
 
 - Tauri + WDIO Native IPC（T3.2）；PySide6 QPA/DPI（T3.3）。
-- 原生对话框/WinUI/WPF/Qt UIA（T3.4 仅 Win32/Notepad）。
+- 原生对话框/WinUI/WPF/Qt UIA（T3.4 仅 Win11 Notepad（WinUI 3））。
 - 真实复杂工作台试点与改版前后对照（T5.1/T5.2）。
 - 其他 Agent 宿主（Codex/Claude/ZCode/Antigravity/Qoder）。
 - MCP 与断点恢复。
 - CSS/Tailwind/PySide6 token 编译器、knowledge index、brownfield 采纳。
+
+## 构建可复现性
+
+- ZIP 不可比特级复现（manifest 含 `generated_at`/Node 版本）；以 `dist/SHA256SUMS.txt` 记录的本包 SHA256 为验证锚点，`evidence/T5.5/release-verification.json` 记录构建 commit。
 
 ## 安全与限制
 

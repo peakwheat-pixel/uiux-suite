@@ -17,7 +17,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from . import contracts, enums, gates, policy, rules, snapshot, validation
+from . import compat, contracts, enums, external, gates, integrity, modify, policy, rules, safety, snapshot, validation, vault
 
 EXIT_OK = 0
 EXIT_USAGE = 2
@@ -118,6 +118,58 @@ def cmd_rules(args: argparse.Namespace) -> int:
     }
     _emit(payload)
     return EXIT_OK if not all_problems else EXIT_INVALID
+
+
+def cmd_modify(args: argparse.Namespace) -> int:
+    try:
+        plan = contracts.load_json(args.plan)
+    except (OSError, ValueError) as exc:
+        return _invalid([str(exc)], context="change plan")
+    if args.revert:
+        result = modify.revert_plan(plan, args.root, args.revert)
+        _emit(result)
+        return EXIT_OK
+    if not args.apply:
+        _emit({"ok": True, "dry_run": True, "problems": modify.validate_plan(plan, args.root), "diff": modify.diff_plan(plan, args.root)})
+        return EXIT_OK if not modify.validate_plan(plan, args.root) else EXIT_INVALID
+    result = modify.apply_plan(plan, args.root, backup_dir=args.backup)
+    _emit(result)
+    return EXIT_OK if result["ok"] else EXIT_INVALID
+
+
+def cmd_vault(args: argparse.Namespace) -> int:
+    try:
+        manifest = contracts.load_json(args.manifest)
+    except (OSError, ValueError) as exc:
+        return _invalid([str(exc)], context="evidence manifest")
+    result = vault.verify(manifest, args.root, quarantine_dir=args.quarantine)
+    _emit(result)
+    return EXIT_OK if result["ok"] else EXIT_INVALID
+
+
+def cmd_integrity(args: argparse.Namespace) -> int:
+    try:
+        chain = contracts.load_json(args.chain)
+        attestation = contracts.load_json(args.attestation) if args.attestation else {}
+    except (OSError, ValueError) as exc:
+        return _invalid([str(exc)], context="integrity input")
+    result = integrity.verify_report(chain, attestation, args.commit)
+    _emit(result)
+    return EXIT_OK if result["ok"] else EXIT_INVALID
+
+
+def cmd_safety(args: argparse.Namespace) -> int:
+    try:
+        plan = contracts.load_json(args.plan)
+    except (OSError, ValueError) as exc:
+        return _invalid([str(exc)], context="change plan")
+    _emit(safety.classify_plan(plan))
+    return EXIT_OK
+
+
+def cmd_compat(args: argparse.Namespace) -> int:
+    _emit(compat.degradation_report(args.agents_home))
+    return EXIT_OK
 
 
 def cmd_snapshot(args: argparse.Namespace) -> int:
@@ -381,6 +433,34 @@ def build_parser() -> argparse.ArgumentParser:
     p_snapshot.add_argument("--backup", help="copy tree to this new directory (rollback copy)")
     p_snapshot.add_argument("--diff", nargs=2, metavar=("BEFORE", "AFTER"))
     p_snapshot.set_defaults(func=cmd_snapshot)
+
+    p_modify = sub.add_parser("modify", help="validate/apply/revert a controlled change plan (T3.1)")
+    p_modify.add_argument("--root", required=True)
+    p_modify.add_argument("--plan", required=True)
+    p_modify.add_argument("--apply", action="store_true")
+    p_modify.add_argument("--backup")
+    p_modify.add_argument("--revert")
+    p_modify.set_defaults(func=cmd_modify)
+
+    p_vault = sub.add_parser("vault", help="verify evidence bytes against a manifest (T3.5)")
+    p_vault.add_argument("--root", required=True)
+    p_vault.add_argument("--manifest", required=True)
+    p_vault.add_argument("--quarantine")
+    p_vault.set_defaults(func=cmd_vault)
+
+    p_integrity = sub.add_parser("integrity", help="verify a persisted hash chain and attestation (T3.6)")
+    p_integrity.add_argument("--chain", required=True)
+    p_integrity.add_argument("--attestation")
+    p_integrity.add_argument("--commit")
+    p_integrity.set_defaults(func=cmd_integrity)
+
+    p_safety = sub.add_parser("safety", help="classify a change plan P0-P3 (T3.7)")
+    p_safety.add_argument("--plan", required=True)
+    p_safety.set_defaults(func=cmd_safety)
+
+    p_compat = sub.add_parser("compat", help="host degradation report (T4.4)")
+    p_compat.add_argument("--agents-home")
+    p_compat.set_defaults(func=cmd_compat)
 
     p_finalize = sub.add_parser("finalize", help="derive G6 and issue a TaskResult from evidence")
     p_finalize.add_argument("--request", required=True)

@@ -106,7 +106,7 @@ $result = [ordered]@{
     }
     limitations = @(
         "Read-only UIA control-view snapshot; no click-through or focus-order verification.",
-        "One native Win32/Notepad window only; other frameworks (WinUI/WPF/Qt) are unverified."
+        "One Windows 11 Notepad (WinUI 3) window, UIA control view only; click-through, focus order and WPF/Qt/Win32-classic paths are unverified."
     )
 }
 

@@ -20,7 +20,7 @@ ZIP_PATH = DIST / f"{SUITE_NAME}-win64.zip"
 STAGING = DIST / SUITE_NAME
 EVIDENCE = REPO_ROOT / "evidence" / "T5.5"
 
-INCLUDE_DIRS = ["runtime", "contracts", "knowledge", "skills", "scripts", "docs", "qa", ".github"]
+INCLUDE_DIRS = ["runtime", "contracts", "knowledge", "skills", "scripts", "docs", "qa"]
 INCLUDE_FILES = [
     "SPEC_V1.3.3.md",
     "README.md",
@@ -141,8 +141,15 @@ def zip_package() -> None:
     )
 
 
+def _git(*args: str) -> str:
+    proc = subprocess.run(["git", *args], cwd=str(REPO_ROOT), capture_output=True, text=True, encoding="utf-8")
+    return proc.stdout.strip() if proc.returncode == 0 else ""
+
+
 def verify_package() -> dict:
     EVIDENCE.mkdir(parents=True, exist_ok=True)
+    git_commit = _git("rev-parse", "HEAD")
+    git_dirty = bool(_git("status", "--porcelain"))
     with tempfile.TemporaryDirectory() as temp_dir:
         temp = Path(temp_dir)
         extract = temp / "extract"
@@ -194,6 +201,10 @@ def verify_package() -> dict:
             "zip": str(ZIP_PATH.relative_to(REPO_ROOT)),
             "zip_sha256": sha256_file(ZIP_PATH),
             "zip_size": ZIP_PATH.stat().st_size,
+            "manifest_sha256": sha256_file(suite_root / "RELEASE_MANIFEST.json"),
+            "git": {"commit": git_commit, "dirty": git_dirty},
+            "bit_reproducible": False,
+            "reproducibility_note": "manifest generated_at and target_platform make byte-identical rebuilds non-deterministic; verify by recorded ZIP SHA256",
             "install_exit": install.returncode,
             "enums_exit": enums.returncode,
             "doctor_exit": doctor.returncode,

@@ -3,7 +3,7 @@
   "evidence_id": "EV-T3.4-UIA-PROBE",
   "kind": "uia_tree",
   "runtime_level": "NATIVE_UIA",
-  "generated_at": "2026-10-23T19:24:43Z",
+  "generated_at": "2026-10-23T19:44:01Z",
   "window": {
     "title": "api.txt - Notepad",
     "class_name": "Notepad",
@@ -3930,13 +3930,13 @@
   },
   "producer": {
     "script": "scripts/collect_uia_evidence.ps1",
-    "script_sha256": "a4edbd7d2a5e6409ccf4f76dd1b47216046f40e1a81705fe6d0cef03f279f1fd",
+    "script_sha256": "ec4a25d9d1c477157498955675f88b19127c9d98b4d36d5d1bde20560a42f695",
     "host": "HOME-MY",
     "os": "Microsoft Windows NT 10.0.26300.0",
     "read_only": true
   },
   "limitations": [
     "Read-only UIA control-view snapshot; no click-through or focus-order verification.",
-    "One native Win32/Notepad window only; other frameworks (WinUI/WPF/Qt) are unverified."
+    "One Windows 11 Notepad (WinUI 3) window, UIA control view only; click-through, focus order and WPF/Qt/Win32-classic paths are unverified."
   ]
 }

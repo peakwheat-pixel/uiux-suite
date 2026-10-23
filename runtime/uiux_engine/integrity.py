@@ -52,7 +52,7 @@ def verify_attestation_binding(attestation: dict[str, Any], git_commit: str | No
     return problems
 
 
-def verify_report(records: list[dict[str, Any]], attestation: dict[str, Any], git_commit: str | None) -> dict[str, Any]:
-    chain = build_chain(records)
+def verify_report(chain: list[dict[str, Any]], attestation: dict[str, Any], git_commit: str | None) -> dict[str, Any]:
+    """Verify a previously persisted chain (not a freshly built one)."""
     problems = verify_chain(chain) + verify_attestation_binding(attestation, git_commit)
     return {"ok": not problems, "problems": problems, "head": chain_head(chain), "links": len(chain)}
