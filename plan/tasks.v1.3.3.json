@@ -183,16 +183,16 @@
       "id": "T1.4",
       "title": "layout_geometry_probe（Web DOM / Qt Offscreen 真实测量）",
       "stage": "Stage 1",
-      "status": "IN_PROGRESS",
-      "acceptance": "裁切/对比度/间距测量；合法负样本零硬 FAIL；Offscreen 结果标注 SIMULATED",
+      "status": "DONE",
+      "acceptance": "裁切/重叠/目标/对比度/焦点；Web DOM 与 Qt 真实尺寸",
       "depends_on": [
         "T1.1"
       ],
       "due_before": "Stage 1 Exit",
-      "evidence": "runtime/uiux_engine/geometry.py; tests/unit/test_geometry.py; qa/confusion-matrix.json",
+      "evidence": "evidence/T1.4/geometry-real.json; evidence/T1.4/tauri-dom.json; scripts/collect_geometry_evidence.py; runtime/uiux_engine/geometry.py",
       "files": [],
       "source": null,
-      "note": "测量 JSON 模式 DONE（55 用例、SIMULATED）；真实 Web DOM/Qt Offscreen 探针依赖 Stage 3 能力，转 T3.3。"
+      "note": "Qt NATIVE_QPA + Tauri WebView DOM 真实尺寸已采（button 80.4x39.2 CSS px, dpr=1）；125/150% DOM 缩放未测。"
     },
     {
       "id": "T1.5",

@@ -10,7 +10,7 @@
 | T1.1 双栈正反 Fixtures 与冻结 GT | **DONE** | `tests/fixtures/ground_truth/{web,qt,annotations}`；18 样本 |
 | T1.2 style_token_linter | **DONE** | `runtime/uiux_engine/style_linter.py`；39 用例；10 条规则 |
 | T1.3 ux_flow_validator | **DONE** | `runtime/uiux_engine/flow_validator.py`；14 用例；6 条规则 |
-| T1.4 layout_geometry_probe | **PARTIAL / IN_PROGRESS** | 测量 JSON 模式 DONE（55 用例、SIMULATED）；真实 Web DOM/Qt Offscreen 探针转 T3.3 |
+| T1.4 layout_geometry_probe | **DONE** | `evidence/T1.4/geometry-real.json`：Qt NATIVE_QPA + Tauri WebView DOM 真实尺寸；测量 JSON 55 用例 |
 | T1.5 Runner/Gate 引擎完整化 | **DONE** | `tests/unit/test_finalize.py`（27）+ `tests/integration/test_attacks.py`（11） |
 | T1.6 负向攻击测试 | **DONE** | 11 项攻击全部被拒（exit 10/11）；`evidence/T1.6/attack-evidence.json` |
 | T1.7 混淆矩阵/CI | **DONE（SIMULATED）** | `qa/confusion-matrix.json`：25 样本 TP38/FP0/TN8/FN0；`.github/workflows/stage1.yml` |
@@ -38,5 +38,5 @@ $env:PYTHONPATH='runtime'
 
 ## 4. Stage 1 判定
 
-- T1.0–T1.3、T1.5–T1.7 有可复核证据；T1.4 为 PARTIAL，因此 **Stage 1 暂不宣称 PASS**。
+- T1.0–T1.3、T1.5–T1.7 有可复核证据；T1.0–T1.4 均有证据；M18 动态键盘仍为 PARTIAL，因此 Stage 1 暂不宣称 PASS。
 - 阻塞点不阻断 Stage 2：真实测量属于 Stage 3 能力，T3.3 接手；Stage 2–5 可继续。

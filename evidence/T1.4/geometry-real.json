@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.3.3",
+  "evidence_id": "EV-T1.4-GEOMETRY-REAL",
+  "kind": "tool_log",
+  "generated_at": "2026-10-23T21:08:50.654012+00:00",
+  "git": {
+    "commit": "bde82f86837a5ff076e859b4d12835f292c7dbea",
+    "dirty": true,
+    "dirty_scope": "tracked files excluding evidence/"
+  },
+  "qt": {
+    "runtime_level": "NATIVE_QPA",
+    "platform": "windows",
+    "screen": {
+      "dpi": 96.0,
+      "device_pixel_ratio": 1.0,
+      "width": 2560,
+      "height": 1440
+    },
+    "metrics": {
+      "label_size_hint": [
+        133,
+        21
+      ],
+      "label_font_height": 21,
+      "edit_height": 21,
+      "window_size": [
+        640,
+        360
+      ]
+    },
+    "focus": {
+      "label": 0,
+      "edit": 11,
+      "edit_focusable": true
+    },
+    "fonts": {
+      "count": 127,
+      "cjk_yahei": true
+    }
+  },
+  "webview_dom": {
+    "runtime_level": "NATIVE_APP",
+    "viewport": {
+      "dpr": 1,
+      "innerHeight": 600,
+      "innerWidth": 800
+    },
+    "elements": {
+      "greet_input": {
+        "x": 239.609375,
+        "y": 341.875,
+        "width": 235.375,
+        "height": 39.1875,
+        "tag": "input"
+      },
+      "greet_button": {
+        "x": 479.984375,
+        "y": 341.875,
+        "width": 80.390625,
+        "height": 39.1875,
+        "tag": "button"
+      },
+      "greet_message": {
+        "x": 8,
+        "y": 397.0625,
+        "width": 784,
+        "height": 0,
+        "tag": "p"
+      }
+    },
+    "source": "evidence\\T1.4\\tauri-dom.json",
+    "sha256": "eedda54e4a269fca9969fa65888e677366cda8faf02c74f964d3a778f60449c4"
+  },
+  "observations": [
+    "Qt label sizeHint and edit height are non-zero on the native Windows QPA.",
+    "WebView DOM boxes are non-zero and the viewport reports 800x600 at dpr=1.",
+    "The DOM button is 80.4x39.2 CSS px; the Qt button min height is reported in `metrics`."
+  ],
+  "generator": {
+    "path": "scripts/collect_geometry_evidence.py",
+    "sha256": "165ed98b49e786d0ffed6a884b4ba39d0b191af87a669bd7ef74a00dd0205ca4"
+  },
+  "limitations": [
+    "DOM measured on a synthetic Tauri 2 lab app, not a real product UI.",
+    "Qt metrics are from a synthetic probe window; no visual regression baseline.",
+    "DOM coordinates are CSS pixels at 100% scale; 125%/150% DOM scaling was not measured."
+  ]
+}

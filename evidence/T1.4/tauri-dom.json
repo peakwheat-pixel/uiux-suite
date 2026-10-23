@@ -1,0 +1,31 @@
+{
+  "runtime_level": "NATIVE_APP",
+  "viewport": {
+    "dpr": 1,
+    "innerHeight": 600,
+    "innerWidth": 800
+  },
+  "elements": {
+    "greet_input": {
+      "x": 239.609375,
+      "y": 341.875,
+      "width": 235.375,
+      "height": 39.1875,
+      "tag": "input"
+    },
+    "greet_button": {
+      "x": 479.984375,
+      "y": 341.875,
+      "width": 80.390625,
+      "height": 39.1875,
+      "tag": "button"
+    },
+    "greet_message": {
+      "x": 8,
+      "y": 397.0625,
+      "width": 784,
+      "height": 0,
+      "tag": "p"
+    }
+  }
+}

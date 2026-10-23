@@ -16,7 +16,7 @@
 | T1.1 | Stage 1 | DONE | Stage 1 Exit | T0.2 | 双栈正反 Fixtures 与冻结 GT | ≥8 正/反样本；GT 版本与哈希冻结；误报/漏报/权限越界/跨层样本 |
 | T1.2 | Stage 1 | DONE | Stage 1 Exit | T1.1 | style_token_linter（AST/CSS/QSS 分级规则） | 规则表+枚举；正反 fixtures；误报/漏报/越界/跨层拒绝 |
 | T1.3 | Stage 1 | DONE | Stage 1 Exit | T1.1 | ux_flow_validator（Schema + 能力交叉发现） | 可达性/破坏性/空态/错误/加载；Schema 合法 |
-| T1.4 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T1.1 | layout_geometry_probe（Web DOM / Qt Offscreen 真实测量） | 裁切/对比度/间距测量；合法负样本零硬 FAIL；Offscreen 结果标注 SIMULATED |
+| T1.4 | Stage 1 | DONE | Stage 1 Exit | T1.1 | layout_geometry_probe（Web DOM / Qt Offscreen 真实测量） | 裁切/重叠/目标/对比度/焦点；Web DOM 与 Qt 真实尺寸 |
 | T1.5 | Stage 1 | DONE | Stage 1 Exit | T0.1 | Runner/Gate 引擎完整化（G0–G5 工具日志与证据闭环） | finalize 从真实工具日志重算；拒绝伪造 PASS；CLI 退出码稳定 |
 | T1.6 | Stage 1 | DONE | Stage 1 Exit | T1.5 | 负向攻击测试（假 PASS/删证据/跨层/Mock 冒充） | 全部攻击用例被拒绝并附退出码与日志 |
 | T1.7 | Stage 1 | DONE | Stage 1 Exit | T1.1, T1.2, T1.3, T1.4 | 混淆矩阵、CI 与误报/漏报报告 | TP/FP/TN/FN 输出；CI 显示每条样本预期与实际；Windows runner |
@@ -73,6 +73,6 @@
 | 状态 | 数量 |
 |---|---|
 | BLOCKED | 0 |
-| DONE | 52 |
-| IN_PROGRESS | 8 |
+| DONE | 53 |
+| IN_PROGRESS | 7 |
 | TODO | 1 |
