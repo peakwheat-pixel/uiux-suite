@@ -44,6 +44,7 @@ def launch(agents: Path) -> subprocess.CompletedProcess:
     )
 
 
+@pytest.mark.skipif(os.name != "nt", reason="Windows-only junction semantics")
 def test_project_install_through_junction(tmp_path: Path):
     source = make_source(tmp_path)
     real = tmp_path / "real-project"
@@ -69,6 +70,7 @@ def test_project_install_through_junction(tmp_path: Path):
         junction.rmdir()
 
 
+@pytest.mark.skipif(os.name != "nt", reason="Windows-only long path semantics")
 def test_project_install_with_long_path(tmp_path: Path):
     source = make_source(tmp_path)
     long_root = tmp_path
