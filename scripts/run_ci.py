@@ -34,6 +34,11 @@ def main() -> int:
     import os
 
     env = {**os.environ, "PYTHONPATH": str(REPO_ROOT / "runtime"), "PYTHONUTF8": "1"}
+    git_info = {
+        "commit": subprocess.run(["git", "rev-parse", "HEAD"], cwd=str(REPO_ROOT), capture_output=True, text=True, encoding="utf-8").stdout.strip(),
+        "dirty": bool(subprocess.run(["git", "status", "--porcelain"], cwd=str(REPO_ROOT), capture_output=True, text=True, encoding="utf-8").stdout.strip()),
+        "dirty_scope": "tracked files excluding evidence/ (CI steps rewrite evidence)",
+    }
     started = time.perf_counter()
     runs = []
     for name, command in STEPS:
@@ -51,10 +56,7 @@ def main() -> int:
     report = {
         "schema_version": "1.3.3",
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "git": {
-            "commit": subprocess.run(["git", "rev-parse", "HEAD"], cwd=str(REPO_ROOT), capture_output=True, text=True, encoding="utf-8").stdout.strip(),
-            "dirty": bool(subprocess.run(["git", "status", "--porcelain"], cwd=str(REPO_ROOT), capture_output=True, text=True, encoding="utf-8").stdout.strip()),
-        },
+        "git": git_info,
         "runs": runs,
         "duration_ms": round((time.perf_counter() - started) * 1000, 2),
         "ok": all(run["exit_code"] == 0 for run in runs),
