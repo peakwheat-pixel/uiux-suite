@@ -3,10 +3,10 @@
   "evidence_id": "EV-T3.2-TAURI-WDIO",
   "kind": "tool_log",
   "runtime_level": "NATIVE_APP",
-  "generated_at": "2026-10-23T20:53:58.800778+00:00",
+  "generated_at": "2026-10-23T20:55:15.907572+00:00",
   "git": {
-    "commit": "bc965ee2d45873fa90ee7b0ff09a9adbdfff32e7",
-    "dirty": true,
+    "commit": "ae70c957c73616e3b0cd788fddad62f6d49e5997",
+    "dirty": false,
     "dirty_scope": "tracked files excluding evidence/"
   },
   "app": {
