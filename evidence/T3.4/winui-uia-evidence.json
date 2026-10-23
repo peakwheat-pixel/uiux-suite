@@ -1,0 +1,306 @@
+{
+  "schema_version": "1.3.3",
+  "evidence_id": "EV-T3.4-WINUI-UIA",
+  "kind": "tool_log",
+  "runtime_level": "NATIVE_UI_AUTOMATION",
+  "generated_at": "2026-10-23T21:13:11.8840979Z",
+  "process": {
+    "id": 40496,
+    "exe": "notepad.exe",
+    "title": null
+  },
+  "framework_hint": "WinUI 3 (Microsoft.UI.Xaml.Controls.*)",
+  "xaml_classes": [
+    "Microsoft.UI.Xaml.Controls.TabView",
+    "Microsoft.UI.Xaml.Controls.MenuBarItem",
+    "Microsoft.UI.Xaml.Controls.DropDownButton",
+    "Microsoft.UI.Xaml.Controls.TeachingTip"
+  ],
+  "elements": [
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "class_name": "NotepadTextBox",
+      "automation_id": ""
+    },
+    {
+      "name": "文本编辑器",
+      "control_type": "ControlType.Document",
+      "class_name": "RichEditD2DPT",
+      "automation_id": ""
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "class_name": "Microsoft.UI.Content.DesktopChildSiteBridge",
+      "automation_id": ""
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "class_name": "InputSiteWindowClass",
+      "automation_id": ""
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Tab",
+      "class_name": "Microsoft.UI.Xaml.Controls.TabView",
+      "automation_id": "Tabs"
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.List",
+      "class_name": "ListView",
+      "automation_id": "TabListView"
+    },
+    {
+      "name": "无标题. 未修改。",
+      "control_type": "ControlType.TabItem",
+      "class_name": "ListViewItem",
+      "automation_id": ""
+    },
+    {
+      "name": "无标题",
+      "control_type": "ControlType.Text",
+      "class_name": "TextBlock",
+      "automation_id": ""
+    },
+    {
+      "name": "uiux-winui-blank.txt. 未修改。",
+      "control_type": "ControlType.TabItem",
+      "class_name": "ListViewItem",
+      "automation_id": ""
+    },
+    {
+      "name": "uiux-winui-blank.txt",
+      "control_type": "ControlType.Text",
+      "class_name": "TextBlock",
+      "automation_id": ""
+    },
+    {
+      "name": "关闭标签页",
+      "control_type": "ControlType.Button",
+      "class_name": "Button",
+      "automation_id": "CloseButton"
+    },
+    {
+      "name": "添加新标签页",
+      "control_type": "ControlType.Button",
+      "class_name": "Button",
+      "automation_id": "AddButton"
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "class_name": "Microsoft.UI.Content.DesktopChildSiteBridge",
+      "automation_id": ""
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "class_name": "InputSiteWindowClass",
+      "automation_id": ""
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.MenuBar",
+      "class_name": "",
+      "automation_id": "MenuBar"
+    },
+    {
+      "name": "文件",
+      "control_type": "ControlType.MenuItem",
+      "class_name": "Microsoft.UI.Xaml.Controls.MenuBarItem",
+      "automation_id": "File"
+    },
+    {
+      "name": "编辑",
+      "control_type": "ControlType.MenuItem",
+      "class_name": "Microsoft.UI.Xaml.Controls.MenuBarItem",
+      "automation_id": "Edit"
+    },
+    {
+      "name": "查看",
+      "control_type": "ControlType.MenuItem",
+      "class_name": "Microsoft.UI.Xaml.Controls.MenuBarItem",
+      "automation_id": "View"
+    },
+    {
+      "name": "标题",
+      "control_type": "ControlType.Button",
+      "class_name": "Microsoft.UI.Xaml.Controls.DropDownButton",
+      "automation_id": ""
+    },
+    {
+      "name": "列表",
+      "control_type": "ControlType.Button",
+      "class_name": "Microsoft.UI.Xaml.Controls.DropDownButton",
+      "automation_id": ""
+    },
+    {
+      "name": "加粗(Ctrl+B)",
+      "control_type": "ControlType.Button",
+      "class_name": "ToggleButton",
+      "automation_id": ""
+    },
+    {
+      "name": "斜体(Ctrl+I)",
+      "control_type": "ControlType.Button",
+      "class_name": "ToggleButton",
+      "automation_id": ""
+    },
+    {
+      "name": "删除线(Ctrl+Shift+X)",
+      "control_type": "ControlType.Button",
+      "class_name": "ToggleButton",
+      "automation_id": ""
+    },
+    {
+      "name": "链接(Ctrl+K)",
+      "control_type": "ControlType.Button",
+      "class_name": "ToggleButton",
+      "automation_id": ""
+    },
+    {
+      "name": "表",
+      "control_type": "ControlType.Button",
+      "class_name": "Microsoft.UI.Xaml.Controls.DropDownButton",
+      "automation_id": ""
+    },
+    {
+      "name": "清除格式设置(Ctrl+空格)",
+      "control_type": "ControlType.Button",
+      "class_name": "ToggleButton",
+      "automation_id": ""
+    },
+    {
+      "name": "最近更新",
+      "control_type": "ControlType.Button",
+      "class_name": "Button",
+      "automation_id": "FREButton"
+    },
+    {
+      "name": "设置",
+      "control_type": "ControlType.Button",
+      "class_name": "Button",
+      "automation_id": "SettingsButton"
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Window",
+      "class_name": "Microsoft.UI.Xaml.Controls.TeachingTip",
+      "automation_id": "PrivacyTeachingTip"
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "class_name": "Microsoft.UI.Xaml.Controls.TeachingTip",
+      "automation_id": "PsDownloadDetailTeachingTip"
+    },
+    {
+      "name": "本地 AI 模型必须完成下载才可在注销后使用此功能。",
+      "control_type": "ControlType.Pane",
+      "class_name": "Microsoft.UI.Xaml.Controls.TeachingTip",
+      "automation_id": "PsDownloadLightTeachingTip"
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "class_name": "Microsoft.UI.Content.DesktopChildSiteBridge",
+      "automation_id": ""
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "class_name": "InputSiteWindowClass",
+      "automation_id": ""
+    },
+    {
+      "name": "行 1，\n列 1",
+      "control_type": "ControlType.Text",
+      "class_name": "TextBlock",
+      "automation_id": "ContentTextBlock"
+    },
+    {
+      "name": "0 个字符",
+      "control_type": "ControlType.Text",
+      "class_name": "TextBlock",
+      "automation_id": "ContentTextBlock"
+    },
+    {
+      "name": "纯文本",
+      "control_type": "ControlType.Text",
+      "class_name": "TextBlock",
+      "automation_id": "ContentTextBlock"
+    },
+    {
+      "name": "缩放",
+      "control_type": "ControlType.Text",
+      "class_name": "TextBlock",
+      "automation_id": "ContentTextBlock"
+    },
+    {
+      "name": " Windows (CRLF)",
+      "control_type": "ControlType.Text",
+      "class_name": "TextBlock",
+      "automation_id": "ContentTextBlock"
+    },
+    {
+      "name": " UTF-8",
+      "control_type": "ControlType.Text",
+      "class_name": "TextBlock",
+      "automation_id": "ContentTextBlock"
+    },
+    {
+      "name": "uiux-winui-blank.txt - Notepad",
+      "control_type": "ControlType.TitleBar",
+      "class_name": "",
+      "automation_id": "TitleBar"
+    },
+    {
+      "name": "系统菜单栏",
+      "control_type": "ControlType.MenuBar",
+      "class_name": "",
+      "automation_id": "SystemMenuBar"
+    },
+    {
+      "name": "系统",
+      "control_type": "ControlType.MenuItem",
+      "class_name": "",
+      "automation_id": "Item 1"
+    },
+    {
+      "name": "最小化",
+      "control_type": "ControlType.Button",
+      "class_name": "",
+      "automation_id": "Minimize"
+    },
+    {
+      "name": "最大化",
+      "control_type": "ControlType.Button",
+      "class_name": "",
+      "automation_id": "Maximize"
+    },
+    {
+      "name": "关闭",
+      "control_type": "ControlType.Button",
+      "class_name": "",
+      "automation_id": "Close"
+    }
+  ],
+  "actions": {
+    "document_found": true,
+    "value_pattern_set": true,
+    "read_back": "DSH WinUI UIA action",
+    "window_closed": true
+  },
+  "generator": {
+    "path": "scripts/collect_winui_uia_evidence.ps1",
+    "sha256": "33dfba36141121eb0716e723b82a595a600b349ff865793a1bf07e2af02a4873"
+  },
+  "limitations": [
+    "Blank Notepad window; no file opened or saved.",
+    "UIA ValuePattern/TextPattern only; no global physical keyboard input.",
+    "WinUI build internals may vary with Windows updates."
+  ]
+}

@@ -816,16 +816,16 @@
       "id": "M18",
       "title": "无障碍维度与 Rule ID",
       "stage": "Stage 1",
-      "status": "IN_PROGRESS",
-      "acceptance": "accessible name/键盘/target size/ARIA-UIA 语义规则",
+      "status": "DONE",
+      "acceptance": "A11Y 维度/规则；UIA 读/写与焦点证据",
       "depends_on": [
         "T1.0"
       ],
       "due_before": "Stage 1 Exit",
-      "evidence": "knowledge/rules/catalog.v1.0.json; evidence/T3.4/uia-probe.json; runtime/uiux_engine/uia.py",
+      "evidence": "knowledge/rules/catalog.v1.0.json; evidence/T3.4/wpf-uia-evidence.json; evidence/T3.4/winui-uia-evidence.json; tests/unit/test_style_linter.py",
       "files": [],
       "source": "MAJOR",
-      "note": "A11Y-001..004 规则与静态子集 DONE；真实 Win32 UIA 只读树已采；WinUI/WPF/Qt 与动态键盘待后续。"
+      "note": "A11Y-001..004 规则/静态子集 DONE；Win11 Notepad WinUI UIA 读/写（ValuePattern）与 WPF UIA/对话框/菜单、Qt 焦点顺序已采；无全局物理键盘。"
     },
     {
       "id": "m1",

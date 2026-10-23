@@ -38,5 +38,5 @@ $env:PYTHONPATH='runtime'
 
 ## 4. Stage 1 判定
 
-- T1.0–T1.3、T1.5–T1.7 有可复核证据；T1.0–T1.4 均有证据；M18 动态键盘仍为 PARTIAL，因此 Stage 1 暂不宣称 PASS。
+- T1.0–T1.3、T1.5–T1.7 有可复核证据；T1.0–T1.4 与 M13/M18 均有证据；**Stage 1 PASS**（限制：无全局物理键盘，UIA 为程序化动作）。
 - 阻塞点不阻断 Stage 2：真实测量属于 Stage 3 能力，T3.3 接手；Stage 2–5 可继续。
