@@ -4,7 +4,7 @@
 
 ## 1. 当前阶段
 
-- **Stage 0 — DONE（第 4 轮独立确认）**：T0.1 第 2 轮独立复核 PASS；T0.2–T0.6 与 M5 全部具备机器证据；160 项测试全绿。
+- **Stage 0 — DONE / FROZEN（第 4 轮确认 + 冻结哈希抽查 PASS）**：T0.1 第 2 轮独立复核 PASS；T0.2–T0.6 与 M5 全部具备机器证据；160 项测试全绿。
 - **Stage 1 — READY/IN_PROGRESS**：T1.0 规则目录与 Rule ID 冻结为下一入口。
 - 分支：`v1.3.3-contract-closure`。
 - 基线：`main` 上 `e7e921e`，tag `v1.3.2-baseline`，SHA256 `70f5f339…9411ea04`。
