@@ -1,0 +1,230 @@
+{
+  "schema_version": "1.3.3",
+  "run_id": "UIUX-20261023-001",
+  "mode": "redesign",
+  "source_fingerprint": {
+    "kind": "git_commit",
+    "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "algorithm": "git-sha1"
+  },
+  "gates": {
+    "G0": {
+      "gate_id": "G0",
+      "state": "PASS",
+      "applicability": "MANDATORY",
+      "required_runtime_level": "NONE",
+      "observed_runtime_level": "NONE",
+      "evidence_refs": [
+        {
+          "evidence_id": "EV-G0",
+          "kind": "tool_log",
+          "status": "AVAILABLE",
+          "sha256": "9e8110315b3cf81afefde282aef790477e6adeef6e7f14cb18a23e8286ce25b5",
+          "probe_id": "P-G0",
+          "evidence_level": "NONE",
+          "expiry_at": "2027-10-23T12:00:00+00:00",
+          "redaction": {
+            "kind": "path",
+            "method": "automated",
+            "recheck_status": "PASS"
+          }
+        }
+      ],
+      "probe_ids": [
+        "P-G0"
+      ],
+      "tool_log_refs": [
+        "TL-G0"
+      ],
+      "reason_codes": [],
+      "computed_at": "2026-10-23T12:00:00+00:00"
+    },
+    "G1": {
+      "gate_id": "G1",
+      "state": "PASS",
+      "applicability": "MANDATORY",
+      "required_runtime_level": "NATIVE_APP",
+      "observed_runtime_level": "NATIVE_APP",
+      "evidence_refs": [
+        {
+          "evidence_id": "EV-G1",
+          "kind": "screenshot",
+          "status": "AVAILABLE",
+          "sha256": "43fd973aea7206503e0402dd0d13948a4e79b9481343ae6b70da61d3a76f21d2",
+          "probe_id": "P-G1",
+          "evidence_level": "NATIVE_APP",
+          "expiry_at": "2027-10-23T12:00:00+00:00",
+          "redaction": {
+            "kind": "path",
+            "method": "automated",
+            "recheck_status": "PASS"
+          }
+        }
+      ],
+      "probe_ids": [
+        "P-G1"
+      ],
+      "tool_log_refs": [
+        "TL-G1"
+      ],
+      "reason_codes": [],
+      "computed_at": "2026-10-23T12:00:00+00:00"
+    },
+    "G2": {
+      "gate_id": "G2",
+      "state": "PASS",
+      "applicability": "MANDATORY",
+      "required_runtime_level": "NATIVE_APP",
+      "observed_runtime_level": "NATIVE_APP",
+      "evidence_refs": [
+        {
+          "evidence_id": "EV-G2",
+          "kind": "coverage_matrix",
+          "status": "AVAILABLE",
+          "sha256": "85690c84df148ea75abc222f77be3c24734ca4664c19176a6b474d0bb7197144",
+          "probe_id": "P-G2",
+          "evidence_level": "NATIVE_APP",
+          "expiry_at": "2027-10-23T12:00:00+00:00",
+          "redaction": {
+            "kind": "path",
+            "method": "automated",
+            "recheck_status": "PASS"
+          }
+        }
+      ],
+      "probe_ids": [
+        "P-G2"
+      ],
+      "tool_log_refs": [
+        "TL-G2"
+      ],
+      "reason_codes": [],
+      "computed_at": "2026-10-23T12:00:00+00:00"
+    },
+    "G3": {
+      "gate_id": "G3",
+      "state": "PASS",
+      "applicability": "MANDATORY",
+      "required_runtime_level": "NONE",
+      "observed_runtime_level": "NONE",
+      "evidence_refs": [
+        {
+          "evidence_id": "EV-G3",
+          "kind": "tool_log",
+          "status": "AVAILABLE",
+          "sha256": "0e9c578b733e2147f7307bb93db2edabef512add90c8a5724eb8656f0cc34557",
+          "probe_id": "P-G3",
+          "evidence_level": "NONE",
+          "expiry_at": "2027-10-23T12:00:00+00:00",
+          "redaction": {
+            "kind": "path",
+            "method": "automated",
+            "recheck_status": "PASS"
+          }
+        }
+      ],
+      "probe_ids": [
+        "P-G3"
+      ],
+      "tool_log_refs": [
+        "TL-G3"
+      ],
+      "reason_codes": [],
+      "computed_at": "2026-10-23T12:00:00+00:00"
+    },
+    "G4": {
+      "gate_id": "G4",
+      "state": "PASS",
+      "applicability": "MANDATORY",
+      "required_runtime_level": "NONE",
+      "observed_runtime_level": "NONE",
+      "evidence_refs": [
+        {
+          "evidence_id": "EV-G4",
+          "kind": "diff",
+          "status": "AVAILABLE",
+          "sha256": "a2e56d6cd3dd7c45c510bcc62bab5b8be2eb9aba7511afecf4f6470edbf505d8",
+          "probe_id": "P-G4",
+          "evidence_level": "NONE",
+          "expiry_at": "2027-10-23T12:00:00+00:00",
+          "redaction": {
+            "kind": "path",
+            "method": "automated",
+            "recheck_status": "PASS"
+          }
+        }
+      ],
+      "probe_ids": [
+        "P-G4"
+      ],
+      "tool_log_refs": [
+        "TL-G4"
+      ],
+      "reason_codes": [],
+      "computed_at": "2026-10-23T12:00:00+00:00"
+    },
+    "G5": {
+      "gate_id": "G5",
+      "state": "PASS",
+      "applicability": "MANDATORY",
+      "required_runtime_level": "NATIVE_APP",
+      "observed_runtime_level": "NATIVE_APP",
+      "evidence_refs": [
+        {
+          "evidence_id": "EV-G5",
+          "kind": "test_log",
+          "status": "AVAILABLE",
+          "sha256": "d728309494296d782e04796afbe15deedcf95b621eb2e1cd2673ed2e61a19d22",
+          "probe_id": "P-G5",
+          "evidence_level": "NATIVE_APP",
+          "expiry_at": "2027-10-23T12:00:00+00:00",
+          "redaction": {
+            "kind": "path",
+            "method": "automated",
+            "recheck_status": "PASS"
+          }
+        }
+      ],
+      "probe_ids": [
+        "P-G5"
+      ],
+      "tool_log_refs": [
+        "TL-G5"
+      ],
+      "reason_codes": [],
+      "computed_at": "2026-10-23T12:00:00+00:00"
+    },
+    "G6": {
+      "gate_id": "G0",
+      "state": "PASS",
+      "applicability": "MANDATORY",
+      "required_runtime_level": "NONE",
+      "observed_runtime_level": "NONE",
+      "evidence_refs": [
+        {
+          "evidence_id": "EV-G0",
+          "kind": "tool_log",
+          "status": "AVAILABLE",
+          "sha256": "9e8110315b3cf81afefde282aef790477e6adeef6e7f14cb18a23e8286ce25b5",
+          "probe_id": "P-G0",
+          "evidence_level": "NONE",
+          "expiry_at": "2027-10-23T12:00:00+00:00",
+          "redaction": {
+            "kind": "path",
+            "method": "automated",
+            "recheck_status": "PASS"
+          }
+        }
+      ],
+      "probe_ids": [
+        "P-G0"
+      ],
+      "tool_log_refs": [
+        "TL-G0"
+      ],
+      "reason_codes": [],
+      "computed_at": "2026-10-23T12:00:00+00:00"
+    }
+  },
+  "created_at": "2026-10-23T12:00:00+00:00"
+}

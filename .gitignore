@@ -1,5 +1,9 @@
 # ---- 依赖 / 构建产物 ----
 node_modules/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
 dist/
 build/
 out/
@@ -9,6 +13,11 @@ out/
 .turbo/
 coverage/
 *.tsbuildinfo
+
+# ---- 私密证据（原始截图/日志绝不入 Git）----
+.uiux/vault/
+*.vault/
+vault/
 
 # ---- 环境变量 / 密钥 (切勿提交) ----
 .env

@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.3.3",
+  "run_id": "UIUX-20261023-001",
+  "reviewed_head": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "source_fingerprint": {
+    "kind": "git_commit",
+    "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "algorithm": "git-sha1"
+  },
+  "builder_context_ref": "ctx-builder-001",
+  "reviewer_context_ref": "ctx-reviewer-001",
+  "review_origin": {
+    "host": "dsh",
+    "launched_by": "independent-review-launcher",
+    "verified_identity": "reviewer-agent-01",
+    "trust_source": "host_verified"
+  },
+  "isolation_level": "INDEPENDENT_AGENT",
+  "read_only_proof": {
+    "enforced": true,
+    "method": "sandbox",
+    "evidence_ref": "EV-G0"
+  },
+  "tool_digest": "7c9bbe5ec9b3fb774e8fa0f54247e93c34ddf8e5d16fe3073420de0ae81a262d",
+  "evidence_manifest_hash": "3d1106a66acbfc6d0df0ef9bfa09e0ce9a24f0eef4d12753ff7fcba14d239903",
+  "source_unchanged": true,
+  "verdict": "PASS",
+  "dissent": [],
+  "reviewed_at": "2026-10-23T12:00:00+00:00"
+}

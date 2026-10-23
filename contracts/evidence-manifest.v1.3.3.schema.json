@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uiux-suite.local/contracts/evidence-manifest.v1.3.3.schema.json",
+  "title": "UIUX Evidence Manifest V1.3.3",
+  "type": "object",
+  "required": ["schema_version", "run_id", "evidence_policy", "items", "created_at"],
+  "properties": {
+    "schema_version": {"$ref": "common.v1.3.3.schema.json#/$defs/schema_version"},
+    "run_id": {"$ref": "common.v1.3.3.schema.json#/$defs/run_id"},
+    "evidence_policy": {
+      "type": "object",
+      "required": ["profile", "retention_days", "release_retention_days"],
+      "properties": {
+        "profile": {"enum": ["local_private", "portable_redacted", "release_audit"]},
+        "retention_days": {"type": "integer", "minimum": 1},
+        "release_retention_days": {"type": "integer", "minimum": 30}
+      },
+      "additionalProperties": false
+    },
+    "items": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/evidence_item"}
+    },
+    "created_at": {"$ref": "common.v1.3.3.schema.json#/$defs/iso8601"},
+    "updated_at": {"$ref": "common.v1.3.3.schema.json#/$defs/iso8601"}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "evidence_item": {
+      "type": "object",
+      "required": [
+        "id", "status", "kind", "storage_class", "source_sha256", "redacted_sha256",
+        "references", "created_at", "retention_policy", "expiry_at", "redaction", "provenance"
+      ],
+      "properties": {
+        "id": {"type": "string", "pattern": "^EV-[A-Za-z0-9._-]+$"},
+        "status": {"enum": ["AVAILABLE", "REDACTED_ONLY", "SOURCE_EVIDENCE_UNAVAILABLE", "EXPIRED", "INVALID_HASH", "QUARANTINED"]},
+        "kind": {"enum": ["screenshot", "dom_snapshot", "uia_tree", "test_log", "tool_log", "diff", "hash_manifest", "design_review", "coverage_matrix", "other"]},
+        "storage_class": {"enum": ["state", "vault", "evidence"]},
+        "source_sha256": {
+          "anyOf": [
+            {"$ref": "common.v1.3.3.schema.json#/$defs/sha256"},
+            {"type": "null"}
+          ]
+        },
+        "redacted_sha256": {
+          "anyOf": [
+            {"$ref": "common.v1.3.3.schema.json#/$defs/sha256"},
+            {"type": "null"}
+          ]
+        },
+        "references": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "created_at": {"$ref": "common.v1.3.3.schema.json#/$defs/iso8601"},
+        "retention_policy": {"enum": ["run_default", "release_audit", "manual"]},
+        "expiry_at": {"$ref": "common.v1.3.3.schema.json#/$defs/iso8601"},
+        "redaction": {
+          "type": "object",
+          "required": ["kind", "method", "recheck_status"],
+          "properties": {
+            "kind": {"enum": ["none", "path", "image", "field", "full"]},
+            "method": {"enum": ["manual", "automated", "hybrid"]},
+            "recheck_status": {"enum": ["PASS", "FAIL", "NOT_RECHECKED"]}
+          },
+          "additionalProperties": false
+        },
+        "provenance": {
+          "type": "object",
+          "required": ["producer", "probe_id", "execution_level"],
+          "properties": {
+            "producer": {"type": "string", "minLength": 1},
+            "probe_id": {"type": "string", "minLength": 1},
+            "execution_level": {"enum": ["NONE", "SIMULATED", "NATIVE_APP", "OS_INTEGRATION"]},
+            "tool_log_ref": {"type": ["string", "null"]},
+            "environment_digest": {"type": ["string", "null"]}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"const": "AVAILABLE"}}, "required": ["status"]},
+          "then": {"properties": {"source_sha256": {"$ref": "common.v1.3.3.schema.json#/$defs/sha256"}}}
+        },
+        {
+          "if": {"properties": {"status": {"const": "REDACTED_ONLY"}}, "required": ["status"]},
+          "then": {"properties": {"redacted_sha256": {"$ref": "common.v1.3.3.schema.json#/$defs/sha256"}}}
+        }
+      ]
+    }
+  }
+}
