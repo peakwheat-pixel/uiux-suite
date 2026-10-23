@@ -6,7 +6,7 @@
 
 | 交付物 | 位置 |
 |---|---|
-| 可安装 ZIP（145 个载荷文件 + `RELEASE_MANIFEST.json`，ZIP 共 146 项，含 7 wheels） | [`dist/uiux-suite-1.3.3-win64.zip`](dist/uiux-suite-1.3.3-win64.zip) |
+| 可安装 ZIP（146 个载荷文件 + `RELEASE_MANIFEST.json`，ZIP 共 147 项，含 7 wheels） | [`dist/uiux-suite-1.3.3-win64.zip`](dist/uiux-suite-1.3.3-win64.zip) |
 | ZIP SHA256 | 见 `dist/SHA256SUMS.txt`（每次构建以该文件与 `evidence/T5.5` 为准） |
 | ZIP 与逐文件 SHA256 | [`dist/SHA256SUMS.txt`](dist/SHA256SUMS.txt) |
 | 规范 | [`SPEC_V1.3.3.md`](SPEC_V1.3.3.md) |
@@ -43,7 +43,7 @@ $env:PYTHONPATH='runtime'
 
 | 项 | 状态 | 原因 |
 |---|---|---|
-| T3.4 原生对话框/WinUI/WPF/Qt 点击 | PARTIAL | 仅 Win11 Notepad（WinUI 3） UIA 控制视图只读 |
+| T3.4 WPF/原生对话框/WinUI 点击 | PARTIAL | 仅 Win11 Notepad（WinUI 3） UIA 控制视图只读 |
 | T5.1/T5.2 真实工作台交互/前后测量 | PARTIAL | 合成应用 E2E 9/9 + before/after 已完成；New Manga 仅静态基线，应用未启动 |
 | T5.3 真实项目数据安全 | PARTIAL | 仅代码/测试级回滚 |
 | T5.4 独立 G6 | IN_PROGRESS | 待独立 Reviewer 最终签发 |

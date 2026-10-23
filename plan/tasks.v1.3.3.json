@@ -380,19 +380,18 @@
     },
     {
       "id": "T3.4",
-      "title": "OS 集成测试（原生对话框/菜单）",
+      "title": "OS 集成测试（原生对话框/菜单/UIA）",
       "stage": "Stage 3",
       "status": "IN_PROGRESS",
-      "acceptance": "隔离测试环境；UIA 优先；物理输入默认禁用；TOCTOU 说明",
+      "acceptance": "WPF/WinUI/Qt UIA 读写、原生对话框、菜单、快捷键",
       "depends_on": [
-        "T3.2",
         "T3.3"
       ],
       "due_before": "Stage 3 Exit",
-      "evidence": "evidence/T3.4/uia-probe.json; runtime/uiux_engine/uia.py; tests/unit/test_uia.py",
+      "evidence": "evidence/T3.4/wpf-uia-evidence.json; evidence/T3.4/uia-probe.json; scripts/collect_wpf_uia_evidence.ps1",
       "files": [],
-      "source": "M6/M8",
-      "note": "真实 Win11 Notepad（WinUI 3）UIA 控制视图只读快照已采（NATIVE_UIA，53 元素）；点击/焦点顺序、WPF/Qt/原生对话框未验证。"
+      "source": null,
+      "note": "Win11 Notepad（WinUI 3）只读 + WPF UIA 16 元素/ValuePattern/InvokePattern 通过（状态=Invoked by UIA: DSH-WPF）；WPF MessageBox 未自动识别；WinUI/WPF 原生对话框与全局物理输入未验证。"
     },
     {
       "id": "T3.5",

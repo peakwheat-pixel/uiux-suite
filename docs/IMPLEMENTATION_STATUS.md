@@ -19,7 +19,7 @@
 | 规则与检测器 | 冻结 20 条；style/flow/geometry/discovery/design-system/component/prototype/options | `knowledge/rules/`、`tests/unit/test_*.py`、`qa/confusion-matrix.json` |
 | Stage 3 安全 | modify/vault/integrity/safety/uia | `runtime/uiux_engine/*.py`、`tests/unit/test_*` |
 | 宿主兼容 | DSH 实测；其他宿主 UNVERIFIED；退化 ReasonCode | `docs/COMPATIBILITY.md`、`compat.py` |
-| 发行 | 145 载荷 + manifest ZIP、SHA256SUMS、安装验证 | `dist/`、`evidence/T5.5/` |
+| 发行 | 146 载荷 + manifest ZIP、SHA256SUMS、安装验证 | `dist/`、`evidence/T5.5/` |
 
 ## 3. Stage 状态
 

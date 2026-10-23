@@ -8,7 +8,7 @@
 | T5.2 改版前后对照测量 | **IN_PROGRESS** | 合成应用 before/after：字号 11→14、目标 22→38px、对比度 2.08→15.8；真实工作台前后对照未做 |
 | T5.3 数据安全/回滚/导出 | **IN_PROGRESS（PARTIAL）** | `safety.py`、`modify.py` 回滚测试；合成数据 E2E 保存/导出；真实项目演练未执行 |
 | T5.4 独立复审与 G6 | **IN_PROGRESS** | 待独立 Reviewer 签发 G6 |
-| T5.5 发行包/文档/交付报告 | **DONE** | 145 载荷 + manifest（ZIP 146 项）；安装/双入口/doctor 实测 exit 0 |
+| T5.5 发行包/文档/交付报告 | **DONE** | 146 载荷 + manifest（ZIP 147 项）；安装/双入口/doctor 实测 exit 0 |
 
 ## 合成工作台 E2E（NATIVE_QT_APP）
 
@@ -25,7 +25,7 @@
 ```powershell
 $env:PYTHONPATH='runtime'
 .\.venv\Scripts\python.exe scripts\build_release.py
-# ok=true files=145 install_exit=0 enums_exit=0 doctor_exit=0
+# ok=true files=146 install_exit=0 enums_exit=0 doctor_exit=0
 ```
 
 证据：`evidence/T5.5/release-verification.json`、`release-install.txt`；ZIP SHA256 见 `dist/SHA256SUMS.txt`。

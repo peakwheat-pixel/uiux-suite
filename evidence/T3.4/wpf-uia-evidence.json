@@ -1,0 +1,148 @@
+{
+  "schema_version": "1.3.3",
+  "evidence_id": "EV-T3.4-WPF-UIA",
+  "kind": "tool_log",
+  "runtime_level": "NATIVE_UI_AUTOMATION",
+  "generated_at": "2026-10-23T21:03:25.6270060Z",
+  "process": {
+    "id": 32876,
+    "exe": "G:\\AI\\wpf-lab\\bin\\Release\\net10.0-windows\\wpf-lab.exe",
+    "title": "WPF UIA Lab"
+  },
+  "framework_hint": "WPF (class names System.Windows.*)",
+  "elements": [
+    {
+      "name": "WPF UIA Lab",
+      "control_type": "ControlType.TitleBar",
+      "automation_id": "TitleBar",
+      "class_name": "",
+      "enabled": true
+    },
+    {
+      "name": "系统菜单栏",
+      "control_type": "ControlType.MenuBar",
+      "automation_id": "SystemMenuBar",
+      "class_name": "",
+      "enabled": true
+    },
+    {
+      "name": "系统",
+      "control_type": "ControlType.MenuItem",
+      "automation_id": "Item 1",
+      "class_name": "",
+      "enabled": true
+    },
+    {
+      "name": "最小化",
+      "control_type": "ControlType.Button",
+      "automation_id": "Minimize",
+      "class_name": "",
+      "enabled": true
+    },
+    {
+      "name": "最大化",
+      "control_type": "ControlType.Button",
+      "automation_id": "Maximize",
+      "class_name": "",
+      "enabled": true
+    },
+    {
+      "name": "关闭",
+      "control_type": "ControlType.Button",
+      "automation_id": "Close",
+      "class_name": "",
+      "enabled": true
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Menu",
+      "automation_id": "",
+      "class_name": "Menu",
+      "enabled": true
+    },
+    {
+      "name": "File",
+      "control_type": "ControlType.MenuItem",
+      "automation_id": "",
+      "class_name": "MenuItem",
+      "enabled": true
+    },
+    {
+      "name": "File",
+      "control_type": "ControlType.Text",
+      "automation_id": "",
+      "class_name": "TextBlock",
+      "enabled": true
+    },
+    {
+      "name": "Synthetic WPF target for UIA validation",
+      "control_type": "ControlType.Text",
+      "automation_id": "",
+      "class_name": "TextBlock",
+      "enabled": true
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Edit",
+      "automation_id": "NameBox",
+      "class_name": "TextBox",
+      "enabled": true
+    },
+    {
+      "name": "Dialog",
+      "control_type": "ControlType.Button",
+      "automation_id": "DialogButton",
+      "class_name": "Button",
+      "enabled": true
+    },
+    {
+      "name": "Dialog",
+      "control_type": "ControlType.Text",
+      "automation_id": "",
+      "class_name": "TextBlock",
+      "enabled": true
+    },
+    {
+      "name": "Invoke",
+      "control_type": "ControlType.Button",
+      "automation_id": "InvokeButton",
+      "class_name": "Button",
+      "enabled": true
+    },
+    {
+      "name": "Invoke",
+      "control_type": "ControlType.Text",
+      "automation_id": "",
+      "class_name": "TextBlock",
+      "enabled": true
+    },
+    {
+      "name": "Ready",
+      "control_type": "ControlType.Text",
+      "automation_id": "StatusText",
+      "class_name": "TextBlock",
+      "enabled": true
+    }
+  ],
+  "actions": {
+    "set_name_box": "DSH-WPF",
+    "invoke_button": true,
+    "status_text": "Invoked by UIA: DSH-WPF",
+    "dialog_opened": false,
+    "dialog_text": null,
+    "dialog_ok_invoked": false
+  },
+  "screenshot": {
+    "path": "G:\\AI\\universal-uiux-engineering\\evidence\\T3.4\\wpf-uia.png",
+    "sha256": "a23bde6ad865f73247acfb7c1f4a3fc28becdc9cdd6e36e6d1d06585164f0720"
+  },
+  "generator": {
+    "path": "scripts/collect_wpf_uia_evidence.ps1",
+    "sha256": "83116457f6d2f05a943f7cd2e4ed2f4c7f7d5143acd824f2de19dec901076dc1"
+  },
+  "limitations": [
+    "UIA InvokePattern/ValuePattern only; no global physical keyboard or mouse input.",
+    "Synthetic WPF lab app; not a real product UI.",
+    "MessageBox OK text matched by 'OK' or Chinese '确定'; only this dialog was exercised."
+  ]
+}
