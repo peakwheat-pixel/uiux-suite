@@ -1,5 +1,5 @@
 ...........                                                              [100%]
 - generated xml file: G:\AI\universal-uiux-engineering\evidence\T1.6\attack-junit.xml -
-11 passed in 2.32s
+11 passed in 2.50s
 
 --- STDERR ---
