@@ -30,6 +30,7 @@
 - **安全/CI**：M6 输入分权（全局物理输入默认拒绝）、M8 构建守卫（白名单/网络/越界）、M14 qa-report 指标、M10 GitHub Hosted CI 已实测成功；m1/m2/m3/m5/m8 文档齐备。
 - **真实 New Manga 隔离试点（T5.1/T5.2 DONE）**：完整复制 15.8GB/62,350 文件到 `G:\AI\uiux-workbench-copy`；真实 Tauri 应用启动（packaged core-sidecar）；创建作品/章节、native folder picker 导入 3 页、重复导入 skip 3、阅读器 1/3→3/3；真实 DOM/UIA/截图证据见 `evidence/T5.1`；源项目 HEAD/脏状态基线与文件哈希未变。
 - **真实 UI/UX 改造**：分组工具栏、未开放能力折叠、空态步骤引导、32px 最小目标、12/14px 字号、focus-visible、导入目标预选修复；真实应用前后截图为证（`evidence/T5.2`），功能回归通过。
+- **跨 Agent 宿主（T4.2）**：DSH VERIFIED；Antigravity 1.4.4 VERIFIED（技能发现 + `launch.py enums` exit 0）；Codex 0.162.0 PARTIAL（发现/读取 SKILL.md，运行受 sandbox helper 阻断）；Claude/ZCode/Qoder UNVERIFIED。证据：`evidence/T4.2/host-matrix.json`。
 - **GitHub Hosted CI（M10 DONE）**：公开仓库 `https://github.com/peakwheat-pixel/uiux-suite`；commit `1ae2f8e` 上 `CI` 与 `stage1-contract-and-detectors` 两个 workflow 均 success；运行链接 `https://github.com/peakwheat-pixel/uiux-suite/actions/runs/40040199191`。
 - **Stage 5 基线**：对 `New Manga` 的隔离源码副本（3435 文件）做只读 discovery/style 扫描；合成 Qt 参考应用完成导入→浏览→画布→编辑→保存→导出→撤销→异常→画布拖拽→快捷键→焦点顺序 12/12 E2E（NATIVE_QT_APP），before/after 指标：字号 11→14、目标 22→38px、对比度 2.08→15.8。
 
@@ -54,7 +55,7 @@ $env:PYTHONPATH='runtime'
 | T5.4 独立 G6 | **INCOMPLETE** | reviewer-v133 只读复审：G6 不可签发；阻断见 `evidence/T5.4/g6-review.json` |
 | M10 CI runner | **DONE** | GitHub Hosted CI 两个 workflow 在 1ae2f8e success |
 | MCP/断点恢复 | UNVERIFIED | 宿主无实例 |
-| 其他 Agent 宿主 | PARTIAL/UNVERIFIED | DSH 实测；Codex/Claude/ZCode/AGY/Qoder 未完成隔离发现测试 |
+| 其他 Agent 宿主 | DSH/AGY VERIFIED；Codex PARTIAL；其余 UNVERIFIED | DSH/AGY 实测；Codex 发现并读取 SKILL.md，运行受其 sandbox helper 阻断；Claude/ZCode/Qoder 未测 |
 
 ## 5. 使用方式
 
