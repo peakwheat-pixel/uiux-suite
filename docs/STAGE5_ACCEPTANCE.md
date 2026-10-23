@@ -4,7 +4,7 @@
 
 | 任务 | 状态 | 证据 |
 |---|---|---|
-| T5.1 真实复杂工作台试点 | **IN_PROGRESS** | 合成 Qt 参考应用 E2E 9/9（`evidence/T5.1/workbench-e2e-evidence.json`）；New Manga 仅隔离源码静态基线（`workbench-static-baseline.json`），应用未启动 |
+| T5.1 真实复杂工作台试点 | **IN_PROGRESS** | 合成 Qt 参考应用 E2E 12/12（含拖拽/快捷键/焦点）（`evidence/T5.1/workbench-e2e-evidence.json`）；New Manga 仅隔离源码静态基线（`workbench-static-baseline.json`），应用未启动 |
 | T5.2 改版前后对照测量 | **IN_PROGRESS** | 合成应用 before/after：字号 11→14、目标 22→38px、对比度 2.08→15.8；真实工作台前后对照未做 |
 | T5.3 数据安全/回滚/导出 | **IN_PROGRESS（PARTIAL）** | `safety.py`、`modify.py` 回滚测试；合成数据 E2E 保存/导出；真实项目演练未执行 |
 | T5.4 独立复审与 G6 | **IN_PROGRESS** | 待独立 Reviewer 签发 G6 |
