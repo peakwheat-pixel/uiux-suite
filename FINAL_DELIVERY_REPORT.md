@@ -1,14 +1,14 @@
 # UIUX Suite V1.3.3 最终交付报告
 
-> 剩余外部阻断：真实工作台应用级试点、其他 Agent 宿主、真实 CI runner 需用户授权/外部环境；详见 `docs/BLOCKERS.md`。
+> 本轮已完成真实 New Manga 隔离副本试点、受控 UI/UX 改造与 GitHub Hosted CI；剩余未完成项：T5.3 导出/撤销受产品侧限制、T5.4 独立 G6、T4.2 其他 Agent 宿主实测。
 >
-> 结论先行：**Release Candidate 2（RC2，整体 PARTIAL）**。契约闭环、Stage 0–2、检测器、安装/发行包与证据体系已实现并通过机器验收；Stage 3 的 Tauri/WDIO 与其他框架真机路径、Stage 5 真实工作台交互与独立 G6 仍未验证，已在 `docs/RELEASE_NOTES.md` 与各 Stage 验收记录中明确标注，**不宣称 G6 PASS**。
+> 结论先行：**Release Candidate 3（RC3，整体 PARTIAL）**。契约闭环、Stage 0–2、检测器、安装/发行包与证据体系已实现并通过机器验收；Stage 3 的 Tauri/WDIO 与其他框架真机路径、Stage 5 真实工作台交互与独立 G6 仍未验证，已在 `docs/RELEASE_NOTES.md` 与各 Stage 验收记录中明确标注，**不宣称 G6 PASS**。
 
 ## 1. 交付物
 
 | 交付物 | 位置 |
 |---|---|
-| 可安装 ZIP（149 个载荷文件 + `RELEASE_MANIFEST.json`，ZIP 共 150 项，含 7 wheels） | [`dist/uiux-suite-1.3.3-win64.zip`](dist/uiux-suite-1.3.3-win64.zip) |
+| 可安装 ZIP（151 个载荷文件 + `RELEASE_MANIFEST.json`，ZIP 共 152 项，含 7 wheels） | [`dist/uiux-suite-1.3.3-win64.zip`](dist/uiux-suite-1.3.3-win64.zip) |
 | ZIP SHA256 | 见 `dist/SHA256SUMS.txt`（每次构建以该文件与 `evidence/T5.5` 为准） |
 | ZIP 与逐文件 SHA256 | [`dist/SHA256SUMS.txt`](dist/SHA256SUMS.txt) |
 | 规范 | [`SPEC_V1.3.3.md`](SPEC_V1.3.3.md) |
@@ -27,7 +27,10 @@
 - **Stage 3 DONE**：受控改动/回滚、Tauri WDIO IPC、PySide6 QPA、Win11 Notepad UIA、WPF UIA/对话框/菜单。
 - **Tauri Native IPC**：Tauri 2 应用 + embedded `@wdio/tauri-service`，真实启动并调用 Rust `greet` IPC，断言返回 `Hello, DSH-Native-IPC`；截图/日志哈希见 `evidence/T3.2/`。
 - **独立 GT**：Reviewer 盲标 18/18 与冻结 GT 完全一致（未读 annotations）；`evidence/T1.1/independent-annotation.json`。
-- **安全/CI**：M6 输入分权（全局物理输入默认拒绝）、M8 构建守卫（白名单/网络/越界）、M14 qa-report 指标、M10 本地 CI runner（真实 hosted runner 未验证）；m1/m2/m3/m5/m8 文档齐备。
+- **安全/CI**：M6 输入分权（全局物理输入默认拒绝）、M8 构建守卫（白名单/网络/越界）、M14 qa-report 指标、M10 GitHub Hosted CI 已实测成功；m1/m2/m3/m5/m8 文档齐备。
+- **真实 New Manga 隔离试点（T5.1/T5.2 DONE）**：完整复制 15.8GB/62,350 文件到 `G:\AI\uiux-workbench-copy`；真实 Tauri 应用启动（packaged core-sidecar）；创建作品/章节、native folder picker 导入 3 页、重复导入 skip 3、阅读器 1/3→3/3；真实 DOM/UIA/截图证据见 `evidence/T5.1`；源项目 HEAD/脏状态基线与文件哈希未变。
+- **真实 UI/UX 改造**：分组工具栏、未开放能力折叠、空态步骤引导、32px 最小目标、12/14px 字号、focus-visible、导入目标预选修复；真实应用前后截图为证（`evidence/T5.2`），功能回归通过。
+- **GitHub Hosted CI（M10 DONE）**：公开仓库 `https://github.com/peakwheat-pixel/uiux-suite`；commit `1ae2f8e` 上 `CI` 与 `stage1-contract-and-detectors` 两个 workflow 均 success；运行链接 `https://github.com/peakwheat-pixel/uiux-suite/actions/runs/40040199191`。
 - **Stage 5 基线**：对 `New Manga` 的隔离源码副本（3435 文件）做只读 discovery/style 扫描；合成 Qt 参考应用完成导入→浏览→画布→编辑→保存→导出→撤销→异常→画布拖拽→快捷键→焦点顺序 12/12 E2E（NATIVE_QT_APP），before/after 指标：字号 11→14、目标 22→38px、对比度 2.08→15.8。
 
 ## 3. 机器验收
@@ -46,13 +49,12 @@ $env:PYTHONPATH='runtime'
 
 | 项 | 状态 | 原因 |
 |---|---|---|
-| T3.4 WPF/原生对话框/WinUI 点击 | PARTIAL | 仅 Win11 Notepad（WinUI 3） UIA 控制视图只读 |
-| T5.1/T5.2 真实工作台交互/前后测量 | PARTIAL | 合成应用 E2E 9/9 + before/after 已完成；New Manga 仅静态基线，应用未启动 |
-| T5.3 真实项目数据安全 | PARTIAL | 仅代码/测试级回滚 |
+| T5.1/T5.2 真实工作台交互/前后测量 | **DONE** | 真实应用启动、导入 3 页、重复 skip、阅读器；真实前后截图与指标 |
+| T5.3 数据安全/回滚 | **IN_PROGRESS** | 取消/重复跳过/DB/源未变/Git 回滚 PASS；导出需 translated artifact，撤销/重做产品未提供 |
 | T5.4 独立 G6 | IN_PROGRESS | 待独立 Reviewer 最终签发 |
-| M10 CI runner | IN_PROGRESS | workflow 已提交，未在真实 runner 执行 |
+| M10 CI runner | **DONE** | GitHub Hosted CI 两个 workflow 在 1ae2f8e success |
 | MCP/断点恢复 | UNVERIFIED | 宿主无实例 |
-| 其他 Agent 宿主 | UNVERIFIED | 未安装/未实测 |
+| 其他 Agent 宿主 | PARTIAL/UNVERIFIED | DSH 实测；Codex/Claude/ZCode/AGY/Qoder 未完成隔离发现测试 |
 
 ## 5. 使用方式
 
