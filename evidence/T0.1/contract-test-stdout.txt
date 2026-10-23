@@ -1,0 +1,6 @@
+........................................................................ [ 70%]
+..............................                                           [100%]
+- generated xml file: G:\AI\universal-uiux-engineering\evidence\T0.1\junit.xml -
+102 passed in 1.95s
+
+--- STDERR ---
