@@ -248,6 +248,15 @@
     "RetentionPolicy": {
       "values": ["run_default", "release_audit", "manual"]
     },
+    "RuleCategory": {
+      "values": ["COLOR", "TYPE", "SPACE", "FLOW", "GEOM", "A11Y", "COPY", "STATE", "MOTION"]
+    },
+    "DetectorKind": {
+      "values": ["style_token_linter", "ux_flow_validator", "layout_geometry_probe", "accessibility_checker"]
+    },
+    "RuleScope": {
+      "values": ["web", "tauri", "qt", "winui", "wpf", "flows", "any"]
+    },
     "Capability": {
       "values": ["async_load", "collection_display", "user_mutation", "long_running_task", "destructive_operations", "canvas_rendering"]
     },

@@ -30,6 +30,8 @@ SCHEMA_FILES: dict[str, str] = {
     "policy": "policy.v1.3.3.schema.json",
     "host-capability": "host-capability.v1.3.3.schema.json",
     "flows": "flows.v1.3.3.schema.json",
+    "rule-catalog": "rule-catalog.v1.3.3.schema.json",
+    "rule-exemption": "rule-exemption.v1.3.3.schema.json",
 }
 
 

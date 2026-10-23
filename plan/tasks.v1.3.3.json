@@ -123,22 +123,22 @@
       "id": "T1.0",
       "title": "规则目录与 Rule ID 冻结",
       "stage": "Stage 1",
-      "status": "TODO",
+      "status": "DONE",
       "acceptance": "rule_id 注册表、严重度、豁免 schema 冻结；作为 T1.1/T1.2/T1.3 共同上游",
       "depends_on": [
         "T0.1"
       ],
       "due_before": "Stage 1 Exit",
-      "evidence": null,
+      "evidence": "knowledge/rules/catalog.v1.0.json; knowledge/rules/catalog.v1.0.freeze.json; tests/unit/test_rules.py",
       "files": [],
       "source": null,
-      "note": null
+      "note": "20 条规则、Rule ID 唯一、冻结摘要与豁免校验已测试。"
     },
     {
       "id": "T1.1",
       "title": "双栈正反 Fixtures 与冻结 GT",
       "stage": "Stage 1",
-      "status": "TODO",
+      "status": "IN_PROGRESS",
       "acceptance": "Web/Tauri 与 Qt 正负样本含预期结果、Rule ID、环境与截图；独立标注记录",
       "depends_on": [
         "T0.1",
@@ -154,7 +154,7 @@
       "id": "T1.2",
       "title": "style_token_linter（AST/CSS/QSS 分级规则）",
       "stage": "Stage 1",
-      "status": "TODO",
+      "status": "IN_PROGRESS",
       "acceptance": "硬失败/告警分级；豁免审计；正反样本零误判硬 FAIL",
       "depends_on": [
         "T1.0",

@@ -118,9 +118,9 @@ TASKS: list[dict] = [
         note="安装后从 C:\\ 运行 doctor exit 0；suite-link/record 无开发仓绝对路径；测试覆盖删源码树。",
     ),
     # ---------------- Stage 1 ----------------
-    task("T1.0", "规则目录与 Rule ID 冻结", "Stage 1", "TODO", "rule_id 注册表、严重度、豁免 schema 冻结；作为 T1.1/T1.2/T1.3 共同上游", depends_on=["T0.1"], due_before="Stage 1 Exit"),
-    task("T1.1", "双栈正反 Fixtures 与冻结 GT", "Stage 1", "TODO", "Web/Tauri 与 Qt 正负样本含预期结果、Rule ID、环境与截图；独立标注记录", depends_on=["T0.1", "T1.0"], due_before="Stage 1 Exit", source="M13/m4"),
-    task("T1.2", "style_token_linter（AST/CSS/QSS 分级规则）", "Stage 1", "TODO", "硬失败/告警分级；豁免审计；正反样本零误判硬 FAIL", depends_on=["T1.0", "T1.1"], due_before="Stage 1 Exit"),
+    task("T1.0", "规则目录与 Rule ID 冻结", "Stage 1", "DONE", "rule_id 注册表、严重度、豁免 schema 冻结；作为 T1.1/T1.2/T1.3 共同上游", depends_on=["T0.1"], due_before="Stage 1 Exit", evidence="knowledge/rules/catalog.v1.0.json; knowledge/rules/catalog.v1.0.freeze.json; tests/unit/test_rules.py", note="20 条规则、Rule ID 唯一、冻结摘要与豁免校验已测试。"),
+    task("T1.1", "双栈正反 Fixtures 与冻结 GT", "Stage 1", "IN_PROGRESS", "Web/Tauri 与 Qt 正负样本含预期结果、Rule ID、环境与截图；独立标注记录", depends_on=["T0.1", "T1.0"], due_before="Stage 1 Exit", source="M13/m4"),
+    task("T1.2", "style_token_linter（AST/CSS/QSS 分级规则）", "Stage 1", "IN_PROGRESS", "硬失败/告警分级；豁免审计；正反样本零误判硬 FAIL", depends_on=["T1.0", "T1.1"], due_before="Stage 1 Exit"),
     task("T1.3", "ux_flow_validator（Schema + 能力交叉发现）", "Stage 1", "TODO", "flows.json 校验；静态与契约能力差异告警；destructive 漏报触发 WARN/FAIL", depends_on=["T1.0", "T1.1"], due_before="Stage 1 Exit"),
     task("T1.4", "layout_geometry_probe（Web DOM / Qt Offscreen 真实测量）", "Stage 1", "TODO", "裁切/对比度/间距测量；合法负样本零硬 FAIL；Offscreen 结果标注 SIMULATED", depends_on=["T1.1"], due_before="Stage 1 Exit"),
     task("T1.5", "Runner/Gate 引擎完整化（G0–G5 工具日志与证据闭环）", "Stage 1", "IN_PROGRESS", "finalize 从真实工具日志重算；拒绝伪造 PASS；CLI 退出码稳定", depends_on=["T0.1"], due_before="Stage 1 Exit"),

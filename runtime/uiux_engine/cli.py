@@ -17,7 +17,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from . import contracts, enums, gates, policy, snapshot, validation
+from . import contracts, enums, gates, policy, rules, snapshot, validation
 
 EXIT_OK = 0
 EXIT_USAGE = 2
@@ -98,6 +98,26 @@ def cmd_validate(args: argparse.Namespace) -> int:
         return _invalid(errors, context=f"schema={args.schema}")
     _emit({"ok": True, "schema": args.schema, "instance": args.instance})
     return EXIT_OK
+
+
+def cmd_rules(args: argparse.Namespace) -> int:
+    try:
+        catalog = rules.load_catalog(args.catalog)
+    except (OSError, ValueError) as exc:
+        return _invalid([str(exc)], context="rule catalog")
+    problems = rules.semantic_problems(catalog)
+    freeze = rules.verify_frozen() if not args.catalog else []
+    all_problems = problems + freeze
+    payload = {
+        "ok": not all_problems,
+        "catalog_version": catalog.get("catalog_version"),
+        "rules_count": len(catalog.get("rules", [])),
+        "sha256": rules.canonical_digest(catalog),
+        "frozen": not freeze,
+        "errors": all_problems,
+    }
+    _emit(payload)
+    return EXIT_OK if not all_problems else EXIT_INVALID
 
 
 def cmd_snapshot(args: argparse.Namespace) -> int:
@@ -350,6 +370,10 @@ def build_parser() -> argparse.ArgumentParser:
     p_policy.add_argument("--mode", choices=sorted(enums.values("Mode")))
     p_policy.add_argument("--request")
     p_policy.set_defaults(func=cmd_policy)
+
+    p_rules = sub.add_parser("rules", help="validate the frozen rule catalog (T1.0)")
+    p_rules.add_argument("--catalog")
+    p_rules.set_defaults(func=cmd_rules)
 
     p_snapshot = sub.add_parser("snapshot", help="non-Git directory digest / snapshot diff (M17)")
     p_snapshot.add_argument("--root")

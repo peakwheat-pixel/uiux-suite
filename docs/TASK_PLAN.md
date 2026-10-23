@@ -12,9 +12,9 @@
 | T0.4 | Stage 0 | DONE | Stage 0 Exit | T0.1 | doctor：能力、根目录、遮蔽、退出码与 --json | READY/MISSING/INCOMPATIBLE/UNVERIFIED 逐项输出；解析 DSH_AGENTS_HOME/DSH_HOME；遮蔽列表；host-capabi... |
 | T0.5 | Stage 0 | DONE | Stage 0 Exit | T0.1 | 许可证清单、离线依赖与版本锁定 | THIRD_PARTY_NOTICES.md 逐文件来源/许可；requirements.lock；离线安装路径可复现 |
 | T0.6 | Stage 0 | DONE | Stage 0 Exit | T0.2, T0.3 | 独立运行验证（删除开发仓回归） | 删除/移动开发仓后安装实例仍可 doctor + 最小 CLI；失败原因可诊断 |
-| T1.0 | Stage 1 | TODO | Stage 1 Exit | T0.1 | 规则目录与 Rule ID 冻结 | rule_id 注册表、严重度、豁免 schema 冻结；作为 T1.1/T1.2/T1.3 共同上游 |
-| T1.1 | Stage 1 | TODO | Stage 1 Exit | T0.1, T1.0 | 双栈正反 Fixtures 与冻结 GT | Web/Tauri 与 Qt 正负样本含预期结果、Rule ID、环境与截图；独立标注记录 |
-| T1.2 | Stage 1 | TODO | Stage 1 Exit | T1.0, T1.1 | style_token_linter（AST/CSS/QSS 分级规则） | 硬失败/告警分级；豁免审计；正反样本零误判硬 FAIL |
+| T1.0 | Stage 1 | DONE | Stage 1 Exit | T0.1 | 规则目录与 Rule ID 冻结 | rule_id 注册表、严重度、豁免 schema 冻结；作为 T1.1/T1.2/T1.3 共同上游 |
+| T1.1 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T0.1, T1.0 | 双栈正反 Fixtures 与冻结 GT | Web/Tauri 与 Qt 正负样本含预期结果、Rule ID、环境与截图；独立标注记录 |
+| T1.2 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T1.0, T1.1 | style_token_linter（AST/CSS/QSS 分级规则） | 硬失败/告警分级；豁免审计；正反样本零误判硬 FAIL |
 | T1.3 | Stage 1 | TODO | Stage 1 Exit | T1.0, T1.1 | ux_flow_validator（Schema + 能力交叉发现） | flows.json 校验；静态与契约能力差异告警；destructive 漏报触发 WARN/FAIL |
 | T1.4 | Stage 1 | TODO | Stage 1 Exit | T1.1 | layout_geometry_probe（Web DOM / Qt Offscreen 真实测量） | 裁切/对比度/间距测量；合法负样本零硬 FAIL；Offscreen 结果标注 SIMULATED |
 | T1.5 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T0.1 | Runner/Gate 引擎完整化（G0–G5 工具日志与证据闭环） | finalize 从真实工具日志重算；拒绝伪造 PASS；CLI 退出码稳定 |
@@ -73,6 +73,6 @@
 | 状态 | 数量 |
 |---|---|
 | BLOCKED | 0 |
-| DONE | 17 |
-| IN_PROGRESS | 1 |
-| TODO | 43 |
+| DONE | 18 |
+| IN_PROGRESS | 3 |
+| TODO | 40 |

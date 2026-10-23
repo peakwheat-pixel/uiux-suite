@@ -71,6 +71,8 @@ def collect_inputs() -> dict[str, str]:
         "THIRD_PARTY_NOTICES.md",
         "docs/*.md",
         "docs/audits/*.md",
+        "knowledge/**/*.json",
+        "knowledge/**/*.md",
         "plan/*.json",
         "requirements*.txt",
     ]
