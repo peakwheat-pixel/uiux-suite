@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.3.3",
+  "evidence_id": "EV-T4.2-HOST-MATRIX",
+  "kind": "tool_log",
+  "generated_at": "2026-10-23T23:54:25.192065+00:00",
+  "scope": "isolated project G:\\AI\\agent-compat\\agy-project; suite installed via scripts/setup_skill.py --host generic --scope project",
+  "suite": {
+    "version": "1.3.3",
+    "skills": [
+      "uiux",
+      "uiux-verify"
+    ],
+    "suite_link": "valid, manifest hashes verified by launcher"
+  },
+  "hosts": [
+    {
+      "host": "DSH",
+      "status": "VERIFIED",
+      "evidence": [
+        "evidence/T0.3/host-install-evidence.json",
+        "skills/uiux and skills/uiux-verify present in skill catalog"
+      ]
+    },
+    {
+      "host": "Antigravity (agy)",
+      "status": "VERIFIED",
+      "version": "1.4.4",
+      "command": "agy --dangerously-skip-permissions --print <prompt> --output-format json --add-dir G:\\AI\\agent-compat\\agy-project",
+      "conversation_id": "5664846b-2309-4247-b829-3cd03a00938a",
+      "observed": "discovered uiux skill, read SKILL.md, ran launch.py enums via suite-link, exit 0, manifest validation passed, replied AGY-SKILL-OK",
+      "duration_seconds": 166.24
+    },
+    {
+      "host": "Codex",
+      "status": "PARTIAL",
+      "version": "codex-cli 0.162.0",
+      "command": "codex exec -s read-only --skip-git-repo-check -C G:\\AI\\agent-compat\\agy-project <prompt>",
+      "observed": "listed uiux and uiux-verify, read .agents/skills/uiux/SKILL.md, confirmed 1.3.3, replied CODEX-SKILL-OK; shell launch blocked by Codex helper_unknown_error (sandbox helper refresh), so no runtime invocation"
+    },
+    {
+      "host": "Claude Code",
+      "status": "UNVERIFIED",
+      "reason": "not tested in this round"
+    },
+    {
+      "host": "ZCode",
+      "status": "UNVERIFIED",
+      "reason": "not tested in this round"
+    },
+    {
+      "host": "Qoder",
+      "status": "UNVERIFIED",
+      "reason": "not tested in this round"
+    }
+  ],
+  "conclusion": "DSH and Antigravity verified; Codex verifies discovery/read but not launch; remaining hosts remain UNVERIFIED. Matrix does not claim universal compatibility.",
+  "limitations": [
+    "Host prompts were model calls; cost/time recorded, no private data sent.",
+    "AGY runtime launch used the installed suite-link; Codex runtime launch was blocked by its own sandbox helper.",
+    "No Claude/ZCode/Qoder calls were made."
+  ]
+}
