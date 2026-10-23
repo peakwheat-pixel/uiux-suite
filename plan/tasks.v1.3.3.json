@@ -786,16 +786,16 @@
       "id": "M16",
       "title": "附录命令一致性",
       "stage": "Stage 5",
-      "status": "TODO",
-      "acceptance": "统一 python 解释器与引号；附录拆分 Stage 0/1 与 2/3",
+      "status": "DONE",
+      "acceptance": "统一 python 解释器与引号；附录命令与 CLI 一致",
       "depends_on": [
         "T5.5"
       ],
       "due_before": "Stage 5 Exit",
-      "evidence": null,
+      "evidence": "scripts/check_command_consistency.py; evidence/T1.0/command-consistency.json; docs/CLI.md",
       "files": [],
-      "source": "MAJOR",
-      "note": null
+      "source": null,
+      "note": "文档命令统一为 .venv\\Scripts\\python.exe；setup_skill/launch 路径存在；检查 0 issue。"
     },
     {
       "id": "M17",

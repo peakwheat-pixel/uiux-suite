@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.3.3",
+  "evidence_id": "EV-M16-COMMAND-CONSISTENCY",
+  "kind": "tool_log",
+  "generated_at": "2026-10-23T21:11:00.274595+00:00",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "fe5d36c178e991d7ff70fc7c2ef958d7adc6786308c4c40951ca603680fa6e65"
+    },
+    {
+      "path": "docs\\INSTALL.md",
+      "sha256": "529ad9b697d5ea372a35f4a453aa12d541247ab68232e60e4cceb4ae76a26bc2"
+    },
+    {
+      "path": "docs\\CLI.md",
+      "sha256": "4b2af1ac2651ff297b72d53705e12aaf630d7349bc79250247d9a1820c2e2bb3"
+    }
+  ],
+  "checks": [
+    "venv interpreter in install commands",
+    "setup_skill/launch paths exist",
+    "no bare uiux_engine module invocation"
+  ],
+  "issues": [],
+  "ok": true,
+  "generator": {
+    "path": "scripts/check_command_consistency.py",
+    "sha256": "959bac7f246534fa765f02185b0c0781badeab28645d3ce96fc7e568626d2bba"
+  },
+  "limitations": [
+    "Static documentation check only; does not execute every command."
+  ]
+}

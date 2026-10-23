@@ -1,6 +1,6 @@
 # CLI 契约（V1.3.3）
 
-入口：`python -m uiux_engine.cli`（`cwd=runtime` 或 `PYTHONPATH=runtime`）。
+入口：`.\.venv\Scripts\python.exe -m uiux_engine.cli`（`cwd=runtime` 或 `PYTHONPATH=runtime`）。
 
 ## 命令
 
@@ -48,8 +48,8 @@ $env:PYTHONPATH = "runtime"
 ## 非 Git 快照（M17）
 
 ```powershell
-python -m uiux_engine.cli snapshot --root "G:\project" --out "G:\project\.uiux\state\snapshot.json" --backup "G:\backup\project"
-python -m uiux_engine.cli snapshot --diff before.json after.json
+.\.venv\Scripts\python.exe -m uiux_engine.cli snapshot --root "G:\project" --out "G:\project\.uiux\state\snapshot.json" --backup "G:\backup\project"
+.\.venv\Scripts\python.exe -m uiux_engine.cli snapshot --diff before.json after.json
 ```
 
 - `snapshot` 输出 `file_count` 与 `digest`；忽略 `.git/.venv/__pycache__/node_modules` 与符号链接。
@@ -60,18 +60,18 @@ python -m uiux_engine.cli snapshot --diff before.json after.json
 
 ```powershell
 # 用户级安装（DSH_AGENTS_HOME 可覆盖默认 ~/.agents）
-python scripts\setup_skill.py install --scope user --host dsh --version 1.3.3
+.\.venv\Scripts\python.exe scripts\setup_skill.py install --scope user --host dsh --version 1.3.3
 
 # 项目级安装
-python scripts\setup_skill.py install --scope project --project "G:\demo" --host generic
+.\.venv\Scripts\python.exe scripts\setup_skill.py install --scope project --project "G:\demo" --host generic
 
 # doctor：输出 host-capability JSON（root/rank/shadowed_by/能力）
-python scripts\setup_skill.py doctor --scope user [--project G:\demo] [--out host-capability.json]
+.\.venv\Scripts\python.exe scripts\setup_skill.py doctor --scope user [--project G:\demo] [--out host-capability.json]
 
 # 升级/回滚/修复/卸载
-python scripts\setup_skill.py upgrade  --scope user --source . --version 1.3.4
-python scripts\setup_skill.py rollback --scope user --version 1.3.3
-python scripts\setup_skill.py repair   --scope user
+.\.venv\Scripts\python.exe scripts\setup_skill.py upgrade  --scope user --source . --version 1.3.4
+.\.venv\Scripts\python.exe scripts\setup_skill.py rollback --scope user --version 1.3.3
+.\.venv\Scripts\python.exe scripts\setup_skill.py repair   --scope user
 python scripts\uninstall_skill.py --scope user --version 1.3.3
 ```
 

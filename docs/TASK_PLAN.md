@@ -56,7 +56,7 @@
 | M13 | Stage 1 | DONE | Stage 1 Exit | T1.1 | 靶场 GT 独立标注与阻断种子 | 独立标注/仲裁；与冻结 GT 对照 |
 | M14 | Stage 3 | DONE | Stage 3 Exit | T0.1 | P0–P3 分级与可观测安全指标 | P0–P3 + qa-report schema + 指标 |
 | M15 | Stage 0 | DONE | T0.1 | — | DAG 循环与遗漏修复 | T1.0 作为共同上游；DAG 补齐 T0.4/T0.6/T1.7/T2.4/T2.6；编号修正 |
-| M16 | Stage 5 | TODO | Stage 5 Exit | T5.5 | 附录命令一致性 | 统一 python 解释器与引号；附录拆分 Stage 0/1 与 2/3 |
+| M16 | Stage 5 | DONE | Stage 5 Exit | T5.5 | 附录命令一致性 | 统一 python 解释器与引号；附录命令与 CLI 一致 |
 | M17 | Stage 0 | DONE | T0.2 | T0.1 | 非 Git 快照与回退 | dir_digest + 备份副本 + 差异哈希；回滚路径 |
 | M18 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T1.0 | 无障碍维度与 Rule ID | accessible name/键盘/target size/ARIA-UIA 语义规则 |
 | m1 | Stage 3 | DONE | Stage 3 Exit | — | Prompt Injection 威胁模型 | 威胁模型与缓解 |
@@ -73,6 +73,6 @@
 | 状态 | 数量 |
 |---|---|
 | BLOCKED | 0 |
-| DONE | 53 |
+| DONE | 54 |
 | IN_PROGRESS | 7 |
-| TODO | 1 |
+| TODO | 0 |
