@@ -19,14 +19,14 @@
 | 规则与检测器 | 冻结 20 条；style/flow/geometry/discovery/design-system/component/prototype/options | `knowledge/rules/`、`tests/unit/test_*.py`、`qa/confusion-matrix.json` |
 | Stage 3 安全 | modify/vault/integrity/safety/uia | `runtime/uiux_engine/*.py`、`tests/unit/test_*` |
 | 宿主兼容 | DSH 实测；其他宿主 UNVERIFIED；退化 ReasonCode | `docs/COMPATIBILITY.md`、`compat.py` |
-| 发行 | 144 载荷 + manifest ZIP、SHA256SUMS、安装验证 | `dist/`、`evidence/T5.5/` |
+| 发行 | 145 载荷 + manifest ZIP、SHA256SUMS、安装验证 | `dist/`、`evidence/T5.5/` |
 
 ## 3. Stage 状态
 
 | Stage | 状态 | 说明 |
 |---|---|---|
 | 0 | **DONE / FROZEN** | T0.1 独立复核 PASS；T0.2–T0.6、M5 有机器证据 |
-| 1 | PARTIAL | T1.0–T1.3/T1.5–T1.7 DONE；T1.4 真实探针转 T3.3 |
+| 1 | PARTIAL | T1.0–T1.3/T1.5–T1.7 DONE；T1.4 部分；M13 独立 GT DONE |
 | 2 | **DONE** | T2.1–T2.6、M11、M12 均有测试/证据 |
 | 3 | PARTIAL | T3.1/T3.2/T3.3/T3.5/T3.6 DONE；T3.4 WinUI3 UIA 只读 |
 | 4 | PARTIAL | T4.1/T4.3/T4.4 DONE；T4.2 其他宿主 UNVERIFIED |
