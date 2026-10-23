@@ -1,0 +1,6 @@
+{
+  "ok": true,
+  "text": "Hello, DSH-Native-IPC! You've been greeted from Rust!",
+  "screenshot": "tauri-wdio-ipc.png",
+  "screenshot_sha256": "c648bbf066c46d449a897a8d4cbb11293374eb519833aad7032b67d4be3848a2"
+}

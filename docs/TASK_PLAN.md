@@ -27,7 +27,7 @@
 | T2.5 | Stage 2 | DONE | Stage 2 Exit | T2.2, T2.3 | design-only 与 prototype（≥2 方案比较） | 两套可比较原型与取舍证据；不先写生产代码 |
 | T2.6 | Stage 2 | DONE | Stage 2 Exit | T2.3 | 设计系统权威与存量组件采纳/漂移检测 | brownfield 采纳流程；token drift 检查；冲突优先级 |
 | T3.1 | Stage 3 | DONE | Stage 3 Exit | T2.5 | 受控改造与 G4 范围校验 | 改动在 write scope 内；可回退；G4 证据完整 |
-| T3.2 | Stage 3 | IN_PROGRESS | Stage 3 Exit | T3.1 | Tauri .exe + WDIO Native IPC 验证 | 至少一个非 Mock Rust IPC 场景；驱动握手与权限记录 |
+| T3.2 | Stage 3 | DONE | Stage 3 Exit | T3.1 | Tauri .exe + WDIO Native IPC 验证 | Tauri 2 应用真实启动；WDIO 调用 Rust IPC 命令并验证返回 |
 | T3.3 | Stage 3 | DONE | Stage 3 Exit | T3.1 | PySide6 Windows Native QPA 与 DPI 验证 | 100/125/150% DPI、中文字体、分栏与焦点 |
 | T3.4 | Stage 3 | IN_PROGRESS | Stage 3 Exit | T3.2, T3.3 | OS 集成测试（原生对话框/菜单） | 隔离测试环境；UIA 优先；物理输入默认禁用；TOCTOU 说明 |
 | T3.5 | Stage 3 | DONE | Stage 3 Exit | T3.1 | 证据生命周期、脱敏与 Vault 退化验证 | 删除 Vault 后不得重新签发 PASS；脱敏后扫描；保留期策略 |
@@ -73,6 +73,6 @@
 | 状态 | 数量 |
 |---|---|
 | BLOCKED | 0 |
-| DONE | 49 |
-| IN_PROGRESS | 11 |
+| DONE | 50 |
+| IN_PROGRESS | 10 |
 | TODO | 1 |

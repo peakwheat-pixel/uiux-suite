@@ -7,7 +7,7 @@
 | 任务 | 状态 | 证据 |
 |---|---|---|
 | T3.1 受控改造与 G4 范围校验 | **DONE** | `modify.py` + change-plan schema；10 用例（scope/traversal/hash/回退/dry-run） |
-| T3.2 Tauri + WDIO Native IPC | **IN_PROGRESS（UNVERIFIED）** | 本机无 Tauri 示例/驱动，未伪造 |
+| T3.2 Tauri + WDIO Native IPC | **DONE** | Tauri 2 + embedded `@wdio/tauri-service`；`greet` IPC 返回 `Hello, DSH-Native-IPC`；`evidence/T3.2/tauri-wdio-evidence.json` |
 | T3.3 PySide6 Native QPA/DPI | **DONE** | `qt_probe.py` + `collect_qt_evidence.py`；`evidence/T3.3/qt-qpa-evidence.json`：NATIVE_QPA、DPR 1/1.25/1.5、CJK 字体；125/150 为 QT_SCALE_FACTOR 模拟 |
 | T3.4 OS 集成/UIA | **PARTIAL** | 真实 Win11 Notepad（WinUI 3） UIA 只读树（`evidence/T3.4/uia-probe.json`，NATIVE_UIA，53 元素）；WinUI/WPF/Qt 未验证 |
 | T3.5 证据 Vault 退化 | **DONE** | `vault.py`；字节级哈希、隔离、缺失检测（14 用例含 integrity/safety） |

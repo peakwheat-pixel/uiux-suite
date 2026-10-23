@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.3.3",
+  "evidence_id": "EV-T3.2-TAURI-WDIO",
+  "kind": "tool_log",
+  "runtime_level": "NATIVE_APP",
+  "generated_at": "2026-10-23T20:53:58.800778+00:00",
+  "git": {
+    "commit": "bc965ee2d45873fa90ee7b0ff09a9adbdfff32e7",
+    "dirty": true,
+    "dirty_scope": "tracked files excluding evidence/"
+  },
+  "app": {
+    "path": "G:\\AI\\tauri-lab\\src-tauri\\target\\release\\tauri-lab.exe",
+    "sha256": "b1723be175f6b396b34a3f1c24a499be15935705836aa025c65ac13c56000519",
+    "size": 5732352,
+    "framework": "Tauri 2 (vanilla-ts template)",
+    "plugins": [
+      "tauri-plugin-wdio-webdriver 1.5",
+      "tauri-plugin-wdio 1.5"
+    ],
+    "ipc_command": "greet(name) -> Hello, {name}! You've been greeted from Rust!",
+    "source_lab": "G:\\AI\\tauri-lab"
+  },
+  "driver": {
+    "provider": "embedded",
+    "service": "@wdio/tauri-service",
+    "browser": "msedge 155.0.4283.62"
+  },
+  "test": {
+    "spec": "test/specs/ipc.e2e.js",
+    "result": "1 passing",
+    "text": "Hello, DSH-Native-IPC! You've been greeted from Rust!",
+    "screenshot": {
+      "path": "evidence/T3.2/tauri-wdio-ipc.png",
+      "sha256": "c648bbf066c46d449a897a8d4cbb11293374eb519833aad7032b67d4be3848a2"
+    },
+    "log": {
+      "path": "evidence/T3.2/tauri-wdio-output.txt",
+      "sha256": "679c3b328269f6c9a3d7941ac80c4f8bc583a3b92b2a584db8ad338119b3b90d"
+    }
+  },
+  "versions": {
+    "rustc": "1.98.1",
+    "node": "24.15.0",
+    "npm": "12.0.1",
+    "edge": "155.0.4283.62"
+  },
+  "generator": {
+    "path": "scripts/collect_tauri_evidence.py",
+    "sha256": "845a40b797ec35818438ee95d6f958634056cf518692f018fea6bd6ef9dd2e90"
+  },
+  "limitations": [
+    "Test lab lives outside the repository; source config/spec are archived under evidence/T3.2/source/.",
+    "Only the default greet IPC command and DOM interaction were exercised.",
+    "No OS-level physical input; WebDriver drives the WebView.",
+    "The embedded provider uses the app's WebView2 WebDriver server, not EdgeDriver launching the app."
+  ]
+}

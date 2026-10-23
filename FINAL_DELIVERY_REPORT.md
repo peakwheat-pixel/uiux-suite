@@ -6,7 +6,7 @@
 
 | 交付物 | 位置 |
 |---|---|
-| 可安装 ZIP（143 个载荷文件 + `RELEASE_MANIFEST.json`，ZIP 共 144 项，含 7 wheels） | [`dist/uiux-suite-1.3.3-win64.zip`](dist/uiux-suite-1.3.3-win64.zip) |
+| 可安装 ZIP（144 个载荷文件 + `RELEASE_MANIFEST.json`，ZIP 共 145 项，含 7 wheels） | [`dist/uiux-suite-1.3.3-win64.zip`](dist/uiux-suite-1.3.3-win64.zip) |
 | ZIP SHA256 | 见 `dist/SHA256SUMS.txt`（每次构建以该文件与 `evidence/T5.5` 为准） |
 | ZIP 与逐文件 SHA256 | [`dist/SHA256SUMS.txt`](dist/SHA256SUMS.txt) |
 | 规范 | [`SPEC_V1.3.3.md`](SPEC_V1.3.3.md) |
@@ -22,6 +22,7 @@
 - **Stage 0–2**：T0.1 独立复核 PASS；Stage 2 的 discovery/flows/Token 编译器（CSS/Tailwind/PySide6）/knowledge index/brownfield/prototype/options 全部 DONE。
 - **检测器**（SIMULATED 标注）：`style_token_linter`、`ux_flow_validator`、`layout_geometry_probe`、`discovery`、`design_system`、`component_matrix`、`prototype`、`options`。
 - **Stage 3**：受控改动/回滚、Vault 字节校验、哈希链/独立性、P0–P3 安全分级；**PySide6 Windows QPA 实测**（`NATIVE_QPA`，DPR 1/1.25/1.5，CJK 字体，截图哈希）；Win11 Notepad（WinUI 3）UIA 只读树。
+- **Tauri Native IPC**：Tauri 2 应用 + embedded `@wdio/tauri-service`，真实启动并调用 Rust `greet` IPC，断言返回 `Hello, DSH-Native-IPC`；截图/日志哈希见 `evidence/T3.2/`。
 - **安全/CI**：M6 输入分权（全局物理输入默认拒绝）、M8 构建守卫（白名单/网络/越界）、M14 qa-report 指标、M10 本地 CI runner（真实 hosted runner 未验证）；m1/m2/m3/m5/m8 文档齐备。
 - **Stage 5 基线**：对 `New Manga` 的隔离源码副本（3435 文件）做只读 discovery/style 扫描；合成 Qt 参考应用完成导入→浏览→画布→编辑→保存→导出→撤销→异常→画布拖拽→快捷键→焦点顺序 12/12 E2E（NATIVE_QT_APP），before/after 指标：字号 11→14、目标 22→38px、对比度 2.08→15.8。
 
@@ -41,7 +42,6 @@ $env:PYTHONPATH='runtime'
 
 | 项 | 状态 | 原因 |
 |---|---|---|
-| T3.2 Tauri + WDIO Native IPC | UNVERIFIED | 本机无 Tauri 示例/驱动，未伪造 Native IPC |
 | T3.4 原生对话框/WinUI/WPF/Qt 点击 | PARTIAL | 仅 Win11 Notepad（WinUI 3） UIA 控制视图只读 |
 | T5.1/T5.2 真实工作台交互/前后测量 | PARTIAL | 合成应用 E2E 9/9 + before/after 已完成；New Manga 仅静态基线，应用未启动 |
 | T5.3 真实项目数据安全 | PARTIAL | 仅代码/测试级回滚 |
@@ -72,4 +72,4 @@ python skills\uiux\scripts\launch.py doctor --scope user
 
 ## 7. 结论
 
-本版本可作为**受控试用的 Release Candidate 2**：契约、安装、双入口、Stage 0–2、静态检测器、Qt QPA、证据链与发行包均可用且有机器证据；但**不是完整 G6 发布**。完成 T3.2/T3.4 真机验证、T5.1/T5.2 应用级试点与独立 G6 复审后，才可升级为正式发布。
+本版本可作为**受控试用的 Release Candidate 2**：契约、安装、双入口、Stage 0–2、静态检测器、Qt QPA、证据链与发行包均可用且有机器证据；但**不是完整 G6 发布**。完成 T3.4 其他框架、T5.1/T5.2 真实应用级试点与独立 G6 复审后，才可升级为正式发布。

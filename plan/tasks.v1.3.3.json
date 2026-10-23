@@ -352,16 +352,16 @@
       "id": "T3.2",
       "title": "Tauri .exe + WDIO Native IPC 验证",
       "stage": "Stage 3",
-      "status": "IN_PROGRESS",
-      "acceptance": "至少一个非 Mock Rust IPC 场景；驱动握手与权限记录",
+      "status": "DONE",
+      "acceptance": "Tauri 2 应用真实启动；WDIO 调用 Rust IPC 命令并验证返回",
       "depends_on": [
         "T3.1"
       ],
       "due_before": "Stage 3 Exit",
-      "evidence": null,
+      "evidence": "evidence/T3.2/tauri-wdio-evidence.json; evidence/T3.2/source; scripts/collect_tauri_evidence.py",
       "files": [],
       "source": null,
-      "note": "本机无 Tauri 示例/驱动，未伪造 Native IPC 证据。"
+      "note": "外部 Tauri 2 lab：embedded @wdio/tauri-service，greet IPC 返回 Hello, DSH-Native-IPC；截图/日志哈希已记录。仅默认 greet 与 DOM 交互。"
     },
     {
       "id": "T3.3",

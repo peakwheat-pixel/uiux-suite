@@ -1,0 +1,119 @@
+npm notice run tauri-lab@0.1.0 npx
+npm notice run wdio run wdio.conf.js
+
+Execution of 1 workers started at 2026-10-23T20:52:35.981Z
+
+[0-0] RUNNING in undefined - file:///G:/AI/tauri-lab/test/specs/ipc.e2e.js
+[0-0] 2026-10-23T20:52:38.212Z ERROR tauri-service:service: before() failed at stage="addTauriApi:single" — mode=binary provider=embedded multiremote=undefined TypeError: Cannot read properties of undefined (reading 'bind')
+[0-0]     at TauriWorkerService.patchBrowserExecute (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:4395:59)
+[0-0]     at TauriWorkerService.before (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3988:22)
+[0-0]     at file:///G:/AI/tauri-lab/node_modules/@wdio/utils/build/index.js:1213:22
+[0-0]     at new Promise (<anonymous>)
+[0-0]     at file:///G:/AI/tauri-lab/node_modules/@wdio/utils/build/index.js:1210:45
+[0-0]     at Array.map (<anonymous>)
+[0-0]     at executeHooksWithArgs (file:///G:/AI/tauri-lab/node_modules/@wdio/utils/build/index.js:1210:31)
+[0-0]     at Runner.run (file:///G:/AI/tauri-lab/node_modules/@wdio/runner/build/index.js:769:11)
+[0-0]     at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+[0-0] 2026-10-23T20:52:38.214Z ERROR @wdio/utils:shim: TypeError: Cannot read properties of undefined (reading 'bind')
+[0-0]     at TauriWorkerService.patchBrowserExecute (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:4395:59)
+[0-0]     at TauriWorkerService.before (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3988:22)
+[0-0]     at file:///G:/AI/tauri-lab/node_modules/@wdio/utils/build/index.js:1213:22
+[0-0]     at new Promise (<anonymous>)
+[0-0]     at file:///G:/AI/tauri-lab/node_modules/@wdio/utils/build/index.js:1210:45
+[0-0]     at Array.map (<anonymous>)
+[0-0]     at executeHooksWithArgs (file:///G:/AI/tauri-lab/node_modules/@wdio/utils/build/index.js:1210:31)
+[0-0]     at Runner.run (file:///G:/AI/tauri-lab/node_modules/@wdio/runner/build/index.js:769:11)
+[0-0]     at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+[0-0] 2026-10-23T20:52:43.268Z WARN tauri-service:window: Failed to get window states: Error: Tauri core.invoke not available after 5s timeout
+[0-0]     at DirectEvalClient.eval (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:2878:19)
+[0-0]     at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+[0-0]     at async execute (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3317:25)
+[0-0]     at async Object.execute (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:4281:32)
+[0-0]     at async getWindowStates (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3050:24)
+[0-0]     at async ensureActiveWindowFocus (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3104:24)
+[0-0]     at async TauriWorkerService.beforeCommand (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:4081:13)
+[0-0]     at async Promise.all (index 0)
+[0-0]     at async Browser.executeHooksWithArgs (file:///G:/AI/tauri-lab/node_modules/@wdio/utils/build/index.js:1233:18)
+[0-0]     at async Browser.wrapCommandFn (file:///G:/AI/tauri-lab/node_modules/@wdio/utils/build/index.js:1417:7)
+[0-0] 2026-10-23T20:52:48.317Z WARN tauri-service:window: Failed to get window states: Error: Tauri core.invoke not available after 5s timeout
+[0-0]     at DirectEvalClient.eval (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:2878:19)
+[0-0]     at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+[0-0]     at async execute (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3317:25)
+[0-0]     at async Object.execute (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:4281:32)
+[0-0]     at async getWindowStates (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3050:24)
+[0-0]     at async ensureActiveWindowFocus (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3104:24)
+[0-0]     at async TauriWorkerService.beforeCommand (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:4081:13)
+[0-0]     at async Promise.all (index 0)
+[0-0]     at async Browser.executeHooksWithArgs (file:///G:/AI/tauri-lab/node_modules/@wdio/utils/build/index.js:1233:18)
+[0-0]     at async Browser.wrapCommandFn (file:///G:/AI/tauri-lab/node_modules/@wdio/utils/build/index.js:1417:7)
+[0-0] 2026-10-23T20:52:53.389Z WARN tauri-service:window: Failed to get window states: Error: Tauri core.invoke not available after 5s timeout
+[0-0]     at DirectEvalClient.eval (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:2878:19)
+[0-0]     at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+[0-0]     at async execute (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3317:25)
+[0-0]     at async Object.execute (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:4281:32)
+[0-0]     at async getWindowStates (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3050:24)
+[0-0]     at async ensureActiveWindowFocus (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3104:24)
+[0-0]     at async TauriWorkerService.beforeCommand (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:4081:13)
+[0-0]     at async Promise.all (index 0)
+[0-0]     at async Browser.executeHooksWithArgs (file:///G:/AI/tauri-lab/node_modules/@wdio/utils/build/index.js:1233:18)
+[0-0]     at async Browser.wrapCommandFn (file:///G:/AI/tauri-lab/node_modules/@wdio/utils/build/index.js:1417:7)
+[0-0] 2026-10-23T20:52:58.441Z WARN tauri-service:window: Failed to get window states: Error: Tauri core.invoke not available after 5s timeout
+[0-0]     at DirectEvalClient.eval (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:2878:19)
+[0-0]     at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+[0-0]     at async execute (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3317:25)
+[0-0]     at async Object.execute (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:4281:32)
+[0-0]     at async getWindowStates (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3050:24)
+[0-0]     at async ensureActiveWindowFocus (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3104:24)
+[0-0]     at async TauriWorkerService.beforeCommand (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:4081:13)
+[0-0]     at async Promise.all (index 0)
+[0-0]     at async Browser.executeHooksWithArgs (file:///G:/AI/tauri-lab/node_modules/@wdio/utils/build/index.js:1233:18)
+[0-0]     at async Browser.wrapCommandFn (file:///G:/AI/tauri-lab/node_modules/@wdio/utils/build/index.js:1417:7)
+[0-0] 2026-10-23T20:53:03.491Z WARN tauri-service:window: Failed to get window states: Error: Tauri core.invoke not available after 5s timeout
+[0-0]     at DirectEvalClient.eval (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:2878:19)
+[0-0]     at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+[0-0]     at async execute (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3317:25)
+[0-0]     at async Object.execute (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:4281:32)
+[0-0]     at async getWindowStates (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3050:24)
+[0-0]     at async ensureActiveWindowFocus (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3104:24)
+[0-0]     at async TauriWorkerService.beforeCommand (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:4081:13)
+[0-0]     at async Promise.all (index 0)
+[0-0]     at async Element.executeHooksWithArgs (file:///G:/AI/tauri-lab/node_modules/@wdio/utils/build/index.js:1233:18)
+[0-0]     at async Element.wrapCommandFn (file:///G:/AI/tauri-lab/node_modules/@wdio/utils/build/index.js:1417:7)
+[0-0] 2026-10-23T20:53:08.535Z WARN tauri-service:window: Failed to get window states: Error: Tauri core.invoke not available after 5s timeout
+[0-0]     at DirectEvalClient.eval (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:2878:19)
+[0-0]     at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+[0-0]     at async execute (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3317:25)
+[0-0]     at async Object.execute (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:4281:32)
+[0-0]     at async getWindowStates (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3050:24)
+[0-0]     at async ensureActiveWindowFocus (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3104:24)
+[0-0]     at async TauriWorkerService.beforeCommand (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:4081:13)
+[0-0]     at async Promise.all (index 0)
+[0-0]     at async Browser.executeHooksWithArgs (file:///G:/AI/tauri-lab/node_modules/@wdio/utils/build/index.js:1233:18)
+[0-0]     at async Browser.wrapCommandFn (file:///G:/AI/tauri-lab/node_modules/@wdio/utils/build/index.js:1417:7)
+[0-0] 2026-10-23T20:53:13.590Z WARN tauri-service:window: Failed to get window states: Error: Tauri core.invoke not available after 5s timeout
+[0-0]     at DirectEvalClient.eval (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:2878:19)
+[0-0]     at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+[0-0]     at async execute (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3317:25)
+[0-0]     at async Object.execute (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:4281:32)
+[0-0]     at async getWindowStates (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3050:24)
+[0-0]     at async ensureActiveWindowFocus (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:3104:24)
+[0-0]     at async TauriWorkerService.beforeCommand (file:///G:/AI/tauri-lab/node_modules/@wdio/tauri-service/dist/esm/index.js:4081:13)
+[0-0]     at async Promise.all (index 0)
+[0-0]     at async Browser.executeHooksWithArgs (file:///G:/AI/tauri-lab/node_modules/@wdio/utils/build/index.js:1233:18)
+[0-0]     at async Browser.wrapCommandFn (file:///G:/AI/tauri-lab/node_modules/@wdio/utils/build/index.js:1417:7)
+[0-0] PASSED in undefined - file:///G:/AI/tauri-lab/test/specs/ipc.e2e.js
+
+ "spec" Reporter:
+------------------------------------------------------------------
+[msedge 155.0.0.0 windows #0-0] Running: msedge (v155.0.0.0) on windows
+[msedge 155.0.0.0 windows #0-0] Session ID: 1dff432f-4528-45cb-8a6a-2ed3cc3b4468
+[msedge 155.0.0.0 windows #0-0]
+[msedge 155.0.0.0 windows #0-0] » test\specs\ipc.e2e.js
+[msedge 155.0.0.0 windows #0-0] Tauri native IPC
+[msedge 155.0.0.0 windows #0-0]    ✓ invokes the Rust greet command from the WebView
+[msedge 155.0.0.0 windows #0-0]
+[msedge 155.0.0.0 windows #0-0] 1 passing (35.4s)
+
+
+Spec Files:	 1 passed, 1 total (100% completed) in 00:00:37  
+
