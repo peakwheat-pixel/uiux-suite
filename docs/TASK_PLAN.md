@@ -32,15 +32,15 @@
 | T3.4 | Stage 3 | IN_PROGRESS | Stage 3 Exit | T3.2, T3.3 | OS 集成测试（原生对话框/菜单） | 隔离测试环境；UIA 优先；物理输入默认禁用；TOCTOU 说明 |
 | T3.5 | Stage 3 | DONE | Stage 3 Exit | T3.1 | 证据生命周期、脱敏与 Vault 退化验证 | 删除 Vault 后不得重新签发 PASS；脱敏后扫描；保留期策略 |
 | T3.6 | Stage 3 | DONE | Stage 3 Exit | T3.4 | 独立审查隔离验证 | 自报 session 不能签发独立 PASS；隔离证明与 reviewed_head 绑定 |
-| T4.1 | Stage 4 | TODO | Stage 4 Exit | T0.3 | DSH 宿主兼容实测 | 两入口发现/脚本执行/GUI/MCP/断点恢复逐项记录 |
-| T4.2 | Stage 4 | TODO | Stage 4 Exit | T4.1 | 其他 Agent 兼容矩阵与降级入口 | Codex/Claude/ZCode/Antigravity/Qoder 未测标 UNVERIFIED |
-| T4.3 | Stage 4 | TODO | Stage 4 Exit | T0.1 | 被动外部调用契约（不依赖外部编排器） | 外部 caller 传 task_id/role/artifact_dir 时不改其分支/证据治理；无外部系统时核心正常 |
-| T4.4 | Stage 4 | TODO | Stage 4 Exit | T4.1 | 退化路径（缺 Node/GUI/旧宿主/离线/软链） | 每项返回稳定 ReasonCode 与可恢复建议 |
-| T5.1 | Stage 5 | TODO | Stage 5 Exit | T3.6, T4.4 | 真实复杂工作台试点（隔离副本） | 冻结导入→浏览→编辑→异常→保存/导出任务；只在副本/独立 worktree 操作 |
-| T5.2 | Stage 5 | TODO | Stage 5 Exit | T5.1 | 改版前后对照测量 | 同机同窗口同素材；成功任务/步骤/恢复/快捷键/布局缺陷记录 |
-| T5.3 | Stage 5 | TODO | Stage 5 Exit | T5.1 | 数据安全、回滚与导出正确性 | 真实数据写入 0 次；源码前后 hash 一致；回滚演练通过 |
-| T5.4 | Stage 5 | TODO | Stage 5 Exit | T5.3 | 独立复审与 G6 签发 | 冻结版本独立复验；未覆盖项 PARTIAL/UNVERIFIED 明示 |
-| T5.5 | Stage 5 | TODO | Stage 5 Exit | T5.4 | 发行包、文档、许可证与交付报告 | dist/ 可安装 ZIP、手册、兼容矩阵、证据索引、FINAL_DELIVERY_REPORT.md |
+| T4.1 | Stage 4 | DONE | Stage 4 Exit | T0.3 | DSH 宿主兼容实测 | 两入口发现/脚本执行/GUI/MCP/断点恢复逐项记录 |
+| T4.2 | Stage 4 | IN_PROGRESS | Stage 4 Exit | T4.1 | 其他 Agent 兼容矩阵与降级入口 | Codex/Claude/ZCode/Antigravity/Qoder 未测标 UNVERIFIED |
+| T4.3 | Stage 4 | DONE | Stage 4 Exit | T0.1 | 被动外部调用契约（不依赖外部编排器） | 外部 caller 传 task_id/role/artifact_dir 时不改其分支/证据治理；无外部系统时核心正常 |
+| T4.4 | Stage 4 | DONE | Stage 4 Exit | T4.1 | 退化路径（缺 Node/GUI/旧宿主/离线/软链） | 每项返回稳定 ReasonCode 与可恢复建议 |
+| T5.1 | Stage 5 | IN_PROGRESS | Stage 5 Exit | T3.6, T4.4 | 真实复杂工作台试点（隔离副本） | 冻结导入→浏览→编辑→异常→保存/导出任务；只在副本/独立 worktree 操作 |
+| T5.2 | Stage 5 | IN_PROGRESS | Stage 5 Exit | T5.1 | 改版前后对照测量 | 同机同窗口同素材；成功任务/步骤/恢复/快捷键/布局缺陷记录 |
+| T5.3 | Stage 5 | IN_PROGRESS | Stage 5 Exit | T5.1 | 数据安全、回滚与导出正确性 | 真实数据写入 0 次；源码前后 hash 一致；回滚演练通过 |
+| T5.4 | Stage 5 | IN_PROGRESS | Stage 5 Exit | T5.3 | 独立复审与 G6 签发 | 冻结版本独立复验；未覆盖项 PARTIAL/UNVERIFIED 明示 |
+| T5.5 | Stage 5 | DONE | Stage 5 Exit | T5.4 | 发行包、文档、许可证与交付报告 | dist/ 可安装 ZIP、手册、兼容矩阵、证据索引、FINAL_DELIVERY_REPORT.md |
 | M1 | Stage 0 | DONE | T0.2 | T0.1 | 安装登记/升级/回滚状态契约 | install-<version>.json 登记全部安装文件；upgrade/rollback 可复现；版本并存 |
 | M2 | Stage 0 | DONE | T0.4 | T0.1 | DSH_HOME/AGENTS_HOME 与项目根/遮蔽检测 | 解析环境变量；5 级 rank；shadowed_by；非 Git/monorepo 说明 |
 | M3 | Stage 0 | DONE | T0.2 | T0.1 | install 根分离与写根登记 | install_write_root 入 policy/schema；快照与写范围排除；只读模式不写项目 |
@@ -73,6 +73,6 @@
 | 状态 | 数量 |
 |---|---|
 | BLOCKED | 0 |
-| DONE | 28 |
-| IN_PROGRESS | 15 |
-| TODO | 18 |
+| DONE | 32 |
+| IN_PROGRESS | 20 |
+| TODO | 9 |
