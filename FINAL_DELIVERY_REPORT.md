@@ -23,6 +23,7 @@
 - **检测器**（SIMULATED 标注）：`style_token_linter`、`ux_flow_validator`、`layout_geometry_probe`、`discovery`、`design_system`、`component_matrix`、`prototype`、`options`。
 - **Stage 3**：受控改动/回滚、Vault 字节校验、哈希链/独立性、P0–P3 安全分级；**PySide6 Windows QPA 实测**（`NATIVE_QPA`，DPR 1/1.25/1.5，CJK 字体，截图哈希）；Win11 Notepad（WinUI 3）UIA 只读树。
 - **Tauri Native IPC**：Tauri 2 应用 + embedded `@wdio/tauri-service`，真实启动并调用 Rust `greet` IPC，断言返回 `Hello, DSH-Native-IPC`；截图/日志哈希见 `evidence/T3.2/`。
+- **独立 GT**：Reviewer 盲标 18/18 与冻结 GT 完全一致（未读 annotations）；`evidence/T1.1/independent-annotation.json`。
 - **安全/CI**：M6 输入分权（全局物理输入默认拒绝）、M8 构建守卫（白名单/网络/越界）、M14 qa-report 指标、M10 本地 CI runner（真实 hosted runner 未验证）；m1/m2/m3/m5/m8 文档齐备。
 - **Stage 5 基线**：对 `New Manga` 的隔离源码副本（3435 文件）做只读 discovery/style 扫描；合成 Qt 参考应用完成导入→浏览→画布→编辑→保存→导出→撤销→异常→画布拖拽→快捷键→焦点顺序 12/12 E2E（NATIVE_QT_APP），before/after 指标：字号 11→14、目标 22→38px、对比度 2.08→15.8。
 
