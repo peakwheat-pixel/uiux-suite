@@ -3,12 +3,14 @@
   "evidence_id": "EV-T5.1-WORKBENCH-STATIC",
   "kind": "tool_log",
   "runtime_level": "STATIC",
-  "generated_at": "2026-10-23T20:01:02.299603+00:00",
+  "generated_at": "2026-10-23T20:11:25.453274+00:00",
   "source_workbench": "G:\\CODEX\\New Manga",
   "isolated_copy": "G:\\AI\\uiux-stage5-sandbox\\new-manga-src",
   "isolation": "copied src/docs/tests/config only; apps/test_assets/weights/verification excluded; original never modified",
   "git": {
-    "commit": "295ae9abf97a8e984f4f659dd90151797b406dfe"
+    "commit": "895bf34998c811235dca5814bfe74107a517bef5",
+    "dirty": true,
+    "dirty_scope": "tracked files excluding evidence/ (collectors rewrite evidence)"
   },
   "file_count_copied": 5583,
   "files_scanned": 47,
@@ -54,7 +56,7 @@
     },
     "by_rule_or_dimension": {}
   },
-  "generator_sha256": "c9246c8535d470695351ef80e83acaabee854c24378690189e4ccc7d3e37b553",
+  "generator_sha256": "457a41b542bdc2d7b190280502192c39f49830db379f7805b32844d07cf57b07",
   "limitations": [
     "Read-only static baseline; the application was not launched (apps/ excluded, 13GB tree).",
     "No import/browse/edit/save/export/undo execution; before/after interaction measurement not performed.",

@@ -2,12 +2,13 @@
   "schema_version": "1.3.3",
   "evidence_id": "EV-T3.3-QPA",
   "kind": "tool_log",
-  "generated_at": "2026-10-23T20:02:06.707913+00:00",
+  "generated_at": "2026-10-23T20:11:24.105500+00:00",
   "git": {
-    "commit": "295ae9abf97a8e984f4f659dd90151797b406dfe",
-    "dirty": true
+    "commit": "895bf34998c811235dca5814bfe74107a517bef5",
+    "dirty": false,
+    "dirty_scope": "tracked files excluding evidence/ (collectors rewrite evidence)"
   },
-  "python": "3.14.0",
+  "python": "3.12.14",
   "runs": {
     "1.0": {
       "ok": true,
@@ -143,7 +144,7 @@
     }
   },
   "ok": true,
-  "generator_sha256": "a5e17bd2c790519875ef2eb733991841e2c703fabf15c215b349d33c6ffbc0a6",
+  "generator_sha256": "4281227581482b4822ea7192d5ec293b3069cb0241e585678d4d75acebe5daa2",
   "limitations": [
     "100% is the current monitor's native QPA measurement; 125%/150% are simulated with QT_SCALE_FACTOR, not a physical monitor DPI change.",
     "No click-through or focus traversal; widget focus policies are read, not exercised.",
