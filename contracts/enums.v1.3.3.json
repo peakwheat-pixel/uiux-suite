@@ -260,6 +260,27 @@
     "ConfusionStatus": {
       "values": ["TP", "TN", "FP", "FN", "PARTIAL"]
     },
+    "PageKind": {
+      "values": ["page", "route", "modal", "dialog", "panel", "window", "canvas"]
+    },
+    "DiscoveryChannel": {
+      "values": ["source", "runtime", "contract"]
+    },
+    "DiscoveryStatus": {
+      "values": ["OBSERVED", "UNVERIFIED", "MISSING"]
+    },
+    "PrototypeKind": {
+      "values": ["html", "figma", "spec", "code"]
+    },
+    "OptionScoreDimension": {
+      "values": ["usability", "visual", "feasibility", "risk", "accessibility"]
+    },
+    "TokenTheme": {
+      "values": ["light", "dark", "both"]
+    },
+    "CheckStatus": {
+      "values": ["PASS", "FAIL", "UNVERIFIED", "VERIFIED"]
+    },
     "Capability": {
       "values": ["async_load", "collection_display", "user_mutation", "long_running_task", "destructive_operations", "canvas_rendering"]
     },

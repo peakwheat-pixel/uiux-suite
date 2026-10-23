@@ -20,6 +20,11 @@ VALID_CASES = {
     "contracts/valid/release-manifest.json": "release-manifest",
     "contracts/valid/flows.json": "flows",
     "contracts/valid/host-capability.json": "host-capability",
+    "contracts/valid/design-tokens.json": "design-tokens",
+    "contracts/valid/discovery.json": "discovery",
+    "contracts/valid/component-matrix.json": "component-matrix",
+    "contracts/valid/prototype.json": "prototype",
+    "contracts/valid/design-options.json": "design-options",
 }
 
 INVALID_CASES = {

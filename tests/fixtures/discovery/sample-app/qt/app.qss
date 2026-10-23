@@ -1,0 +1,11 @@
+QMainWindow {
+    background: #111827;
+}
+
+QTableView {
+    gridline-color: #334155;
+}
+
+QPushButton#exportButton {
+    padding: 6px 12px;
+}

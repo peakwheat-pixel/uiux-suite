@@ -1,0 +1,16 @@
+{
+  "token_set_version": "1.0",
+  "theme": "both",
+  "frozen_at": "2026-10-24T00:00:00+00:00",
+  "source": "self-authored",
+  "license": "internal",
+  "font_policy": "system fonts only; no bundled font binaries",
+  "counts": {
+    "colors": 34,
+    "spacing": 8,
+    "typography": 8,
+    "radii": 5,
+    "motion": 5
+  },
+  "sha256": "dce6f3c7ae97d390df36d06be23253a48f9ab3878b8fb2345856462a56351bb1"
+}

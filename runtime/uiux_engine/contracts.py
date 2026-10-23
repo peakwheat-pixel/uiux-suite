@@ -33,6 +33,11 @@ SCHEMA_FILES: dict[str, str] = {
     "rule-catalog": "rule-catalog.v1.3.3.schema.json",
     "rule-exemption": "rule-exemption.v1.3.3.schema.json",
     "confusion-matrix": "confusion-matrix.v1.3.3.schema.json",
+    "design-tokens": "design-tokens.v1.3.3.schema.json",
+    "discovery": "discovery.v1.3.3.schema.json",
+    "component-matrix": "component-matrix.v1.3.3.schema.json",
+    "prototype": "prototype.v1.3.3.schema.json",
+    "design-options": "design-options.v1.3.3.schema.json",
 }
 
 

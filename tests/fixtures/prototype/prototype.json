@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.3.3",
+  "prototype_id": "orders-prototype",
+  "kind": "html",
+  "flows_ref": "flows.json",
+  "source_file": "order-prototype.html",
+  "states": ["list", "loading", "empty", "error", "ready"],
+  "anchors": [
+    {"semantic_id": "orders.list", "testid": "orders-list", "selector": null},
+    {"semantic_id": "orders.delete", "testid": "order-delete", "selector": null}
+  ],
+  "accessibility": {"keyboard": "UNVERIFIED", "labels": "VERIFIED", "contrast": "UNVERIFIED"},
+  "checks": [
+    {"check_id": "states-rendered", "status": "PASS", "detail": "all states present in html"}
+  ]
+}

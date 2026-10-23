@@ -4,8 +4,8 @@
 
 ## 1. 当前阶段
 
-- **Stage 0 — DONE / FROZEN（第 4 轮确认 + 冻结哈希抽查 PASS）**：T0.1 第 2 轮独立复核 PASS；T0.2–T0.6 与 M5 全部具备机器证据；292 项测试全绿。
-- **Stage 1 — IN_PROGRESS**：T1.0 规则目录与 Rule ID 已冻结（20 条）；T1.1/T1.2/T1.3/T1.5/T1.6/T1.7 已完成；T1.4 为测量 JSON 模式（SIMULATED），真实探针转 T3.3。
+- **Stage 0 — DONE / FROZEN（第 4 轮确认 + 冻结哈希抽查 PASS）**：T0.1 第 2 轮独立复核 PASS；T0.2–T0.6 与 M5 全部具备机器证据；371 项测试全绿。
+- **Stage 2 — IN_PROGRESS**：T1.1–T1.3/T1.5–T1.7 完成，T1.4 测量 JSON（SIMULATED）转 T3.3；Stage 2 的 T2.1/T2.2/T2.5 完成，T2.3/T2.4/T2.6 为 PARTIAL。
 - 分支：`v1.3.3-contract-closure`。
 - 基线：`main` 上 `e7e921e`，tag `v1.3.2-baseline`，SHA256 `70f5f339…9411ea04`。
 - 裁决：`CONTRACT_CLOSURE_READY_FOR_REVIEW` 已由第 2 轮 PASS 解除；Stage 0 Exit 以 `docs/STAGE0_ACCEPTANCE.md` 为准，**仍不是 Release**。
@@ -19,7 +19,7 @@
 | Mode×Gate 机器策略 | `contracts/mode-gate-policy.v1.3.3.json` | `tests/unit/test_policy.py` |
 | finalize/Gate 引擎 | `runtime/uiux_engine/` | `tests/integration/test_finalize.py`、`test_cli.py` |
 | 正反 fixtures | `tests/fixtures/`（14 valid / 15 invalid / 5 semantic） | `_build_fixtures.py`、Schema 测试 |
-| 契约+安装测试 | `tests/`（292 项） | `.venv\Scripts\python.exe -m pytest tests -q` |
+| 契约+安装测试 | `tests/`（371 项） | `.venv\Scripts\python.exe -m pytest tests -q` |
 | 契约测试证据 | `evidence/T0.1/contract-test-evidence.json` | 292/292 PASS（T0.1 证据仍为 160/160 冻结值），exit 0（以 evidence 为准） |
 | 双 Skill 入口与启动器 | `skills/uiux`、`skills/uiux-verify` | `tests/integration/test_install.py`（launch enums） |
 | 安装/卸载/升级/回滚 | `scripts/setup_skill.py`、`scripts/uninstall_skill.py` | 版本并存、删除源码后仍可启动、未知 Skill 不覆盖 |

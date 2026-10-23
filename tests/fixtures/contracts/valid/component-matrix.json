@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.3.3",
+  "view_id": "orders",
+  "components": [
+    {
+      "component_id": "OrdersTable",
+      "source": "src/Orders.tsx",
+      "states": ["loading", "empty", "error", "ready"],
+      "covered_states": ["loading", "empty", "ready"],
+      "gaps": ["error"]
+    }
+  ],
+  "state_coverage": [
+    {"state": "loading", "covered": true, "components": ["OrdersTable"]},
+    {"state": "empty", "covered": true, "components": ["OrdersTable"]},
+    {"state": "error", "covered": false, "components": ["OrdersTable"]},
+    {"state": "ready", "covered": true, "components": ["OrdersTable"]}
+  ],
+  "summary": {"components": 1, "states": 4, "covered": 3, "gaps": 1}
+}

@@ -8,6 +8,18 @@
 |---|---|---|---|---|---|
 | — | — | — | — | — | 无 |
 
+## 技术缺口（非阻断，按 Stage 推进）
+
+| 任务 | 缺口 | 计划 |
+|---|---|---|
+| T1.4 | 真实 Web DOM/Qt Offscreen 测量 | Stage 3 T3.3 真实 UI 探针；当前测量 JSON 模式标 SIMULATED |
+| T2.3 | CSS/Tailwind/PySide6 token 编译器 | Stage 3 或 T2.3 续项；当前只提供 tokens/freeze/校验 |
+| T2.4/M11 | knowledge index schema 与第三方来源锁 | Stage 4/5；当前走自建量表 |
+| T2.6/M12 | brownfield 采纳流程与冲突优先级 | Stage 3/5 |
+| M10 | CI 在真实 runner 执行 | 发布前；workflow 已提交 |
+| M18 | ARIA-UIA 语义矩阵与动态键盘验证 | Stage 3 T3.3/T3.4 |
+
+
 ## 边界说明
 
 - **T0.3（DSH 实机安装）**：当前机器存在 DSH 运行环境，可在用户级 `.agents` 下执行安装验证；不构成阻断。若发现写入系统级目录或需要管理员权限，则降级为用户级安装并记录。

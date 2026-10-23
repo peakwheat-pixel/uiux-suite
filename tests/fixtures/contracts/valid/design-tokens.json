@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.3.3",
+  "token_set_version": "1.0",
+  "theme": "both",
+  "colors": {
+    "fg-primary": "#1f2328",
+    "bg-canvas": "#ffffff",
+    "accent": "#0969da"
+  },
+  "spacing": {
+    "space-1": 4,
+    "space-2": 8,
+    "space-3": "12px"
+  },
+  "typography": {
+    "body": {"fontSize": 14, "lineHeight": 1.5, "fontWeight": 400},
+    "heading": {"fontSize": 20, "lineHeight": 1.3, "fontWeight": 600}
+  },
+  "radii": {"sm": 4, "md": 8},
+  "motion": {"fast": {"duration_ms": 120, "easing": "ease-out"}}
+}

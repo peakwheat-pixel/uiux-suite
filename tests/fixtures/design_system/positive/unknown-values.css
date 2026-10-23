@@ -1,0 +1,11 @@
+/* Conservative skipping: values that cannot be statically resolved are not guessed. */
+.unknown {
+  color: hsl(210 50% 40%);
+  background-color: rgba(255, 0, 0, 0.5);
+  padding: calc(4px + 8px);
+  margin: 5em;
+  font-size: 1.2em;
+  line-height: normal;
+  transition: opacity var(--motion-missing, 200ms);
+  border-color: var(--undefined-color);
+}

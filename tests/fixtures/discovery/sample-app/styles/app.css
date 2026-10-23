@@ -1,0 +1,18 @@
+:root {
+  --color-bg: #0f172a;
+  --space-2: 8px;
+}
+
+.orders-table {
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+canvas.sparkline {
+  display: block;
+}
+
+.modal {
+  padding: 24px;
+}

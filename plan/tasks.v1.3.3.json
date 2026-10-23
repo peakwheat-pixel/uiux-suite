@@ -249,92 +249,92 @@
       "id": "T2.1",
       "title": "页面/窗口/路由识别与三源能力比对",
       "stage": "Stage 2",
-      "status": "TODO",
+      "status": "DONE",
       "acceptance": "功能地图；源码/运行/契约差异报告",
       "depends_on": [
         "T1.3"
       ],
       "due_before": "Stage 2 Exit",
-      "evidence": null,
+      "evidence": "runtime/uiux_engine/discovery.py; tests/unit/test_discovery.py; docs/DISCOVERY.md",
       "files": [],
       "source": null,
-      "note": null
+      "note": "13 用例；路由/Qt/组件识别、能力证据、三源 OBSERVED/UNVERIFIED/MISSING。"
     },
     {
       "id": "T2.2",
       "title": "flows.json 设计工具与状态推导",
       "stage": "Stage 2",
-      "status": "TODO",
+      "status": "DONE",
       "acceptance": "按能力派生状态；可测试路径生成；review required 记录",
       "depends_on": [
         "T1.3"
       ],
       "due_before": "Stage 2 Exit",
-      "evidence": null,
+      "evidence": "runtime/uiux_engine/discovery.py#flows_from_discovery; tests/unit/test_discovery.py",
       "files": [],
       "source": null,
-      "note": null
+      "note": "按能力派生 loading/error/retry/empty/draft/progress/saved；生成草案需人工补 guard。"
     },
     {
       "id": "T2.3",
       "title": "DTCG Token 与 CSS/Tailwind/PySide6 编译器",
       "stage": "Stage 2",
-      "status": "TODO",
+      "status": "IN_PROGRESS",
       "acceptance": "明暗主题与 CJK 字体测试；Token 可编译",
       "depends_on": [
         "T1.2"
       ],
       "due_before": "Stage 2 Exit",
-      "evidence": null,
+      "evidence": "knowledge/design-system/tokens.v1.0.json; runtime/uiux_engine/design_system.py",
       "files": [],
       "source": null,
-      "note": null
+      "note": "tokens/freeze/校验/别名 DONE（31 用例）；CSS/Tailwind/PySide6 导出编译器未实现。"
     },
     {
       "id": "T2.4",
       "title": "离线知识库消费接口与合规来源",
       "stage": "Stage 2",
-      "status": "TODO",
+      "status": "IN_PROGRESS",
       "acceptance": "knowledge index schema；来源/许可/checksum 可核查；无许可则自建量表",
       "depends_on": [
         "T0.5"
       ],
       "due_before": "Stage 2 Exit",
-      "evidence": null,
+      "evidence": "knowledge/design-system/tokens.v1.0.json; knowledge/design-system/tokens.v1.0.freeze.json",
       "files": [],
       "source": "M11",
-      "note": null
+      "note": "自建 token 量表 + 冻结摘要 DONE；knowledge index schema/第三方来源锁未建。"
     },
     {
       "id": "T2.5",
       "title": "design-only 与 prototype（≥2 方案比较）",
       "stage": "Stage 2",
-      "status": "TODO",
+      "status": "DONE",
       "acceptance": "两套可比较原型与取舍证据；不先写生产代码",
       "depends_on": [
         "T2.2",
         "T2.3"
       ],
       "due_before": "Stage 2 Exit",
-      "evidence": null,
+      "evidence": "runtime/uiux_engine/options.py; runtime/uiux_engine/prototype.py; tests/unit/test_options.py; tests/unit/test_prototype.py",
       "files": [],
       "source": null,
-      "note": null
+      "note": "options 加权对比 + prototype 契约/HTML 检查；未验证项标 UNVERIFIED。"
     },
     {
       "id": "T2.6",
       "title": "设计系统权威与存量组件采纳/漂移检测",
       "stage": "Stage 2",
-      "status": "TODO",
+      "status": "IN_PROGRESS",
       "acceptance": "brownfield 采纳流程；token drift 检查；冲突优先级",
       "depends_on": [
         "T2.3"
       ],
       "due_before": "Stage 2 Exit",
-      "evidence": null,
+      "evidence": "runtime/uiux_engine/design_system.py; tests/unit/test_design_system.py",
       "files": [],
       "source": "M12",
-      "note": null
+      "note": "token drift 静态检查 DONE；brownfield 采纳流程/冲突优先级未实现。"
     },
     {
       "id": "T3.1",
@@ -717,46 +717,46 @@
       "id": "M11",
       "title": "第三方知识来源、许可与消费接口",
       "stage": "Stage 2",
-      "status": "TODO",
+      "status": "IN_PROGRESS",
       "acceptance": "来源锁 commit/许可；knowledge index；无法锁许可则自建",
       "depends_on": [
         "T0.5"
       ],
       "due_before": "Stage 2 Exit",
-      "evidence": null,
+      "evidence": "knowledge/design-system/tokens.v1.0.freeze.json",
       "files": [],
       "source": "MAJOR",
-      "note": null
+      "note": "走自建量表路径（source=self-authored/license=internal）；knowledge index schema 与第三方来源锁未建。"
     },
     {
       "id": "M12",
       "title": "存量设计系统采纳与 token drift",
       "stage": "Stage 2",
-      "status": "TODO",
+      "status": "IN_PROGRESS",
       "acceptance": "brownfield 流程；drift 检查器；冲突优先级",
       "depends_on": [
         "T2.3"
       ],
       "due_before": "Stage 2 Exit",
-      "evidence": null,
+      "evidence": "runtime/uiux_engine/design_system.py; tests/unit/test_design_system.py",
       "files": [],
       "source": "MAJOR",
-      "note": null
+      "note": "token drift 静态检查器 DONE；brownfield 采纳/冲突优先级流程未实现。"
     },
     {
       "id": "M13",
       "title": "靶场 GT 独立标注与阻断种子",
       "stage": "Stage 1",
-      "status": "TODO",
+      "status": "IN_PROGRESS",
       "acceptance": "标注流程与分歧仲裁；阻断种子清单；零误判硬 FAIL",
       "depends_on": [
         "T1.0"
       ],
       "due_before": "Stage 1 Exit",
-      "evidence": null,
+      "evidence": "tests/fixtures/ground_truth/annotations; qa/confusion-matrix.json",
       "files": [],
       "source": "MAJOR",
-      "note": null
+      "note": "GT 已冻结但为单 Agent 标注（independent=false）；独立标注/仲裁待 Reviewer/Stage 5。"
     },
     {
       "id": "M14",
