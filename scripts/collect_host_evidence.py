@@ -30,6 +30,18 @@ def sha256_file(path: Path) -> str:
     return sha256_bytes(path.read_bytes())
 
 
+def _git(*args: str) -> str:
+    proc = subprocess.run(
+        ["git", *args],
+        cwd=str(REPO_ROOT),
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    return proc.stdout.strip() if proc.returncode == 0 else ""
+
+
 def run(command: list[str], cwd: Path | None = None) -> dict:
     env = dict(os.environ)
     env["PYTHONDONTWRITEBYTECODE"] = "1"
@@ -109,6 +121,11 @@ def main() -> int:
         "evidence_id": "EV-T0.3-HOST-INSTALL",
         "kind": "tool_log",
         "generated_at": datetime.now(timezone.utc).isoformat(),
+        "git": {
+            "commit": _git("rev-parse", "HEAD"),
+            "branch": _git("rev-parse", "--abbrev-ref", "HEAD"),
+            "dirty": bool(_git("status", "--porcelain")),
+        },
         "host": {
             "kind": "dsh",
             "dsh_version": dsh_version["stdout"].strip(),
