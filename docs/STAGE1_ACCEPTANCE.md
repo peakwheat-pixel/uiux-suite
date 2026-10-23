@@ -14,7 +14,7 @@
 | T1.5 Runner/Gate 引擎完整化 | **DONE** | `tests/unit/test_finalize.py`（27）+ `tests/integration/test_attacks.py`（11） |
 | T1.6 负向攻击测试 | **DONE** | 11 项攻击全部被拒（exit 10/11）；`evidence/T1.6/attack-evidence.json` |
 | T1.7 混淆矩阵/CI | **DONE（SIMULATED）** | `qa/confusion-matrix.json`：25 样本 TP38/FP0/TN8/FN0；`.github/workflows/stage1.yml` |
-| M10 CI Windows runner | IN_PROGRESS | workflow 已提交，真实 runner 执行未验证 |
+| M10 GitHub Hosted CI | **DONE** | `CI` 与 `stage1` 在 1ae2f8e 均 success（M10 证据见 `evidence/T5.5/github-actions-run.json`） |
 | M18 无障碍 Rule ID | IN_PROGRESS | A11Y-001..004 规则/静态子集 DONE；ARIA-UIA 矩阵与动态键盘验证转 T3.3/T3.4 |
 | m4 混淆矩阵契约 | DONE | `contracts/confusion-matrix.v1.3.3.schema.json` |
 
