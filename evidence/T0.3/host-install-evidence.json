@@ -2,12 +2,14 @@
   "schema_version": "1.3.3",
   "evidence_id": "EV-T0.3-HOST-INSTALL",
   "kind": "tool_log",
-  "generated_at": "2026-10-23T17:49:30.073753+00:00",
+  "generated_at": "2026-10-23T18:18:19.423184+00:00",
   "git": {
-    "commit": "d058ba7713dcc4649ed1b5aeb04cce071ecc24e5",
+    "commit": "95ab5a2f3d30cb943a95da76c2d8ee2ed532c241",
     "branch": "v1.3.3-contract-closure",
-    "dirty": true
+    "dirty": false
   },
+  "privacy": "local_private_unredacted: contains machine-specific absolute paths; not for distribution",
+  "generator_sha256": "a9a7016f91b68bb237269a4334c9ccfe54ccb4445c4292b73b871b0fe1651c21",
   "host": {
     "kind": "dsh",
     "dsh_version": "0.2.1-alpha.4",
@@ -18,13 +20,13 @@
   "suite_root": "C:\\Users\\49745\\.agents\\uiux-suite\\versions\\1.3.3",
   "suite_link": {
     "path": "C:\\Users\\49745\\.agents\\skills\\uiux\\suite-link.json",
-    "sha256": "cabcc70e26550f3af571ff478fad7e28b0c8c728cff09e92bc9f2471b249f673",
+    "sha256": "697490f0dc99ca8640a060e70288f1b9bf948d26351607d2195d67f0f8185ebd",
     "active_version": "1.3.3",
     "path_kind": "relative_to_skill_root"
   },
   "install_record": {
     "path": "C:\\Users\\49745\\.agents\\uiux-suite\\state\\install-1.3.3.json",
-    "sha256": "252009bd201ad8d9cc0704a4400fb6b99ec90e37f1f71f35588016d19ff294b3",
+    "sha256": "e788cbf55a9cc654fc2834c9de735ac80ad518edb11f975176a178887b601c43",
     "files": 45,
     "scope": "user",
     "host": "dsh",
@@ -34,18 +36,21 @@
   "launchers": {
     "uiux": {
       "exit_code": 0,
-      "stdout_sha256": "2b4976875d5061e64dd56cd8bdeedeec0bf59538f27b2a08446e66cd538ffa43",
+      "stdout_file": "evidence\\T0.3\\raw\\uiux-enums.stdout.json",
+      "stdout_file_sha256": "fd6ee6cadf5f877a2a1ee322ea8fbdcd1bd02c6a5c98f848d1dff64ebf7aac06",
       "schema_version": "1.3.3"
     },
     "uiux-verify": {
       "exit_code": 0,
-      "stdout_sha256": "2b4976875d5061e64dd56cd8bdeedeec0bf59538f27b2a08446e66cd538ffa43",
+      "stdout_file": "evidence\\T0.3\\raw\\uiux-verify-enums.stdout.json",
+      "stdout_file_sha256": "fd6ee6cadf5f877a2a1ee322ea8fbdcd1bd02c6a5c98f848d1dff64ebf7aac06",
       "schema_version": "1.3.3"
     }
   },
   "doctor": {
     "exit_code": 0,
-    "stdout_sha256": "f40f651b158f3a9ca302d50f7bfd8c8d32901f9f4159910869a2b91d3f03ee78",
+    "stdout_file": "evidence\\T0.3\\raw\\doctor.stdout.json",
+    "stdout_file_sha256": "e39bb81fd592ac8a2ff215f106688ae16b5d71a1a3483a7baf73a029e17cceb6",
     "overall_status": "UNVERIFIED",
     "links": {
       "uiux": {
@@ -72,6 +77,12 @@
       "resume": "UNVERIFIED"
     }
   },
+  "inputs_sha256": {
+    "suite_manifest": "551977661374ad0f0b3ef5e95bc55b20a11d0d095b641df82f8ce855fd49ad81",
+    "install_record": "e788cbf55a9cc654fc2834c9de735ac80ad518edb11f975176a178887b601c43",
+    "suite_link": "697490f0dc99ca8640a060e70288f1b9bf948d26351607d2195d67f0f8185ebd",
+    "generator": "a9a7016f91b68bb237269a4334c9ccfe54ccb4445c4292b73b871b0fe1651c21"
+  },
   "host_catalog_observation": {
     "detail": "After install, the running DSH session exposed 'uiux' and 'uiux-verify' in its skill catalog (user-agents rank 500).",
     "skills": [
@@ -81,12 +92,14 @@
   },
   "repo_independence": {
     "external_cwd_doctor_exit_code": 0,
-    "external_cwd_doctor_stdout_sha256": "97398d1f86d03f3296db932aefcf7ef6662d39591a502fb00e91fe95d7943142",
+    "external_cwd_doctor_stdout_sha256": "5b5403d28d80a3cb862a913205cd81d7a362d0f3d9da860402d29d747c64b584",
     "source_checkout_absolute_references": [],
+    "source_checkout_scan_scope": "all install-root files under suite_root (<=2MB, text-decodable)",
     "independent_of_source_checkout": true
   },
   "limitations": [
     "GUI click-through/MCP/resume capabilities are UNVERIFIED until Stage 4.",
-    "This evidence does not prove behavior on other hosts; see T4.2 matrix."
+    "This evidence does not prove behavior on other hosts; see T4.2 matrix.",
+    "Raw stdout files are stored under evidence/T0.3/raw and hashed by file."
   ]
 }
