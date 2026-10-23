@@ -561,7 +561,7 @@
       "evidence": "dist/uiux-suite-1.3.3-win64.zip; evidence/T5.5/release-verification.json; docs/RELEASE_NOTES.md",
       "files": [],
       "source": null,
-      "note": "129 载荷 + RELEASE_MANIFEST（ZIP 共 130 项），安装/启动/doctor 实测 exit 0；交付报告随最终复核更新。"
+      "note": "131 载荷 + RELEASE_MANIFEST（ZIP 共 132 项），安装/启动/doctor 实测 exit 0；交付报告随最终复核更新。"
     },
     {
       "id": "M1",

@@ -3,69 +3,73 @@
   "evidence_id": "EV-T5.1-WORKBENCH-E2E",
   "kind": "tool_log",
   "runtime_level": "NATIVE_QT_APP",
-  "generated_at": "2026-10-23T20:15:30.365409+00:00",
+  "generated_at": "2026-10-23T20:19:51.887280+00:00",
+  "generator": {
+    "path": "scripts/run_workbench_e2e.py",
+    "sha256": "3e592f1d600236f2ddf12e3876dd5a8e4e0f5892a841f6b79ec51d706d9e0bb0"
+  },
   "git": {
-    "commit": "66733a023f920d5feb59b7a06789de4016a28849",
-    "dirty": false,
+    "commit": "34d858aad4d62004afadb70a55bd7d0d609318da",
+    "dirty": true,
     "dirty_scope": "tracked files excluding evidence/"
   },
   "app": "sandbox/workbench_app/app.py",
-  "isolated_data_dir": "C:\\Users\\49745\\AppData\\Local\\Temp\\uiux-workbench-xcxfuzem",
+  "isolated_data_dir": "C:\\Users\\49745\\AppData\\Local\\Temp\\uiux-workbench-28s9uk2r",
   "synthetic_data_only": true,
   "steps": [
     {
       "name": "import",
       "ok": true,
       "detail": "5 items",
-      "ms": 2.25
+      "ms": 2.34
     },
     {
       "name": "browse_list",
       "ok": true,
       "detail": "Frame 3",
-      "ms": 3.9
+      "ms": 3.92
     },
     {
       "name": "canvas_add",
       "ok": true,
       "detail": "scene items 5->6",
-      "ms": 3.59
+      "ms": 3.07
     },
     {
       "name": "edit",
       "ok": true,
       "detail": "Router",
-      "ms": 3.87
+      "ms": 4.75
     },
     {
       "name": "save",
       "ok": true,
-      "detail": "C:\\Users\\49745\\AppData\\Local\\Temp\\uiux-workbench-xcxfuzem\\sample.json",
-      "ms": 1.52
+      "detail": "C:\\Users\\49745\\AppData\\Local\\Temp\\uiux-workbench-28s9uk2r\\sample.json",
+      "ms": 1.55
     },
     {
       "name": "export",
       "ok": true,
-      "detail": "C:\\Users\\49745\\AppData\\Local\\Temp\\uiux-workbench-xcxfuzem\\workbench-export.json",
-      "ms": 1.37
+      "detail": "C:\\Users\\49745\\AppData\\Local\\Temp\\uiux-workbench-28s9uk2r\\workbench-export.json",
+      "ms": 1.19
     },
     {
       "name": "undo_redo",
       "ok": true,
       "detail": "undo/redo around 6 items",
-      "ms": 6.38
+      "ms": 5.59
     },
     {
       "name": "error_handling",
       "ok": true,
       "detail": "invalid import rejected",
-      "ms": 0.82
+      "ms": 0.83
     },
     {
       "name": "screenshots",
       "ok": true,
       "detail": "workbench-before.png,workbench-after.png",
-      "ms": 25.55
+      "ms": 23.73
     }
   ],
   "all_steps_ok": true,
@@ -124,7 +128,7 @@
       "sha256": "ce70b66bdaf9ed3579b0361f68dd9a633034aacb6654c22a6cf775bfcc32a19e"
     }
   ],
-  "duration_ms": 223.66,
+  "duration_ms": 215.89,
   "limitations": [
     "Synthetic reference application; this is not the real New Manga workbench.",
     "QTest sends Qt-level events to widgets; no OS-level physical mouse/keyboard or UIA click-through.",

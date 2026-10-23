@@ -204,6 +204,7 @@ def main() -> int:
         "kind": "tool_log",
         "runtime_level": "NATIVE_QT_APP",
         "generated_at": datetime.now(timezone.utc).isoformat(),
+        "generator": {"path": "scripts/run_workbench_e2e.py", "sha256": sha256(Path(__file__))},
         "git": {"commit": git_commit, "dirty": git_dirty, "dirty_scope": "tracked files excluding evidence/"},
         "app": "sandbox/workbench_app/app.py",
         "isolated_data_dir": str(tmp),
