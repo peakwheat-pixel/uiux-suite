@@ -31,6 +31,10 @@
     "mode": {
       "type": "enum:Mode"
     },
+    "request.review.independent_required": {
+      "type": "boolean",
+      "description": "TaskRequest.review.independent_required（运行级独立验收显式请求）"
+    },
     "deliverable_tier": {
       "type": "enum:DeliverableTier",
       "description": "由 mode 对应的交付层级派生；production-code 要求 L4 独立评审"
@@ -261,7 +265,8 @@
         {"fact": "request.evidence_policy.profile", "op": "eq", "value": "release_audit"}
       ]
     },
-    "rule": "运行级独立验收只在模式、显式请求或发布审计 profile 要求时强制；COMPLETE 本身不等于 INDEPENDENT_REVIEW_PASS。"
+    "rule": "运行级独立验收只在模式、显式请求或发布审计 profile 要求时强制；COMPLETE 本身不等于 INDEPENDENT_REVIEW_PASS。",
+    "redundancy_note": "modes.*.independent_review_required 为历史字段，运行时只读取本节的 independent_review_required_when；保留仅为兼容旧消费者。"
   },
   "complete_policy": {
     "mandatory_gate_pass_states": ["PASS"],
@@ -280,7 +285,7 @@
       "每个必选 Gate 至少一条 evidence_status=AVAILABLE 的有效证据",
       "coverage_matrix 覆盖 runtime_policy 要求的全部目标与最低层级",
       "L4 要求的模式必须 design_review_status=PASS",
-      "verify 或 release_audit profile 必须 independent_review_status=INDEPENDENT_REVIEW_PASS",
+      "verify、显式请求或 release_audit profile 必须 independent_review_status=INDEPENDENT_REVIEW_PASS",
       "source_fingerprint 必须与冻结基线一致且审查期间未变化"
     ],
     "status_escalation_rule": "不满足 COMPLETE 但已有有效部分证据时输出 PARTIAL；存在明确失败输出 FAILED；被环境/权限/不可逆风险阻断输出 BLOCKED。",

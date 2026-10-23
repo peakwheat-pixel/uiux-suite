@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from datetime import datetime
 from functools import lru_cache
 from pathlib import Path
@@ -32,19 +33,16 @@ SCHEMA_FILES: dict[str, str] = {
 }
 
 
-def schema_path(name: str) -> Path:
-    filename = SCHEMA_FILES.get(name)
-    if filename is None:
-        raise FileNotFoundError(f"unknown schema {name!r}; expected one of {sorted(SCHEMA_FILES)}")
-    path = CONTRACTS_DIR / filename
-    if not path.is_file():
-        raise FileNotFoundError(path)
-    return path
+_DATETIME_RE = re.compile(
+    r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,9})?(?:Z|[+-]\d{2}:\d{2})$"
+)
 
 
 def _is_datetime(value: object) -> bool:
     if not isinstance(value, str):
         return True
+    if not _DATETIME_RE.match(value):
+        return False
     try:
         datetime.fromisoformat(value.replace("Z", "+00:00"))
         return True

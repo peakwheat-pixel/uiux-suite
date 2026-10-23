@@ -39,7 +39,12 @@ class RunEvaluation:
         self.gate_notes.setdefault(gate, []).append(code)
 
 
-def _warn_review_problems(review: dict[str, Any], now: datetime, fingerprint: dict[str, Any]) -> list[str]:
+def _warn_review_problems(
+    review: dict[str, Any],
+    now: datetime,
+    fingerprint: dict[str, Any],
+    manifest_index: dict[str, dict[str, Any]],
+) -> list[str]:
     problems: list[str] = []
     problems.extend("WARN_REVIEW_INVALID" for _ in contracts.fragment_errors("common", "warn_review", review))
     if problems:
@@ -51,8 +56,16 @@ def _warn_review_problems(review: dict[str, Any], now: datetime, fingerprint: di
     source = review.get("reviewer_source")
     if disposition in ("ACCEPTED_RISK", "NOT_APPLICABLE") and source == "selftest":
         problems.append("WARN_REVIEW_INVALID")
-    if disposition in ("FIXED", "REJECTED") and not review.get("evidence_refs"):
-        problems.append("WARN_REVIEW_INVALID")
+    if disposition in ("FIXED", "REJECTED"):
+        refs = review.get("evidence_refs") or []
+        if not refs:
+            problems.append("WARN_REVIEW_INVALID")
+        for evidence_id in refs:
+            item = manifest_index.get(evidence_id)
+            if item is None:
+                problems.append("MISSING_EVIDENCE")
+            elif evidence.effective_status(item, now) != "AVAILABLE":
+                problems.append("WARN_REVIEW_INVALID")
     if str(review.get("reviewed_head")) != str(fingerprint.get("value")):
         problems.append("REVIEWED_HEAD_MISMATCH")
     return problems
@@ -181,9 +194,17 @@ def _coverage_layer_problems(
     records: list[dict[str, Any]],
     manifest_index: dict[str, dict[str, Any]],
     logs_by_probe: dict[str, dict[str, Any]],
+    now: datetime,
 ) -> list[tuple[str, str]]:
     """Cross-check coverage claims against manifest provenance and tool logs."""
     out: list[tuple[str, str]] = []
+    status_codes = {
+        "EXPIRED": "EVIDENCE_EXPIRED",
+        "INVALID_HASH": "INVALID_EVIDENCE_HASH",
+        "QUARANTINED": "EVIDENCE_QUARANTINED",
+        "SOURCE_EVIDENCE_UNAVAILABLE": "EVIDENCE_SOURCE_UNAVAILABLE",
+        "REDACTED_ONLY": "EVIDENCE_SOURCE_UNAVAILABLE",
+    }
     for record in records:
         if record.get("test_state") == "NOT_APPLICABLE":
             continue
@@ -194,6 +215,10 @@ def _coverage_layer_problems(
             item = manifest_index.get(evidence_id)
             if item is None:
                 out.append(("MISSING_EVIDENCE", f"coverage references unknown evidence {evidence_id}"))
+                continue
+            status = evidence.effective_status(item, now)
+            if status != "AVAILABLE":
+                out.append((status_codes.get(status, "MISSING_EVIDENCE"), f"coverage evidence {evidence_id} is {status}"))
                 continue
             provenance = item.get("provenance") or {}
             if provenance.get("probe_id") != probe_id:
@@ -328,7 +353,7 @@ def evaluate_run(
         if review.get("gate") not in (None, gate):
             run.add(gate, "WARN_REVIEW_INVALID", f"warn review gate mismatch: {review.get('gate')}")
             continue
-        problems = _warn_review_problems(review, now, fingerprint)
+        problems = _warn_review_problems(review, now, fingerprint, manifest_index)
         if problems:
             for code in problems:
                 run.add(gate, code, f"warn review for {gate} is invalid")
@@ -366,7 +391,7 @@ def evaluate_run(
             "RuntimeEvidenceLevel", record.get("required_runtime_level", "NONE")
         ):
             run.add("G6", "RUNTIME_LEVEL_BELOW_REQUIRED", f"record {record.get('scenario_id')} below required level")
-    for code, detail in _coverage_layer_problems(records, manifest_index, logs_by_probe):
+    for code, detail in _coverage_layer_problems(records, manifest_index, logs_by_probe, now):
         run.add("G6", code, detail)
     for target in request["runtime_targets"]:
         covered = any(

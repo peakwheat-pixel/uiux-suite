@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.3.3",
+  "evidence_id": "EV-T0.3-HOST-INSTALL",
+  "kind": "tool_log",
+  "generated_at": "2026-10-23T17:40:42.336069+00:00",
+  "host": {
+    "kind": "dsh",
+    "dsh_version": "0.2.1-alpha.4",
+    "os": "Windows-11-10.0.26300-SP0",
+    "python": "3.12.14"
+  },
+  "agents_home": "C:\\Users\\49745\\.agents",
+  "suite_root": "C:\\Users\\49745\\.agents\\uiux-suite\\versions\\1.3.3",
+  "suite_link": {
+    "path": "C:\\Users\\49745\\.agents\\skills\\uiux\\suite-link.json",
+    "sha256": "8c7e3bd8c177b0859fd962f59fbfbc7165259a6153c01ac9f4acebd23d3d5b9b",
+    "active_version": "1.3.3",
+    "path_kind": "relative_to_skill_root"
+  },
+  "install_record": {
+    "path": "C:\\Users\\49745\\.agents\\uiux-suite\\state\\install-1.3.3.json",
+    "sha256": "828c57d37ad657188f59397386f2741ecbacb6df93302f99b6801feace3e9ea2",
+    "files": 44,
+    "scope": "user",
+    "host": "dsh",
+    "python_exe": "C:\\Python314\\python.EXE",
+    "python_version": "3.14.6"
+  },
+  "launchers": {
+    "uiux": {
+      "exit_code": 0,
+      "stdout_sha256": "2b4976875d5061e64dd56cd8bdeedeec0bf59538f27b2a08446e66cd538ffa43",
+      "schema_version": "1.3.3"
+    },
+    "uiux-verify": {
+      "exit_code": 0,
+      "stdout_sha256": "2b4976875d5061e64dd56cd8bdeedeec0bf59538f27b2a08446e66cd538ffa43",
+      "schema_version": "1.3.3"
+    }
+  },
+  "doctor": {
+    "exit_code": 0,
+    "stdout_sha256": "6b2d2e99cd3e8fd32301132430228b4dc4aa0e787b53be5515417a3390c8cb25",
+    "overall_status": "UNVERIFIED",
+    "links": {
+      "uiux": {
+        "found": true,
+        "problems": [],
+        "active_version": "1.3.3",
+        "suite_root": "../../uiux-suite/versions/1.3.3"
+      },
+      "uiux-verify": {
+        "found": true,
+        "problems": [],
+        "active_version": "1.3.3",
+        "suite_root": "../../uiux-suite/versions/1.3.3"
+      }
+    },
+    "entries_contain_both_skills": true,
+    "shadowed": [],
+    "capabilities": {
+      "skill_discovery": "READY",
+      "script_exec": "READY",
+      "gui_access": "READY",
+      "mcp": "UNVERIFIED",
+      "file_permissions": "READY",
+      "resume": "UNVERIFIED"
+    }
+  },
+  "host_catalog_observation": {
+    "detail": "After install, the running DSH session exposed 'uiux' and 'uiux-verify' in its skill catalog (user-agents rank 500).",
+    "skills": [
+      "uiux",
+      "uiux-verify"
+    ]
+  },
+  "repo_independence": {
+    "external_cwd_doctor_exit_code": 0,
+    "external_cwd_doctor_stdout_sha256": "fa6ed64b164f4c3cc0f600988f68cd590879c4d1ffa20812ca7157414e072e97",
+    "source_checkout_absolute_references": [],
+    "independent_of_source_checkout": true
+  },
+  "limitations": [
+    "GUI click-through/MCP/resume capabilities are UNVERIFIED until Stage 4.",
+    "This evidence does not prove behavior on other hosts; see T4.2 matrix."
+  ]
+}

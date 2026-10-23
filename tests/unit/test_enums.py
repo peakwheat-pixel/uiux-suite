@@ -32,6 +32,33 @@ def test_every_schema_enum_belongs_to_one_dictionary_namespace(schema_name):
         assert matches, f"{schema_name}{path} does not fit any enum namespace: {sorted(value_set)}"
 
 
+FIELD_NAMESPACES = {
+    ("gate-results", "$/properties/mode"): "Mode",
+    ("gate-results", "$/$defs/gate_result/properties/state"): "GateState",
+    ("gate-results", "$/$defs/gate_result/properties/applicability"): "GateApplicability",
+    ("gate-results", "$/$defs/gate_result/properties/required_runtime_level"): "RuntimeEvidenceLevel",
+    ("gate-results", "$/$defs/gate_result/properties/observed_runtime_level"): "RuntimeEvidenceLevel",
+    ("gate-results", "$/$defs/gate_result/properties/gate_id"): "GateId",
+    ("task-result", "$/properties/status"): "RunStatus",
+    ("task-result", "$/properties/delivery_status"): "DeliveryStatus",
+    ("task-result", "$/properties/independent_review_status"): "IndependentReviewStatus",
+    ("task-result", "$/properties/design_review_status"): "DesignReviewStatus",
+    ("task-result", "$/properties/runtime_evidence_level"): "RuntimeEvidenceLevel",
+    ("task-result", "$/properties/review_isolation_level"): "ReviewIsolationLevel",
+    ("design-review", "$/properties/overall_verdict"): "ReviewVerdict",
+}
+
+
+@pytest.mark.parametrize("key,namespace", sorted(FIELD_NAMESPACES.items()))
+def test_critical_enum_fields_belong_to_declared_namespace(key, namespace):
+    schema_name, path = key
+    matches = [values for found_path, values in contracts.collect_enum_values(schema_name) if found_path == path]
+    assert matches, f"{schema_name}{path} not found"
+    assert set(matches[0]) <= set(enums.values(namespace)), (
+        f"{schema_name}{path} must use {namespace}, got {sorted(matches[0])}"
+    )
+
+
 def test_gate_state_does_not_accept_rule_severity_warning():
     assert "WARNING" not in enums.values("GateState")
     assert "WARNING" in enums.values("RuleSeverity")

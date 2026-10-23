@@ -26,6 +26,7 @@
 | D-020 | 2026-10-24 | `gate-results.request_digest` 绑定 TaskRequest；不一致即 `REQUEST_DIGEST_MISMATCH` | 修复 F-14：阻止事后重生成 request 调低 runtime_targets | Accepted |
 | D-021 | 2026-10-24 | B6 的原件字节校验明确为 T3.5 实现；T0.1 只校验清单/引用哈希一致性 | 修复 F-06：避免把分期能力写成已实现；SPEC §3.6 与 §15 已同步 | Accepted |
 | D-022 | 2026-10-24 | 明确失败（MANDATORY/REVIEW_ONLY FAIL、L4 FAIL）统一输出 FAILED | 修复 F-09：机器策略与引擎状态升级规则一致 | Accepted |
+| D-023 | 2026-10-24 | 接受 `ISOLATED_REVIEW_VERIFIED` 与 `INDEPENDENCE_UNVERIFIED` 并存；独立验收未要求时，隔离会话审查可交付 | 修复 R-11：delivery 描述评审过程，independent status 描述信任锚；release_audit/verify 仍强制独立 PASS，不构成安全降级 | Accepted |
 
 ## 待决事项
 

@@ -39,6 +39,62 @@ MANIFEST_NAME = "RELEASE_MANIFEST.json"
 EXCLUDE = {"__pycache__", ".pytest_cache", ".venv"}
 
 
+def python_works(candidate: str | Path) -> bool:
+    path = Path(candidate)
+    if not path.is_file():
+        return False
+    env = dict(os.environ)
+    env["PYTHONDONTWRITEBYTECODE"] = "1"
+    try:
+        proc = subprocess.run(
+            [str(path), "-c", "import jsonschema, sys; sys.exit(0)"],
+            capture_output=True,
+            env=env,
+            timeout=15,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return False
+    return proc.returncode == 0
+
+
+def python_version_of(exe: str | Path | None) -> str | None:
+    if not exe or not Path(exe).is_file():
+        return None
+    try:
+        proc = subprocess.run(
+            [str(exe), "-c", "import sys; print(sys.version.split()[0])"],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=15,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+    return proc.stdout.strip() if proc.returncode == 0 else None
+
+
+def select_python_exe(explicit: str | None = None) -> str | None:
+    """Prefer a Python outside the source checkout that can import jsonschema."""
+    candidates: list[str] = []
+    if explicit:
+        candidates.append(explicit)
+    for name in ("python", "python3"):
+        found = shutil.which(name)
+        if found:
+            candidates.append(found)
+    candidates.append(sys.executable)
+    seen: set[str] = set()
+    for candidate in candidates:
+        normalized = str(Path(candidate))
+        if normalized in seen:
+            continue
+        seen.add(normalized)
+        if python_works(candidate):
+            return normalized
+    return None
+
+
 def now() -> str:
     return datetime.now(timezone.utc).isoformat()
 
@@ -104,6 +160,27 @@ def collect_source_files(source: Path) -> list[tuple[str, Path, str]]:
             collected.append((relative, path, role))
     if not collected:
         raise SystemExit(f"no suite files found under {source}")
+    for name in ("setup_skill.py", "uninstall_skill.py"):
+        candidate = source / "scripts" / name
+        if not candidate.is_file():
+            candidate = source / name
+        if not candidate.is_file():
+            candidate = Path(__file__).resolve().parent / name
+        if candidate.is_file() and name not in seen:
+            seen.add(name)
+            collected.append((name, candidate, "launcher"))
+    for name, role in (
+        ("LICENSE", "license"),
+        ("THIRD_PARTY_NOTICES.md", "license"),
+        ("requirements.txt", "docs"),
+        ("requirements.lock", "docs"),
+    ):
+        candidate = source / name
+        if not candidate.is_file():
+            candidate = REPO_ROOT / name
+        if candidate.is_file() and name not in seen:
+            seen.add(name)
+            collected.append((name, candidate, role))
     return collected
 
 
@@ -288,7 +365,9 @@ def cmd_install(args: argparse.Namespace) -> int:
     )
 
     should_activate = existing is None or version_tuple(version) >= version_tuple(existing)
-    python_exe = sys.executable if Path(sys.executable).is_file() else None
+    python_exe = select_python_exe(getattr(args, "python_exe", None))
+    if python_exe is None:
+        python_exe = sys.executable if Path(sys.executable).is_file() else None
     if should_activate:
         for skill in SKILLS:
             skill_root = skills_root / skill
@@ -319,6 +398,7 @@ def cmd_install(args: argparse.Namespace) -> int:
         "suite_root": str(suite_root),
         "activated": should_activate,
         "python_exe": python_exe,
+        "python_version": python_version_of(python_exe),
         "files": sorted(copied, key=lambda item: item["path"]),
     }
     write_json(record_path(agents_home, version), record)
@@ -396,7 +476,8 @@ def check_link(agents_home: Path, skill: str) -> tuple[dict | None, list[str]]:
         return link, [f"MANIFEST_MISMATCH: hash differs for {len(mismatch)} file(s)"]
     python_exe = link.get("python_exe")
     if python_exe and not Path(python_exe).is_file():
-        return link, ["PYTHON_EXE_MISSING"]
+        # Launcher falls back to sys.executable/PATH; doctor validates the actual choice below.
+        pass
     return link, problems
 
 
@@ -426,8 +507,10 @@ def cmd_doctor(args: argparse.Namespace) -> int:
             winners[entry["name"]] = entry
 
     link_status: dict[str, dict] = {}
+    link_objects: dict[str, dict] = {}
     for skill in SKILLS:
         link, skill_problems = check_link(agents_home, skill)
+        link_objects[skill] = link or {}
         problems.extend(f"{skill}: {problem}" for problem in skill_problems)
         link_status[skill] = {
             "found": link is not None,
@@ -443,10 +526,50 @@ def cmd_doctor(args: argparse.Namespace) -> int:
             }
         )
 
-    python_ok = bool(sys.executable) and Path(sys.executable).is_file()
-    checks.append({"id": "python", "status": "READY" if python_ok else "MISSING", "detail": sys.executable if python_ok else "no python"})
+    linked_python = (link_objects.get("uiux") or {}).get("python_exe") or sys.executable
+    if not Path(linked_python).is_file():
+        linked_python = shutil.which("python") or sys.executable
+    python_version = python_version_of(linked_python)
+    try:
+        python_supported = tuple(int(part) for part in (python_version or "0").split(".")[:2]) >= (3, 10)
+    except ValueError:
+        python_supported = False
+    python_ok = Path(linked_python).is_file() and python_works(linked_python) and python_supported
+    checks.append(
+        {
+            "id": "python",
+            "status": "READY" if python_ok else "INCOMPATIBLE",
+            "detail": f"{linked_python} ({python_version or 'unknown'})",
+        }
+    )
+    if not python_ok:
+        problems.append(f"python: unusable or below 3.10: {linked_python}")
     node = shutil.which("node")
-    checks.append({"id": "node", "status": "READY" if node else "MISSING", "detail": node or "node not on PATH"})
+    node_version = None
+    if node:
+        try:
+            node_proc = subprocess.run(
+                [node, "--version"], capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=15
+            )
+            node_version = node_proc.stdout.strip() if node_proc.returncode == 0 else None
+        except (OSError, subprocess.TimeoutExpired):
+            node_version = None
+    node_major = 0
+    if node_version:
+        try:
+            node_major = int(node_version.lstrip("v").split(".")[0])
+        except ValueError:
+            node_major = 0
+    node_ok = bool(node) and node_major >= 20
+    checks.append(
+        {
+            "id": "node",
+            "status": "READY" if node_ok else ("INCOMPATIBLE" if node else "MISSING"),
+            "detail": f"{node or 'node not on PATH'} ({node_version or 'unknown'})",
+        }
+    )
+    if not node_ok:
+        problems.append(f"node: requires >=20, found {node or 'none'} ({node_version or 'unknown'})")
     gui_ok = os.name == "nt"
     checks.append({"id": "gui", "status": "READY" if gui_ok else "UNVERIFIED", "detail": "windows desktop" if gui_ok else "non-Windows host"})
     writable = os.access(agents_home, os.W_OK) if agents_home.exists() else True
@@ -576,6 +699,7 @@ def build_parser() -> argparse.ArgumentParser:
     install.add_argument("--project")
     install.add_argument("--source")
     install.add_argument("--version", default=DEFAULT_VERSION)
+    install.add_argument("--python-exe", help="explicit Python for suite-link (must import jsonschema)")
     install.set_defaults(func=cmd_install, host="dsh")
 
     doctor = sub.add_parser("doctor")
@@ -595,6 +719,7 @@ def build_parser() -> argparse.ArgumentParser:
     upgrade.add_argument("--project")
     upgrade.add_argument("--source")
     upgrade.add_argument("--version", required=True)
+    upgrade.add_argument("--python-exe", help="explicit Python for suite-link")
     upgrade.set_defaults(func=cmd_upgrade, host="dsh")
 
     rollback = sub.add_parser("rollback")

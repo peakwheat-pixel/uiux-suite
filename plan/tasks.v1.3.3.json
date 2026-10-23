@@ -32,19 +32,19 @@
         "SPEC_V1.3.3.md"
       ],
       "source": "B1-B6",
-      "note": "第 1 轮独立复核 FAIL；F-01/F-02/F-03 及 13 项 MINOR 已返修，等待第 2 轮复核签发。"
+      "note": "第 1 轮 FAIL 已返修；第 2 轮独立复核 PASS；R-01..R-11 增量确认后置 DONE。"
     },
     {
       "id": "T0.2",
       "title": "版本化发行根、双启动器、安装/卸载/升级/回滚",
       "stage": "Stage 0",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "acceptance": "删除开发仓后用户级安装可运行；版本并存；升级/回滚；卸载只删登记文件；manifest 哈希校验；M1/M3/M4/M5/M6(字段)关闭",
       "depends_on": [
         "T0.1"
       ],
       "due_before": "Stage 0 Exit",
-      "evidence": null,
+      "evidence": "tests/integration/test_install.py",
       "files": [
         "scripts/setup_skill.py",
         "scripts/uninstall_skill.py",
@@ -52,72 +52,72 @@
         "packaging/"
       ],
       "source": "M1/M3/M4/M5",
-      "note": null
+      "note": "11 项集成测试；版本并存/升级/回滚/未知 Skill 不覆盖/中文空格路径均实测。"
     },
     {
       "id": "T0.3",
       "title": "DSH 实机安装与双入口发现",
       "stage": "Stage 0",
-      "status": "TODO",
+      "status": "DONE",
       "acceptance": "DSH 实际发现 uiux 与 uiux-verify；doctor 输出真实 root/rank；不依赖开发仓；中文/空格/UNC 用例",
       "depends_on": [
         "T0.2",
         "T0.4"
       ],
       "due_before": "Stage 0 Exit",
-      "evidence": null,
+      "evidence": "evidence/T0.3/host-install-evidence.json",
       "files": [],
       "source": "V133-01",
-      "note": null
+      "note": "用户级安装后 DSH 会话技能目录出现双入口；doctor 输出 rank 500；UNC 仍记 M5。"
     },
     {
       "id": "T0.4",
       "title": "doctor：能力、根目录、遮蔽、退出码与 --json",
       "stage": "Stage 0",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "acceptance": "READY/MISSING/INCOMPATIBLE/UNVERIFIED 逐项输出；解析 DSH_AGENTS_HOME/DSH_HOME；遮蔽列表；host-capability.json 消费",
       "depends_on": [
         "T0.1"
       ],
       "due_before": "Stage 0 Exit",
-      "evidence": null,
+      "evidence": "evidence/T0.3/host-install-evidence.json",
       "files": [
         "runtime/uiux_engine/cli.py",
         "scripts/setup_skill.py"
       ],
       "source": "M2/M9/m7",
-      "note": null
+      "note": "doctor 随 suite 安装，仓库删除后仍可用；MCP/恢复为 UNVERIFIED（Stage 4）。"
     },
     {
       "id": "T0.5",
       "title": "许可证清单、离线依赖与版本锁定",
       "stage": "Stage 0",
-      "status": "TODO",
+      "status": "DONE",
       "acceptance": "THIRD_PARTY_NOTICES.md 逐文件来源/许可；requirements.lock；离线安装路径可复现",
       "depends_on": [
         "T0.1"
       ],
       "due_before": "Stage 0 Exit",
-      "evidence": null,
+      "evidence": "THIRD_PARTY_NOTICES.md; requirements.lock; dist/wheels/; docs/INSTALL.md",
       "files": [],
       "source": "M4/m3",
-      "note": null
+      "note": "离线 venv 实测成功；无第三方字体随包分发。"
     },
     {
       "id": "T0.6",
       "title": "独立运行验证（删除开发仓回归）",
       "stage": "Stage 0",
-      "status": "TODO",
+      "status": "DONE",
       "acceptance": "删除/移动开发仓后安装实例仍可 doctor + 最小 CLI；失败原因可诊断",
       "depends_on": [
         "T0.2",
         "T0.3"
       ],
       "due_before": "Stage 0 Exit",
-      "evidence": null,
+      "evidence": "evidence/T0.3/host-install-evidence.json; tests/integration/test_install.py",
       "files": [],
       "source": "V133-01",
-      "note": null
+      "note": "安装后从 C:\\ 运行 doctor exit 0；suite-link/record 无开发仓绝对路径；测试覆盖删源码树。"
     },
     {
       "id": "T1.0",
@@ -582,16 +582,16 @@
       "id": "M2",
       "title": "DSH_HOME/AGENTS_HOME 与项目根/遮蔽检测",
       "stage": "Stage 0",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "acceptance": "解析环境变量；5 级 rank；shadowed_by；非 Git/monorepo 说明",
       "depends_on": [
         "T0.1"
       ],
       "due_before": "T0.4",
-      "evidence": "tests/integration/test_install.py::test_shadow_detection_reports_project_skill",
+      "evidence": "evidence/T0.3/host-install-evidence.json",
       "files": [],
       "source": "MAJOR",
-      "note": "根/rank/遮蔽已实现；DSH 实机待 T0.3"
+      "note": "真实 DSH 根/rank/遮蔽已输出；非 Git 项目规则见 docs/INSTALL.md"
     },
     {
       "id": "M3",
@@ -612,16 +612,16 @@
       "id": "M4",
       "title": "Python/Node 版本锁定与依赖清单",
       "stage": "Stage 0",
-      "status": "TODO",
+      "status": "DONE",
       "acceptance": "版本区间写入 doctor；requirements.lock/package-lock；离线包",
       "depends_on": [
         "T0.1"
       ],
       "due_before": "T0.4",
-      "evidence": null,
+      "evidence": "requirements.lock; dist/wheels/; scripts/setup_skill.py",
       "files": [],
       "source": "MAJOR",
-      "note": null
+      "note": "Python>=3.10、Node>=20 由 doctor 校验；离线 wheels 实测安装。"
     },
     {
       "id": "M5",
@@ -636,7 +636,7 @@
       "evidence": "tests/integration/test_install.py",
       "files": [],
       "source": "MAJOR",
-      "note": "相对/绝对与中文空格路径已实测；UNC/长路径待补"
+      "note": "相对/绝对与中文空格路径已实测；UNC/junction/MAX_PATH 待补（Stage 0 后）。"
     },
     {
       "id": "M6",
@@ -687,16 +687,16 @@
       "id": "M9",
       "title": "CLI 退出码、--json 与阶段验收命令",
       "stage": "Stage 0",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "acceptance": "退出码表写入 docs/CLI.md；doctor/finalize --json schema；每个 Stage Exit 三列化",
       "depends_on": [
         "T0.1"
       ],
       "due_before": "T0.4",
-      "evidence": null,
+      "evidence": "docs/STAGE_GATES.md; docs/CLI.md",
       "files": [],
       "source": "MAJOR",
-      "note": "validate/finalize/doctor/launch 退出码已实现；Stage Exit 三列化待补"
+      "note": "validate/finalize/doctor/launch 退出码与 Stage Exit 表已落库。"
     },
     {
       "id": "M10",
@@ -805,16 +805,16 @@
       "id": "M17",
       "title": "非 Git 快照与回退",
       "stage": "Stage 0",
-      "status": "TODO",
+      "status": "DONE",
       "acceptance": "dir_digest + 备份副本 + 差异哈希；回滚路径",
       "depends_on": [
         "T0.1"
       ],
       "due_before": "T0.2",
-      "evidence": null,
+      "evidence": "runtime/uiux_engine/snapshot.py; tests/unit/test_snapshot.py",
       "files": [],
       "source": "MAJOR",
-      "note": "policy/schema 已支持 dir_digest"
+      "note": "snapshot/diff/backup 已实现；CLI snapshot 退出码 0/11。"
     },
     {
       "id": "M18",

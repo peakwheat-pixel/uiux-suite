@@ -38,6 +38,16 @@ $env:PYTHONPATH = "runtime"
 
 `gate-results.request_digest` 必须等于 `sha256(canonical TaskRequest)`；不匹配时退出码 10（`REQUEST_DIGEST_MISMATCH`），阻止事后调低 `runtime_targets`。`--repair-cycles` 只接受 0..2。
 
+## 非 Git 快照（M17）
+
+```powershell
+python -m uiux_engine.cli snapshot --root "G:\project" --out "G:\project\.uiux\state\snapshot.json"
+python -m uiux_engine.cli snapshot --diff before.json after.json
+```
+
+- `snapshot` 输出 `file_count` 与 `digest`；忽略 `.git/.venv/__pycache__/node_modules`。
+- `--diff` 输出 added/removed/changed；一致退出 0，有差异退出 11。
+
 ## 安装 / doctor / 启动器（T0.2 起）
 
 ```powershell

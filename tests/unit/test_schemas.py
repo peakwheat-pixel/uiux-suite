@@ -78,6 +78,13 @@ def test_malformed_datetime_is_rejected():
     assert errors, "date-time format must be enforced"
 
 
+def test_date_only_and_naive_datetime_are_rejected():
+    data = load_fixture("contracts/valid/gate-results.json")
+    for bad in ("2026-10-23", "2026-10-23T12:00:00"):
+        data["created_at"] = bad
+        assert contracts.validation_errors("gate-results", data), bad
+
+
 def test_gate_results_require_request_digest():
     data = load_fixture("contracts/valid/gate-results.json")
     data.pop("request_digest")

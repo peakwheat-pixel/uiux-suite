@@ -103,6 +103,34 @@ def test_launch_works_after_source_tree_is_deleted(tmp_path: Path):
     assert doctor.returncode in (0, 11)
 
 
+def test_installed_launcher_exposes_doctor_after_source_deletion(tmp_path: Path):
+    source = make_source(tmp_path)
+    agents = tmp_path / "agents"
+    assert install(source, agents).returncode == 0
+    manifest = json.loads(
+        (agents / "uiux-suite" / "versions" / "1.3.3" / "RELEASE_MANIFEST.json").read_text(encoding="utf-8")
+    )
+    assert "setup_skill.py" in {entry["path"] for entry in manifest["files"]}
+
+    shutil.rmtree(source)
+    env = dict(os.environ)
+    env["DSH_AGENTS_HOME"] = str(agents)
+    env["DSH_HOME"] = str(tmp_path / ".dsh")
+    proc = subprocess.run(
+        [sys.executable, str(agents / "skills" / "uiux" / "scripts" / "launch.py"), "doctor", "--scope", "user"],
+        cwd=str(tmp_path),
+        env=env,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    assert proc.returncode == 0, proc.stdout + proc.stderr
+    payload = json.loads(proc.stdout)
+    assert payload["links"]["uiux"]["found"] is True
+    assert payload["host_capability"]["schema_version"] == "1.3.3"
+
+
 def test_unknown_existing_skill_is_not_overwritten(tmp_path: Path):
     source = make_source(tmp_path)
     agents = tmp_path / "agents"
@@ -233,6 +261,19 @@ def test_launch_reports_missing_link_and_version_mismatch(tmp_path: Path):
     proc = _launch(agents)
     assert proc.returncode == 3
     assert json.loads(proc.stdout)["code"] == "LINK_MISSING"
+
+
+def test_launch_falls_back_when_linked_python_missing(tmp_path: Path):
+    source = make_source(tmp_path)
+    agents = tmp_path / "agents"
+    assert install(source, agents).returncode == 0
+    link_path = agents / "skills" / "uiux" / "suite-link.json"
+    link = json.loads(link_path.read_text(encoding="utf-8"))
+    link["python_exe"] = str(tmp_path / "missing-python.exe")
+    link_path.write_text(json.dumps(link), encoding="utf-8")
+    proc = _launch(agents)
+    assert proc.returncode == 0, proc.stdout + proc.stderr
+    assert json.loads(proc.stdout)["schema_version"] == "1.3.3"
 
 
 def test_upgrade_and_rollback_switch_active_version(tmp_path: Path):

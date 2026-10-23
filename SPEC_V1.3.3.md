@@ -4,7 +4,7 @@
 > 日期：2026-10-24
 > 前版：`SPEC_V1.3.2.md`（不可变基线，commit `e7e921e`，tag `v1.3.2-baseline`，SHA256 `70f5f3399079ad138685295c9ec2915544c03e77b7cf49f08e5959bc9411ea04`）
 > 本版分支：`v1.3.3-contract-closure`
-> 实施证据：`evidence/T0.1/contract-test-evidence.json`（133 项契约+安装测试通过，exit_code=0）
+> 实施证据：`evidence/T0.1/contract-test-evidence.json`（157 项契约+安装测试通过，exit_code=0）
 > 适用对象：DSH（首选实测宿主）、Codex / Claude Code / ZCode / Antigravity / Qoder（逐项验证，未测即 `UNVERIFIED`）
 
 ---
@@ -289,6 +289,8 @@ L1–L3 全绿不能替代 L4；L4 也不能覆盖 L1/L3 硬失败。
 
 `COMPLETE ≠ INDEPENDENT_REVIEW_PASS`：只有模式/交付层级或 profile 要求独立时才强制后者。有效 `ISOLATED_SESSION` 审查可产生 `ISOLATED_REVIEW_VERIFIED`；否则为 `SELFTEST_VERIFIED` 的范围内完成。
 
+`ISOLATED_REVIEW_VERIFIED` 与 `INDEPENDENCE_UNVERIFIED` 可以并存：前者描述"评审在隔离会话中完成"，后者描述"独立来源未被宿主/外部信任锚证实"；发布审计（release_audit）与 verify 模式仍必须 `INDEPENDENT_REVIEW_PASS`（D-023）。
+
 存在明确失败（MANDATORY/REVIEW_ONLY Gate FAIL 或 L4 FAIL）时输出 `FAILED`，不得降级为 `PARTIAL`。
 
 ### 5.4 运行层级与跨层冒充
@@ -414,7 +416,7 @@ g6 = derive(...)
 
 ### Stage 0｜契约闭环、安装闭环与 DSH 预检
 
-- **T0.1（本版完成，待独立复核）**：Schema、枚举、Gate 引擎、覆盖矩阵、L4、证据生命周期；契约+安装测试 133/133。
+- **T0.1（本版完成，待独立复核）**：Schema、枚举、Gate 引擎、覆盖矩阵、L4、证据生命周期；契约+安装测试 157/157。
 - T0.2 发行根/双启动器/安装卸载/升级回滚；M1/M3/M4/M5。
 - T0.3 DSH 实机安装与双入口发现；M2/m6/m7 部分。
 - T0.4 doctor：能力、根目录、遮蔽、退出码/JSON；M9。

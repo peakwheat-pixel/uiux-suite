@@ -4,8 +4,8 @@
 
 ## 1. 当前阶段
 
-- **Stage 0 / T0.1 — IN_PROGRESS**（契约已实现并通过 133 项机器测试；第 1 轮独立复核 FAIL 的 3 项 MAJOR 已返修，等待第 2 轮复核签发）。
-- **T0.2/T0.4 — IN_PROGRESS**（安装器、启动器、doctor、升级/回滚、卸载已实现并通过集成测试；等待 T0.1 复核后完成 Stage 0 验收）。
+- **Stage 0 / T0.1 — 第 2 轮独立复核 PASS，落库中**（契约已实现并通过 157 项机器测试；第 1 轮 3 项 MAJOR 与第 2 轮 11 项 MINOR 已处置，等待增量确认后标 DONE）。
+- **T0.2/T0.4 — IN_PROGRESS**（安装器、启动器、doctor、升级/回滚、卸载已实现并通过集成测试；T0.3 实机双入口发现已通过，等待 Stage 0 收尾）。
 - 分支：`v1.3.3-contract-closure`。
 - 基线：`main` 上 `e7e921e`，tag `v1.3.2-baseline`，SHA256 `70f5f339…9411ea04`。
 - 裁决：`CONTRACT_CLOSURE_READY_FOR_REVIEW`，**不是** Stage 0 PASS，也不是 Release。
@@ -18,9 +18,9 @@
 | 契约字典与 14 份 Schema | `contracts/` | `tests/unit/test_schemas.py`、`test_enums.py` |
 | Mode×Gate 机器策略 | `contracts/mode-gate-policy.v1.3.3.json` | `tests/unit/test_policy.py` |
 | finalize/Gate 引擎 | `runtime/uiux_engine/` | `tests/integration/test_finalize.py`、`test_cli.py` |
-| 正反 fixtures | `tests/fixtures/`（14 valid / 14 invalid / 5 semantic） | `_build_fixtures.py`、Schema 测试 |
-| 契约+安装测试 | `tests/`（133 项） | `.venv\Scripts\python.exe -m pytest tests -q` |
-| 契约测试证据 | `evidence/T0.1/contract-test-evidence.json` | 133/133 PASS，exit 0（以 evidence 为准） |
+| 正反 fixtures | `tests/fixtures/`（14 valid / 15 invalid / 5 semantic） | `_build_fixtures.py`、Schema 测试 |
+| 契约+安装测试 | `tests/`（157 项） | `.venv\Scripts\python.exe -m pytest tests -q` |
+| 契约测试证据 | `evidence/T0.1/contract-test-evidence.json` | 157/157 PASS，exit 0（以 evidence 为准） |
 | 双 Skill 入口与启动器 | `skills/uiux`、`skills/uiux-verify` | `tests/integration/test_install.py`（launch enums） |
 | 安装/卸载/升级/回滚 | `scripts/setup_skill.py`、`scripts/uninstall_skill.py` | 版本并存、删除源码后仍可启动、未知 Skill 不覆盖 |
 | doctor | `scripts/setup_skill.py doctor` | `host-capability.v1.3.3` 校验、root/rank/shadowed_by |
@@ -31,7 +31,7 @@
 
 | 任务 | 状态 | 阻塞点 |
 |---|---|---|
-| T0.1 | IN_PROGRESS | 第 1 轮复核 FAIL；F-01/F-02/F-03 已返修，等待第 2 轮复核 |
+| T0.1 | 第 2 轮 PASS，落库中 | 等待 R-01..R-11 增量确认 |
 | T0.2 | IN_PROGRESS | 安装闭环已实现；待 T0.1 复核与 T0.3 实机安装 |
 | T0.4 | IN_PROGRESS | doctor 已实现；待 DSH 实机根/遮蔽验证 |
 | T1.5 Gate 引擎完整化 | IN_PROGRESS | 待 Stage 1 工具日志接入 |
@@ -44,7 +44,7 @@
 | F-01 | production-code 的 L4 未强制独立 | `policy.l4_independent_required()` 按 `deliverable_tier` 派生；策略拆为 `review_policy` 与 `design_review_policy` | `test_production_code_l4_selftest_reviewer_is_rejected` |
 | F-02 | coverage 可自报层级 | coverage 与 manifest provenance/tool-log 交叉校验；gate observed 不得超过证据层级 | `test_coverage_claiming_native_without_native_provenance_is_rejected`、`test_gate_observed_level_above_evidence_is_rejected` |
 | F-03 | WARN 处置未 Schema 校验/未绑 HEAD | CLI 文件走同一 `warn_review` Schema；`reviewed_head` 必须等于冻结指纹 | `test_warn_review_missing_fields_is_rejected`、`test_warn_review_bound_to_wrong_head_is_rejected` |
-| F-04 | 文档计数漂移 | 计数统一为 133；evidence 输入集加入 SPEC/docs/plan | `run_contract_tests.py` |
+| F-04 | 文档计数漂移 | 计数统一为 157；evidence 输入集加入 SPEC/docs/plan | `run_contract_tests.py` |
 | F-05 | 顶层 `g6` 未被拒 | 删除顶层 `g6` property | `test_top_level_g6_is_rejected` |
 | F-06 | AVAILABLE 字节校验口径 | 明确 T3.5 实现；T0.1 只做清单/引用哈希 | SPEC §3.6/§15 |
 | F-07 | ISOLATED_REVIEW_VERIFIED 不可达 | 有效 ISOLATED_SESSION 审查可产生该状态 | `test_isolated_session_delivery_is_reachable` |
@@ -55,13 +55,21 @@
 | F-12 | 测试与 ReasonCode 闭集弱 | 命名空间校验、outcome 形状断言、gate/unverified reason code 闭集 | `test_gate_reason_codes_must_be_registered` 等 |
 | F-13 | repair_cycles 恒 0 | `finalize --repair-cycles` 回填并校验 0..2 | CLI happy path |
 | F-14 | runtime_targets 可事后调低 | `request_digest` 必填并交叉校验 | `test_request_digest_mismatch_blocks_complete`、`test_cli_rejects_request_digest_mismatch` |
-| F-15 | 死代码 | 删除 `derive_runtime_targets`/`_unused`，简化 `schema_path` | compileall |
+| F-15 | 死代码 | 删除 `derive_runtime_targets`/`_unused`；删除 `contracts.schema_path` | compileall |
 | F-16 | 审核输入不可复核 | 新增 `docs/audits/V1.3.2_DSH_REVIEW_SUMMARY.md` | 仓库内可追溯 |
+
+### 3.2 第 2 轮独立复核（2026-10-24）
+
+- 结论：**T0.1 PASS**（针对 commit `13a222e` / 代码 `597b71d`）。
+- 证据：133/133、exit 0；101 项输入哈希全匹配；复跑两次一致；无新 BLOCKER/MAJOR。
+- 3 项 MAJOR 均判 FIXED，且负向测试在旧实现下会失败。
+- R-01..R-11 已处置：fixtures/ReasonCode 计数、审核记录落库、policy fact 声明与冗余标注、删除死代码、RFC3339 收紧、coverage 证据状态、WARN 证据可用性、FAILED 负向测试、字段命名空间映射、ISOLATED 语义确认（D-023）。
+- 第 2 轮结论全文与处置表：`docs/audits/V1.3.3_CONTRACT_REVIEW.md`。
 
 ## 4. 下一批 READY（按依赖）
 
-1. **独立 T0.1 复核**（只读 Reviewer，检查契约、测试证据与 Spec 一致性）。
-2. **T0.3** DSH 实机安装与双入口发现。
+1. **R-01..R-11 增量确认**（同一 Reviewer 只读确认并重建证据）。
+2. **T0.3** DSH 实机安装与双入口发现（已完成用户级安装与发现，待落库证据）。
 3. **T0.5** 许可证与离线依赖锁定（M4）。
 4. **T0.6** 删除开发仓回归。
 5. **M2/M5/M9 收尾**（实机根/遮蔽、UNC/长路径、Stage Exit 表）。

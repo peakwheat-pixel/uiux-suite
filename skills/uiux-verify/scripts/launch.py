@@ -15,6 +15,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -58,6 +59,44 @@ def verify_manifest(suite_root: Path, manifest_path: Path, expected_version: str
     return None
 
 
+def python_usable(exe: str | Path) -> bool:
+    path = Path(exe)
+    if not path.is_file():
+        return False
+    env = dict(os.environ)
+    env["PYTHONDONTWRITEBYTECODE"] = "1"
+    try:
+        proc = subprocess.run(
+            [str(path), "-c", "import jsonschema"],
+            capture_output=True,
+            env=env,
+            timeout=15,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return False
+    return proc.returncode == 0
+
+
+def resolve_python(link: dict) -> str | None:
+    candidates: list[str] = []
+    if link.get("python_exe"):
+        candidates.append(str(link["python_exe"]))
+    candidates.append(sys.executable)
+    for name in ("python", "python3"):
+        found = shutil.which(name)
+        if found:
+            candidates.append(found)
+    seen: set[str] = set()
+    for candidate in candidates:
+        normalized = str(Path(candidate))
+        if normalized in seen:
+            continue
+        seen.add(normalized)
+        if python_usable(normalized):
+            return normalized
+    return None
+
+
 def main(argv: list[str]) -> int:
     skill_root = Path(__file__).resolve().parent.parent
     link_path = skill_root / "suite-link.json"
@@ -79,13 +118,25 @@ def main(argv: list[str]) -> int:
     if problem:
         return emit(6, problem, str(suite_root / link["manifest_relpath"]))
 
-    python_exe = link.get("python_exe") or sys.executable
-    if not Path(python_exe).is_file():
-        return emit(5, "PYTHON_EXE_MISSING", str(python_exe))
+    python_exe = resolve_python(link)
+    if python_exe is None:
+        return emit(5, "PYTHON_EXE_MISSING", "no Python with jsonschema found (suite-link, sys.executable, PATH)")
 
     env = dict(os.environ)
     env["PYTHONPATH"] = str(suite_root / "runtime")
     env["PYTHONDONTWRITEBYTECODE"] = "1"
+
+    if argv and argv[0] == "doctor":
+        installed_doctor = suite_root / "setup_skill.py"
+        if not installed_doctor.is_file():
+            return emit(7, "INSTALLED_DOCTOR_MISSING", str(installed_doctor))
+        completed = subprocess.run(
+            [python_exe, str(installed_doctor), "doctor", *argv[1:]],
+            cwd=str(suite_root),
+            env=env,
+        )
+        return completed.returncode
+
     completed = subprocess.run(
         [python_exe, "-m", "uiux_engine.cli", *argv],
         cwd=str(suite_root),

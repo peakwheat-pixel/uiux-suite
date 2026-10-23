@@ -138,6 +138,64 @@ def test_warn_rejected_with_counter_evidence_can_complete():
     assert "WARN_REVIEW_INVALID" not in _codes(outcome)
 
 
+def test_warn_review_evidence_must_exist_in_manifest():
+    gate_results = copy.deepcopy(GATE_RESULTS)
+    gate_results["gates"]["G5"]["state"] = "WARN_REVIEW_REQUIRED"
+    review = {
+        "finding_id": "F-003",
+        "gate": "G5",
+        "disposition": "FIXED",
+        "reviewer_source": "isolated_session",
+        "reviewer_identity": "reviewer-01",
+        "reviewed_head": "a" * 40,
+        "evidence_refs": ["EV-DOES-NOT-EXIST"],
+        "expires_at": "2027-10-23T12:00:00+00:00",
+        "rationale": "fixed",
+    }
+    outcome = _evaluate(gate_results=gate_results, warn_reviews=[review])
+    assert outcome["status"] != "COMPLETE"
+    assert {"MISSING_EVIDENCE", "WARN_REVIEW_INVALID"} & _codes(outcome)
+
+
+def test_coverage_reference_to_redacted_evidence_is_rejected():
+    manifest = copy.deepcopy(MANIFEST)
+    for item in manifest["items"]:
+        if item["id"] == "EV-G5":
+            item["status"] = "REDACTED_ONLY"
+            item.pop("source_sha256", None)
+            item["redacted_sha256"] = "b" * 64
+    outcome = _evaluate(manifest=manifest)
+    assert "EVIDENCE_SOURCE_UNAVAILABLE" in _codes(outcome)
+    assert outcome["status"] != "COMPLETE"
+
+
+def test_mandatory_gate_fail_yields_failed_status():
+    gate_results = copy.deepcopy(GATE_RESULTS)
+    gate_results["gates"]["G5"]["state"] = "FAIL"
+    outcome = _evaluate(gate_results=gate_results)
+    assert outcome["status"] == "FAILED"
+
+
+def test_review_only_gate_fail_yields_failed_status():
+    from conftest import load_fixture
+
+    audit_request = load_fixture("contracts/valid/task-request-audit.json")
+    audit_gates = copy.deepcopy(GATE_RESULTS)
+    audit_gates["mode"] = "audit"
+    for gate in ("G2", "G3", "G4"):
+        audit_gates["gates"][gate].update(
+            {"applicability": "REVIEW_ONLY", "state": "PASS", "evidence_refs": [], "probe_ids": []}
+        )
+    audit_gates["gates"]["G2"]["state"] = "FAIL"
+    outcome = _evaluate(
+        request=audit_request,
+        gate_results=audit_gates,
+        design_review=None,
+        review_attestation=None,
+    )
+    assert outcome["status"] == "FAILED"
+
+
 def test_production_code_l4_selftest_reviewer_is_rejected():
     request = copy.deepcopy(REQUEST)
     request["review"]["independent_required"] = False

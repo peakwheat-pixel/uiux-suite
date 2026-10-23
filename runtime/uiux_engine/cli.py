@@ -17,7 +17,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from . import contracts, enums, gates, policy, validation
+from . import contracts, enums, gates, policy, snapshot, validation
 
 EXIT_OK = 0
 EXIT_USAGE = 2
@@ -97,6 +97,37 @@ def cmd_validate(args: argparse.Namespace) -> int:
     if errors:
         return _invalid(errors, context=f"schema={args.schema}")
     _emit({"ok": True, "schema": args.schema, "instance": args.instance})
+    return EXIT_OK
+
+
+def cmd_snapshot(args: argparse.Namespace) -> int:
+    if args.diff:
+        try:
+            before = snapshot.load_snapshot(args.diff[0])
+            after = snapshot.load_snapshot(args.diff[1])
+        except (OSError, ValueError, KeyError) as exc:
+            return _invalid([str(exc)], context="snapshot diff")
+        diff = snapshot.diff_snapshots(before, after)
+        _emit({"ok": diff["identical"], **diff})
+        return EXIT_OK if diff["identical"] else EXIT_PARTIAL
+    if not args.root:
+        _emit({"ok": False, "errors": ["snapshot requires --root or --diff BEFORE AFTER"]})
+        return EXIT_USAGE
+    try:
+        data = snapshot.build_snapshot(args.root)
+        if args.out:
+            snapshot.write_snapshot(args.root, args.out)
+    except (OSError, ValueError) as exc:
+        return _invalid([str(exc)], context="snapshot")
+    _emit(
+        {
+            "ok": True,
+            "root_name": data["root_name"],
+            "file_count": data["file_count"],
+            "digest": contracts.sha256_json(data["files"]),
+            "out": args.out,
+        }
+    )
     return EXIT_OK
 
 
@@ -315,6 +346,12 @@ def build_parser() -> argparse.ArgumentParser:
     p_policy.add_argument("--mode", choices=sorted(enums.values("Mode")))
     p_policy.add_argument("--request")
     p_policy.set_defaults(func=cmd_policy)
+
+    p_snapshot = sub.add_parser("snapshot", help="non-Git directory digest / snapshot diff (M17)")
+    p_snapshot.add_argument("--root")
+    p_snapshot.add_argument("--out")
+    p_snapshot.add_argument("--diff", nargs=2, metavar=("BEFORE", "AFTER"))
+    p_snapshot.set_defaults(func=cmd_snapshot)
 
     p_finalize = sub.add_parser("finalize", help="derive G6 and issue a TaskResult from evidence")
     p_finalize.add_argument("--request", required=True)
