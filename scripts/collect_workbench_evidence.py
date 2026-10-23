@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import hashlib
+import os
 import json
 import subprocess
 import sys
@@ -11,7 +12,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 OUT_DIR = REPO_ROOT / "evidence" / "T5.1"
-WORKBENCH = Path(r"G:\AI\uiux-stage5-sandbox\new-manga-src")
+WORKBENCH = Path(os.environ.get("UIUX_WORKBENCH_SRC", "<sandbox>"))
 
 
 def sha256_file(path: Path) -> str:
@@ -26,6 +27,11 @@ def main() -> int:
     from uiux_engine import design_system, discovery, style_linter
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+    git_info = {
+        "commit": subprocess.run(["git", "rev-parse", "HEAD"], cwd=str(REPO_ROOT), capture_output=True, text=True, encoding="utf-8").stdout.strip(),
+        "dirty": bool(subprocess.run(["git", "status", "--porcelain"], cwd=str(REPO_ROOT), capture_output=True, text=True, encoding="utf-8").stdout.strip()),
+        "dirty_scope": "tracked files excluding evidence/ (collectors rewrite evidence)",
+    }
     discovery_report = discovery.discover(WORKBENCH)
     sources = [
         path
@@ -50,9 +56,7 @@ def main() -> int:
         "source_workbench": "G:\\CODEX\\New Manga",
         "isolated_copy": str(WORKBENCH),
         "isolation": "copied src/docs/tests/config only; apps/test_assets/weights/verification excluded; original never modified",
-        "git": {
-            "commit": subprocess.run(["git", "rev-parse", "HEAD"], cwd=str(REPO_ROOT), capture_output=True, text=True, encoding="utf-8").stdout.strip(),
-        },
+        "git": git_info,
         "file_count_copied": sum(1 for _ in WORKBENCH.rglob("*") if _.is_file()),
         "files_scanned": len(sources),
         "discovery": {

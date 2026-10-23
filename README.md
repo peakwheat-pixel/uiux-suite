@@ -30,7 +30,7 @@ $env:USERPROFILE\.agents\skills\uiux-verify\scripts\launch.py enums
 
 | 路径 | 内容 |
 |---|---|
-| `contracts/` | 25 份 JSON Schema、枚举字典、Mode×Gate 机器策略 |
+| `contracts/` | 23 份 JSON Schema、枚举字典、Mode×Gate 机器策略 |
 | `runtime/uiux_engine/` | 契约加载、策略、Gate/finalize、证据、CLI |
 | `skills/uiux`、`skills/uiux-verify` | 双 Skill 入口与启动器 |
 | `scripts/` | 安装/doctor/卸载/证据/任务登记脚本 |

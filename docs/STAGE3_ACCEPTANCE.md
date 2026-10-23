@@ -42,5 +42,5 @@ UIA 证据要点：
 
 ## 4. Stage 3 判定
 
-- T3.1/T3.5/T3.6 有可复核证据；T3.2/T3.3/T3.4 受环境限制为 UNVERIFIED/PARTIAL。
+- T3.1/T3.5/T3.6 有可复核证据；T3.2 UNVERIFIED；T3.4 PARTIAL（T3.3 已 DONE）。
 - **Stage 3 不宣称 PASS**；发布前必须保留 UNVERIFIED 声明。

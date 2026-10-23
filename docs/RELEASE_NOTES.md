@@ -36,12 +36,12 @@ python skills\uiux\scripts\launch.py doctor --scope user
 
 ## 未验证（不得宣称 PASS）
 
-- Tauri + WDIO Native IPC（T3.2）；PySide6 QPA/DPI（T3.3）。
+- Tauri + WDIO Native IPC（T3.2）；PySide6 物理 125%/150% DPI（仅 QT_SCALE_FACTOR 模拟已验证）。
 - 原生对话框/WinUI/WPF/Qt UIA（T3.4 仅 Win11 Notepad（WinUI 3））。
 - 真实复杂工作台试点与改版前后对照（T5.1/T5.2）。
 - 其他 Agent 宿主（Codex/Claude/ZCode/Antigravity/Qoder）。
 - MCP 与断点恢复。
-- CSS/Tailwind/PySide6 token 编译器、knowledge index、brownfield 采纳。
+- 物理 DPI 变更、真实浏览器中的 Tailwind/CSS 产物执行。
 
 ## 构建可复现性
 

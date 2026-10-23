@@ -17,7 +17,7 @@
 
 ## 2. 已实现能力
 
-- **契约**：25 份 JSON Schema、枚举唯一来源、Mode×Gate、G0–G6 派生规则、证据生命周期、L4 独立审查。
+- **契约**：23 份 JSON Schema、枚举唯一来源、Mode×Gate、G0–G6 派生规则、证据生命周期、L4 独立审查。
 - **安装**：`uiux` + `uiux-verify` 双入口；版本化 `versions/<ver>/`；install/doctor/repair/upgrade/rollback/uninstall；中文/空格/junction/长路径；UNC 稳定拒绝。
 - **Stage 0–2**：T0.1 独立复核 PASS；Stage 2 的 discovery/flows/Token 编译器（CSS/Tailwind/PySide6）/knowledge index/brownfield/prototype/options 全部 DONE。
 - **检测器**（SIMULATED 标注）：`style_token_linter`、`ux_flow_validator`、`layout_geometry_probe`、`discovery`、`design_system`、`component_matrix`、`prototype`、`options`。

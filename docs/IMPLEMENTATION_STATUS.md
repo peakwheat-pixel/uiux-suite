@@ -13,7 +13,7 @@
 
 | 领域 | 产物 | 证据 |
 |---|---|---|
-| 契约 | `contracts/`：25 份 Schema + 枚举字典 + Mode×Gate | `tests/unit/test_schemas.py`、`test_enums.py`、`test_policy.py` |
+| 契约 | `contracts/`：23 份 Schema + 枚举字典 + Mode×Gate | `tests/unit/test_schemas.py`、`test_enums.py`、`test_policy.py` |
 | 安装 | 双入口、版本化 suite、install/doctor/repair/upgrade/rollback/uninstall | `tests/integration/test_install.py`、`test_paths.py` |
 | Gate/finalize | G0–G6 派生、WARN 处置、L4、证据生命周期 | `tests/unit/test_finalize.py`、`tests/integration/test_attacks.py` |
 | 规则与检测器 | 冻结 20 条；style/flow/geometry/discovery/design-system/component/prototype/options | `knowledge/rules/`、`tests/unit/test_*.py`、`qa/confusion-matrix.json` |

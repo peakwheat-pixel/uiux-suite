@@ -56,6 +56,11 @@ def run_scale(scale: str) -> dict:
 
 def main() -> int:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+    git_info = {
+        "commit": subprocess.run(["git", "rev-parse", "HEAD"], cwd=str(REPO_ROOT), capture_output=True, text=True, encoding="utf-8").stdout.strip(),
+        "dirty": bool(subprocess.run(["git", "status", "--porcelain"], cwd=str(REPO_ROOT), capture_output=True, text=True, encoding="utf-8").stdout.strip()),
+        "dirty_scope": "tracked files excluding evidence/ (collectors rewrite evidence)",
+    }
     runs = {scale: run_scale(scale) for scale in SCALES}
     ok = all(run.get("ok") for run in runs.values())
     evidence = {
@@ -63,14 +68,7 @@ def main() -> int:
         "evidence_id": "EV-T3.3-QPA",
         "kind": "tool_log",
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "git": {
-            "commit": subprocess.run(
-                ["git", "rev-parse", "HEAD"], cwd=str(REPO_ROOT), capture_output=True, text=True, encoding="utf-8"
-            ).stdout.strip(),
-            "dirty": bool(
-                subprocess.run(["git", "status", "--porcelain"], cwd=str(REPO_ROOT), capture_output=True, text=True, encoding="utf-8").stdout.strip()
-            ),
-        },
+        "git": git_info,
         "python": sys.version.split()[0],
         "runs": runs,
         "ok": ok,
