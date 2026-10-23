@@ -171,6 +171,7 @@ def main() -> int:
             "host": record.get("host"),
             "python_exe": record.get("python_exe"),
             "python_version": record.get("python_version"),
+            "installed_from_commit": record.get("installed_from_commit"),
         },
         "launchers": {
             skill: {
