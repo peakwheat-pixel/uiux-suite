@@ -1,11 +1,11 @@
 {
   "ok": true,
   "zip": "dist\\uiux-suite-1.3.3-win64.zip",
-  "zip_sha256": "94b23a734e2abf99e12c5b7acae5432b09b8e2cf8d800650d742c61ca44fcb79",
-  "zip_size": 978951,
-  "manifest_sha256": "0c53c3ead730cdcce188ee2716d5ee6a85f8a3b3a10aee70e3d6c7b969cbc561",
+  "zip_sha256": "b1f785b6324188fa6c7e2ec1e598b3b7231d2b83e2fb6adbfb42188224aac573",
+  "zip_size": 980567,
+  "manifest_sha256": "d3ef5a9de2459d8a0956265e2053044d402c216f833ccb114dfe055a889bd954",
   "git": {
-    "commit": "b3e18df0d2290ea4a9c414c7a1aba428b91b3a57",
+    "commit": "19c8f851bc2a7280340fcd11f6668a8ba6fb884e",
     "dirty": false
   },
   "bit_reproducible": false,
@@ -14,6 +14,6 @@
   "enums_exit": 0,
   "doctor_exit": 0,
   "log": "evidence\\T5.5\\release-install.txt",
-  "log_sha256": "8c7626956ae397d7962b03715ac65b0a304af0504ce56c7ab50158f1a7ea4daa",
-  "generated_at": "2026-10-23T21:07:04.302720+00:00"
+  "log_sha256": "dedd0105ce254c83bfb66057468a21959bbd1559a14987f548ba2e2888d87a35",
+  "generated_at": "2026-10-23T21:09:57.624499+00:00"
 }
