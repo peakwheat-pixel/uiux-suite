@@ -51,7 +51,7 @@ $env:PYTHONPATH='runtime'
 |---|---|---|
 | T5.1/T5.2 真实工作台交互/前后测量 | **DONE** | 真实应用启动、导入 3 页、重复 skip、阅读器；真实前后截图与指标 |
 | T5.3 数据安全/回滚 | **IN_PROGRESS** | 取消/重复跳过/DB/源未变/Git 回滚 PASS；导出需 translated artifact，撤销/重做产品未提供 |
-| T5.4 独立 G6 | IN_PROGRESS | 待独立 Reviewer 最终签发 |
+| T5.4 独立 G6 | **INCOMPLETE** | reviewer-v133 只读复审：G6 不可签发；阻断见 `evidence/T5.4/g6-review.json` |
 | M10 CI runner | **DONE** | GitHub Hosted CI 两个 workflow 在 1ae2f8e success |
 | MCP/断点恢复 | UNVERIFIED | 宿主无实例 |
 | 其他 Agent 宿主 | PARTIAL/UNVERIFIED | DSH 实测；Codex/Claude/ZCode/AGY/Qoder 未完成隔离发现测试 |
@@ -78,4 +78,4 @@ python skills\uiux\scripts\launch.py doctor --scope user
 
 ## 7. 结论
 
-本版本可作为**受控试用的 Release Candidate 2**：契约、安装、双入口、Stage 0–2、静态检测器、Qt QPA、证据链与发行包均可用且有机器证据；但**不是完整 G6 发布**。T3.4 已通过 WPF UIA/对话框/菜单与 WinUI 只读；完成 T5.1/T5.2 真实应用级试点与独立 G6 复审后，才可升级为正式发布。
+本版本可作为**受控试用的 Release Candidate 3**：契约、安装、双入口、Stage 0–2、静态检测器、Qt QPA、证据链与发行包均可用且有机器证据；但**不是完整 G6 发布**。T3.4 已通过 WPF UIA/对话框/菜单与 WinUI 只读；完成 T5.1/T5.2 真实应用级试点与独立 G6 复审后，才可升级为正式发布。
