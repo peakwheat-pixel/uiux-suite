@@ -2,9 +2,9 @@
   "schema_version": "1.3.3",
   "evidence_id": "EV-T0.1-CONTRACT-TESTS",
   "kind": "test_log",
-  "generated_at": "2026-10-23T18:32:33.126023+00:00",
+  "generated_at": "2026-10-23T18:34:29.662278+00:00",
   "git": {
-    "commit": "4282cc14888978a3b32599aa1da0d233b3a0fb52",
+    "commit": "ebe8319471618ccaf3ccae649bf94cdac1e65f13",
     "branch": "v1.3.3-contract-closure",
     "baseline_tag": "v1.3.2-baseline"
   },
@@ -18,7 +18,7 @@
   ],
   "cwd": "G:\\AI\\universal-uiux-engineering",
   "exit_code": 0,
-  "duration_s": 19.596,
+  "duration_s": 19.296,
   "environment": {
     "os": "Windows-11-10.0.26300-SP0",
     "machine": "AMD64",
@@ -34,23 +34,23 @@
     "failures": 0,
     "errors": 0,
     "skipped": 0,
-    "time": 19.104
+    "time": 18.779
   },
   "failed_cases": [],
   "test_cases": [
     {
       "name": "tests.integration.test_cli::test_cli_validates_valid_request",
-      "time_s": 0.187,
+      "time_s": 0.188,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_cli::test_cli_rejects_invalid_request",
-      "time_s": 0.191,
+      "time_s": 0.188,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_cli::test_cli_finalize_complete_happy_path",
-      "time_s": 0.219,
+      "time_s": 0.214,
       "status": "PASS"
     },
     {
@@ -60,32 +60,32 @@
     },
     {
       "name": "tests.integration.test_cli::test_cli_rejects_g6_as_input_gate",
-      "time_s": 0.193,
+      "time_s": 0.194,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_cli::test_cli_policy_matrix_design_only",
-      "time_s": 0.181,
-      "status": "PASS"
-    },
-    {
-      "name": "tests.integration.test_cli::test_cli_enums_prints_dictionary",
       "time_s": 0.185,
       "status": "PASS"
     },
     {
+      "name": "tests.integration.test_cli::test_cli_enums_prints_dictionary",
+      "time_s": 0.187,
+      "status": "PASS"
+    },
+    {
       "name": "tests.integration.test_cli::test_cli_unknown_schema_is_usage_error",
-      "time_s": 0.367,
+      "time_s": 0.373,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_cli::test_cli_rejects_invalid_now_timestamp",
-      "time_s": 0.182,
+      "time_s": 0.183,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_cli::test_cli_rejects_invalid_warn_review_file",
-      "time_s": 0.201,
+      "time_s": 0.195,
       "status": "PASS"
     },
     {
@@ -95,7 +95,7 @@
     },
     {
       "name": "tests.integration.test_cli::test_cli_rejects_repair_cycles_out_of_range",
-      "time_s": 0.184,
+      "time_s": 0.179,
       "status": "PASS"
     },
     {
@@ -105,7 +105,7 @@
     },
     {
       "name": "tests.integration.test_finalize::test_warn_without_disposition_blocks_complete",
-      "time_s": 0.002,
+      "time_s": 0.001,
       "status": "PASS"
     },
     {
@@ -195,7 +195,7 @@
     },
     {
       "name": "tests.integration.test_finalize::test_redesign_missing_mandatory_g5_cannot_complete",
-      "time_s": 0.002,
+      "time_s": 0.001,
       "status": "PASS"
     },
     {
@@ -235,72 +235,72 @@
     },
     {
       "name": "tests.integration.test_install::test_install_doctor_launch_and_uninstall",
-      "time_s": 1.611,
+      "time_s": 1.557,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_install::test_launch_works_after_source_tree_is_deleted",
-      "time_s": 1.355,
+      "time_s": 1.307,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_install::test_installed_launcher_exposes_doctor_after_source_deletion",
-      "time_s": 1.134,
+      "time_s": 1.136,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_install::test_unknown_existing_skill_is_not_overwritten",
-      "time_s": 0.214,
+      "time_s": 0.224,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_install::test_version_coexistence_and_uninstall_old",
-      "time_s": 1.502,
+      "time_s": 1.517,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_install::test_shadow_detection_reports_project_skill",
-      "time_s": 0.957,
+      "time_s": 0.955,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_install::test_project_scope_with_chinese_and_space_path",
-      "time_s": 1.315,
+      "time_s": 1.317,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_install::test_launch_rejects_manifest_hash_mismatch",
-      "time_s": 1.026,
+      "time_s": 1.036,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_install::test_launch_reports_missing_link_and_version_mismatch",
-      "time_s": 0.642,
+      "time_s": 0.65,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_install::test_launch_falls_back_when_linked_python_missing",
-      "time_s": 0.883,
+      "time_s": 0.888,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_install::test_upgrade_and_rollback_switch_active_version",
-      "time_s": 2.327,
+      "time_s": 2.046,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_paths::test_project_install_through_junction",
-      "time_s": 0.875,
+      "time_s": 0.885,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_paths::test_project_install_with_long_path",
-      "time_s": 0.87,
+      "time_s": 0.86,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_paths::test_custom_rank_300_is_reported",
-      "time_s": 1.041,
+      "time_s": 1.043,
       "status": "PASS"
     },
     {
@@ -720,7 +720,7 @@
     },
     {
       "name": "tests.unit.test_schemas::test_every_valid_fixture_file_is_covered",
-      "time_s": 0.0,
+      "time_s": 0.001,
       "status": "PASS"
     },
     {
@@ -750,12 +750,12 @@
     },
     {
       "name": "tests.unit.test_semantics::test_semantic_violations_are_rejected[task-request-readonly-with-writes.json-READ_ONLY_VIOLATION]",
-      "time_s": 0.0,
+      "time_s": 0.001,
       "status": "PASS"
     },
     {
       "name": "tests.unit.test_semantics::test_semantic_violations_are_rejected[task-request-write-scope-not-subset.json-WRITE_SCOPE_VIOLATION]",
-      "time_s": 0.001,
+      "time_s": 0.0,
       "status": "PASS"
     },
     {
@@ -810,7 +810,7 @@
     },
     {
       "name": "tests.unit.test_snapshot::test_backup_tree_copies_and_refuses_existing",
-      "time_s": 0.006,
+      "time_s": 0.007,
       "status": "PASS"
     },
     {
@@ -968,8 +968,8 @@
     "scripts/setup_skill.py": "fbff664799dde889e8ac4b8ad2af9fb98725cca4a596428a02defc5accc0303a",
     "scripts/uninstall_skill.py": "7ae0aa13955b108578cbda25845379a05c17ead4d17482e2312f0df4e89839e5",
     "scripts/build_task_registry.py": "269c1a4bc07a3c7e01eb0d236e0171400bc6950290e4d776fb83f8a058f263d4",
-    "scripts/collect_host_evidence.py": "cb6afdbf8825ad9b902351ce0e53d1abcbd787afd80b01b303bd826d3a45327a",
-    "scripts/collect_offline_evidence.py": "2f5b8dc1a253ea013bf25a2a4c56b0aebe93f29b1ea2356a1c0916bf4588023a",
+    "scripts/collect_host_evidence.py": "7c6a17480d83fb46dac407f0c4fdee32319aab45b88914dcd8e1280e1c9a9e7e",
+    "scripts/collect_offline_evidence.py": "3ff975940721a77641363396931e88612bb609d8436c40d70bfc9c8ef7292951",
     "skills/uiux/references/build.md": "625257057218a0016950903fdf0f82bb40e36a46f079698df59650e4c7c85df5",
     "skills/uiux/references/design.md": "27b94f358b86b88bc88750259d94fefefa86a9c27db6a20821fe584c93a9b66a",
     "skills/uiux/references/discover.md": "c42830a5278565b946ee274fc0a948199cdb9358549d4998d2513d9634dc454f",
@@ -1000,7 +1000,7 @@
     "requirements-dev.txt": "2b133f884b70db9eb6d1eff1c7f1f07aeec339a3981ecce1b43b11d57c3c0f26",
     "requirements.txt": "4c09dc8193bf23558030c67046c5be9bbd90116ec9f2b60cd58cbb6d02c3cd72"
   },
-  "stdout_sha256": "dd909ce15a9c6f27094eb1ae3689e1359c9e8fd142b18042eda62ecb3662da4a",
+  "stdout_sha256": "f6fa4436af1b854599efb9d4249b61bc2ce7420a117df0da7a829e887a4e8728",
   "limitations": [
     "This evidence covers contract, gate logic and local install tests only.",
     "It does not prove DSH host discovery, native GUI probes or independent human review.",

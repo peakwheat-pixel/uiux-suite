@@ -46,6 +46,15 @@ def run(command: list[str], cwd: Path | None = None, extra_env: dict[str, str] |
     )
 
 
+def _dirty_excluding_evidence() -> bool:
+    status = run(["git", "status", "--porcelain"]).stdout
+    for line in status.splitlines():
+        path = line[3:].strip() if len(line) > 3 else ""
+        if path and not path.startswith("evidence/"):
+            return True
+    return False
+
+
 def main() -> int:
     wheels = sorted(WHEELS.glob("*.whl"))
     if not wheels:
@@ -99,7 +108,8 @@ def main() -> int:
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "git": {
             "commit": run(["git", "rev-parse", "HEAD"]).stdout.strip(),
-            "dirty": bool(run(["git", "status", "--porcelain"]).stdout.strip()),
+            "dirty": _dirty_excluding_evidence(),
+            "dirty_scope": "tracked files excluding evidence/ (collectors rewrite evidence)",
         },
         "wheels": [
             {

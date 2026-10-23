@@ -2,10 +2,11 @@
   "schema_version": "1.3.3",
   "evidence_id": "EV-T0.5-OFFLINE-INSTALL",
   "kind": "tool_log",
-  "generated_at": "2026-10-23T18:32:13.373035+00:00",
+  "generated_at": "2026-10-23T18:34:10.208231+00:00",
   "git": {
-    "commit": "4282cc14888978a3b32599aa1da0d233b3a0fb52",
-    "dirty": true
+    "commit": "ebe8319471618ccaf3ccae649bf94cdac1e65f13",
+    "dirty": true,
+    "dirty_scope": "tracked files excluding evidence/ (collectors rewrite evidence)"
   },
   "wheels": [
     {
@@ -49,10 +50,10 @@
       "G:\\AI\\universal-uiux-engineering\\.venv\\Scripts\\python.exe",
       "-m",
       "venv",
-      "C:\\Users\\49745\\AppData\\Local\\Temp\\tmp520lnmco\\venv"
+      "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpfl5g8f60\\venv"
     ],
     "install": [
-      "C:\\Users\\49745\\AppData\\Local\\Temp\\tmp520lnmco\\venv\\Scripts\\python.exe",
+      "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpfl5g8f60\\venv\\Scripts\\python.exe",
       "-m",
       "pip",
       "install",
@@ -63,7 +64,7 @@
       "G:\\AI\\universal-uiux-engineering\\requirements.txt"
     ],
     "smoke": [
-      "C:\\Users\\49745\\AppData\\Local\\Temp\\tmp520lnmco\\venv\\Scripts\\python.exe",
+      "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpfl5g8f60\\venv\\Scripts\\python.exe",
       "-m",
       "uiux_engine.cli",
       "enums"
@@ -77,6 +78,6 @@
   "install_stdout_sha256": "da49526e166502a1db3a87afe8b922d51eba3532d04064c5ccd88472d092f0bf",
   "log_file": "evidence\\T0.5\\offline-install.txt",
   "log_sha256": "161acac20870daa6309e9f85edd40cbf753ff49da402670030fd7eb8b64f03c9",
-  "generator_sha256": "2f5b8dc1a253ea013bf25a2a4c56b0aebe93f29b1ea2356a1c0916bf4588023a",
+  "generator_sha256": "3ff975940721a77641363396931e88612bb609d8436c40d70bfc9c8ef7292951",
   "requirements_sha256": "4c09dc8193bf23558030c67046c5be9bbd90116ec9f2b60cd58cbb6d02c3cd72"
 }

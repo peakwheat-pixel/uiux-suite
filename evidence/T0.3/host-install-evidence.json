@@ -2,14 +2,15 @@
   "schema_version": "1.3.3",
   "evidence_id": "EV-T0.3-HOST-INSTALL",
   "kind": "tool_log",
-  "generated_at": "2026-10-23T18:32:08.109357+00:00",
+  "generated_at": "2026-10-23T18:34:04.959688+00:00",
   "git": {
-    "commit": "4282cc14888978a3b32599aa1da0d233b3a0fb52",
+    "commit": "ebe8319471618ccaf3ccae649bf94cdac1e65f13",
     "branch": "v1.3.3-contract-closure",
-    "dirty": false
+    "dirty": true,
+    "dirty_scope": "tracked files excluding evidence/ (collectors rewrite evidence)"
   },
   "privacy": "local_private_unredacted: contains machine-specific absolute paths; not for distribution",
-  "generator_sha256": "cb6afdbf8825ad9b902351ce0e53d1abcbd787afd80b01b303bd826d3a45327a",
+  "generator_sha256": "7c6a17480d83fb46dac407f0c4fdee32319aab45b88914dcd8e1280e1c9a9e7e",
   "host": {
     "kind": "dsh",
     "dsh_version": "0.2.1-alpha.4",
@@ -51,7 +52,7 @@
   "doctor": {
     "exit_code": 0,
     "stdout_file": "evidence\\T0.3\\raw\\doctor.stdout.json",
-    "stdout_file_sha256": "b1a63bdd0fe9a28a765e4d37544e63c61f1775d8e81147240b2d895cf2f18547",
+    "stdout_file_sha256": "ab2df89ad0b25f1bc419454ed65bc0725cd4a206ea89e63e4d2cfbae61cac4b0",
     "overall_status": "UNVERIFIED",
     "links": {
       "uiux": {
@@ -82,7 +83,7 @@
     "suite_manifest": "62c2dfad21f5f859d05ce586d54adb218d5633451d8efcfbec7115a727f93c08",
     "install_record": "3d72ef674a891c11049a8046f7600c5650c4ecb525c72524a3b056689cecc19a",
     "suite_link": "09de1ccb13fc7a0ff59adbe41abebaf60830dd6ae5533c0959245d77210af4d9",
-    "generator": "cb6afdbf8825ad9b902351ce0e53d1abcbd787afd80b01b303bd826d3a45327a"
+    "generator": "7c6a17480d83fb46dac407f0c4fdee32319aab45b88914dcd8e1280e1c9a9e7e"
   },
   "host_catalog_observation": {
     "detail": "After install, the running DSH session exposed 'uiux' and 'uiux-verify' in its skill catalog (user-agents rank 500).",
@@ -94,8 +95,8 @@
   "repo_independence": {
     "external_cwd_doctor_exit_code": 0,
     "external_cwd_doctor_stdout_file": "evidence\\T0.3\\raw\\external-cwd-doctor.stdout.json",
-    "external_cwd_doctor_stdout_file_sha256": "8f2c8ae054051c78a2c7470f3563dac9e9a84e00410c85046e0520394fbcc2b6",
-    "external_cwd_doctor_stdout_sha256": "0d1db6775f5fec56bdc2558ebb7e9c2185991320fed606e9c9e31ce3f8b15251",
+    "external_cwd_doctor_stdout_file_sha256": "5be371a8ecdf40b69214b49feddb072d033f3424cd4ddbe1047f30d9f07b1cdc",
+    "external_cwd_doctor_stdout_sha256": "12841dd8a81c474122a88486a00e86828914e4df4697307f3ddd724ef5669416",
     "source_checkout_absolute_references": [],
     "source_checkout_scan_scope": "all install-root files under suite_root (<=2MB, text-decodable)",
     "independent_of_source_checkout": true

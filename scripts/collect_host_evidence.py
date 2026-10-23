@@ -42,6 +42,15 @@ def _git(*args: str) -> str:
     return proc.stdout.strip() if proc.returncode == 0 else ""
 
 
+def _dirty_excluding_evidence() -> bool:
+    status = _git("status", "--porcelain")
+    for line in status.splitlines():
+        path = line[3:].strip() if len(line) > 3 else ""
+        if path and not path.startswith("evidence/"):
+            return True
+    return False
+
+
 def run(command: list[str], cwd: Path | None = None) -> dict:
     env = dict(os.environ)
     env["PYTHONDONTWRITEBYTECODE"] = "1"
@@ -86,7 +95,8 @@ def main() -> int:
     git_info = {
         "commit": _git("rev-parse", "HEAD"),
         "branch": _git("rev-parse", "--abbrev-ref", "HEAD"),
-        "dirty": bool(_git("status", "--porcelain")),
+        "dirty": _dirty_excluding_evidence(),
+        "dirty_scope": "tracked files excluding evidence/ (collectors rewrite evidence)",
     }
 
     link = json.loads(link_path.read_text(encoding="utf-8"))
