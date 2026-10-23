@@ -5,7 +5,7 @@
 ## 1. 当前结论
 
 - **Release Candidate（整体 PARTIAL）**：`dist/uiux-suite-1.3.3-win64.zip` 可安装并验证（install/enums/doctor exit 0）。
-- **不是 G6 PASS**：T3.2/T3.3/T3.4 部分、T5.1/T5.2、其他 Agent 宿主、MCP/断点恢复未验证，见 `FINAL_DELIVERY_REPORT.md` §4。
+- **不是 G6 PASS**：T3.2/T3.4 部分、T5.1/T5.2、其他 Agent 宿主、MCP/断点恢复未验证，见 `FINAL_DELIVERY_REPORT.md` §4。
 - 分支：`v1.3.3-contract-closure`；基线 `main` `e7e921e`（tag `v1.3.2-baseline`，SHA256 `70f5f339…9411ea04` 未变）。
 - 当前测试：**460 passed**（`$env:PYTHONPATH='runtime'; .venv\Scripts\python.exe -m pytest tests -q`）。
 
