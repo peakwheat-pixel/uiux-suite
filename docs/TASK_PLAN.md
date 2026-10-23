@@ -6,7 +6,7 @@
 
 | ID | 阶段 | 状态 | 最晚时点 | 依赖 | 标题 | 验收摘要 |
 |---|---|---|---|---|---|---|
-| T0.1 | Stage 0 | IN_PROGRESS | — | — | Contract Closure：Schema、枚举、Gate 引擎、覆盖矩阵、L4、证据生命周期 | B1–B4 机器测试全绿；B5/B6 Schema 与时点锁定；独立契约复核无未解决阻断；evidence/T0.1/contract-test-evidence.json ... |
+| T0.1 | Stage 0 | DONE | — | — | Contract Closure：Schema、枚举、Gate 引擎、覆盖矩阵、L4、证据生命周期 | B1–B6 机器测试全绿；B5/B6 Schema 与时点锁定；独立契约复核无未解决阻断；evidence/T0.1/contract-test-evidence.json ... |
 | T0.2 | Stage 0 | DONE | Stage 0 Exit | T0.1 | 版本化发行根、双启动器、安装/卸载/升级/回滚 | 删除开发仓后用户级安装可运行；版本并存；升级/回滚；卸载只删登记文件；manifest 哈希校验；M1/M3/M4/M5/M6(字段)关闭 |
 | T0.3 | Stage 0 | DONE | Stage 0 Exit | T0.2, T0.4 | DSH 实机安装与双入口发现 | DSH 实际发现 uiux 与 uiux-verify；doctor 输出真实 root/rank；不依赖开发仓；中文/空格/UNC 用例 |
 | T0.4 | Stage 0 | DONE | Stage 0 Exit | T0.1 | doctor：能力、根目录、遮蔽、退出码与 --json | READY/MISSING/INCOMPATIBLE/UNVERIFIED 逐项输出；解析 DSH_AGENTS_HOME/DSH_HOME；遮蔽列表；host-capabi... |
@@ -73,6 +73,6 @@
 | 状态 | 数量 |
 |---|---|
 | BLOCKED | 0 |
-| DONE | 15 |
-| IN_PROGRESS | 3 |
+| DONE | 16 |
+| IN_PROGRESS | 2 |
 | TODO | 43 |

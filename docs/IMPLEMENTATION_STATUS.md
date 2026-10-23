@@ -4,11 +4,11 @@
 
 ## 1. 当前阶段
 
-- **Stage 0 / T0.1 — 第 2 轮独立复核 PASS，落库中**（契约已实现并通过 157 项机器测试；第 1 轮 3 项 MAJOR 与第 2 轮 11 项 MINOR 已处置，等待增量确认后标 DONE）。
-- **T0.2/T0.4 — IN_PROGRESS**（安装器、启动器、doctor、升级/回滚、卸载已实现并通过集成测试；T0.3 实机双入口发现已通过，等待 Stage 0 收尾）。
+- **Stage 0 — DONE（待第 3 轮增量确认）**：T0.1 第 2 轮独立复核 PASS；T0.2–T0.6 全部具备机器证据；157 项测试全绿。
+- **Stage 1 — READY/IN_PROGRESS**：T1.0 规则目录与 Rule ID 冻结为下一入口。
 - 分支：`v1.3.3-contract-closure`。
 - 基线：`main` 上 `e7e921e`，tag `v1.3.2-baseline`，SHA256 `70f5f339…9411ea04`。
-- 裁决：`CONTRACT_CLOSURE_READY_FOR_REVIEW`，**不是** Stage 0 PASS，也不是 Release。
+- 裁决：`CONTRACT_CLOSURE_READY_FOR_REVIEW` 已由第 2 轮 PASS 解除；Stage 0 Exit 以 `docs/STAGE0_ACCEPTANCE.md` 为准，**仍不是 Release**。
 
 ## 2. 已完成（有证据）
 
@@ -31,11 +31,11 @@
 
 | 任务 | 状态 | 阻塞点 |
 |---|---|---|
-| T0.1 | 第 2 轮 PASS，落库中 | 等待 R-01..R-11 增量确认 |
-| T0.2 | IN_PROGRESS | 安装闭环已实现；待 T0.1 复核与 T0.3 实机安装 |
-| T0.4 | IN_PROGRESS | doctor 已实现；待 DSH 实机根/遮蔽验证 |
+| T0.1 | DONE（第 2 轮 PASS） | 第 3 轮增量确认（R-01..R-11） |
+| T0.2–T0.6 | DONE | 证据见 `docs/STAGE0_ACCEPTANCE.md` |
+| T1.0 规则/Rule ID 冻结 | READY（下一入口） | — |
 | T1.5 Gate 引擎完整化 | IN_PROGRESS | 待 Stage 1 工具日志接入 |
-| M2/M5/M9 | IN_PROGRESS | DSH 实机、UNC/长路径、Stage Exit 三列化 |
+| M5 UNC/junction/MAX_PATH | IN_PROGRESS | Stage 0 后补测 |
 
 ### 3.1 第 1 轮独立复核返修（2026-10-24）
 
