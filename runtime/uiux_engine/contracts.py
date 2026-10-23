@@ -41,6 +41,7 @@ SCHEMA_FILES: dict[str, str] = {
     "change-plan": "change-plan.v1.3.3.schema.json",
     "knowledge-index": "knowledge-index.v1.3.3.schema.json",
     "brownfield-report": "brownfield-report.v1.3.3.schema.json",
+    "qa-report": "qa-report.v1.3.3.schema.json",
 }
 
 

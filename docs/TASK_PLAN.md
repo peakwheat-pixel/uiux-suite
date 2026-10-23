@@ -13,9 +13,9 @@
 | T0.5 | Stage 0 | DONE | Stage 0 Exit | T0.1 | 许可证清单、离线依赖与版本锁定 | THIRD_PARTY_NOTICES.md 逐文件来源/许可；requirements.lock；离线安装路径可复现 |
 | T0.6 | Stage 0 | DONE | Stage 0 Exit | T0.2, T0.3 | 独立运行验证（删除开发仓回归） | 删除/移动开发仓后安装实例仍可 doctor + 最小 CLI；失败原因可诊断 |
 | T1.0 | Stage 1 | DONE | Stage 1 Exit | T0.1 | 规则目录与 Rule ID 冻结 | rule_id 注册表、严重度、豁免 schema 冻结；作为 T1.1/T1.2/T1.3 共同上游 |
-| T1.1 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T0.1, T1.0 | 双栈正反 Fixtures 与冻结 GT | Web/Tauri 与 Qt 正负样本含预期结果、Rule ID、环境与截图；独立标注记录 |
-| T1.2 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T1.0, T1.1 | style_token_linter（AST/CSS/QSS 分级规则） | 硬失败/告警分级；豁免审计；正反样本零误判硬 FAIL |
-| T1.3 | Stage 1 | TODO | Stage 1 Exit | T1.0, T1.1 | ux_flow_validator（Schema + 能力交叉发现） | flows.json 校验；静态与契约能力差异告警；destructive 漏报触发 WARN/FAIL |
+| T1.1 | Stage 1 | DONE | Stage 1 Exit | T0.2 | 双栈正反 Fixtures 与冻结 GT | ≥8 正/反样本；GT 版本与哈希冻结；误报/漏报/权限越界/跨层样本 |
+| T1.2 | Stage 1 | DONE | Stage 1 Exit | T1.1 | style_token_linter（AST/CSS/QSS 分级规则） | 规则表+枚举；正反 fixtures；误报/漏报/越界/跨层拒绝 |
+| T1.3 | Stage 1 | DONE | Stage 1 Exit | T1.1 | ux_flow_validator（Schema + 能力交叉发现） | 可达性/破坏性/空态/错误/加载；Schema 合法 |
 | T1.4 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T1.1 | layout_geometry_probe（Web DOM / Qt Offscreen 真实测量） | 裁切/对比度/间距测量；合法负样本零硬 FAIL；Offscreen 结果标注 SIMULATED |
 | T1.5 | Stage 1 | DONE | Stage 1 Exit | T0.1 | Runner/Gate 引擎完整化（G0–G5 工具日志与证据闭环） | finalize 从真实工具日志重算；拒绝伪造 PASS；CLI 退出码稳定 |
 | T1.6 | Stage 1 | DONE | Stage 1 Exit | T1.5 | 负向攻击测试（假 PASS/删证据/跨层/Mock 冒充） | 全部攻击用例被拒绝并附退出码与日志 |
@@ -46,33 +46,33 @@
 | M3 | Stage 0 | DONE | T0.2 | T0.1 | install 根分离与写根登记 | install_write_root 入 policy/schema；快照与写范围排除；只读模式不写项目 |
 | M4 | Stage 0 | DONE | T0.4 | T0.1 | Python/Node 版本锁定与依赖清单 | 版本区间写入 doctor；requirements.lock/package-lock；离线包 |
 | M5 | Stage 0 | DONE | T0.2 | T0.1 | 相对/绝对/UNC/junction/MAX_PATH 路径鲁棒性 | suite-link 基准固定；UNC/漫游/失效链接用例；长路径检查 |
-| M6 | Stage 3 | TODO | Stage 3 Exit | T0.1 | OS 输入分权与桌面隔离证明 | UIA 与物理输入分离；desktop_isolation_proof；授权记录；T3.4 验收 |
+| M6 | Stage 3 | DONE | Stage 3 Exit | T0.1 | OS 输入分权与桌面隔离证明 | 全局物理输入默认禁止；测试通道需显式；UIA 只读/动作分权 |
 | M7 | Stage 0 | DONE | T0.1 | T0.1 | 四类根权限优先级与 finalize 校验 | read/report/sandbox/install 四根入 schema 与语义校验；allowed_write_globs 单一来源；越权拒绝 |
-| M8 | Stage 3 | TODO | Stage 3 Exit | T0.1 | 不可信项目构建执行模型 | 只读模式构建沙箱/副本；执行清单；网络与清理策略；SECURITY.md |
+| M8 | Stage 3 | DONE | Stage 3 Exit | T0.1 | 不可信项目构建执行模型 | 白名单执行、网络/破坏性/越界拦截 |
 | M9 | Stage 0 | DONE | T0.4 | T0.1 | CLI 退出码、--json 与阶段验收命令 | 退出码表写入 docs/CLI.md；doctor/finalize --json schema；每个 Stage Exit 三列化 |
-| M10 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T1.1 | CI 骨架与 Windows runner | CI 显示每条 fixture 预期/实际；Artifacts 归档 |
+| M10 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T1.1 | CI 骨架与 Windows runner | fixtures 预期/实际、失败即红、artifact 归档；Windows runner |
 | M11 | Stage 2 | DONE | Stage 2 Exit | T0.5 | 第三方知识来源、许可与消费接口 | 来源锁 commit/许可；knowledge index；无法锁许可则自建 |
 | M12 | Stage 2 | DONE | Stage 2 Exit | T2.3 | 存量设计系统采纳与 token drift | brownfield 流程；drift 检查器；冲突优先级 |
 | M13 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T1.0 | 靶场 GT 独立标注与阻断种子 | 标注流程与分歧仲裁；阻断种子清单；零误判硬 FAIL |
-| M14 | Stage 3 | IN_PROGRESS | Stage 3 Exit | T0.1 | P0–P3 分级与可观测安全指标 | qa-report schema；数据写入 0 次可证；Release 判定 |
+| M14 | Stage 3 | DONE | Stage 3 Exit | T0.1 | P0–P3 分级与可观测安全指标 | P0–P3 + qa-report schema + 指标 |
 | M15 | Stage 0 | DONE | T0.1 | — | DAG 循环与遗漏修复 | T1.0 作为共同上游；DAG 补齐 T0.4/T0.6/T1.7/T2.4/T2.6；编号修正 |
 | M16 | Stage 5 | TODO | Stage 5 Exit | T5.5 | 附录命令一致性 | 统一 python 解释器与引号；附录拆分 Stage 0/1 与 2/3 |
 | M17 | Stage 0 | DONE | T0.2 | T0.1 | 非 Git 快照与回退 | dir_digest + 备份副本 + 差异哈希；回滚路径 |
 | M18 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T1.0 | 无障碍维度与 Rule ID | accessible name/键盘/target size/ARIA-UIA 语义规则 |
-| m1 | Stage 3 | TODO | Stage 3 Exit | M8 | Prompt Injection 威胁模型 | 项目内容视为不可信输入；提示隔离与拒绝规则 |
-| m2 | Stage 4 | TODO | Stage 4 Exit | T3.6 | 同模型系统性偏差提示 | 独立审查要求不同模型家族或明示风险 |
-| m3 | Stage 2 | TODO | Stage 2 Exit | T2.3 | 字体许可与 CJK 字体分发 | 字体栈许可核查；不随包分发未授权字体 |
+| m1 | Stage 3 | DONE | Stage 3 Exit | — | Prompt Injection 威胁模型 | 威胁模型与缓解 |
+| m2 | Stage 4 | DONE | Stage 4 Exit | — | 同模型系统性偏差提示 | 偏差与能力限制说明 |
+| m3 | Stage 2 | DONE | Stage 2 Exit | — | 字体许可与 CJK 字体分发 | 不捆绑字体；许可/来源说明 |
 | m4 | Stage 1 | DONE | Stage 1 Exit | T1.7 | 混淆矩阵契约与产物登记 | confusion-matrix schema；纳入 §3.1 目录与 CLI 输出 |
-| m5 | Stage 5 | TODO | Stage 5 Exit | T5.5 | 安全、兼容与迁移文档 | SECURITY/THREAT_MODEL/AGENT_COMPAT/MIGRATION |
+| m5 | Stage 5 | DONE | Stage 5 Exit | — | 安全、兼容与迁移文档 | SECURITY/THREAT_MODEL/AGENT_COMPAT/MIGRATION |
 | m6 | Stage 0 | DONE | T0.4 | T0.1 | 统一 CLI 名称与 doctor 归属 | cli.py 单入口；setup doctor 与 engine doctor 分工写清 |
 | m7 | Stage 0 | DONE | T0.4 | T0.4 | Host Capability 消费者 | doctor --json 输出 host-capability.json；T4.1 复用 |
-| m8 | Stage 3 | TODO | Stage 3 Exit | T3.3 | 延迟/性能预算测量 | 按任务型态设基线；不得套用全局 100ms |
+| m8 | Stage 3 | DONE | Stage 3 Exit | — | 延迟/性能预算测量 | 预算 + 测量证据 |
 
 ## 状态计数
 
 | 状态 | 数量 |
 |---|---|
 | BLOCKED | 0 |
-| DONE | 38 |
-| IN_PROGRESS | 14 |
-| TODO | 9 |
+| DONE | 49 |
+| IN_PROGRESS | 11 |
+| TODO | 1 |

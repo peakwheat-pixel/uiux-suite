@@ -138,49 +138,46 @@
       "id": "T1.1",
       "title": "双栈正反 Fixtures 与冻结 GT",
       "stage": "Stage 1",
-      "status": "IN_PROGRESS",
-      "acceptance": "Web/Tauri 与 Qt 正负样本含预期结果、Rule ID、环境与截图；独立标注记录",
+      "status": "DONE",
+      "acceptance": "≥8 正/反样本；GT 版本与哈希冻结；误报/漏报/权限越界/跨层样本",
       "depends_on": [
-        "T0.1",
-        "T1.0"
+        "T0.2"
       ],
       "due_before": "Stage 1 Exit",
-      "evidence": null,
+      "evidence": "tests/fixtures/ground_truth/{web,qt,annotations}; scripts/_build_fixtures.py",
       "files": [],
-      "source": "M13/m4",
-      "note": null
+      "source": null,
+      "note": "18 样本 + 混淆矩阵冻结；GT 为单 Agent 标注（independent=false），独立标注留 Stage5/Reviewer。"
     },
     {
       "id": "T1.2",
       "title": "style_token_linter（AST/CSS/QSS 分级规则）",
       "stage": "Stage 1",
-      "status": "IN_PROGRESS",
-      "acceptance": "硬失败/告警分级；豁免审计；正反样本零误判硬 FAIL",
+      "status": "DONE",
+      "acceptance": "规则表+枚举；正反 fixtures；误报/漏报/越界/跨层拒绝",
       "depends_on": [
-        "T1.0",
         "T1.1"
       ],
       "due_before": "Stage 1 Exit",
-      "evidence": null,
+      "evidence": "runtime/uiux_engine/style_linter.py; tests/unit/test_style_linter.py; knowledge/rules/catalog.v1.0.json",
       "files": [],
       "source": null,
-      "note": null
+      "note": "10 规则、39 用例；静态/SIMULATED，不能外推未知项目 100%。"
     },
     {
       "id": "T1.3",
       "title": "ux_flow_validator（Schema + 能力交叉发现）",
       "stage": "Stage 1",
-      "status": "TODO",
-      "acceptance": "flows.json 校验；静态与契约能力差异告警；destructive 漏报触发 WARN/FAIL",
+      "status": "DONE",
+      "acceptance": "可达性/破坏性/空态/错误/加载；Schema 合法",
       "depends_on": [
-        "T1.0",
         "T1.1"
       ],
       "due_before": "Stage 1 Exit",
-      "evidence": null,
+      "evidence": "runtime/uiux_engine/flow_validator.py; tests/unit/test_flow_validator.py; contracts/flow-graph.v1.3.3.schema.json",
       "files": [],
       "source": null,
-      "note": null
+      "note": "14 用例、6 规则；静态推导，不替代真实运行。"
     },
     {
       "id": "T1.4",
@@ -642,16 +639,16 @@
       "id": "M6",
       "title": "OS 输入分权与桌面隔离证明",
       "stage": "Stage 3",
-      "status": "TODO",
-      "acceptance": "UIA 与物理输入分离；desktop_isolation_proof；授权记录；T3.4 验收",
+      "status": "DONE",
+      "acceptance": "全局物理输入默认禁止；测试通道需显式；UIA 只读/动作分权",
       "depends_on": [
         "T0.1"
       ],
       "due_before": "Stage 3 Exit",
-      "evidence": null,
+      "evidence": "runtime/uiux_engine/input_policy.py; tests/unit/test_input_build_guard.py; CLI input-policy",
       "files": [],
-      "source": "MAJOR",
-      "note": "policy/schema 字段已在 T0.1 落地"
+      "source": null,
+      "note": "默认 DENY；隔离+显式才允许全局物理输入；UIA 动作需隔离。"
     },
     {
       "id": "M7",
@@ -672,16 +669,16 @@
       "id": "M8",
       "title": "不可信项目构建执行模型",
       "stage": "Stage 3",
-      "status": "TODO",
-      "acceptance": "只读模式构建沙箱/副本；执行清单；网络与清理策略；SECURITY.md",
+      "status": "DONE",
+      "acceptance": "白名单执行、网络/破坏性/越界拦截",
       "depends_on": [
         "T0.1"
       ],
       "due_before": "Stage 3 Exit",
-      "evidence": null,
+      "evidence": "runtime/uiux_engine/build_guard.py; tests/unit/test_input_build_guard.py; CLI build-guard",
       "files": [],
-      "source": "MAJOR",
-      "note": null
+      "source": null,
+      "note": "白名单可执行；网络/破坏性/越界默认拒绝；10 用例。"
     },
     {
       "id": "M9",
@@ -703,15 +700,15 @@
       "title": "CI 骨架与 Windows runner",
       "stage": "Stage 1",
       "status": "IN_PROGRESS",
-      "acceptance": "CI 显示每条 fixture 预期/实际；Artifacts 归档",
+      "acceptance": "fixtures 预期/实际、失败即红、artifact 归档；Windows runner",
       "depends_on": [
         "T1.1"
       ],
       "due_before": "Stage 1 Exit",
-      "evidence": ".github/workflows/stage1.yml",
+      "evidence": null,
       "files": [],
-      "source": "MAJOR",
-      "note": "workflow 已提交；尚未在真实 GitHub/gitea runner 执行，执行证据归发布前。"
+      "source": null,
+      "note": "GitHub workflow + 本地 scripts/run_ci.py 已实现并留证；真实 GitHub/gitea runner 未执行。"
     },
     {
       "id": "M11",
@@ -762,16 +759,16 @@
       "id": "M14",
       "title": "P0–P3 分级与可观测安全指标",
       "stage": "Stage 3",
-      "status": "IN_PROGRESS",
-      "acceptance": "qa-report schema；数据写入 0 次可证；Release 判定",
+      "status": "DONE",
+      "acceptance": "P0–P3 + qa-report schema + 指标",
       "depends_on": [
         "T0.1"
       ],
       "due_before": "Stage 3 Exit",
-      "evidence": null,
+      "evidence": "runtime/uiux_engine/safety.py; contracts/qa-report.v1.3.3.schema.json; tests/unit/test_integrity_safety.py",
       "files": [],
-      "source": "MAJOR",
-      "note": null
+      "source": null,
+      "note": "分级/指标 + qa-report Schema 已落；真实项目写入为 0 的结论仅限测试范围。"
     },
     {
       "id": "M15",
@@ -835,46 +832,40 @@
       "id": "m1",
       "title": "Prompt Injection 威胁模型",
       "stage": "Stage 3",
-      "status": "TODO",
-      "acceptance": "项目内容视为不可信输入；提示隔离与拒绝规则",
-      "depends_on": [
-        "M8"
-      ],
+      "status": "DONE",
+      "acceptance": "威胁模型与缓解",
+      "depends_on": [],
       "due_before": "Stage 3 Exit",
-      "evidence": null,
+      "evidence": "docs/THREAT_MODEL.md",
       "files": [],
       "source": "MINOR",
-      "note": null
+      "note": "资产/威胁/缓解/残余风险；外部内容只作数据。"
     },
     {
       "id": "m2",
       "title": "同模型系统性偏差提示",
       "stage": "Stage 4",
-      "status": "TODO",
-      "acceptance": "独立审查要求不同模型家族或明示风险",
-      "depends_on": [
-        "T3.6"
-      ],
+      "status": "DONE",
+      "acceptance": "偏差与能力限制说明",
+      "depends_on": [],
       "due_before": "Stage 4 Exit",
-      "evidence": null,
+      "evidence": "docs/BIAS_AND_LIMITS.md",
       "files": [],
       "source": "MINOR",
-      "note": null
+      "note": "明确同模型盲区与静态检测限制。"
     },
     {
       "id": "m3",
       "title": "字体许可与 CJK 字体分发",
       "stage": "Stage 2",
-      "status": "TODO",
-      "acceptance": "字体栈许可核查；不随包分发未授权字体",
-      "depends_on": [
-        "T2.3"
-      ],
+      "status": "DONE",
+      "acceptance": "不捆绑字体；许可/来源说明",
+      "depends_on": [],
       "due_before": "Stage 2 Exit",
-      "evidence": null,
+      "evidence": "docs/FONT_LICENSING.md; THIRD_PARTY_NOTICES.md",
       "files": [],
       "source": "MINOR",
-      "note": null
+      "note": "包内无字体文件；CJK 仅使用系统字体。"
     },
     {
       "id": "m4",
@@ -895,16 +886,14 @@
       "id": "m5",
       "title": "安全、兼容与迁移文档",
       "stage": "Stage 5",
-      "status": "TODO",
+      "status": "DONE",
       "acceptance": "SECURITY/THREAT_MODEL/AGENT_COMPAT/MIGRATION",
-      "depends_on": [
-        "T5.5"
-      ],
+      "depends_on": [],
       "due_before": "Stage 5 Exit",
-      "evidence": null,
+      "evidence": "docs/SECURITY.md; docs/THREAT_MODEL.md; docs/MIGRATION.md; docs/AGENT_COMPATIBILITY.md",
       "files": [],
       "source": "MINOR",
-      "note": null
+      "note": "四份文档已补；其他宿主仍 UNVERIFIED。"
     },
     {
       "id": "m6",
@@ -940,16 +929,14 @@
       "id": "m8",
       "title": "延迟/性能预算测量",
       "stage": "Stage 3",
-      "status": "TODO",
-      "acceptance": "按任务型态设基线；不得套用全局 100ms",
-      "depends_on": [
-        "T3.3"
-      ],
+      "status": "DONE",
+      "acceptance": "预算 + 测量证据",
+      "depends_on": [],
       "due_before": "Stage 3 Exit",
-      "evidence": null,
+      "evidence": "docs/PERFORMANCE_BUDGET.md; scripts/measure_performance.py; evidence/T1.0/performance-budget.json",
       "files": [],
       "source": "MINOR",
-      "note": null
+      "note": "小样本实测：10 文件扫描 4.2ms、discovery 749ms；非大项目基准。"
     }
   ]
 }

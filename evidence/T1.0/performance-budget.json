@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.3.3",
+  "generated_at": "2026-10-23T20:22:58.877359+00:00",
+  "timings_ms": {
+    "style_10_files": 4.21,
+    "token_compile_css": 0.73,
+    "discovery_small": 749.41
+  },
+  "budgets_ms": {
+    "style_10_files": 3000,
+    "token_compile_css": 300,
+    "discovery_small": 8000
+  },
+  "over_budget": {},
+  "ok": true,
+  "generator": {
+    "path": "scripts/measure_performance.py",
+    "sha256": "e365931ac78006899a5f879b0f3c0ae2aa06f6ca0dfdbce880f1670a630b7ca0"
+  },
+  "limitations": [
+    "Small sample on developer machine; not a large-project benchmark."
+  ]
+}

@@ -28,6 +28,7 @@ VALID_CASES = {
     "contracts/valid/change-plan.json": "change-plan",
     "contracts/valid/knowledge-index.json": "knowledge-index",
     "contracts/valid/brownfield-report.json": "brownfield-report",
+    "contracts/valid/qa-report.json": "qa-report",
 }
 
 INVALID_CASES = {

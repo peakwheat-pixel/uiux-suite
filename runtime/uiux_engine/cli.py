@@ -17,7 +17,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from . import compat, contracts, enums, external, gates, integrity, knowledge, modify, policy, rules, safety, snapshot, token_compiler, validation, vault
+from . import build_guard, compat, contracts, enums, external, gates, input_policy, integrity, knowledge, modify, policy, rules, safety, snapshot, token_compiler, validation, vault
 
 EXIT_OK = 0
 EXIT_USAGE = 2
@@ -170,6 +170,18 @@ def cmd_safety(args: argparse.Namespace) -> int:
 def cmd_compat(args: argparse.Namespace) -> int:
     _emit(compat.degradation_report(args.agents_home))
     return EXIT_OK
+
+
+def cmd_input_policy(args: argparse.Namespace) -> int:
+    result = input_policy.authorize(args.channel, isolated=args.isolated, read_only=args.read_only, explicit=args.explicit)
+    _emit(result)
+    return EXIT_OK if result["decision"] == "ALLOW" else EXIT_INVALID
+
+
+def cmd_build_guard(args: argparse.Namespace) -> int:
+    result = build_guard.check(args.command, args.root, allow_network=args.allow_network)
+    _emit(result)
+    return EXIT_OK if result["decision"] == "ALLOW" else EXIT_INVALID
 
 
 def cmd_knowledge(args: argparse.Namespace) -> int:
@@ -452,6 +464,19 @@ def build_parser() -> argparse.ArgumentParser:
     p_snapshot.add_argument("--backup", help="copy tree to this new directory (rollback copy)")
     p_snapshot.add_argument("--diff", nargs=2, metavar=("BEFORE", "AFTER"))
     p_snapshot.set_defaults(func=cmd_snapshot)
+
+    p_input = sub.add_parser("input-policy", help="authorize an input channel (M6)")
+    p_input.add_argument("--channel", required=True, choices=list(input_policy.CHANNELS))
+    p_input.add_argument("--isolated", action="store_true")
+    p_input.add_argument("--read-only", action="store_true")
+    p_input.add_argument("--explicit", action="store_true")
+    p_input.set_defaults(func=cmd_input_policy)
+
+    p_guard = sub.add_parser("build-guard", help="guard an untrusted-project build command (M8)")
+    p_guard.add_argument("--root", required=True)
+    p_guard.add_argument("--command", required=True)
+    p_guard.add_argument("--allow-network", action="store_true")
+    p_guard.set_defaults(func=cmd_build_guard)
 
     p_knowledge = sub.add_parser("knowledge", help="verify the knowledge index/checksums (T2.4)")
     p_knowledge.add_argument("--index")
