@@ -25,6 +25,7 @@ VALID_CASES = {
     "contracts/valid/component-matrix.json": "component-matrix",
     "contracts/valid/prototype.json": "prototype",
     "contracts/valid/design-options.json": "design-options",
+    "contracts/valid/change-plan.json": "change-plan",
 }
 
 INVALID_CASES = {

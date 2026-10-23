@@ -1,0 +1,3942 @@
+{
+  "schema_version": "1.3.3",
+  "evidence_id": "EV-T3.4-UIA-PROBE",
+  "kind": "uia_tree",
+  "runtime_level": "NATIVE_UIA",
+  "generated_at": "2026-10-23T19:24:43Z",
+  "window": {
+    "title": "api.txt - Notepad",
+    "class_name": "Notepad",
+    "process_id": 8016
+  },
+  "element_count": 53,
+  "max_depth": 5,
+  "elements": [
+    {
+      "name": "api.txt - Notepad",
+      "control_type": "ControlType.Window",
+      "automation_id": "",
+      "class_name": "Notepad",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 387.0,
+        "y": 153.0,
+        "width": 895.0,
+        "height": 703.0
+      },
+      "patterns": [
+        "WindowPatternIdentifiers.Pattern",
+        "TransformPatternIdentifiers.Pattern"
+      ],
+      "children": [
+        {
+          "name": "",
+          "control_type": "ControlType.Pane",
+          "automation_id": "",
+          "class_name": "Microsoft.UI.Content.DesktopChildSiteBridge",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 1260.0,
+            "y": 228.0,
+            "width": 14.0,
+            "height": 590.0
+          },
+          "patterns": null,
+          "children": [
+            {
+              "name": "",
+              "control_type": "ControlType.Pane",
+              "automation_id": "",
+              "class_name": "InputSiteWindowClass",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 1260.0,
+                "y": 228.0,
+                "width": 14.0,
+                "height": 590.0
+              },
+              "patterns": null,
+              "children": [
+                {
+                  "name": "",
+                  "control_type": "ControlType.Pane",
+                  "automation_id": "ScrollViewer",
+                  "class_name": "ScrollViewer",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": 1260.0,
+                    "y": 228.0,
+                    "width": 14.0,
+                    "height": 590.0
+                  },
+                  "patterns": [
+                    "ScrollPatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": [
+                    {
+                      "name": "垂直",
+                      "control_type": "ControlType.ScrollBar",
+                      "automation_id": "VerticalScrollBar",
+                      "class_name": "ScrollBar",
+                      "is_enabled": true,
+                      "is_offscreen": true,
+                      "is_keyboard_focusable": false,
+                      "bounds": {
+                        "x": "Infinity",
+                        "y": "Infinity",
+                        "width": "-Infinity",
+                        "height": "-Infinity"
+                      },
+                      "patterns": [
+                        "RangeValuePatternIdentifiers.Pattern",
+                        "ScrollItemPatternIdentifiers.Pattern"
+                      ],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "",
+          "control_type": "ControlType.Pane",
+          "automation_id": "",
+          "class_name": "NotepadTextBox",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 393.0,
+            "y": 228.0,
+            "width": 883.0,
+            "height": 590.0
+          },
+          "patterns": null,
+          "children": [
+            {
+              "name": "文本编辑器",
+              "control_type": "ControlType.Document",
+              "automation_id": "",
+              "class_name": "RichEditD2DPT",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": 393.0,
+                "y": 228.0,
+                "width": 883.0,
+                "height": 590.0
+              },
+              "patterns": [
+                "ValuePatternIdentifiers.Pattern",
+                "ScrollPatternIdentifiers.Pattern",
+                "TextPatternIdentifiers.Pattern"
+              ],
+              "children": [
+                {
+                  "name": "垂直滚动条",
+                  "control_type": "ControlType.ScrollBar",
+                  "automation_id": "Vertical ScrollBar",
+                  "class_name": "",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": 1259.0,
+                    "y": 228.0,
+                    "width": 17.0,
+                    "height": 590.0
+                  },
+                  "patterns": "RangeValuePatternIdentifiers.Pattern",
+                  "children": [
+                    {
+                      "name": "小幅度后滚",
+                      "control_type": "ControlType.Button",
+                      "automation_id": "SmallDecrement",
+                      "class_name": "",
+                      "is_enabled": true,
+                      "is_offscreen": false,
+                      "is_keyboard_focusable": false,
+                      "bounds": {
+                        "x": 1259.0,
+                        "y": 228.0,
+                        "width": 17.0,
+                        "height": 17.0
+                      },
+                      "patterns": "InvokePatternIdentifiers.Pattern",
+                      "children": []
+                    },
+                    {
+                      "name": "大幅度后滚",
+                      "control_type": "ControlType.Button",
+                      "automation_id": "LargeDecrement",
+                      "class_name": "",
+                      "is_enabled": true,
+                      "is_offscreen": true,
+                      "is_keyboard_focusable": false,
+                      "bounds": {
+                        "x": "Infinity",
+                        "y": "Infinity",
+                        "width": "-Infinity",
+                        "height": "-Infinity"
+                      },
+                      "patterns": "InvokePatternIdentifiers.Pattern",
+                      "children": []
+                    },
+                    {
+                      "name": "缩略",
+                      "control_type": "ControlType.Thumb",
+                      "automation_id": "Thumb",
+                      "class_name": "",
+                      "is_enabled": true,
+                      "is_offscreen": false,
+                      "is_keyboard_focusable": false,
+                      "bounds": {
+                        "x": 1259.0,
+                        "y": 245.0,
+                        "width": 17.0,
+                        "height": 350.0
+                      },
+                      "patterns": null,
+                      "children": []
+                    },
+                    {
+                      "name": "大幅度前滚",
+                      "control_type": "ControlType.Button",
+                      "automation_id": "LargeIncrement",
+                      "class_name": "",
+                      "is_enabled": true,
+                      "is_offscreen": false,
+                      "is_keyboard_focusable": false,
+                      "bounds": {
+                        "x": 1259.0,
+                        "y": 595.0,
+                        "width": 17.0,
+                        "height": 206.0
+                      },
+                      "patterns": "InvokePatternIdentifiers.Pattern",
+                      "children": []
+                    },
+                    {
+                      "name": "小幅度前滚",
+                      "control_type": "ControlType.Button",
+                      "automation_id": "SmallIncrement",
+                      "class_name": "",
+                      "is_enabled": true,
+                      "is_offscreen": false,
+                      "is_keyboard_focusable": false,
+                      "bounds": {
+                        "x": 1259.0,
+                        "y": 801.0,
+                        "width": 17.0,
+                        "height": 17.0
+                      },
+                      "patterns": "InvokePatternIdentifiers.Pattern",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "",
+          "control_type": "ControlType.Pane",
+          "automation_id": "",
+          "class_name": "Microsoft.UI.Content.DesktopChildSiteBridge",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 433.0,
+            "y": 163.0,
+            "width": 527.0,
+            "height": 32.0
+          },
+          "patterns": null,
+          "children": [
+            {
+              "name": "",
+              "control_type": "ControlType.Pane",
+              "automation_id": "",
+              "class_name": "InputSiteWindowClass",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 433.0,
+                "y": 163.0,
+                "width": 527.0,
+                "height": 32.0
+              },
+              "patterns": null,
+              "children": [
+                {
+                  "name": "",
+                  "control_type": "ControlType.Tab",
+                  "automation_id": "Tabs",
+                  "class_name": "Microsoft.UI.Xaml.Controls.TabView",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": 433.0,
+                    "y": 163.0,
+                    "width": 527.0,
+                    "height": 32.0
+                  },
+                  "patterns": [
+                    "SelectionPatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": [
+                    {
+                      "name": "",
+                      "control_type": "ControlType.List",
+                      "automation_id": "TabListView",
+                      "class_name": "ListView",
+                      "is_enabled": true,
+                      "is_offscreen": false,
+                      "is_keyboard_focusable": false,
+                      "bounds": {
+                        "x": 435.0,
+                        "y": 163.0,
+                        "width": 488.0,
+                        "height": 32.0
+                      },
+                      "patterns": [
+                        "SelectionPatternIdentifiers.Pattern",
+                        "ScrollPatternIdentifiers.Pattern",
+                        "ScrollItemPatternIdentifiers.Pattern",
+                        "ItemContainerPatternIdentifiers.Pattern"
+                      ],
+                      "children": [
+                        {
+                          "name": "api (2).txt. 未修改。",
+                          "control_type": "ControlType.TabItem",
+                          "automation_id": "",
+                          "class_name": "ListViewItem",
+                          "is_enabled": true,
+                          "is_offscreen": false,
+                          "is_keyboard_focusable": true,
+                          "bounds": {
+                            "x": 441.0,
+                            "y": 163.0,
+                            "width": 239.0,
+                            "height": 32.0
+                          },
+                          "patterns": [
+                            "SelectionItemPatternIdentifiers.Pattern",
+                            "ScrollItemPatternIdentifiers.Pattern",
+                            "VirtualizedItemPatternIdentifiers.Pattern"
+                          ],
+                          "children": []
+                        },
+                        {
+                          "name": "api.txt. 未修改。",
+                          "control_type": "ControlType.TabItem",
+                          "automation_id": "",
+                          "class_name": "ListViewItem",
+                          "is_enabled": true,
+                          "is_offscreen": false,
+                          "is_keyboard_focusable": true,
+                          "bounds": {
+                            "x": 676.0,
+                            "y": 163.0,
+                            "width": 247.0,
+                            "height": 32.0
+                          },
+                          "patterns": [
+                            "SelectionItemPatternIdentifiers.Pattern",
+                            "ScrollItemPatternIdentifiers.Pattern",
+                            "VirtualizedItemPatternIdentifiers.Pattern"
+                          ],
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "name": "添加新标签页",
+                      "control_type": "ControlType.Button",
+                      "automation_id": "AddButton",
+                      "class_name": "Button",
+                      "is_enabled": true,
+                      "is_offscreen": false,
+                      "is_keyboard_focusable": true,
+                      "bounds": {
+                        "x": 926.0,
+                        "y": 169.0,
+                        "width": 32.0,
+                        "height": 24.0
+                      },
+                      "patterns": [
+                        "InvokePatternIdentifiers.Pattern",
+                        "ScrollItemPatternIdentifiers.Pattern"
+                      ],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "",
+          "control_type": "ControlType.Pane",
+          "automation_id": "",
+          "class_name": "Microsoft.UI.Content.DesktopChildSiteBridge",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 393.0,
+            "y": 195.0,
+            "width": 883.0,
+            "height": 33.0
+          },
+          "patterns": null,
+          "children": [
+            {
+              "name": "",
+              "control_type": "ControlType.Pane",
+              "automation_id": "",
+              "class_name": "InputSiteWindowClass",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 393.0,
+                "y": 195.0,
+                "width": 883.0,
+                "height": 33.0
+              },
+              "patterns": null,
+              "children": [
+                {
+                  "name": "",
+                  "control_type": "ControlType.MenuBar",
+                  "automation_id": "MenuBar",
+                  "class_name": "",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": 393.0,
+                    "y": 195.0,
+                    "width": 168.0,
+                    "height": 32.0
+                  },
+                  "patterns": "ScrollItemPatternIdentifiers.Pattern",
+                  "children": [
+                    {
+                      "name": "文件",
+                      "control_type": "ControlType.MenuItem",
+                      "automation_id": "File",
+                      "class_name": "Microsoft.UI.Xaml.Controls.MenuBarItem",
+                      "is_enabled": true,
+                      "is_offscreen": false,
+                      "is_keyboard_focusable": true,
+                      "bounds": {
+                        "x": 397.0,
+                        "y": 195.0,
+                        "width": 48.0,
+                        "height": 32.0
+                      },
+                      "patterns": [
+                        "InvokePatternIdentifiers.Pattern",
+                        "ExpandCollapsePatternIdentifiers.Pattern",
+                        "ScrollItemPatternIdentifiers.Pattern"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "name": "编辑",
+                      "control_type": "ControlType.MenuItem",
+                      "automation_id": "Edit",
+                      "class_name": "Microsoft.UI.Xaml.Controls.MenuBarItem",
+                      "is_enabled": true,
+                      "is_offscreen": false,
+                      "is_keyboard_focusable": true,
+                      "bounds": {
+                        "x": 453.0,
+                        "y": 195.0,
+                        "width": 48.0,
+                        "height": 32.0
+                      },
+                      "patterns": [
+                        "InvokePatternIdentifiers.Pattern",
+                        "ExpandCollapsePatternIdentifiers.Pattern",
+                        "ScrollItemPatternIdentifiers.Pattern"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "name": "查看",
+                      "control_type": "ControlType.MenuItem",
+                      "automation_id": "View",
+                      "class_name": "Microsoft.UI.Xaml.Controls.MenuBarItem",
+                      "is_enabled": true,
+                      "is_offscreen": false,
+                      "is_keyboard_focusable": true,
+                      "bounds": {
+                        "x": 509.0,
+                        "y": 195.0,
+                        "width": 48.0,
+                        "height": 32.0
+                      },
+                      "patterns": [
+                        "InvokePatternIdentifiers.Pattern",
+                        "ExpandCollapsePatternIdentifiers.Pattern",
+                        "ScrollItemPatternIdentifiers.Pattern"
+                      ],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "标题",
+                  "control_type": "ControlType.Button",
+                  "automation_id": "",
+                  "class_name": "Microsoft.UI.Xaml.Controls.DropDownButton",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": true,
+                  "bounds": {
+                    "x": 671.0,
+                    "y": 195.0,
+                    "width": 56.0,
+                    "height": 32.0
+                  },
+                  "patterns": [
+                    "InvokePatternIdentifiers.Pattern",
+                    "ExpandCollapsePatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                },
+                {
+                  "name": "列表",
+                  "control_type": "ControlType.Button",
+                  "automation_id": "",
+                  "class_name": "Microsoft.UI.Xaml.Controls.DropDownButton",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": true,
+                  "bounds": {
+                    "x": 727.0,
+                    "y": 195.0,
+                    "width": 56.0,
+                    "height": 32.0
+                  },
+                  "patterns": [
+                    "InvokePatternIdentifiers.Pattern",
+                    "ExpandCollapsePatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                },
+                {
+                  "name": "加粗(Ctrl+B)",
+                  "control_type": "ControlType.Button",
+                  "automation_id": "",
+                  "class_name": "ToggleButton",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": true,
+                  "bounds": {
+                    "x": 783.0,
+                    "y": 195.0,
+                    "width": 32.0,
+                    "height": 32.0
+                  },
+                  "patterns": [
+                    "TogglePatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                },
+                {
+                  "name": "斜体(Ctrl+I)",
+                  "control_type": "ControlType.Button",
+                  "automation_id": "",
+                  "class_name": "ToggleButton",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": true,
+                  "bounds": {
+                    "x": 815.0,
+                    "y": 195.0,
+                    "width": 32.0,
+                    "height": 32.0
+                  },
+                  "patterns": [
+                    "TogglePatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                },
+                {
+                  "name": "删除线(Ctrl+Shift+X)",
+                  "control_type": "ControlType.Button",
+                  "automation_id": "",
+                  "class_name": "ToggleButton",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": true,
+                  "bounds": {
+                    "x": 847.0,
+                    "y": 195.0,
+                    "width": 32.0,
+                    "height": 32.0
+                  },
+                  "patterns": [
+                    "TogglePatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                },
+                {
+                  "name": "链接(Ctrl+K)",
+                  "control_type": "ControlType.Button",
+                  "automation_id": "",
+                  "class_name": "ToggleButton",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": true,
+                  "bounds": {
+                    "x": 879.0,
+                    "y": 195.0,
+                    "width": 32.0,
+                    "height": 32.0
+                  },
+                  "patterns": [
+                    "TogglePatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                },
+                {
+                  "name": "表",
+                  "control_type": "ControlType.Button",
+                  "automation_id": "",
+                  "class_name": "Microsoft.UI.Xaml.Controls.DropDownButton",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": true,
+                  "bounds": {
+                    "x": 911.0,
+                    "y": 195.0,
+                    "width": 56.0,
+                    "height": 32.0
+                  },
+                  "patterns": [
+                    "InvokePatternIdentifiers.Pattern",
+                    "ExpandCollapsePatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                },
+                {
+                  "name": "清除格式设置(Ctrl+空格)",
+                  "control_type": "ControlType.Button",
+                  "automation_id": "",
+                  "class_name": "ToggleButton",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": true,
+                  "bounds": {
+                    "x": 967.0,
+                    "y": 195.0,
+                    "width": 32.0,
+                    "height": 32.0
+                  },
+                  "patterns": [
+                    "TogglePatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                },
+                {
+                  "name": "最近更新",
+                  "control_type": "ControlType.Button",
+                  "automation_id": "FREButton",
+                  "class_name": "Button",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": true,
+                  "bounds": {
+                    "x": 1204.0,
+                    "y": 196.0,
+                    "width": 30.0,
+                    "height": 30.0
+                  },
+                  "patterns": [
+                    "InvokePatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                },
+                {
+                  "name": "设置",
+                  "control_type": "ControlType.Button",
+                  "automation_id": "SettingsButton",
+                  "class_name": "Button",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": true,
+                  "bounds": {
+                    "x": 1238.0,
+                    "y": 195.0,
+                    "width": 30.0,
+                    "height": 32.0
+                  },
+                  "patterns": [
+                    "InvokePatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                },
+                {
+                  "name": "",
+                  "control_type": "ControlType.Window",
+                  "automation_id": "PrivacyTeachingTip",
+                  "class_name": "Microsoft.UI.Xaml.Controls.TeachingTip",
+                  "is_enabled": true,
+                  "is_offscreen": true,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": "Infinity",
+                    "y": "Infinity",
+                    "width": "-Infinity",
+                    "height": "-Infinity"
+                  },
+                  "patterns": "ScrollItemPatternIdentifiers.Pattern",
+                  "children": []
+                },
+                {
+                  "name": "",
+                  "control_type": "ControlType.Pane",
+                  "automation_id": "PsDownloadDetailTeachingTip",
+                  "class_name": "Microsoft.UI.Xaml.Controls.TeachingTip",
+                  "is_enabled": true,
+                  "is_offscreen": true,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": "Infinity",
+                    "y": "Infinity",
+                    "width": "-Infinity",
+                    "height": "-Infinity"
+                  },
+                  "patterns": "ScrollItemPatternIdentifiers.Pattern",
+                  "children": []
+                },
+                {
+                  "name": "本地 AI 模型必须完成下载才可在注销后使用此功能。",
+                  "control_type": "ControlType.Pane",
+                  "automation_id": "PsDownloadLightTeachingTip",
+                  "class_name": "Microsoft.UI.Xaml.Controls.TeachingTip",
+                  "is_enabled": true,
+                  "is_offscreen": true,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": "Infinity",
+                    "y": "Infinity",
+                    "width": "-Infinity",
+                    "height": "-Infinity"
+                  },
+                  "patterns": "ScrollItemPatternIdentifiers.Pattern",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "",
+          "control_type": "ControlType.Pane",
+          "automation_id": "",
+          "class_name": "Microsoft.UI.Content.DesktopChildSiteBridge",
+          "is_enabled": false,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 393.0,
+            "y": 818.0,
+            "width": 883.0,
+            "height": 32.0
+          },
+          "patterns": null,
+          "children": [
+            {
+              "name": "",
+              "control_type": "ControlType.Pane",
+              "automation_id": "",
+              "class_name": "InputSiteWindowClass",
+              "is_enabled": false,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 393.0,
+                "y": 818.0,
+                "width": 883.0,
+                "height": 32.0
+              },
+              "patterns": null,
+              "children": [
+                {
+                  "name": "行 1，\n列 1",
+                  "control_type": "ControlType.Text",
+                  "automation_id": "ContentTextBlock",
+                  "class_name": "TextBlock",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": 409.0,
+                    "y": 826.0,
+                    "width": 64.0,
+                    "height": 16.0
+                  },
+                  "patterns": [
+                    "TextPatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                },
+                {
+                  "name": "1,246 个字符",
+                  "control_type": "ControlType.Text",
+                  "automation_id": "ContentTextBlock",
+                  "class_name": "TextBlock",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": 498.0,
+                    "y": 826.0,
+                    "width": 68.0,
+                    "height": 16.0
+                  },
+                  "patterns": [
+                    "TextPatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                },
+                {
+                  "name": "纯文本",
+                  "control_type": "ControlType.Text",
+                  "automation_id": "ContentTextBlock",
+                  "class_name": "TextBlock",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": 695.0,
+                    "y": 818.0,
+                    "width": 48.0,
+                    "height": 32.0
+                  },
+                  "patterns": [
+                    "TextPatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                },
+                {
+                  "name": "缩放",
+                  "control_type": "ControlType.Text",
+                  "automation_id": "ContentTextBlock",
+                  "class_name": "TextBlock",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": 905.0,
+                    "y": 826.0,
+                    "width": 33.0,
+                    "height": 16.0
+                  },
+                  "patterns": [
+                    "TextPatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                },
+                {
+                  "name": " Windows (CRLF)",
+                  "control_type": "ControlType.Text",
+                  "automation_id": "ContentTextBlock",
+                  "class_name": "TextBlock",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": 973.0,
+                    "y": 826.0,
+                    "width": 89.0,
+                    "height": 16.0
+                  },
+                  "patterns": [
+                    "TextPatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                },
+                {
+                  "name": " UTF-8",
+                  "control_type": "ControlType.Text",
+                  "automation_id": "ContentTextBlock",
+                  "class_name": "TextBlock",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": 1141.0,
+                    "y": 826.0,
+                    "width": 35.0,
+                    "height": 16.0
+                  },
+                  "patterns": [
+                    "TextPatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "api.txt - Notepad",
+          "control_type": "ControlType.TitleBar",
+          "automation_id": "TitleBar",
+          "class_name": "",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 395.0,
+            "y": 161.0,
+            "width": 879.0,
+            "height": 23.0
+          },
+          "patterns": null,
+          "children": [
+            {
+              "name": "系统菜单栏",
+              "control_type": "ControlType.MenuBar",
+              "automation_id": "SystemMenuBar",
+              "class_name": "",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": 395.0,
+                "y": 161.0,
+                "width": 22.0,
+                "height": 22.0
+              },
+              "patterns": null,
+              "children": [
+                {
+                  "name": "系统",
+                  "control_type": "ControlType.MenuItem",
+                  "automation_id": "Item 1",
+                  "class_name": "",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": true,
+                  "bounds": {
+                    "x": 395.0,
+                    "y": 161.0,
+                    "width": 22.0,
+                    "height": 22.0
+                  },
+                  "patterns": "ExpandCollapsePatternIdentifiers.Pattern",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "最小化",
+              "control_type": "ControlType.Button",
+              "automation_id": "Minimize",
+              "class_name": "",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 1137.0,
+                "y": 154.0,
+                "width": 47.0,
+                "height": 30.0
+              },
+              "patterns": "InvokePatternIdentifiers.Pattern",
+              "children": []
+            },
+            {
+              "name": "最大化",
+              "control_type": "ControlType.Button",
+              "automation_id": "Maximize",
+              "class_name": "",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 1184.0,
+                "y": 154.0,
+                "width": 46.0,
+                "height": 30.0
+              },
+              "patterns": "InvokePatternIdentifiers.Pattern",
+              "children": []
+            },
+            {
+              "name": "关闭",
+              "control_type": "ControlType.Button",
+              "automation_id": "Close",
+              "class_name": "",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 1230.0,
+                "y": 154.0,
+                "width": 47.0,
+                "height": 30.0
+              },
+              "patterns": "InvokePatternIdentifiers.Pattern",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "automation_id": "",
+      "class_name": "Microsoft.UI.Content.DesktopChildSiteBridge",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 1260.0,
+        "y": 228.0,
+        "width": 14.0,
+        "height": 590.0
+      },
+      "patterns": null,
+      "children": [
+        {
+          "name": "",
+          "control_type": "ControlType.Pane",
+          "automation_id": "",
+          "class_name": "InputSiteWindowClass",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 1260.0,
+            "y": 228.0,
+            "width": 14.0,
+            "height": 590.0
+          },
+          "patterns": null,
+          "children": [
+            {
+              "name": "",
+              "control_type": "ControlType.Pane",
+              "automation_id": "ScrollViewer",
+              "class_name": "ScrollViewer",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 1260.0,
+                "y": 228.0,
+                "width": 14.0,
+                "height": 590.0
+              },
+              "patterns": [
+                "ScrollPatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": [
+                {
+                  "name": "垂直",
+                  "control_type": "ControlType.ScrollBar",
+                  "automation_id": "VerticalScrollBar",
+                  "class_name": "ScrollBar",
+                  "is_enabled": true,
+                  "is_offscreen": true,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": "Infinity",
+                    "y": "Infinity",
+                    "width": "-Infinity",
+                    "height": "-Infinity"
+                  },
+                  "patterns": [
+                    "RangeValuePatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "automation_id": "",
+      "class_name": "InputSiteWindowClass",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 1260.0,
+        "y": 228.0,
+        "width": 14.0,
+        "height": 590.0
+      },
+      "patterns": null,
+      "children": [
+        {
+          "name": "",
+          "control_type": "ControlType.Pane",
+          "automation_id": "ScrollViewer",
+          "class_name": "ScrollViewer",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 1260.0,
+            "y": 228.0,
+            "width": 14.0,
+            "height": 590.0
+          },
+          "patterns": [
+            "ScrollPatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": [
+            {
+              "name": "垂直",
+              "control_type": "ControlType.ScrollBar",
+              "automation_id": "VerticalScrollBar",
+              "class_name": "ScrollBar",
+              "is_enabled": true,
+              "is_offscreen": true,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": "Infinity",
+                "y": "Infinity",
+                "width": "-Infinity",
+                "height": "-Infinity"
+              },
+              "patterns": [
+                "RangeValuePatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "automation_id": "ScrollViewer",
+      "class_name": "ScrollViewer",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 1260.0,
+        "y": 228.0,
+        "width": 14.0,
+        "height": 590.0
+      },
+      "patterns": [
+        "ScrollPatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": [
+        {
+          "name": "垂直",
+          "control_type": "ControlType.ScrollBar",
+          "automation_id": "VerticalScrollBar",
+          "class_name": "ScrollBar",
+          "is_enabled": true,
+          "is_offscreen": true,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": "Infinity",
+            "y": "Infinity",
+            "width": "-Infinity",
+            "height": "-Infinity"
+          },
+          "patterns": [
+            "RangeValuePatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "垂直",
+      "control_type": "ControlType.ScrollBar",
+      "automation_id": "VerticalScrollBar",
+      "class_name": "ScrollBar",
+      "is_enabled": true,
+      "is_offscreen": true,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": "Infinity",
+        "y": "Infinity",
+        "width": "-Infinity",
+        "height": "-Infinity"
+      },
+      "patterns": [
+        "RangeValuePatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "automation_id": "",
+      "class_name": "NotepadTextBox",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 393.0,
+        "y": 228.0,
+        "width": 883.0,
+        "height": 590.0
+      },
+      "patterns": null,
+      "children": [
+        {
+          "name": "文本编辑器",
+          "control_type": "ControlType.Document",
+          "automation_id": "",
+          "class_name": "RichEditD2DPT",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": 393.0,
+            "y": 228.0,
+            "width": 883.0,
+            "height": 590.0
+          },
+          "patterns": [
+            "ValuePatternIdentifiers.Pattern",
+            "ScrollPatternIdentifiers.Pattern",
+            "TextPatternIdentifiers.Pattern"
+          ],
+          "children": [
+            {
+              "name": "垂直滚动条",
+              "control_type": "ControlType.ScrollBar",
+              "automation_id": "Vertical ScrollBar",
+              "class_name": "",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 1259.0,
+                "y": 228.0,
+                "width": 17.0,
+                "height": 590.0
+              },
+              "patterns": "RangeValuePatternIdentifiers.Pattern",
+              "children": [
+                {
+                  "name": "小幅度后滚",
+                  "control_type": "ControlType.Button",
+                  "automation_id": "SmallDecrement",
+                  "class_name": "",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": 1259.0,
+                    "y": 228.0,
+                    "width": 17.0,
+                    "height": 17.0
+                  },
+                  "patterns": "InvokePatternIdentifiers.Pattern",
+                  "children": []
+                },
+                {
+                  "name": "大幅度后滚",
+                  "control_type": "ControlType.Button",
+                  "automation_id": "LargeDecrement",
+                  "class_name": "",
+                  "is_enabled": true,
+                  "is_offscreen": true,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": "Infinity",
+                    "y": "Infinity",
+                    "width": "-Infinity",
+                    "height": "-Infinity"
+                  },
+                  "patterns": "InvokePatternIdentifiers.Pattern",
+                  "children": []
+                },
+                {
+                  "name": "缩略",
+                  "control_type": "ControlType.Thumb",
+                  "automation_id": "Thumb",
+                  "class_name": "",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": 1259.0,
+                    "y": 245.0,
+                    "width": 17.0,
+                    "height": 350.0
+                  },
+                  "patterns": null,
+                  "children": []
+                },
+                {
+                  "name": "大幅度前滚",
+                  "control_type": "ControlType.Button",
+                  "automation_id": "LargeIncrement",
+                  "class_name": "",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": 1259.0,
+                    "y": 595.0,
+                    "width": 17.0,
+                    "height": 206.0
+                  },
+                  "patterns": "InvokePatternIdentifiers.Pattern",
+                  "children": []
+                },
+                {
+                  "name": "小幅度前滚",
+                  "control_type": "ControlType.Button",
+                  "automation_id": "SmallIncrement",
+                  "class_name": "",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": 1259.0,
+                    "y": 801.0,
+                    "width": 17.0,
+                    "height": 17.0
+                  },
+                  "patterns": "InvokePatternIdentifiers.Pattern",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "文本编辑器",
+      "control_type": "ControlType.Document",
+      "automation_id": "",
+      "class_name": "RichEditD2DPT",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 393.0,
+        "y": 228.0,
+        "width": 883.0,
+        "height": 590.0
+      },
+      "patterns": [
+        "ValuePatternIdentifiers.Pattern",
+        "ScrollPatternIdentifiers.Pattern",
+        "TextPatternIdentifiers.Pattern"
+      ],
+      "children": [
+        {
+          "name": "垂直滚动条",
+          "control_type": "ControlType.ScrollBar",
+          "automation_id": "Vertical ScrollBar",
+          "class_name": "",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 1259.0,
+            "y": 228.0,
+            "width": 17.0,
+            "height": 590.0
+          },
+          "patterns": "RangeValuePatternIdentifiers.Pattern",
+          "children": [
+            {
+              "name": "小幅度后滚",
+              "control_type": "ControlType.Button",
+              "automation_id": "SmallDecrement",
+              "class_name": "",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 1259.0,
+                "y": 228.0,
+                "width": 17.0,
+                "height": 17.0
+              },
+              "patterns": "InvokePatternIdentifiers.Pattern",
+              "children": []
+            },
+            {
+              "name": "大幅度后滚",
+              "control_type": "ControlType.Button",
+              "automation_id": "LargeDecrement",
+              "class_name": "",
+              "is_enabled": true,
+              "is_offscreen": true,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": "Infinity",
+                "y": "Infinity",
+                "width": "-Infinity",
+                "height": "-Infinity"
+              },
+              "patterns": "InvokePatternIdentifiers.Pattern",
+              "children": []
+            },
+            {
+              "name": "缩略",
+              "control_type": "ControlType.Thumb",
+              "automation_id": "Thumb",
+              "class_name": "",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 1259.0,
+                "y": 245.0,
+                "width": 17.0,
+                "height": 350.0
+              },
+              "patterns": null,
+              "children": []
+            },
+            {
+              "name": "大幅度前滚",
+              "control_type": "ControlType.Button",
+              "automation_id": "LargeIncrement",
+              "class_name": "",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 1259.0,
+                "y": 595.0,
+                "width": 17.0,
+                "height": 206.0
+              },
+              "patterns": "InvokePatternIdentifiers.Pattern",
+              "children": []
+            },
+            {
+              "name": "小幅度前滚",
+              "control_type": "ControlType.Button",
+              "automation_id": "SmallIncrement",
+              "class_name": "",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 1259.0,
+                "y": 801.0,
+                "width": 17.0,
+                "height": 17.0
+              },
+              "patterns": "InvokePatternIdentifiers.Pattern",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "垂直滚动条",
+      "control_type": "ControlType.ScrollBar",
+      "automation_id": "Vertical ScrollBar",
+      "class_name": "",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 1259.0,
+        "y": 228.0,
+        "width": 17.0,
+        "height": 590.0
+      },
+      "patterns": "RangeValuePatternIdentifiers.Pattern",
+      "children": [
+        {
+          "name": "小幅度后滚",
+          "control_type": "ControlType.Button",
+          "automation_id": "SmallDecrement",
+          "class_name": "",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 1259.0,
+            "y": 228.0,
+            "width": 17.0,
+            "height": 17.0
+          },
+          "patterns": "InvokePatternIdentifiers.Pattern",
+          "children": []
+        },
+        {
+          "name": "大幅度后滚",
+          "control_type": "ControlType.Button",
+          "automation_id": "LargeDecrement",
+          "class_name": "",
+          "is_enabled": true,
+          "is_offscreen": true,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": "Infinity",
+            "y": "Infinity",
+            "width": "-Infinity",
+            "height": "-Infinity"
+          },
+          "patterns": "InvokePatternIdentifiers.Pattern",
+          "children": []
+        },
+        {
+          "name": "缩略",
+          "control_type": "ControlType.Thumb",
+          "automation_id": "Thumb",
+          "class_name": "",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 1259.0,
+            "y": 245.0,
+            "width": 17.0,
+            "height": 350.0
+          },
+          "patterns": null,
+          "children": []
+        },
+        {
+          "name": "大幅度前滚",
+          "control_type": "ControlType.Button",
+          "automation_id": "LargeIncrement",
+          "class_name": "",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 1259.0,
+            "y": 595.0,
+            "width": 17.0,
+            "height": 206.0
+          },
+          "patterns": "InvokePatternIdentifiers.Pattern",
+          "children": []
+        },
+        {
+          "name": "小幅度前滚",
+          "control_type": "ControlType.Button",
+          "automation_id": "SmallIncrement",
+          "class_name": "",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 1259.0,
+            "y": 801.0,
+            "width": 17.0,
+            "height": 17.0
+          },
+          "patterns": "InvokePatternIdentifiers.Pattern",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "小幅度后滚",
+      "control_type": "ControlType.Button",
+      "automation_id": "SmallDecrement",
+      "class_name": "",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 1259.0,
+        "y": 228.0,
+        "width": 17.0,
+        "height": 17.0
+      },
+      "patterns": "InvokePatternIdentifiers.Pattern",
+      "children": []
+    },
+    {
+      "name": "大幅度后滚",
+      "control_type": "ControlType.Button",
+      "automation_id": "LargeDecrement",
+      "class_name": "",
+      "is_enabled": true,
+      "is_offscreen": true,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": "Infinity",
+        "y": "Infinity",
+        "width": "-Infinity",
+        "height": "-Infinity"
+      },
+      "patterns": "InvokePatternIdentifiers.Pattern",
+      "children": []
+    },
+    {
+      "name": "缩略",
+      "control_type": "ControlType.Thumb",
+      "automation_id": "Thumb",
+      "class_name": "",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 1259.0,
+        "y": 245.0,
+        "width": 17.0,
+        "height": 350.0
+      },
+      "patterns": null,
+      "children": []
+    },
+    {
+      "name": "大幅度前滚",
+      "control_type": "ControlType.Button",
+      "automation_id": "LargeIncrement",
+      "class_name": "",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 1259.0,
+        "y": 595.0,
+        "width": 17.0,
+        "height": 206.0
+      },
+      "patterns": "InvokePatternIdentifiers.Pattern",
+      "children": []
+    },
+    {
+      "name": "小幅度前滚",
+      "control_type": "ControlType.Button",
+      "automation_id": "SmallIncrement",
+      "class_name": "",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 1259.0,
+        "y": 801.0,
+        "width": 17.0,
+        "height": 17.0
+      },
+      "patterns": "InvokePatternIdentifiers.Pattern",
+      "children": []
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "automation_id": "",
+      "class_name": "Microsoft.UI.Content.DesktopChildSiteBridge",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 433.0,
+        "y": 163.0,
+        "width": 527.0,
+        "height": 32.0
+      },
+      "patterns": null,
+      "children": [
+        {
+          "name": "",
+          "control_type": "ControlType.Pane",
+          "automation_id": "",
+          "class_name": "InputSiteWindowClass",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 433.0,
+            "y": 163.0,
+            "width": 527.0,
+            "height": 32.0
+          },
+          "patterns": null,
+          "children": [
+            {
+              "name": "",
+              "control_type": "ControlType.Tab",
+              "automation_id": "Tabs",
+              "class_name": "Microsoft.UI.Xaml.Controls.TabView",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 433.0,
+                "y": 163.0,
+                "width": 527.0,
+                "height": 32.0
+              },
+              "patterns": [
+                "SelectionPatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": [
+                {
+                  "name": "",
+                  "control_type": "ControlType.List",
+                  "automation_id": "TabListView",
+                  "class_name": "ListView",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": 435.0,
+                    "y": 163.0,
+                    "width": 488.0,
+                    "height": 32.0
+                  },
+                  "patterns": [
+                    "SelectionPatternIdentifiers.Pattern",
+                    "ScrollPatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern",
+                    "ItemContainerPatternIdentifiers.Pattern"
+                  ],
+                  "children": [
+                    {
+                      "name": "api (2).txt. 未修改。",
+                      "control_type": "ControlType.TabItem",
+                      "automation_id": "",
+                      "class_name": "ListViewItem",
+                      "is_enabled": true,
+                      "is_offscreen": false,
+                      "is_keyboard_focusable": true,
+                      "bounds": {
+                        "x": 441.0,
+                        "y": 163.0,
+                        "width": 239.0,
+                        "height": 32.0
+                      },
+                      "patterns": [
+                        "SelectionItemPatternIdentifiers.Pattern",
+                        "ScrollItemPatternIdentifiers.Pattern",
+                        "VirtualizedItemPatternIdentifiers.Pattern"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "name": "api.txt. 未修改。",
+                      "control_type": "ControlType.TabItem",
+                      "automation_id": "",
+                      "class_name": "ListViewItem",
+                      "is_enabled": true,
+                      "is_offscreen": false,
+                      "is_keyboard_focusable": true,
+                      "bounds": {
+                        "x": 676.0,
+                        "y": 163.0,
+                        "width": 247.0,
+                        "height": 32.0
+                      },
+                      "patterns": [
+                        "SelectionItemPatternIdentifiers.Pattern",
+                        "ScrollItemPatternIdentifiers.Pattern",
+                        "VirtualizedItemPatternIdentifiers.Pattern"
+                      ],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "添加新标签页",
+                  "control_type": "ControlType.Button",
+                  "automation_id": "AddButton",
+                  "class_name": "Button",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": true,
+                  "bounds": {
+                    "x": 926.0,
+                    "y": 169.0,
+                    "width": 32.0,
+                    "height": 24.0
+                  },
+                  "patterns": [
+                    "InvokePatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "automation_id": "",
+      "class_name": "InputSiteWindowClass",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 433.0,
+        "y": 163.0,
+        "width": 527.0,
+        "height": 32.0
+      },
+      "patterns": null,
+      "children": [
+        {
+          "name": "",
+          "control_type": "ControlType.Tab",
+          "automation_id": "Tabs",
+          "class_name": "Microsoft.UI.Xaml.Controls.TabView",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 433.0,
+            "y": 163.0,
+            "width": 527.0,
+            "height": 32.0
+          },
+          "patterns": [
+            "SelectionPatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": [
+            {
+              "name": "",
+              "control_type": "ControlType.List",
+              "automation_id": "TabListView",
+              "class_name": "ListView",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 435.0,
+                "y": 163.0,
+                "width": 488.0,
+                "height": 32.0
+              },
+              "patterns": [
+                "SelectionPatternIdentifiers.Pattern",
+                "ScrollPatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern",
+                "ItemContainerPatternIdentifiers.Pattern"
+              ],
+              "children": [
+                {
+                  "name": "api (2).txt. 未修改。",
+                  "control_type": "ControlType.TabItem",
+                  "automation_id": "",
+                  "class_name": "ListViewItem",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": true,
+                  "bounds": {
+                    "x": 441.0,
+                    "y": 163.0,
+                    "width": 239.0,
+                    "height": 32.0
+                  },
+                  "patterns": [
+                    "SelectionItemPatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern",
+                    "VirtualizedItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                },
+                {
+                  "name": "api.txt. 未修改。",
+                  "control_type": "ControlType.TabItem",
+                  "automation_id": "",
+                  "class_name": "ListViewItem",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": true,
+                  "bounds": {
+                    "x": 676.0,
+                    "y": 163.0,
+                    "width": 247.0,
+                    "height": 32.0
+                  },
+                  "patterns": [
+                    "SelectionItemPatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern",
+                    "VirtualizedItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "添加新标签页",
+              "control_type": "ControlType.Button",
+              "automation_id": "AddButton",
+              "class_name": "Button",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": 926.0,
+                "y": 169.0,
+                "width": 32.0,
+                "height": 24.0
+              },
+              "patterns": [
+                "InvokePatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Tab",
+      "automation_id": "Tabs",
+      "class_name": "Microsoft.UI.Xaml.Controls.TabView",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 433.0,
+        "y": 163.0,
+        "width": 527.0,
+        "height": 32.0
+      },
+      "patterns": [
+        "SelectionPatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": [
+        {
+          "name": "",
+          "control_type": "ControlType.List",
+          "automation_id": "TabListView",
+          "class_name": "ListView",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 435.0,
+            "y": 163.0,
+            "width": 488.0,
+            "height": 32.0
+          },
+          "patterns": [
+            "SelectionPatternIdentifiers.Pattern",
+            "ScrollPatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern",
+            "ItemContainerPatternIdentifiers.Pattern"
+          ],
+          "children": [
+            {
+              "name": "api (2).txt. 未修改。",
+              "control_type": "ControlType.TabItem",
+              "automation_id": "",
+              "class_name": "ListViewItem",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": 441.0,
+                "y": 163.0,
+                "width": 239.0,
+                "height": 32.0
+              },
+              "patterns": [
+                "SelectionItemPatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern",
+                "VirtualizedItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            },
+            {
+              "name": "api.txt. 未修改。",
+              "control_type": "ControlType.TabItem",
+              "automation_id": "",
+              "class_name": "ListViewItem",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": 676.0,
+                "y": 163.0,
+                "width": 247.0,
+                "height": 32.0
+              },
+              "patterns": [
+                "SelectionItemPatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern",
+                "VirtualizedItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "添加新标签页",
+          "control_type": "ControlType.Button",
+          "automation_id": "AddButton",
+          "class_name": "Button",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": 926.0,
+            "y": 169.0,
+            "width": 32.0,
+            "height": 24.0
+          },
+          "patterns": [
+            "InvokePatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.List",
+      "automation_id": "TabListView",
+      "class_name": "ListView",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 435.0,
+        "y": 163.0,
+        "width": 488.0,
+        "height": 32.0
+      },
+      "patterns": [
+        "SelectionPatternIdentifiers.Pattern",
+        "ScrollPatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern",
+        "ItemContainerPatternIdentifiers.Pattern"
+      ],
+      "children": [
+        {
+          "name": "api (2).txt. 未修改。",
+          "control_type": "ControlType.TabItem",
+          "automation_id": "",
+          "class_name": "ListViewItem",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": 441.0,
+            "y": 163.0,
+            "width": 239.0,
+            "height": 32.0
+          },
+          "patterns": [
+            "SelectionItemPatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern",
+            "VirtualizedItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        },
+        {
+          "name": "api.txt. 未修改。",
+          "control_type": "ControlType.TabItem",
+          "automation_id": "",
+          "class_name": "ListViewItem",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": 676.0,
+            "y": 163.0,
+            "width": 247.0,
+            "height": 32.0
+          },
+          "patterns": [
+            "SelectionItemPatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern",
+            "VirtualizedItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "api (2).txt. 未修改。",
+      "control_type": "ControlType.TabItem",
+      "automation_id": "",
+      "class_name": "ListViewItem",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 441.0,
+        "y": 163.0,
+        "width": 239.0,
+        "height": 32.0
+      },
+      "patterns": [
+        "SelectionItemPatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern",
+        "VirtualizedItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": "api.txt. 未修改。",
+      "control_type": "ControlType.TabItem",
+      "automation_id": "",
+      "class_name": "ListViewItem",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 676.0,
+        "y": 163.0,
+        "width": 247.0,
+        "height": 32.0
+      },
+      "patterns": [
+        "SelectionItemPatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern",
+        "VirtualizedItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": "添加新标签页",
+      "control_type": "ControlType.Button",
+      "automation_id": "AddButton",
+      "class_name": "Button",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 926.0,
+        "y": 169.0,
+        "width": 32.0,
+        "height": 24.0
+      },
+      "patterns": [
+        "InvokePatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "automation_id": "",
+      "class_name": "Microsoft.UI.Content.DesktopChildSiteBridge",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 393.0,
+        "y": 195.0,
+        "width": 883.0,
+        "height": 33.0
+      },
+      "patterns": null,
+      "children": [
+        {
+          "name": "",
+          "control_type": "ControlType.Pane",
+          "automation_id": "",
+          "class_name": "InputSiteWindowClass",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 393.0,
+            "y": 195.0,
+            "width": 883.0,
+            "height": 33.0
+          },
+          "patterns": null,
+          "children": [
+            {
+              "name": "",
+              "control_type": "ControlType.MenuBar",
+              "automation_id": "MenuBar",
+              "class_name": "",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 393.0,
+                "y": 195.0,
+                "width": 168.0,
+                "height": 32.0
+              },
+              "patterns": "ScrollItemPatternIdentifiers.Pattern",
+              "children": [
+                {
+                  "name": "文件",
+                  "control_type": "ControlType.MenuItem",
+                  "automation_id": "File",
+                  "class_name": "Microsoft.UI.Xaml.Controls.MenuBarItem",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": true,
+                  "bounds": {
+                    "x": 397.0,
+                    "y": 195.0,
+                    "width": 48.0,
+                    "height": 32.0
+                  },
+                  "patterns": [
+                    "InvokePatternIdentifiers.Pattern",
+                    "ExpandCollapsePatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                },
+                {
+                  "name": "编辑",
+                  "control_type": "ControlType.MenuItem",
+                  "automation_id": "Edit",
+                  "class_name": "Microsoft.UI.Xaml.Controls.MenuBarItem",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": true,
+                  "bounds": {
+                    "x": 453.0,
+                    "y": 195.0,
+                    "width": 48.0,
+                    "height": 32.0
+                  },
+                  "patterns": [
+                    "InvokePatternIdentifiers.Pattern",
+                    "ExpandCollapsePatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                },
+                {
+                  "name": "查看",
+                  "control_type": "ControlType.MenuItem",
+                  "automation_id": "View",
+                  "class_name": "Microsoft.UI.Xaml.Controls.MenuBarItem",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": true,
+                  "bounds": {
+                    "x": 509.0,
+                    "y": 195.0,
+                    "width": 48.0,
+                    "height": 32.0
+                  },
+                  "patterns": [
+                    "InvokePatternIdentifiers.Pattern",
+                    "ExpandCollapsePatternIdentifiers.Pattern",
+                    "ScrollItemPatternIdentifiers.Pattern"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "标题",
+              "control_type": "ControlType.Button",
+              "automation_id": "",
+              "class_name": "Microsoft.UI.Xaml.Controls.DropDownButton",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": 671.0,
+                "y": 195.0,
+                "width": 56.0,
+                "height": 32.0
+              },
+              "patterns": [
+                "InvokePatternIdentifiers.Pattern",
+                "ExpandCollapsePatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            },
+            {
+              "name": "列表",
+              "control_type": "ControlType.Button",
+              "automation_id": "",
+              "class_name": "Microsoft.UI.Xaml.Controls.DropDownButton",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": 727.0,
+                "y": 195.0,
+                "width": 56.0,
+                "height": 32.0
+              },
+              "patterns": [
+                "InvokePatternIdentifiers.Pattern",
+                "ExpandCollapsePatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            },
+            {
+              "name": "加粗(Ctrl+B)",
+              "control_type": "ControlType.Button",
+              "automation_id": "",
+              "class_name": "ToggleButton",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": 783.0,
+                "y": 195.0,
+                "width": 32.0,
+                "height": 32.0
+              },
+              "patterns": [
+                "TogglePatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            },
+            {
+              "name": "斜体(Ctrl+I)",
+              "control_type": "ControlType.Button",
+              "automation_id": "",
+              "class_name": "ToggleButton",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": 815.0,
+                "y": 195.0,
+                "width": 32.0,
+                "height": 32.0
+              },
+              "patterns": [
+                "TogglePatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            },
+            {
+              "name": "删除线(Ctrl+Shift+X)",
+              "control_type": "ControlType.Button",
+              "automation_id": "",
+              "class_name": "ToggleButton",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": 847.0,
+                "y": 195.0,
+                "width": 32.0,
+                "height": 32.0
+              },
+              "patterns": [
+                "TogglePatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            },
+            {
+              "name": "链接(Ctrl+K)",
+              "control_type": "ControlType.Button",
+              "automation_id": "",
+              "class_name": "ToggleButton",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": 879.0,
+                "y": 195.0,
+                "width": 32.0,
+                "height": 32.0
+              },
+              "patterns": [
+                "TogglePatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            },
+            {
+              "name": "表",
+              "control_type": "ControlType.Button",
+              "automation_id": "",
+              "class_name": "Microsoft.UI.Xaml.Controls.DropDownButton",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": 911.0,
+                "y": 195.0,
+                "width": 56.0,
+                "height": 32.0
+              },
+              "patterns": [
+                "InvokePatternIdentifiers.Pattern",
+                "ExpandCollapsePatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            },
+            {
+              "name": "清除格式设置(Ctrl+空格)",
+              "control_type": "ControlType.Button",
+              "automation_id": "",
+              "class_name": "ToggleButton",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": 967.0,
+                "y": 195.0,
+                "width": 32.0,
+                "height": 32.0
+              },
+              "patterns": [
+                "TogglePatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            },
+            {
+              "name": "最近更新",
+              "control_type": "ControlType.Button",
+              "automation_id": "FREButton",
+              "class_name": "Button",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": 1204.0,
+                "y": 196.0,
+                "width": 30.0,
+                "height": 30.0
+              },
+              "patterns": [
+                "InvokePatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            },
+            {
+              "name": "设置",
+              "control_type": "ControlType.Button",
+              "automation_id": "SettingsButton",
+              "class_name": "Button",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": 1238.0,
+                "y": 195.0,
+                "width": 30.0,
+                "height": 32.0
+              },
+              "patterns": [
+                "InvokePatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            },
+            {
+              "name": "",
+              "control_type": "ControlType.Window",
+              "automation_id": "PrivacyTeachingTip",
+              "class_name": "Microsoft.UI.Xaml.Controls.TeachingTip",
+              "is_enabled": true,
+              "is_offscreen": true,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": "Infinity",
+                "y": "Infinity",
+                "width": "-Infinity",
+                "height": "-Infinity"
+              },
+              "patterns": "ScrollItemPatternIdentifiers.Pattern",
+              "children": []
+            },
+            {
+              "name": "",
+              "control_type": "ControlType.Pane",
+              "automation_id": "PsDownloadDetailTeachingTip",
+              "class_name": "Microsoft.UI.Xaml.Controls.TeachingTip",
+              "is_enabled": true,
+              "is_offscreen": true,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": "Infinity",
+                "y": "Infinity",
+                "width": "-Infinity",
+                "height": "-Infinity"
+              },
+              "patterns": "ScrollItemPatternIdentifiers.Pattern",
+              "children": []
+            },
+            {
+              "name": "本地 AI 模型必须完成下载才可在注销后使用此功能。",
+              "control_type": "ControlType.Pane",
+              "automation_id": "PsDownloadLightTeachingTip",
+              "class_name": "Microsoft.UI.Xaml.Controls.TeachingTip",
+              "is_enabled": true,
+              "is_offscreen": true,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": "Infinity",
+                "y": "Infinity",
+                "width": "-Infinity",
+                "height": "-Infinity"
+              },
+              "patterns": "ScrollItemPatternIdentifiers.Pattern",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "automation_id": "",
+      "class_name": "InputSiteWindowClass",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 393.0,
+        "y": 195.0,
+        "width": 883.0,
+        "height": 33.0
+      },
+      "patterns": null,
+      "children": [
+        {
+          "name": "",
+          "control_type": "ControlType.MenuBar",
+          "automation_id": "MenuBar",
+          "class_name": "",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 393.0,
+            "y": 195.0,
+            "width": 168.0,
+            "height": 32.0
+          },
+          "patterns": "ScrollItemPatternIdentifiers.Pattern",
+          "children": [
+            {
+              "name": "文件",
+              "control_type": "ControlType.MenuItem",
+              "automation_id": "File",
+              "class_name": "Microsoft.UI.Xaml.Controls.MenuBarItem",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": 397.0,
+                "y": 195.0,
+                "width": 48.0,
+                "height": 32.0
+              },
+              "patterns": [
+                "InvokePatternIdentifiers.Pattern",
+                "ExpandCollapsePatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            },
+            {
+              "name": "编辑",
+              "control_type": "ControlType.MenuItem",
+              "automation_id": "Edit",
+              "class_name": "Microsoft.UI.Xaml.Controls.MenuBarItem",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": 453.0,
+                "y": 195.0,
+                "width": 48.0,
+                "height": 32.0
+              },
+              "patterns": [
+                "InvokePatternIdentifiers.Pattern",
+                "ExpandCollapsePatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            },
+            {
+              "name": "查看",
+              "control_type": "ControlType.MenuItem",
+              "automation_id": "View",
+              "class_name": "Microsoft.UI.Xaml.Controls.MenuBarItem",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": 509.0,
+                "y": 195.0,
+                "width": 48.0,
+                "height": 32.0
+              },
+              "patterns": [
+                "InvokePatternIdentifiers.Pattern",
+                "ExpandCollapsePatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "标题",
+          "control_type": "ControlType.Button",
+          "automation_id": "",
+          "class_name": "Microsoft.UI.Xaml.Controls.DropDownButton",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": 671.0,
+            "y": 195.0,
+            "width": 56.0,
+            "height": 32.0
+          },
+          "patterns": [
+            "InvokePatternIdentifiers.Pattern",
+            "ExpandCollapsePatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        },
+        {
+          "name": "列表",
+          "control_type": "ControlType.Button",
+          "automation_id": "",
+          "class_name": "Microsoft.UI.Xaml.Controls.DropDownButton",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": 727.0,
+            "y": 195.0,
+            "width": 56.0,
+            "height": 32.0
+          },
+          "patterns": [
+            "InvokePatternIdentifiers.Pattern",
+            "ExpandCollapsePatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        },
+        {
+          "name": "加粗(Ctrl+B)",
+          "control_type": "ControlType.Button",
+          "automation_id": "",
+          "class_name": "ToggleButton",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": 783.0,
+            "y": 195.0,
+            "width": 32.0,
+            "height": 32.0
+          },
+          "patterns": [
+            "TogglePatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        },
+        {
+          "name": "斜体(Ctrl+I)",
+          "control_type": "ControlType.Button",
+          "automation_id": "",
+          "class_name": "ToggleButton",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": 815.0,
+            "y": 195.0,
+            "width": 32.0,
+            "height": 32.0
+          },
+          "patterns": [
+            "TogglePatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        },
+        {
+          "name": "删除线(Ctrl+Shift+X)",
+          "control_type": "ControlType.Button",
+          "automation_id": "",
+          "class_name": "ToggleButton",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": 847.0,
+            "y": 195.0,
+            "width": 32.0,
+            "height": 32.0
+          },
+          "patterns": [
+            "TogglePatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        },
+        {
+          "name": "链接(Ctrl+K)",
+          "control_type": "ControlType.Button",
+          "automation_id": "",
+          "class_name": "ToggleButton",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": 879.0,
+            "y": 195.0,
+            "width": 32.0,
+            "height": 32.0
+          },
+          "patterns": [
+            "TogglePatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        },
+        {
+          "name": "表",
+          "control_type": "ControlType.Button",
+          "automation_id": "",
+          "class_name": "Microsoft.UI.Xaml.Controls.DropDownButton",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": 911.0,
+            "y": 195.0,
+            "width": 56.0,
+            "height": 32.0
+          },
+          "patterns": [
+            "InvokePatternIdentifiers.Pattern",
+            "ExpandCollapsePatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        },
+        {
+          "name": "清除格式设置(Ctrl+空格)",
+          "control_type": "ControlType.Button",
+          "automation_id": "",
+          "class_name": "ToggleButton",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": 967.0,
+            "y": 195.0,
+            "width": 32.0,
+            "height": 32.0
+          },
+          "patterns": [
+            "TogglePatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        },
+        {
+          "name": "最近更新",
+          "control_type": "ControlType.Button",
+          "automation_id": "FREButton",
+          "class_name": "Button",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": 1204.0,
+            "y": 196.0,
+            "width": 30.0,
+            "height": 30.0
+          },
+          "patterns": [
+            "InvokePatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        },
+        {
+          "name": "设置",
+          "control_type": "ControlType.Button",
+          "automation_id": "SettingsButton",
+          "class_name": "Button",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": 1238.0,
+            "y": 195.0,
+            "width": 30.0,
+            "height": 32.0
+          },
+          "patterns": [
+            "InvokePatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        },
+        {
+          "name": "",
+          "control_type": "ControlType.Window",
+          "automation_id": "PrivacyTeachingTip",
+          "class_name": "Microsoft.UI.Xaml.Controls.TeachingTip",
+          "is_enabled": true,
+          "is_offscreen": true,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": "Infinity",
+            "y": "Infinity",
+            "width": "-Infinity",
+            "height": "-Infinity"
+          },
+          "patterns": "ScrollItemPatternIdentifiers.Pattern",
+          "children": []
+        },
+        {
+          "name": "",
+          "control_type": "ControlType.Pane",
+          "automation_id": "PsDownloadDetailTeachingTip",
+          "class_name": "Microsoft.UI.Xaml.Controls.TeachingTip",
+          "is_enabled": true,
+          "is_offscreen": true,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": "Infinity",
+            "y": "Infinity",
+            "width": "-Infinity",
+            "height": "-Infinity"
+          },
+          "patterns": "ScrollItemPatternIdentifiers.Pattern",
+          "children": []
+        },
+        {
+          "name": "本地 AI 模型必须完成下载才可在注销后使用此功能。",
+          "control_type": "ControlType.Pane",
+          "automation_id": "PsDownloadLightTeachingTip",
+          "class_name": "Microsoft.UI.Xaml.Controls.TeachingTip",
+          "is_enabled": true,
+          "is_offscreen": true,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": "Infinity",
+            "y": "Infinity",
+            "width": "-Infinity",
+            "height": "-Infinity"
+          },
+          "patterns": "ScrollItemPatternIdentifiers.Pattern",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.MenuBar",
+      "automation_id": "MenuBar",
+      "class_name": "",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 393.0,
+        "y": 195.0,
+        "width": 168.0,
+        "height": 32.0
+      },
+      "patterns": "ScrollItemPatternIdentifiers.Pattern",
+      "children": [
+        {
+          "name": "文件",
+          "control_type": "ControlType.MenuItem",
+          "automation_id": "File",
+          "class_name": "Microsoft.UI.Xaml.Controls.MenuBarItem",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": 397.0,
+            "y": 195.0,
+            "width": 48.0,
+            "height": 32.0
+          },
+          "patterns": [
+            "InvokePatternIdentifiers.Pattern",
+            "ExpandCollapsePatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        },
+        {
+          "name": "编辑",
+          "control_type": "ControlType.MenuItem",
+          "automation_id": "Edit",
+          "class_name": "Microsoft.UI.Xaml.Controls.MenuBarItem",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": 453.0,
+            "y": 195.0,
+            "width": 48.0,
+            "height": 32.0
+          },
+          "patterns": [
+            "InvokePatternIdentifiers.Pattern",
+            "ExpandCollapsePatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        },
+        {
+          "name": "查看",
+          "control_type": "ControlType.MenuItem",
+          "automation_id": "View",
+          "class_name": "Microsoft.UI.Xaml.Controls.MenuBarItem",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": 509.0,
+            "y": 195.0,
+            "width": 48.0,
+            "height": 32.0
+          },
+          "patterns": [
+            "InvokePatternIdentifiers.Pattern",
+            "ExpandCollapsePatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "文件",
+      "control_type": "ControlType.MenuItem",
+      "automation_id": "File",
+      "class_name": "Microsoft.UI.Xaml.Controls.MenuBarItem",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 397.0,
+        "y": 195.0,
+        "width": 48.0,
+        "height": 32.0
+      },
+      "patterns": [
+        "InvokePatternIdentifiers.Pattern",
+        "ExpandCollapsePatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": "编辑",
+      "control_type": "ControlType.MenuItem",
+      "automation_id": "Edit",
+      "class_name": "Microsoft.UI.Xaml.Controls.MenuBarItem",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 453.0,
+        "y": 195.0,
+        "width": 48.0,
+        "height": 32.0
+      },
+      "patterns": [
+        "InvokePatternIdentifiers.Pattern",
+        "ExpandCollapsePatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": "查看",
+      "control_type": "ControlType.MenuItem",
+      "automation_id": "View",
+      "class_name": "Microsoft.UI.Xaml.Controls.MenuBarItem",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 509.0,
+        "y": 195.0,
+        "width": 48.0,
+        "height": 32.0
+      },
+      "patterns": [
+        "InvokePatternIdentifiers.Pattern",
+        "ExpandCollapsePatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": "标题",
+      "control_type": "ControlType.Button",
+      "automation_id": "",
+      "class_name": "Microsoft.UI.Xaml.Controls.DropDownButton",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 671.0,
+        "y": 195.0,
+        "width": 56.0,
+        "height": 32.0
+      },
+      "patterns": [
+        "InvokePatternIdentifiers.Pattern",
+        "ExpandCollapsePatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": "列表",
+      "control_type": "ControlType.Button",
+      "automation_id": "",
+      "class_name": "Microsoft.UI.Xaml.Controls.DropDownButton",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 727.0,
+        "y": 195.0,
+        "width": 56.0,
+        "height": 32.0
+      },
+      "patterns": [
+        "InvokePatternIdentifiers.Pattern",
+        "ExpandCollapsePatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": "加粗(Ctrl+B)",
+      "control_type": "ControlType.Button",
+      "automation_id": "",
+      "class_name": "ToggleButton",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 783.0,
+        "y": 195.0,
+        "width": 32.0,
+        "height": 32.0
+      },
+      "patterns": [
+        "TogglePatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": "斜体(Ctrl+I)",
+      "control_type": "ControlType.Button",
+      "automation_id": "",
+      "class_name": "ToggleButton",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 815.0,
+        "y": 195.0,
+        "width": 32.0,
+        "height": 32.0
+      },
+      "patterns": [
+        "TogglePatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": "删除线(Ctrl+Shift+X)",
+      "control_type": "ControlType.Button",
+      "automation_id": "",
+      "class_name": "ToggleButton",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 847.0,
+        "y": 195.0,
+        "width": 32.0,
+        "height": 32.0
+      },
+      "patterns": [
+        "TogglePatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": "链接(Ctrl+K)",
+      "control_type": "ControlType.Button",
+      "automation_id": "",
+      "class_name": "ToggleButton",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 879.0,
+        "y": 195.0,
+        "width": 32.0,
+        "height": 32.0
+      },
+      "patterns": [
+        "TogglePatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": "表",
+      "control_type": "ControlType.Button",
+      "automation_id": "",
+      "class_name": "Microsoft.UI.Xaml.Controls.DropDownButton",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 911.0,
+        "y": 195.0,
+        "width": 56.0,
+        "height": 32.0
+      },
+      "patterns": [
+        "InvokePatternIdentifiers.Pattern",
+        "ExpandCollapsePatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": "清除格式设置(Ctrl+空格)",
+      "control_type": "ControlType.Button",
+      "automation_id": "",
+      "class_name": "ToggleButton",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 967.0,
+        "y": 195.0,
+        "width": 32.0,
+        "height": 32.0
+      },
+      "patterns": [
+        "TogglePatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": "最近更新",
+      "control_type": "ControlType.Button",
+      "automation_id": "FREButton",
+      "class_name": "Button",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 1204.0,
+        "y": 196.0,
+        "width": 30.0,
+        "height": 30.0
+      },
+      "patterns": [
+        "InvokePatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": "设置",
+      "control_type": "ControlType.Button",
+      "automation_id": "SettingsButton",
+      "class_name": "Button",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 1238.0,
+        "y": 195.0,
+        "width": 30.0,
+        "height": 32.0
+      },
+      "patterns": [
+        "InvokePatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Window",
+      "automation_id": "PrivacyTeachingTip",
+      "class_name": "Microsoft.UI.Xaml.Controls.TeachingTip",
+      "is_enabled": true,
+      "is_offscreen": true,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": "Infinity",
+        "y": "Infinity",
+        "width": "-Infinity",
+        "height": "-Infinity"
+      },
+      "patterns": "ScrollItemPatternIdentifiers.Pattern",
+      "children": []
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "automation_id": "PsDownloadDetailTeachingTip",
+      "class_name": "Microsoft.UI.Xaml.Controls.TeachingTip",
+      "is_enabled": true,
+      "is_offscreen": true,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": "Infinity",
+        "y": "Infinity",
+        "width": "-Infinity",
+        "height": "-Infinity"
+      },
+      "patterns": "ScrollItemPatternIdentifiers.Pattern",
+      "children": []
+    },
+    {
+      "name": "本地 AI 模型必须完成下载才可在注销后使用此功能。",
+      "control_type": "ControlType.Pane",
+      "automation_id": "PsDownloadLightTeachingTip",
+      "class_name": "Microsoft.UI.Xaml.Controls.TeachingTip",
+      "is_enabled": true,
+      "is_offscreen": true,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": "Infinity",
+        "y": "Infinity",
+        "width": "-Infinity",
+        "height": "-Infinity"
+      },
+      "patterns": "ScrollItemPatternIdentifiers.Pattern",
+      "children": []
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "automation_id": "",
+      "class_name": "Microsoft.UI.Content.DesktopChildSiteBridge",
+      "is_enabled": false,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 393.0,
+        "y": 818.0,
+        "width": 883.0,
+        "height": 32.0
+      },
+      "patterns": null,
+      "children": [
+        {
+          "name": "",
+          "control_type": "ControlType.Pane",
+          "automation_id": "",
+          "class_name": "InputSiteWindowClass",
+          "is_enabled": false,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 393.0,
+            "y": 818.0,
+            "width": 883.0,
+            "height": 32.0
+          },
+          "patterns": null,
+          "children": [
+            {
+              "name": "行 1，\n列 1",
+              "control_type": "ControlType.Text",
+              "automation_id": "ContentTextBlock",
+              "class_name": "TextBlock",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 409.0,
+                "y": 826.0,
+                "width": 64.0,
+                "height": 16.0
+              },
+              "patterns": [
+                "TextPatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            },
+            {
+              "name": "1,246 个字符",
+              "control_type": "ControlType.Text",
+              "automation_id": "ContentTextBlock",
+              "class_name": "TextBlock",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 498.0,
+                "y": 826.0,
+                "width": 68.0,
+                "height": 16.0
+              },
+              "patterns": [
+                "TextPatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            },
+            {
+              "name": "纯文本",
+              "control_type": "ControlType.Text",
+              "automation_id": "ContentTextBlock",
+              "class_name": "TextBlock",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 695.0,
+                "y": 818.0,
+                "width": 48.0,
+                "height": 32.0
+              },
+              "patterns": [
+                "TextPatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            },
+            {
+              "name": "缩放",
+              "control_type": "ControlType.Text",
+              "automation_id": "ContentTextBlock",
+              "class_name": "TextBlock",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 905.0,
+                "y": 826.0,
+                "width": 33.0,
+                "height": 16.0
+              },
+              "patterns": [
+                "TextPatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            },
+            {
+              "name": " Windows (CRLF)",
+              "control_type": "ControlType.Text",
+              "automation_id": "ContentTextBlock",
+              "class_name": "TextBlock",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 973.0,
+                "y": 826.0,
+                "width": 89.0,
+                "height": 16.0
+              },
+              "patterns": [
+                "TextPatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            },
+            {
+              "name": " UTF-8",
+              "control_type": "ControlType.Text",
+              "automation_id": "ContentTextBlock",
+              "class_name": "TextBlock",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 1141.0,
+                "y": 826.0,
+                "width": 35.0,
+                "height": 16.0
+              },
+              "patterns": [
+                "TextPatternIdentifiers.Pattern",
+                "ScrollItemPatternIdentifiers.Pattern"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "automation_id": "",
+      "class_name": "InputSiteWindowClass",
+      "is_enabled": false,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 393.0,
+        "y": 818.0,
+        "width": 883.0,
+        "height": 32.0
+      },
+      "patterns": null,
+      "children": [
+        {
+          "name": "行 1，\n列 1",
+          "control_type": "ControlType.Text",
+          "automation_id": "ContentTextBlock",
+          "class_name": "TextBlock",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 409.0,
+            "y": 826.0,
+            "width": 64.0,
+            "height": 16.0
+          },
+          "patterns": [
+            "TextPatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        },
+        {
+          "name": "1,246 个字符",
+          "control_type": "ControlType.Text",
+          "automation_id": "ContentTextBlock",
+          "class_name": "TextBlock",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 498.0,
+            "y": 826.0,
+            "width": 68.0,
+            "height": 16.0
+          },
+          "patterns": [
+            "TextPatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        },
+        {
+          "name": "纯文本",
+          "control_type": "ControlType.Text",
+          "automation_id": "ContentTextBlock",
+          "class_name": "TextBlock",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 695.0,
+            "y": 818.0,
+            "width": 48.0,
+            "height": 32.0
+          },
+          "patterns": [
+            "TextPatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        },
+        {
+          "name": "缩放",
+          "control_type": "ControlType.Text",
+          "automation_id": "ContentTextBlock",
+          "class_name": "TextBlock",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 905.0,
+            "y": 826.0,
+            "width": 33.0,
+            "height": 16.0
+          },
+          "patterns": [
+            "TextPatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        },
+        {
+          "name": " Windows (CRLF)",
+          "control_type": "ControlType.Text",
+          "automation_id": "ContentTextBlock",
+          "class_name": "TextBlock",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 973.0,
+            "y": 826.0,
+            "width": 89.0,
+            "height": 16.0
+          },
+          "patterns": [
+            "TextPatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        },
+        {
+          "name": " UTF-8",
+          "control_type": "ControlType.Text",
+          "automation_id": "ContentTextBlock",
+          "class_name": "TextBlock",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 1141.0,
+            "y": 826.0,
+            "width": 35.0,
+            "height": 16.0
+          },
+          "patterns": [
+            "TextPatternIdentifiers.Pattern",
+            "ScrollItemPatternIdentifiers.Pattern"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "行 1，\n列 1",
+      "control_type": "ControlType.Text",
+      "automation_id": "ContentTextBlock",
+      "class_name": "TextBlock",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 409.0,
+        "y": 826.0,
+        "width": 64.0,
+        "height": 16.0
+      },
+      "patterns": [
+        "TextPatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": "1,246 个字符",
+      "control_type": "ControlType.Text",
+      "automation_id": "ContentTextBlock",
+      "class_name": "TextBlock",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 498.0,
+        "y": 826.0,
+        "width": 68.0,
+        "height": 16.0
+      },
+      "patterns": [
+        "TextPatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": "纯文本",
+      "control_type": "ControlType.Text",
+      "automation_id": "ContentTextBlock",
+      "class_name": "TextBlock",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 695.0,
+        "y": 818.0,
+        "width": 48.0,
+        "height": 32.0
+      },
+      "patterns": [
+        "TextPatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": "缩放",
+      "control_type": "ControlType.Text",
+      "automation_id": "ContentTextBlock",
+      "class_name": "TextBlock",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 905.0,
+        "y": 826.0,
+        "width": 33.0,
+        "height": 16.0
+      },
+      "patterns": [
+        "TextPatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": " Windows (CRLF)",
+      "control_type": "ControlType.Text",
+      "automation_id": "ContentTextBlock",
+      "class_name": "TextBlock",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 973.0,
+        "y": 826.0,
+        "width": 89.0,
+        "height": 16.0
+      },
+      "patterns": [
+        "TextPatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": " UTF-8",
+      "control_type": "ControlType.Text",
+      "automation_id": "ContentTextBlock",
+      "class_name": "TextBlock",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 1141.0,
+        "y": 826.0,
+        "width": 35.0,
+        "height": 16.0
+      },
+      "patterns": [
+        "TextPatternIdentifiers.Pattern",
+        "ScrollItemPatternIdentifiers.Pattern"
+      ],
+      "children": []
+    },
+    {
+      "name": "api.txt - Notepad",
+      "control_type": "ControlType.TitleBar",
+      "automation_id": "TitleBar",
+      "class_name": "",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 395.0,
+        "y": 161.0,
+        "width": 879.0,
+        "height": 23.0
+      },
+      "patterns": null,
+      "children": [
+        {
+          "name": "系统菜单栏",
+          "control_type": "ControlType.MenuBar",
+          "automation_id": "SystemMenuBar",
+          "class_name": "",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": 395.0,
+            "y": 161.0,
+            "width": 22.0,
+            "height": 22.0
+          },
+          "patterns": null,
+          "children": [
+            {
+              "name": "系统",
+              "control_type": "ControlType.MenuItem",
+              "automation_id": "Item 1",
+              "class_name": "",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": 395.0,
+                "y": 161.0,
+                "width": 22.0,
+                "height": 22.0
+              },
+              "patterns": "ExpandCollapsePatternIdentifiers.Pattern",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "最小化",
+          "control_type": "ControlType.Button",
+          "automation_id": "Minimize",
+          "class_name": "",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 1137.0,
+            "y": 154.0,
+            "width": 47.0,
+            "height": 30.0
+          },
+          "patterns": "InvokePatternIdentifiers.Pattern",
+          "children": []
+        },
+        {
+          "name": "最大化",
+          "control_type": "ControlType.Button",
+          "automation_id": "Maximize",
+          "class_name": "",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 1184.0,
+            "y": 154.0,
+            "width": 46.0,
+            "height": 30.0
+          },
+          "patterns": "InvokePatternIdentifiers.Pattern",
+          "children": []
+        },
+        {
+          "name": "关闭",
+          "control_type": "ControlType.Button",
+          "automation_id": "Close",
+          "class_name": "",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 1230.0,
+            "y": 154.0,
+            "width": 47.0,
+            "height": 30.0
+          },
+          "patterns": "InvokePatternIdentifiers.Pattern",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "系统菜单栏",
+      "control_type": "ControlType.MenuBar",
+      "automation_id": "SystemMenuBar",
+      "class_name": "",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 395.0,
+        "y": 161.0,
+        "width": 22.0,
+        "height": 22.0
+      },
+      "patterns": null,
+      "children": [
+        {
+          "name": "系统",
+          "control_type": "ControlType.MenuItem",
+          "automation_id": "Item 1",
+          "class_name": "",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": 395.0,
+            "y": 161.0,
+            "width": 22.0,
+            "height": 22.0
+          },
+          "patterns": "ExpandCollapsePatternIdentifiers.Pattern",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "系统",
+      "control_type": "ControlType.MenuItem",
+      "automation_id": "Item 1",
+      "class_name": "",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 395.0,
+        "y": 161.0,
+        "width": 22.0,
+        "height": 22.0
+      },
+      "patterns": "ExpandCollapsePatternIdentifiers.Pattern",
+      "children": []
+    },
+    {
+      "name": "最小化",
+      "control_type": "ControlType.Button",
+      "automation_id": "Minimize",
+      "class_name": "",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 1137.0,
+        "y": 154.0,
+        "width": 47.0,
+        "height": 30.0
+      },
+      "patterns": "InvokePatternIdentifiers.Pattern",
+      "children": []
+    },
+    {
+      "name": "最大化",
+      "control_type": "ControlType.Button",
+      "automation_id": "Maximize",
+      "class_name": "",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 1184.0,
+        "y": 154.0,
+        "width": 46.0,
+        "height": 30.0
+      },
+      "patterns": "InvokePatternIdentifiers.Pattern",
+      "children": []
+    },
+    {
+      "name": "关闭",
+      "control_type": "ControlType.Button",
+      "automation_id": "Close",
+      "class_name": "",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 1230.0,
+        "y": 154.0,
+        "width": 47.0,
+        "height": 30.0
+      },
+      "patterns": "InvokePatternIdentifiers.Pattern",
+      "children": []
+    }
+  ],
+  "accessibility_summary": {
+    "interactive_count": 24,
+    "missing_name_count": 0,
+    "unnamed_edit_count": 0,
+    "zero_size_interactive_count": 0
+  },
+  "producer": {
+    "script": "scripts/collect_uia_evidence.ps1",
+    "script_sha256": "a4edbd7d2a5e6409ccf4f76dd1b47216046f40e1a81705fe6d0cef03f279f1fd",
+    "host": "HOME-MY",
+    "os": "Microsoft Windows NT 10.0.26300.0",
+    "read_only": true
+  },
+  "limitations": [
+    "Read-only UIA control-view snapshot; no click-through or focus-order verification.",
+    "One native Win32/Notepad window only; other frameworks (WinUI/WPF/Qt) are unverified."
+  ]
+}

@@ -1,0 +1,44 @@
+# Stage 3 验收记录（V1.3.3）
+
+> 更新时间：2026-10-24。真实原生能力受本机环境限制，未执行项一律标 UNVERIFIED，不伪造 PASS。
+
+## 1. 任务状态
+
+| 任务 | 状态 | 证据 |
+|---|---|---|
+| T3.1 受控改造与 G4 范围校验 | **DONE** | `modify.py` + change-plan schema；10 用例（scope/traversal/hash/回退/dry-run） |
+| T3.2 Tauri + WDIO Native IPC | **IN_PROGRESS（UNVERIFIED）** | 本机无 Tauri 示例/驱动，未伪造 |
+| T3.3 PySide6 Native QPA/DPI | **IN_PROGRESS（UNVERIFIED）** | 本机未安装 PySide6 |
+| T3.4 OS 集成/UIA | **PARTIAL** | 真实 Win32/Notepad UIA 只读树（`evidence/T3.4/uia-probe.json`，NATIVE_UIA，53 元素）；WinUI/WPF/Qt 未验证 |
+| T3.5 证据 Vault 退化 | **DONE** | `vault.py`；字节级哈希、隔离、缺失检测（14 用例含 integrity/safety） |
+| T3.6 独立审查隔离 | **DONE** | `integrity.py`；user_attested 拒绝、reviewed_head 绑定、host_verified 证据要求 |
+| M14 P0–P3 安全指标 | PARTIAL | `safety.py` 分级/指标；qa-report schema 未建 |
+| M18 无障碍 Rule ID/UIA | PARTIAL→改善 | A11Y 规则 + 静态子集 + 真实 Win32 UIA 模型；WinUI/WPF/Qt/动态键盘未验证 |
+
+## 2. 机器验收
+
+```powershell
+cd G:\AI\universal-uiux-engineering
+$env:PYTHONPATH='runtime'
+.\.venv\Scripts\python.exe -m pytest tests -q     # 405 passed
+pwsh -NoProfile -File scripts\collect_uia_evidence.ps1 -ProcessId <notepad-pid>
+```
+
+UIA 证据要点：
+
+- `runtime_level=NATIVE_UIA`，read-only，window=Notepad；
+- 53 个元素、24 个可交互、0 个缺失名称；
+- 真实发现 24 个 target<24px（标题栏/菜单 OS 绘制），已记录为边界而非直接产品缺陷；
+- 脚本 SHA256 写入证据，证明生成器可复核。
+
+## 3. 已知限制
+
+1. Tauri/PySide6 未安装，Native IPC/QPA/DPI 未验证；相关证据缺口必须在 Stage 5 发布说明中声明。
+2. UIA 仅控制视图快照，不做点击/焦点顺序；不能用它宣称交互验证通过。
+3. Notepad 为 Win32 经典控件，非 WinUI/WPF/Qt；UIA 语义矩阵只覆盖 Win32 路径。
+4. 证据 Vault 校验的是引用文件哈希，不等于真实签名；本地同权可改证据的限制仍在。
+
+## 4. Stage 3 判定
+
+- T3.1/T3.5/T3.6 有可复核证据；T3.2/T3.3/T3.4 受环境限制为 UNVERIFIED/PARTIAL。
+- **Stage 3 不宣称 PASS**；发布前必须保留 UNVERIFIED 声明。

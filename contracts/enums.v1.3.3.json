@@ -281,6 +281,9 @@
     "CheckStatus": {
       "values": ["PASS", "FAIL", "UNVERIFIED", "VERIFIED"]
     },
+    "ChangeAction": {
+      "values": ["create", "modify", "delete"]
+    },
     "Capability": {
       "values": ["async_load", "collection_display", "user_mutation", "long_running_task", "destructive_operations", "canvas_rendering"]
     },

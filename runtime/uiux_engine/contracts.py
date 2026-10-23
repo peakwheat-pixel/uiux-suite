@@ -38,6 +38,7 @@ SCHEMA_FILES: dict[str, str] = {
     "component-matrix": "component-matrix.v1.3.3.schema.json",
     "prototype": "prototype.v1.3.3.schema.json",
     "design-options": "design-options.v1.3.3.schema.json",
+    "change-plan": "change-plan.v1.3.3.schema.json",
 }
 
 
