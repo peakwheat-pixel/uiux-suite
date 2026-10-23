@@ -12,7 +12,9 @@
 | T3.4 OS 集成/UIA | **PARTIAL** | 真实 Win11 Notepad（WinUI 3） UIA 只读树（`evidence/T3.4/uia-probe.json`，NATIVE_UIA，53 元素）；WinUI/WPF/Qt 未验证 |
 | T3.5 证据 Vault 退化 | **DONE** | `vault.py`；字节级哈希、隔离、缺失检测（14 用例含 integrity/safety） |
 | T3.6 独立审查隔离 | **DONE** | `integrity.py`；user_attested 拒绝、reviewed_head 绑定、host_verified 证据要求 |
-| M14 P0–P3 安全指标 | PARTIAL | `safety.py` 分级/指标；qa-report schema 未建 |
+| M6 OS 输入分权 | **DONE** | `input_policy.py`：全局物理输入默认 DENY，UIA 动作需隔离；CLI `input-policy` |
+| M8 不可信构建执行 | **DONE** | `build_guard.py`：白名单/网络/破坏性/越界拦截；CLI `build-guard` |
+| M14 P0–P3 安全指标 | **DONE** | `safety.py` 指标 + `qa-report` Schema；真实项目零写入仅测试范围 |
 | M18 无障碍 Rule ID/UIA | PARTIAL→改善 | A11Y 规则 + 静态子集 + 真实 Win11 Notepad（WinUI 3）UIA 模型；WinUI/WPF/Qt/动态键盘未验证 |
 
 ## 2. 机器验收

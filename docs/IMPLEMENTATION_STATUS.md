@@ -7,19 +7,19 @@
 - **Release Candidate（整体 PARTIAL）**：`dist/uiux-suite-1.3.3-win64.zip` 可安装并验证（install/enums/doctor exit 0）。
 - **不是 G6 PASS**：T3.2/T3.3/T3.4 部分、T5.1/T5.2、其他 Agent 宿主、MCP/断点恢复未验证，见 `FINAL_DELIVERY_REPORT.md` §4。
 - 分支：`v1.3.3-contract-closure`；基线 `main` `e7e921e`（tag `v1.3.2-baseline`，SHA256 `70f5f339…9411ea04` 未变）。
-- 当前测试：**448 passed**（`$env:PYTHONPATH='runtime'; .venv\Scripts\python.exe -m pytest tests -q`）。
+- 当前测试：**460 passed**（`$env:PYTHONPATH='runtime'; .venv\Scripts\python.exe -m pytest tests -q`）。
 
 ## 2. 已实现（有证据）
 
 | 领域 | 产物 | 证据 |
 |---|---|---|
-| 契约 | `contracts/`：23 份 Schema + 枚举字典 + Mode×Gate | `tests/unit/test_schemas.py`、`test_enums.py`、`test_policy.py` |
+| 契约 | `contracts/`：26 份 Schema + 枚举字典 + Mode×Gate | `tests/unit/test_schemas.py`、`test_enums.py`、`test_policy.py` |
 | 安装 | 双入口、版本化 suite、install/doctor/repair/upgrade/rollback/uninstall | `tests/integration/test_install.py`、`test_paths.py` |
 | Gate/finalize | G0–G6 派生、WARN 处置、L4、证据生命周期 | `tests/unit/test_finalize.py`、`tests/integration/test_attacks.py` |
 | 规则与检测器 | 冻结 20 条；style/flow/geometry/discovery/design-system/component/prototype/options | `knowledge/rules/`、`tests/unit/test_*.py`、`qa/confusion-matrix.json` |
 | Stage 3 安全 | modify/vault/integrity/safety/uia | `runtime/uiux_engine/*.py`、`tests/unit/test_*` |
 | 宿主兼容 | DSH 实测；其他宿主 UNVERIFIED；退化 ReasonCode | `docs/COMPATIBILITY.md`、`compat.py` |
-| 发行 | 131 载荷 + manifest ZIP、SHA256SUMS、安装验证 | `dist/`、`evidence/T5.5/` |
+| 发行 | 143 载荷 + manifest ZIP、SHA256SUMS、安装验证 | `dist/`、`evidence/T5.5/` |
 
 ## 3. Stage 状态
 

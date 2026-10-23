@@ -6,7 +6,7 @@
 
 | 交付物 | 位置 |
 |---|---|
-| 可安装 ZIP（131 个载荷文件 + `RELEASE_MANIFEST.json`，ZIP 共 132 项，含 7 wheels） | [`dist/uiux-suite-1.3.3-win64.zip`](dist/uiux-suite-1.3.3-win64.zip) |
+| 可安装 ZIP（143 个载荷文件 + `RELEASE_MANIFEST.json`，ZIP 共 144 项，含 7 wheels） | [`dist/uiux-suite-1.3.3-win64.zip`](dist/uiux-suite-1.3.3-win64.zip) |
 | ZIP SHA256 | 见 `dist/SHA256SUMS.txt`（每次构建以该文件与 `evidence/T5.5` 为准） |
 | ZIP 与逐文件 SHA256 | [`dist/SHA256SUMS.txt`](dist/SHA256SUMS.txt) |
 | 规范 | [`SPEC_V1.3.3.md`](SPEC_V1.3.3.md) |
@@ -17,11 +17,12 @@
 
 ## 2. 已实现能力
 
-- **契约**：23 份 JSON Schema、枚举唯一来源、Mode×Gate、G0–G6 派生规则、证据生命周期、L4 独立审查。
+- **契约**：26 份 JSON Schema、枚举唯一来源、Mode×Gate、G0–G6 派生规则、证据生命周期、L4 独立审查。
 - **安装**：`uiux` + `uiux-verify` 双入口；版本化 `versions/<ver>/`；install/doctor/repair/upgrade/rollback/uninstall；中文/空格/junction/长路径；UNC 稳定拒绝。
 - **Stage 0–2**：T0.1 独立复核 PASS；Stage 2 的 discovery/flows/Token 编译器（CSS/Tailwind/PySide6）/knowledge index/brownfield/prototype/options 全部 DONE。
 - **检测器**（SIMULATED 标注）：`style_token_linter`、`ux_flow_validator`、`layout_geometry_probe`、`discovery`、`design_system`、`component_matrix`、`prototype`、`options`。
 - **Stage 3**：受控改动/回滚、Vault 字节校验、哈希链/独立性、P0–P3 安全分级；**PySide6 Windows QPA 实测**（`NATIVE_QPA`，DPR 1/1.25/1.5，CJK 字体，截图哈希）；Win11 Notepad（WinUI 3）UIA 只读树。
+- **安全/CI**：M6 输入分权（全局物理输入默认拒绝）、M8 构建守卫（白名单/网络/越界）、M14 qa-report 指标、M10 本地 CI runner（真实 hosted runner 未验证）；m1/m2/m3/m5/m8 文档齐备。
 - **Stage 5 基线**：对 `New Manga` 的隔离源码副本（3435 文件）做只读 discovery/style 扫描；合成 Qt 参考应用完成导入→浏览→画布→编辑→保存→导出→撤销→异常 9/9 E2E（NATIVE_QT_APP），before/after 指标：字号 11→14、目标 22→38px、对比度 2.08→15.8。
 
 ## 3. 机器验收
@@ -29,7 +30,7 @@
 ```powershell
 cd <repo>
 $env:PYTHONPATH='runtime'
-.\.venv\Scripts\python.exe -m pytest tests -q            # 448 passed
+.\.venv\Scripts\python.exe -m pytest tests -q            # 460 passed
 .\.venv\Scripts\python.exe scripts\run_attack_suite.py   # 11/11 攻击被拒
 .\.venv\Scripts\python.exe scripts\run_stage1_suite.py   # TP38/FP0/TN8/FN0
 .\.venv\Scripts\python.exe scripts\collect_qt_evidence.py # 3 scales, NATIVE_QPA

@@ -118,7 +118,7 @@ L1–L3 全绿不能替代 L4；L4 也不能覆盖 L1/L3 硬失败。
 | 模块 | 职责 |
 |---|---|
 | `runtime/uiux_engine/enums.py` | 载入唯一枚举字典并自检 |
-| `runtime/uiux_engine/contracts.py` | 23 份 Schema 的注册、校验、规范化哈希 |
+| `runtime/uiux_engine/contracts.py` | 26 份 Schema 的注册、校验、规范化哈希 |
 | `runtime/uiux_engine/policy.py` | Mode×Gate 解析、条件事实求值、运行层级下限 |
 | `runtime/uiux_engine/evidence.py` | 证据状态机、过期/脱敏/哈希核验 |
 | `runtime/uiux_engine/gates.py` | G0–G5 校验、WARN 解除、覆盖汇总、L4/审查、G6 派生 |
