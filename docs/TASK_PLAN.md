@@ -7,9 +7,9 @@
 | ID | 阶段 | 状态 | 最晚时点 | 依赖 | 标题 | 验收摘要 |
 |---|---|---|---|---|---|---|
 | T0.1 | Stage 0 | IN_PROGRESS | — | — | Contract Closure：Schema、枚举、Gate 引擎、覆盖矩阵、L4、证据生命周期 | B1–B4 机器测试全绿；B5/B6 Schema 与时点锁定；独立契约复核无未解决阻断；evidence/T0.1/contract-test-evidence.json ... |
-| T0.2 | Stage 0 | TODO | Stage 0 Exit | T0.1 | 版本化发行根、双启动器、安装/卸载/升级/回滚 | 删除开发仓后用户级安装可运行；版本并存；升级/回滚；卸载只删登记文件；manifest 哈希校验；M1/M3/M4/M5/M6(字段)关闭 |
+| T0.2 | Stage 0 | IN_PROGRESS | Stage 0 Exit | T0.1 | 版本化发行根、双启动器、安装/卸载/升级/回滚 | 删除开发仓后用户级安装可运行；版本并存；升级/回滚；卸载只删登记文件；manifest 哈希校验；M1/M3/M4/M5/M6(字段)关闭 |
 | T0.3 | Stage 0 | TODO | Stage 0 Exit | T0.2, T0.4 | DSH 实机安装与双入口发现 | DSH 实际发现 uiux 与 uiux-verify；doctor 输出真实 root/rank；不依赖开发仓；中文/空格/UNC 用例 |
-| T0.4 | Stage 0 | TODO | Stage 0 Exit | T0.1 | doctor：能力、根目录、遮蔽、退出码与 --json | READY/MISSING/INCOMPATIBLE/UNVERIFIED 逐项输出；解析 DSH_AGENTS_HOME/DSH_HOME；遮蔽列表；host-capabi... |
+| T0.4 | Stage 0 | IN_PROGRESS | Stage 0 Exit | T0.1 | doctor：能力、根目录、遮蔽、退出码与 --json | READY/MISSING/INCOMPATIBLE/UNVERIFIED 逐项输出；解析 DSH_AGENTS_HOME/DSH_HOME；遮蔽列表；host-capabi... |
 | T0.5 | Stage 0 | TODO | Stage 0 Exit | T0.1 | 许可证清单、离线依赖与版本锁定 | THIRD_PARTY_NOTICES.md 逐文件来源/许可；requirements.lock；离线安装路径可复现 |
 | T0.6 | Stage 0 | TODO | Stage 0 Exit | T0.2, T0.3 | 独立运行验证（删除开发仓回归） | 删除/移动开发仓后安装实例仍可 doctor + 最小 CLI；失败原因可诊断 |
 | T1.0 | Stage 1 | TODO | Stage 1 Exit | T0.1 | 规则目录与 Rule ID 冻结 | rule_id 注册表、严重度、豁免 schema 冻结；作为 T1.1/T1.2/T1.3 共同上游 |
@@ -41,13 +41,13 @@
 | T5.3 | Stage 5 | TODO | Stage 5 Exit | T5.1 | 数据安全、回滚与导出正确性 | 真实数据写入 0 次；源码前后 hash 一致；回滚演练通过 |
 | T5.4 | Stage 5 | TODO | Stage 5 Exit | T5.3 | 独立复审与 G6 签发 | 冻结版本独立复验；未覆盖项 PARTIAL/UNVERIFIED 明示 |
 | T5.5 | Stage 5 | TODO | Stage 5 Exit | T5.4 | 发行包、文档、许可证与交付报告 | dist/ 可安装 ZIP、手册、兼容矩阵、证据索引、FINAL_DELIVERY_REPORT.md |
-| M1 | Stage 0 | TODO | T0.2 | T0.1 | 安装登记/升级/回滚状态契约 | install-<version>.json 登记全部安装文件；upgrade/rollback 可复现；版本并存 |
-| M2 | Stage 0 | TODO | T0.4 | T0.1 | DSH_HOME/AGENTS_HOME 与项目根/遮蔽检测 | 解析环境变量；5 级 rank；shadowed_by；非 Git/monorepo 说明 |
-| M3 | Stage 0 | TODO | T0.2 | T0.1 | install 根分离与写根登记 | install_write_root 入 policy/schema；快照与写范围排除；只读模式不写项目 |
+| M1 | Stage 0 | DONE | T0.2 | T0.1 | 安装登记/升级/回滚状态契约 | install-<version>.json 登记全部安装文件；upgrade/rollback 可复现；版本并存 |
+| M2 | Stage 0 | IN_PROGRESS | T0.4 | T0.1 | DSH_HOME/AGENTS_HOME 与项目根/遮蔽检测 | 解析环境变量；5 级 rank；shadowed_by；非 Git/monorepo 说明 |
+| M3 | Stage 0 | DONE | T0.2 | T0.1 | install 根分离与写根登记 | install_write_root 入 policy/schema；快照与写范围排除；只读模式不写项目 |
 | M4 | Stage 0 | TODO | T0.4 | T0.1 | Python/Node 版本锁定与依赖清单 | 版本区间写入 doctor；requirements.lock/package-lock；离线包 |
-| M5 | Stage 0 | TODO | T0.2 | T0.1 | 相对/绝对/UNC/junction/MAX_PATH 路径鲁棒性 | suite-link 基准固定；UNC/漫游/失效链接用例；长路径检查 |
+| M5 | Stage 0 | IN_PROGRESS | T0.2 | T0.1 | 相对/绝对/UNC/junction/MAX_PATH 路径鲁棒性 | suite-link 基准固定；UNC/漫游/失效链接用例；长路径检查 |
 | M6 | Stage 3 | TODO | Stage 3 Exit | T0.1 | OS 输入分权与桌面隔离证明 | UIA 与物理输入分离；desktop_isolation_proof；授权记录；T3.4 验收 |
-| M7 | Stage 0 | IN_PROGRESS | T0.1 | T0.1 | 四类根权限优先级与 finalize 校验 | read/report/sandbox/install 四根入 schema 与语义校验；allowed_write_globs 单一来源；越权拒绝 |
+| M7 | Stage 0 | DONE | T0.1 | T0.1 | 四类根权限优先级与 finalize 校验 | read/report/sandbox/install 四根入 schema 与语义校验；allowed_write_globs 单一来源；越权拒绝 |
 | M8 | Stage 3 | TODO | Stage 3 Exit | T0.1 | 不可信项目构建执行模型 | 只读模式构建沙箱/副本；执行清单；网络与清理策略；SECURITY.md |
 | M9 | Stage 0 | IN_PROGRESS | T0.4 | T0.1 | CLI 退出码、--json 与阶段验收命令 | 退出码表写入 docs/CLI.md；doctor/finalize --json schema；每个 Stage Exit 三列化 |
 | M10 | Stage 1 | TODO | Stage 1 Exit | T1.1 | CI 骨架与 Windows runner | CI 显示每条 fixture 预期/实际；Artifacts 归档 |
@@ -64,8 +64,8 @@
 | m3 | Stage 2 | TODO | Stage 2 Exit | T2.3 | 字体许可与 CJK 字体分发 | 字体栈许可核查；不随包分发未授权字体 |
 | m4 | Stage 1 | TODO | Stage 1 Exit | T1.7 | 混淆矩阵契约与产物登记 | confusion-matrix schema；纳入 §3.1 目录与 CLI 输出 |
 | m5 | Stage 5 | TODO | Stage 5 Exit | T5.5 | 安全、兼容与迁移文档 | SECURITY/THREAT_MODEL/AGENT_COMPAT/MIGRATION |
-| m6 | Stage 0 | TODO | T0.4 | T0.1 | 统一 CLI 名称与 doctor 归属 | cli.py 单入口；setup doctor 与 engine doctor 分工写清 |
-| m7 | Stage 0 | TODO | T0.4 | T0.4 | Host Capability 消费者 | doctor --json 输出 host-capability.json；T4.1 复用 |
+| m6 | Stage 0 | DONE | T0.4 | T0.1 | 统一 CLI 名称与 doctor 归属 | cli.py 单入口；setup doctor 与 engine doctor 分工写清 |
+| m7 | Stage 0 | DONE | T0.4 | T0.4 | Host Capability 消费者 | doctor --json 输出 host-capability.json；T4.1 复用 |
 | m8 | Stage 3 | TODO | Stage 3 Exit | T3.3 | 延迟/性能预算测量 | 按任务型态设基线；不得套用全局 100ms |
 
 ## 状态计数
@@ -73,6 +73,6 @@
 | 状态 | 数量 |
 |---|---|
 | BLOCKED | 0 |
-| DONE | 1 |
-| IN_PROGRESS | 4 |
-| TODO | 56 |
+| DONE | 6 |
+| IN_PROGRESS | 7 |
+| TODO | 48 |

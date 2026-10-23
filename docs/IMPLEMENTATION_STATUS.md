@@ -4,7 +4,8 @@
 
 ## 1. 当前阶段
 
-- **Stage 0 / T0.1 — IN_PROGRESS**（契约已实现并通过 98 项机器测试，等待独立只读复核签发）。
+- **Stage 0 / T0.1 — IN_PROGRESS**（契约已实现并通过 111 项机器测试，等待独立只读复核签发）。
+- **T0.2/T0.4 — IN_PROGRESS**（安装器、启动器、doctor、升级/回滚、卸载已实现并通过集成测试；等待 T0.1 复核后完成 Stage 0 验收）。
 - 分支：`v1.3.3-contract-closure`。
 - 基线：`main` 上 `e7e921e`，tag `v1.3.2-baseline`，SHA256 `70f5f339…9411ea04`。
 - 裁决：`CONTRACT_CLOSURE_READY_FOR_REVIEW`，**不是** Stage 0 PASS，也不是 Release。
@@ -18,7 +19,11 @@
 | Mode×Gate 机器策略 | `contracts/mode-gate-policy.v1.3.3.json` | `tests/unit/test_policy.py` |
 | finalize/Gate 引擎 | `runtime/uiux_engine/` | `tests/integration/test_finalize.py`、`test_cli.py` |
 | 正反 fixtures | `tests/fixtures/`（14 valid / 14 invalid / 5 semantic） | `_build_fixtures.py`、Schema 测试 |
-| 契约测试证据 | `evidence/T0.1/contract-test-evidence.json` | 98/98 PASS，exit 0 |
+| 契约+安装测试 | `tests/`（111 项） | `.venv\Scripts\python.exe -m pytest tests -q` |
+| 契约测试证据 | `evidence/T0.1/contract-test-evidence.json` | 102/102（当时），exit 0；安装测试后总 111 |
+| 双 Skill 入口与启动器 | `skills/uiux`、`skills/uiux-verify` | `tests/integration/test_install.py`（launch enums） |
+| 安装/卸载/升级/回滚 | `scripts/setup_skill.py`、`scripts/uninstall_skill.py` | 版本并存、删除源码后仍可启动、未知 Skill 不覆盖 |
+| doctor | `scripts/setup_skill.py doctor` | `host-capability.v1.3.3` 校验、root/rank/shadowed_by |
 | 任务登记 | `plan/tasks.v1.3.3.json`、`docs/TASK_PLAN.md` | `tests/unit/test_task_registry.py`（61 任务、M1–M18/m1–m8 全覆盖） |
 | 规范 | `SPEC_V1.3.3.md` | 本文件与 `docs/V1.3.3_CHANGELOG.md` |
 
@@ -27,17 +32,18 @@
 | 任务 | 状态 | 阻塞点 |
 |---|---|---|
 | T0.1 | IN_PROGRESS | 独立只读复核未完成 |
+| T0.2 | IN_PROGRESS | 安装闭环已实现；待 T0.1 复核与 T0.3 实机安装 |
+| T0.4 | IN_PROGRESS | doctor 已实现；待 DSH 实机根/遮蔽验证 |
 | T1.5 Gate 引擎完整化 | IN_PROGRESS | 待 Stage 1 工具日志接入 |
-| M7 四类根 | IN_PROGRESS | T0.1 已实现根分离/写范围；待复核 |
-| M9 CLI 退出码/JSON | IN_PROGRESS | doctor 未实现（T0.4） |
+| M2/M5/M9 | IN_PROGRESS | DSH 实机、UNC/长路径、Stage Exit 三列化 |
 
 ## 4. 下一批 READY（按依赖）
 
 1. **独立 T0.1 复核**（只读 Reviewer，检查契约、测试证据与 Spec 一致性）。
-2. **T0.2** 安装根/启动器/安装登记/卸载/升级回滚（依赖 T0.1 复核结论）。
-3. **T0.4** doctor（可在 T0.2 并行设计，依赖 T0.1）。
-4. **T0.5** 许可证与离线依赖锁定。
-5. **T0.3/T0.6** DSH 实机安装与删仓回归。
+2. **T0.3** DSH 实机安装与双入口发现。
+3. **T0.5** 许可证与离线依赖锁定（M4）。
+4. **T0.6** 删除开发仓回归。
+5. **M2/M5/M9 收尾**（实机根/遮蔽、UNC/长路径、Stage Exit 表）。
 
 ## 5. 恢复步骤
 

@@ -38,7 +38,7 @@
       "id": "T0.2",
       "title": "版本化发行根、双启动器、安装/卸载/升级/回滚",
       "stage": "Stage 0",
-      "status": "TODO",
+      "status": "IN_PROGRESS",
       "acceptance": "删除开发仓后用户级安装可运行；版本并存；升级/回滚；卸载只删登记文件；manifest 哈希校验；M1/M3/M4/M5/M6(字段)关闭",
       "depends_on": [
         "T0.1"
@@ -74,7 +74,7 @@
       "id": "T0.4",
       "title": "doctor：能力、根目录、遮蔽、退出码与 --json",
       "stage": "Stage 0",
-      "status": "TODO",
+      "status": "IN_PROGRESS",
       "acceptance": "READY/MISSING/INCOMPATIBLE/UNVERIFIED 逐项输出；解析 DSH_AGENTS_HOME/DSH_HOME；遮蔽列表；host-capability.json 消费",
       "depends_on": [
         "T0.1"
@@ -567,46 +567,46 @@
       "id": "M1",
       "title": "安装登记/升级/回滚状态契约",
       "stage": "Stage 0",
-      "status": "TODO",
+      "status": "DONE",
       "acceptance": "install-<version>.json 登记全部安装文件；upgrade/rollback 可复现；版本并存",
       "depends_on": [
         "T0.1"
       ],
       "due_before": "T0.2",
-      "evidence": null,
+      "evidence": "tests/integration/test_install.py",
       "files": [],
       "source": "MAJOR",
-      "note": "契约已在 T0.1 预留，实现在 T0.2"
+      "note": "install/upgrade/rollback/uninstall 与版本并存已实测"
     },
     {
       "id": "M2",
       "title": "DSH_HOME/AGENTS_HOME 与项目根/遮蔽检测",
       "stage": "Stage 0",
-      "status": "TODO",
+      "status": "IN_PROGRESS",
       "acceptance": "解析环境变量；5 级 rank；shadowed_by；非 Git/monorepo 说明",
       "depends_on": [
         "T0.1"
       ],
       "due_before": "T0.4",
-      "evidence": null,
+      "evidence": "tests/integration/test_install.py::test_shadow_detection_reports_project_skill",
       "files": [],
       "source": "MAJOR",
-      "note": null
+      "note": "根/rank/遮蔽已实现；DSH 实机待 T0.3"
     },
     {
       "id": "M3",
       "title": "install 根分离与写根登记",
       "stage": "Stage 0",
-      "status": "TODO",
+      "status": "DONE",
       "acceptance": "install_write_root 入 policy/schema；快照与写范围排除；只读模式不写项目",
       "depends_on": [
         "T0.1"
       ],
       "due_before": "T0.2",
-      "evidence": null,
+      "evidence": "contracts/policy.v1.3.3.schema.json; scripts/setup_skill.py",
       "files": [],
       "source": "MAJOR",
-      "note": "policy 字段已在 T0.1 落地"
+      "note": "安装只写 <agents_home>；测试确认不触碰项目 .uiux"
     },
     {
       "id": "M4",
@@ -627,16 +627,16 @@
       "id": "M5",
       "title": "相对/绝对/UNC/junction/MAX_PATH 路径鲁棒性",
       "stage": "Stage 0",
-      "status": "TODO",
+      "status": "IN_PROGRESS",
       "acceptance": "suite-link 基准固定；UNC/漫游/失效链接用例；长路径检查",
       "depends_on": [
         "T0.1"
       ],
       "due_before": "T0.2",
-      "evidence": null,
+      "evidence": "tests/integration/test_install.py",
       "files": [],
       "source": "MAJOR",
-      "note": "relative_locator 已在 T0.1 落地"
+      "note": "相对/绝对与中文空格路径已实测；UNC/长路径待补"
     },
     {
       "id": "M6",
@@ -657,7 +657,7 @@
       "id": "M7",
       "title": "四类根权限优先级与 finalize 校验",
       "stage": "Stage 0",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "acceptance": "read/report/sandbox/install 四根入 schema 与语义校验；allowed_write_globs 单一来源；越权拒绝",
       "depends_on": [
         "T0.1"
@@ -666,7 +666,7 @@
       "evidence": "tests/unit/test_semantics.py",
       "files": [],
       "source": "MAJOR",
-      "note": "T0.1 已实现根分离与 write-scope 交集校验，待复核"
+      "note": null
     },
     {
       "id": "M8",
@@ -696,7 +696,7 @@
       "evidence": null,
       "files": [],
       "source": "MAJOR",
-      "note": "finalize/validate 退出码已实现，doctor 待 T0.4"
+      "note": "validate/finalize/doctor/launch 退出码已实现；Stage Exit 三列化待补"
     },
     {
       "id": "M10",
@@ -910,31 +910,31 @@
       "id": "m6",
       "title": "统一 CLI 名称与 doctor 归属",
       "stage": "Stage 0",
-      "status": "TODO",
+      "status": "DONE",
       "acceptance": "cli.py 单入口；setup doctor 与 engine doctor 分工写清",
       "depends_on": [
         "T0.1"
       ],
       "due_before": "T0.4",
-      "evidence": null,
+      "evidence": "docs/CLI.md",
       "files": [],
       "source": "MINOR",
-      "note": "CLI 已统一为 uiux_engine.cli"
+      "note": "统一为 uiux_engine.cli 与 setup_skill.py doctor"
     },
     {
       "id": "m7",
       "title": "Host Capability 消费者",
       "stage": "Stage 0",
-      "status": "TODO",
+      "status": "DONE",
       "acceptance": "doctor --json 输出 host-capability.json；T4.1 复用",
       "depends_on": [
         "T0.4"
       ],
       "due_before": "T0.4",
-      "evidence": null,
+      "evidence": "tests/integration/test_install.py",
       "files": [],
       "source": "MINOR",
-      "note": "schema 已落地，消费者在 T0.4"
+      "note": "setup doctor 输出并通过 host-capability Schema"
     },
     {
       "id": "m8",
