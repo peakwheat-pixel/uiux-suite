@@ -89,7 +89,7 @@ def main() -> int:
             + smoke.stdout[:2000]
             + smoke.stderr
         )
-        log_path = OUT_DIR / "offline-install.log"
+        log_path = OUT_DIR / "offline-install.txt"
         log_path.write_text(log, encoding="utf-8")
 
     evidence = {
@@ -121,6 +121,7 @@ def main() -> int:
         },
         "install_stdout_sha256": hashlib.sha256((install.stdout + install.stderr).encode("utf-8")).hexdigest(),
         "log_file": str(log_path.relative_to(REPO_ROOT)),
+        "log_sha256": sha256_file(log_path),
         "generator_sha256": sha256_file(Path(__file__)),
         "requirements_sha256": sha256_file(REPO_ROOT / "requirements.txt"),
     }

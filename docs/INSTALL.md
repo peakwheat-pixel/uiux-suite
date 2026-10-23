@@ -34,7 +34,6 @@
 项目根 = 含 `.git` 的最近祖先；非 Git 项目需 `--project` 指向 cwd 根。Monorepo 建议对具体子项目执行 `--project <子项目根>`，避免在仓库总根生成 `.agents`。
 
 ## 4. doctor
-
 ```powershell
 .\.venv\Scripts\python.exe scripts\setup_skill.py --host dsh doctor --scope user
 # 或安装后（不依赖开发仓）：
@@ -72,7 +71,13 @@ python -m venv .venv-offline
 
 如目标机架构不同，用 `pip download` 重新取对应 wheel。
 
-## 8. 故障排查
+## 8. 宿主根与路径
+
+- rank：project-dsh 100、project-agents 200、custom 300、user-dsh 400、user-agents 500；`DSH_HOME`/`DSH_AGENTS_HOME` 覆盖用户目录。
+- custom 300 通过 `UIUX_CUSTOM_SKILLS_HOME=<skills 目录>` 提供（目录内每个子目录含 `SKILL.md`）。
+- 安装后的启动器保持调用方 cwd；仅当调用方 cwd 超过 240 字符时切换到临时目录，此时相对路径参数需改为绝对路径。
+
+## 9. 故障排查
 
 | 现象 | 原因 | 处理 |
 |---|---|---|

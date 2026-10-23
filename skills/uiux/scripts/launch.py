@@ -140,9 +140,14 @@ def main(argv: list[str]) -> int:
     env["PYTHONPATH"] = str(suite_root / "runtime")
     env["PYTHONDONTWRITEBYTECODE"] = "1"
 
-    # A long suite path is fine for PYTHONPATH/imports, but some Windows
-    # CreateProcess versions reject cwd beyond MAX_PATH; use a short cwd.
-    short_cwd = tempfile.gettempdir()
+    # Preserve the caller cwd so relative path arguments keep their meaning.
+    # Only fall back to a short cwd when the caller cwd itself is too long for
+    # CreateProcess (relative args then must be absolute; documented in CLI.md).
+    try:
+        caller_cwd = os.getcwd()
+    except OSError:
+        caller_cwd = tempfile.gettempdir()
+    short_cwd = caller_cwd if len(caller_cwd) < 240 else tempfile.gettempdir()
 
     if argv and argv[0] == "doctor":
         installed_doctor = suite_root / "setup_skill.py"

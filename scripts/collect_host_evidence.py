@@ -124,6 +124,8 @@ def main() -> int:
             [sys.executable, str(agents_home / "skills" / "uiux" / "scripts" / "launch.py"), "doctor", "--scope", "user"],
             cwd=Path(temp_dir),
         )
+    external_raw = raw_dir / "external-cwd-doctor.stdout.json"
+    external_raw.write_text(external_doctor["stdout"], encoding="utf-8")
 
     repo_references: list[str] = []
     for path in sorted(suite_root.rglob("*")):
@@ -205,6 +207,8 @@ def main() -> int:
         },
         "repo_independence": {
             "external_cwd_doctor_exit_code": external_doctor["exit_code"],
+            "external_cwd_doctor_stdout_file": str(external_raw.relative_to(REPO_ROOT)),
+            "external_cwd_doctor_stdout_file_sha256": sha256_file(external_raw),
             "external_cwd_doctor_stdout_sha256": external_doctor["stdout_sha256"],
             "source_checkout_absolute_references": repo_references,
             "source_checkout_scan_scope": "all install-root files under suite_root (<=2MB, text-decodable)",

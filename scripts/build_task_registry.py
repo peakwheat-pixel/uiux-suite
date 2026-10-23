@@ -53,7 +53,7 @@ TASKS: list[dict] = [
         evidence="evidence/T0.1/contract-test-evidence.json",
         files=["contracts/", "runtime/uiux_engine/", "tests/", "SPEC_V1.3.3.md"],
         source="B1-B6",
-        note="第 1 轮 FAIL → F-01..F-16 返修；第 2 轮独立复核 PASS；R-01..R-11 已关闭；157/157、exit 0。",
+        note="第 1 轮 FAIL → F-01..F-16 返修；第 2 轮独立复核 PASS；R-01..R-11 已关闭；160/160、exit 0。",
     ),
     task(
         "T0.2",

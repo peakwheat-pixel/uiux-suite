@@ -545,7 +545,7 @@ Release 必交付：可安装/卸载/修复的发行包、双 Skill、快速上�
 | C-10 | 证据缺失/哈希不符/过期 | PASS | `test_expired_evidence_cannot_support_pass` |
 | C-11 | L4 required 但缺失 / production-code 自审 | PASS | `test_required_l4_review_missing_blocks_complete`、`test_production_code_l4_selftest_reviewer_is_rejected` |
 | C-12 | 非 Git/外部 caller 策略 | PASS（策略层） | `test_caller_managed_must_match_policy` |
-| C-13 | DSH_AGENTS_HOME 与遮蔽 | PASS（真实 root/rank/shadow；custom rank 300 用例） | `evidence/T0.3/host-install-evidence.json`、`test_custom_rank_300` |
+| C-13 | DSH_AGENTS_HOME 与遮蔽 | PASS（真实 root/rank/shadow；custom rank 300 用例） | `evidence/T0.3/host-install-evidence.json`、`test_custom_rank_300_is_reported` |
 | C-14 | 四类写根缺失/越权 | PASS | `test_semantic_violations_are_rejected` |
 | C-15 | 中文/空格/UNC 路径 | PASS（中文/空格/junction/长路径；UNC 缺失稳定拒绝） | `test_project_scope_with_chinese_and_space_path`、`tests/integration/test_paths.py` |
 

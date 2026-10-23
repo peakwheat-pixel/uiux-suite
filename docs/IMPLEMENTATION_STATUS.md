@@ -4,7 +4,7 @@
 
 ## 1. 当前阶段
 
-- **Stage 0 — DONE（待第 3 轮增量确认）**：T0.1 第 2 轮独立复核 PASS；T0.2–T0.6 全部具备机器证据；157 项测试全绿。
+- **Stage 0 — DONE（第 4 轮独立确认）**：T0.1 第 2 轮独立复核 PASS；T0.2–T0.6 与 M5 全部具备机器证据；160 项测试全绿。
 - **Stage 1 — READY/IN_PROGRESS**：T1.0 规则目录与 Rule ID 冻结为下一入口。
 - 分支：`v1.3.3-contract-closure`。
 - 基线：`main` 上 `e7e921e`，tag `v1.3.2-baseline`，SHA256 `70f5f339…9411ea04`。
@@ -35,7 +35,7 @@
 | T0.2–T0.6 | DONE | 证据见 `docs/STAGE0_ACCEPTANCE.md` |
 | T1.0 规则/Rule ID 冻结 | READY（下一入口） | — |
 | T1.5 Gate 引擎完整化 | IN_PROGRESS | 待 Stage 1 工具日志接入 |
-| M5 UNC/junction/MAX_PATH | IN_PROGRESS | Stage 0 后补测 |
+| M5 UNC/junction/MAX_PATH | DONE | `tests/integration/test_paths.py` |
 
 ### 3.1 第 1 轮独立复核返修（2026-10-24）
 

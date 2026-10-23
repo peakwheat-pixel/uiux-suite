@@ -97,7 +97,7 @@ def dependency_version_of(exe: str | Path | None, package: str) -> str | None:
 
 
 def select_python_exe(explicit: str | None = None) -> str | None:
-    """Prefer a Python outside the source checkout that can import jsonschema."""
+    """Choose a Python that satisfies the suite runtime (>=3.10, jsonschema 4.20–4.x)."""
     candidates: list[str] = []
     if explicit:
         candidates.append(explicit)
@@ -127,6 +127,24 @@ def sha256_file(path: Path) -> str:
         for chunk in iter(lambda: fh.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def source_commit(source: Path) -> str | None:
+    if not (source / ".git").exists():
+        return None
+    try:
+        proc = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=str(source),
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=15,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+    return proc.stdout.strip() if proc.returncode == 0 else None
 
 
 def emit(payload: dict, code: int) -> int:
@@ -418,6 +436,8 @@ def cmd_install(args: argparse.Namespace) -> int:
         "installed_at": now(),
         "agents_home": str(agents_home),
         "suite_root": str(suite_root),
+        "installed_from_source": str(source),
+        "installed_from_commit": source_commit(source),
         "activated": should_activate,
         "python_exe": python_exe,
         "python_version": python_version_of(python_exe),
