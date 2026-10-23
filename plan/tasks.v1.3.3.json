@@ -744,16 +744,16 @@
       "id": "M13",
       "title": "靶场 GT 独立标注与阻断种子",
       "stage": "Stage 1",
-      "status": "IN_PROGRESS",
-      "acceptance": "标注流程与分歧仲裁；阻断种子清单；零误判硬 FAIL",
+      "status": "DONE",
+      "acceptance": "独立标注/仲裁；与冻结 GT 对照",
       "depends_on": [
-        "T1.0"
+        "T1.1"
       ],
       "due_before": "Stage 1 Exit",
-      "evidence": "tests/fixtures/ground_truth/annotations; qa/confusion-matrix.json",
+      "evidence": "evidence/T1.1/independent-annotation.json; evidence/T1.1/independent-annotation.labels.json; scripts/compare_independent_gt.py",
       "files": [],
       "source": "MAJOR",
-      "note": "GT 已冻结但为单 Agent 标注（independent=false）；独立标注/仲裁待 Reviewer/Stage 5。"
+      "note": "Reviewer 盲标 18/18 exact（未读冻结 annotations）；冻结文件保留 independent=false 历史字段。"
     },
     {
       "id": "M14",

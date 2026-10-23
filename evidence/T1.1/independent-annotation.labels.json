@@ -1,0 +1,25 @@
+{
+  "annotator": "reviewer-v133",
+  "method": "blind annotation; frozen annotations were not read",
+  "source_rules": "knowledge/rules/catalog.v1.0.json",
+  "annotations": [
+    {"fixture": "tests/fixtures/ground_truth/web/positive/a11y.html", "kind": "positive", "findings": [{"rule_id": "UX-A11Y-004", "line": 9, "severity": "WARNING"}, {"rule_id": "UX-A11Y-001", "line": 10, "severity": "FAIL"}, {"rule_id": "UX-COPY-001", "line": 11, "severity": "WARNING"}], "confidence": "high"},
+    {"fixture": "tests/fixtures/ground_truth/web/positive/color_only.css", "kind": "positive", "findings": [{"rule_id": "UX-COLOR-002", "line": 2, "severity": "WARNING"}], "confidence": "medium"},
+    {"fixture": "tests/fixtures/ground_truth/web/positive/contrast.css", "kind": "positive", "findings": [{"rule_id": "UX-COLOR-001", "line": 2, "severity": "FAIL"}], "confidence": "high"},
+    {"fixture": "tests/fixtures/ground_truth/web/positive/focus.css", "kind": "positive", "findings": [{"rule_id": "UX-A11Y-003", "line": 2, "severity": "FAIL"}], "confidence": "high"},
+    {"fixture": "tests/fixtures/ground_truth/web/positive/inline_style.html", "kind": "positive", "findings": [{"rule_id": "UX-COLOR-001", "line": 9, "severity": "FAIL"}], "confidence": "high"},
+    {"fixture": "tests/fixtures/ground_truth/web/positive/motion.css", "kind": "positive", "findings": [{"rule_id": "UX-MOTION-001", "line": 2, "severity": "WARNING"}], "confidence": "high"},
+    {"fixture": "tests/fixtures/ground_truth/web/positive/spacing.css", "kind": "positive", "findings": [{"rule_id": "UX-SPACE-001", "line": 2, "severity": "WARNING"}, {"rule_id": "UX-SPACE-001", "line": 3, "severity": "WARNING"}, {"rule_id": "UX-SPACE-001", "line": 4, "severity": "WARNING"}], "confidence": "medium"},
+    {"fixture": "tests/fixtures/ground_truth/web/positive/tsx_inline.tsx", "kind": "positive", "findings": [{"rule_id": "UX-SPACE-001", "line": 3, "severity": "WARNING"}, {"rule_id": "UX-TYPE-001", "line": 3, "severity": "WARNING"}], "confidence": "high"},
+    {"fixture": "tests/fixtures/ground_truth/web/positive/typography.css", "kind": "positive", "findings": [{"rule_id": "UX-TYPE-001", "line": 2, "severity": "WARNING"}, {"rule_id": "UX-TYPE-002", "line": 3, "severity": "WARNING"}], "confidence": "high"},
+    {"fixture": "tests/fixtures/ground_truth/web/negative/a11y.html", "kind": "negative", "findings": [], "confidence": "high"},
+    {"fixture": "tests/fixtures/ground_truth/web/negative/focus_replacement.css", "kind": "negative", "findings": [], "confidence": "high"},
+    {"fixture": "tests/fixtures/ground_truth/web/negative/inline_style.html", "kind": "negative", "findings": [], "confidence": "high"},
+    {"fixture": "tests/fixtures/ground_truth/web/negative/tokens.css", "kind": "negative", "findings": [], "confidence": "high"},
+    {"fixture": "tests/fixtures/ground_truth/qt/positive/color_only.qss", "kind": "positive", "findings": [{"rule_id": "UX-COLOR-002", "line": 2, "severity": "WARNING"}], "confidence": "medium"},
+    {"fixture": "tests/fixtures/ground_truth/qt/positive/contrast.qss", "kind": "positive", "findings": [{"rule_id": "UX-COLOR-001", "line": 2, "severity": "FAIL"}], "confidence": "high"},
+    {"fixture": "tests/fixtures/ground_truth/qt/positive/type_spacing.qss", "kind": "positive", "findings": [{"rule_id": "UX-TYPE-001", "line": 2, "severity": "WARNING"}, {"rule_id": "UX-SPACE-001", "line": 6, "severity": "WARNING"}], "confidence": "high"},
+    {"fixture": "tests/fixtures/ground_truth/qt/negative/state_cue.qss", "kind": "negative", "findings": [], "confidence": "high"},
+    {"fixture": "tests/fixtures/ground_truth/qt/negative/tokens.qss", "kind": "negative", "findings": [], "confidence": "high"}
+  ]
+}

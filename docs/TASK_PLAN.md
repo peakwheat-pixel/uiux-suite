@@ -53,7 +53,7 @@
 | M10 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T1.1 | CI 骨架与 Windows runner | fixtures 预期/实际、失败即红、artifact 归档；Windows runner |
 | M11 | Stage 2 | DONE | Stage 2 Exit | T0.5 | 第三方知识来源、许可与消费接口 | 来源锁 commit/许可；knowledge index；无法锁许可则自建 |
 | M12 | Stage 2 | DONE | Stage 2 Exit | T2.3 | 存量设计系统采纳与 token drift | brownfield 流程；drift 检查器；冲突优先级 |
-| M13 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T1.0 | 靶场 GT 独立标注与阻断种子 | 标注流程与分歧仲裁；阻断种子清单；零误判硬 FAIL |
+| M13 | Stage 1 | DONE | Stage 1 Exit | T1.1 | 靶场 GT 独立标注与阻断种子 | 独立标注/仲裁；与冻结 GT 对照 |
 | M14 | Stage 3 | DONE | Stage 3 Exit | T0.1 | P0–P3 分级与可观测安全指标 | P0–P3 + qa-report schema + 指标 |
 | M15 | Stage 0 | DONE | T0.1 | — | DAG 循环与遗漏修复 | T1.0 作为共同上游；DAG 补齐 T0.4/T0.6/T1.7/T2.4/T2.6；编号修正 |
 | M16 | Stage 5 | TODO | Stage 5 Exit | T5.5 | 附录命令一致性 | 统一 python 解释器与引号；附录拆分 Stage 0/1 与 2/3 |
@@ -73,6 +73,6 @@
 | 状态 | 数量 |
 |---|---|
 | BLOCKED | 0 |
-| DONE | 50 |
-| IN_PROGRESS | 10 |
+| DONE | 51 |
+| IN_PROGRESS | 9 |
 | TODO | 1 |

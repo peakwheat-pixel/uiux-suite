@@ -1,0 +1,387 @@
+{
+  "schema_version": "1.3.3",
+  "evidence_id": "EV-T1.1-INDEPENDENT-GT",
+  "kind": "review_attestation",
+  "generated_at": "2026-10-23T20:59:30.114456+00:00",
+  "git": {
+    "commit": "693d58d035d8209bbc5a10ac3528359ffeaff6fd",
+    "dirty": true,
+    "dirty_scope": "tracked files excluding evidence/"
+  },
+  "annotator": "reviewer-v133",
+  "method": "blind annotation; frozen annotations were not read",
+  "labels_file": "evidence\\T1.1\\independent-annotation.labels.json",
+  "labels_sha256": "7aec50d1c9c5e0c39e6eee165948c7af3610819a3a78baa4b0274d24ffa724ed",
+  "fixtures_total": 18,
+  "exact_matches": 18,
+  "agreement_rate": 1.0,
+  "pairs": [
+    {
+      "fixture": "web/positive/a11y.html",
+      "match": true,
+      "frozen": [
+        [
+          "UX-A11Y-001",
+          10,
+          "FAIL"
+        ],
+        [
+          "UX-A11Y-004",
+          9,
+          "WARNING"
+        ],
+        [
+          "UX-COPY-001",
+          11,
+          "WARNING"
+        ]
+      ],
+      "independent": [
+        [
+          "UX-A11Y-001",
+          10,
+          "FAIL"
+        ],
+        [
+          "UX-A11Y-004",
+          9,
+          "WARNING"
+        ],
+        [
+          "UX-COPY-001",
+          11,
+          "WARNING"
+        ]
+      ],
+      "frozen_file": "tests\\fixtures\\ground_truth\\annotations\\web-positive-a11y.json",
+      "frozen_sha256": "a6fac08cc3511a59dfbc70fd50a97be542570445c0a574013363bf70dfa6de8b"
+    },
+    {
+      "fixture": "web/positive/color_only.css",
+      "match": true,
+      "frozen": [
+        [
+          "UX-COLOR-002",
+          2,
+          "WARNING"
+        ]
+      ],
+      "independent": [
+        [
+          "UX-COLOR-002",
+          2,
+          "WARNING"
+        ]
+      ],
+      "frozen_file": "tests\\fixtures\\ground_truth\\annotations\\web-positive-color-only.json",
+      "frozen_sha256": "f5a32945c36e77b657020edfa5ec04feebad65fee939cc417f014a1addb3a157"
+    },
+    {
+      "fixture": "web/positive/contrast.css",
+      "match": true,
+      "frozen": [
+        [
+          "UX-COLOR-001",
+          2,
+          "FAIL"
+        ]
+      ],
+      "independent": [
+        [
+          "UX-COLOR-001",
+          2,
+          "FAIL"
+        ]
+      ],
+      "frozen_file": "tests\\fixtures\\ground_truth\\annotations\\web-positive-contrast.json",
+      "frozen_sha256": "139d48f6ec137d2e91825815add23f9b8ac7899e168b3c4e392c80dfb70df69f"
+    },
+    {
+      "fixture": "web/positive/focus.css",
+      "match": true,
+      "frozen": [
+        [
+          "UX-A11Y-003",
+          2,
+          "FAIL"
+        ]
+      ],
+      "independent": [
+        [
+          "UX-A11Y-003",
+          2,
+          "FAIL"
+        ]
+      ],
+      "frozen_file": "tests\\fixtures\\ground_truth\\annotations\\web-positive-focus.json",
+      "frozen_sha256": "d4238dd51bcf44f3d05c2f30214fe4a1007ab3ba2cbb506b83ea57af1b353359"
+    },
+    {
+      "fixture": "web/positive/inline_style.html",
+      "match": true,
+      "frozen": [
+        [
+          "UX-COLOR-001",
+          9,
+          "FAIL"
+        ]
+      ],
+      "independent": [
+        [
+          "UX-COLOR-001",
+          9,
+          "FAIL"
+        ]
+      ],
+      "frozen_file": "tests\\fixtures\\ground_truth\\annotations\\web-positive-inline-style.json",
+      "frozen_sha256": "015afbc9a621cee29695df536533ddbcff56cf602540b0868b63b30aee6f07c5"
+    },
+    {
+      "fixture": "web/positive/motion.css",
+      "match": true,
+      "frozen": [
+        [
+          "UX-MOTION-001",
+          2,
+          "WARNING"
+        ]
+      ],
+      "independent": [
+        [
+          "UX-MOTION-001",
+          2,
+          "WARNING"
+        ]
+      ],
+      "frozen_file": "tests\\fixtures\\ground_truth\\annotations\\web-positive-motion.json",
+      "frozen_sha256": "f2d19b7b8a02c0ab321816b39acaabaa83be769002453b8bfe22616a01488a21"
+    },
+    {
+      "fixture": "web/positive/spacing.css",
+      "match": true,
+      "frozen": [
+        [
+          "UX-SPACE-001",
+          2,
+          "WARNING"
+        ],
+        [
+          "UX-SPACE-001",
+          3,
+          "WARNING"
+        ],
+        [
+          "UX-SPACE-001",
+          4,
+          "WARNING"
+        ]
+      ],
+      "independent": [
+        [
+          "UX-SPACE-001",
+          2,
+          "WARNING"
+        ],
+        [
+          "UX-SPACE-001",
+          3,
+          "WARNING"
+        ],
+        [
+          "UX-SPACE-001",
+          4,
+          "WARNING"
+        ]
+      ],
+      "frozen_file": "tests\\fixtures\\ground_truth\\annotations\\web-positive-spacing.json",
+      "frozen_sha256": "87743627dc724e410c4a1c110927b851d932bf83d20dcfae3bdbee9ff4411fb1"
+    },
+    {
+      "fixture": "web/positive/tsx_inline.tsx",
+      "match": true,
+      "frozen": [
+        [
+          "UX-SPACE-001",
+          3,
+          "WARNING"
+        ],
+        [
+          "UX-TYPE-001",
+          3,
+          "WARNING"
+        ]
+      ],
+      "independent": [
+        [
+          "UX-SPACE-001",
+          3,
+          "WARNING"
+        ],
+        [
+          "UX-TYPE-001",
+          3,
+          "WARNING"
+        ]
+      ],
+      "frozen_file": "tests\\fixtures\\ground_truth\\annotations\\web-positive-tsx-inline.json",
+      "frozen_sha256": "545cb37136dc36be6729ab56672ff5224c7f2c5b3f4307d4661a5ed322d8ef0c"
+    },
+    {
+      "fixture": "web/positive/typography.css",
+      "match": true,
+      "frozen": [
+        [
+          "UX-TYPE-001",
+          2,
+          "WARNING"
+        ],
+        [
+          "UX-TYPE-002",
+          3,
+          "WARNING"
+        ]
+      ],
+      "independent": [
+        [
+          "UX-TYPE-001",
+          2,
+          "WARNING"
+        ],
+        [
+          "UX-TYPE-002",
+          3,
+          "WARNING"
+        ]
+      ],
+      "frozen_file": "tests\\fixtures\\ground_truth\\annotations\\web-positive-typography.json",
+      "frozen_sha256": "5dbfc38d2b2d092a8430c0ba242ca42d7a222443a470bdf0a013367a669a0be0"
+    },
+    {
+      "fixture": "web/negative/a11y.html",
+      "match": true,
+      "frozen": [],
+      "independent": [],
+      "frozen_file": "tests\\fixtures\\ground_truth\\annotations\\web-negative-a11y.json",
+      "frozen_sha256": "7b98b6de9b57df00c7277c70244376c4070df5d951601cf063295a9a157d18be"
+    },
+    {
+      "fixture": "web/negative/focus_replacement.css",
+      "match": true,
+      "frozen": [],
+      "independent": [],
+      "frozen_file": "tests\\fixtures\\ground_truth\\annotations\\web-negative-focus-replacement.json",
+      "frozen_sha256": "1c5a87fe85eb49df7895a3003c498d4b81ada4fafa9c63d70e67ffb1fe42e5bd"
+    },
+    {
+      "fixture": "web/negative/inline_style.html",
+      "match": true,
+      "frozen": [],
+      "independent": [],
+      "frozen_file": "tests\\fixtures\\ground_truth\\annotations\\web-negative-inline-style.json",
+      "frozen_sha256": "9fee9d5ad4e4e4406b82409874020200f84129bef6f8db8442448593dfa376dd"
+    },
+    {
+      "fixture": "web/negative/tokens.css",
+      "match": true,
+      "frozen": [],
+      "independent": [],
+      "frozen_file": "tests\\fixtures\\ground_truth\\annotations\\web-negative-tokens.json",
+      "frozen_sha256": "be1174a2affc0c7c8a065296c1eb1413a19b5f996e27d05f7fbe7abbf39a6094"
+    },
+    {
+      "fixture": "qt/positive/color_only.qss",
+      "match": true,
+      "frozen": [
+        [
+          "UX-COLOR-002",
+          2,
+          "WARNING"
+        ]
+      ],
+      "independent": [
+        [
+          "UX-COLOR-002",
+          2,
+          "WARNING"
+        ]
+      ],
+      "frozen_file": "tests\\fixtures\\ground_truth\\annotations\\qt-positive-color-only.json",
+      "frozen_sha256": "122559b8c40808276312fc26a644b46c3db2b0a5380550fdd9f1ad159dc80f04"
+    },
+    {
+      "fixture": "qt/positive/contrast.qss",
+      "match": true,
+      "frozen": [
+        [
+          "UX-COLOR-001",
+          2,
+          "FAIL"
+        ]
+      ],
+      "independent": [
+        [
+          "UX-COLOR-001",
+          2,
+          "FAIL"
+        ]
+      ],
+      "frozen_file": "tests\\fixtures\\ground_truth\\annotations\\qt-positive-contrast.json",
+      "frozen_sha256": "cca2112fb500f1787e83e985fbd8dbde749f1b054d7caefebd27f2d94bdadbf3"
+    },
+    {
+      "fixture": "qt/positive/type_spacing.qss",
+      "match": true,
+      "frozen": [
+        [
+          "UX-SPACE-001",
+          6,
+          "WARNING"
+        ],
+        [
+          "UX-TYPE-001",
+          2,
+          "WARNING"
+        ]
+      ],
+      "independent": [
+        [
+          "UX-SPACE-001",
+          6,
+          "WARNING"
+        ],
+        [
+          "UX-TYPE-001",
+          2,
+          "WARNING"
+        ]
+      ],
+      "frozen_file": "tests\\fixtures\\ground_truth\\annotations\\qt-positive-type-spacing.json",
+      "frozen_sha256": "a025e59743cde5d1ee3d776b2d66c27eb3ba12cde7b1a0fbb90b83000eaa75b7"
+    },
+    {
+      "fixture": "qt/negative/state_cue.qss",
+      "match": true,
+      "frozen": [],
+      "independent": [],
+      "frozen_file": "tests\\fixtures\\ground_truth\\annotations\\qt-negative-state-cue.json",
+      "frozen_sha256": "d9cd8fc55ac9e1f460b6664bd4a549ec6502d61ffd444ca88aa1dfdecea94e65"
+    },
+    {
+      "fixture": "qt/negative/tokens.qss",
+      "match": true,
+      "frozen": [],
+      "independent": [],
+      "frozen_file": "tests\\fixtures\\ground_truth\\annotations\\qt-negative-tokens.json",
+      "frozen_sha256": "4db8d84c0b48c838c510460d7ab76a7c5565f11400ec1dcd7fb324fe00a7a2d2"
+    }
+  ],
+  "disagreements": [],
+  "generator": {
+    "path": "scripts/compare_independent_gt.py",
+    "sha256": "d5a9ccf84295a78195079fc366827b78d39ba89646393024fc8b5aeacc98bea1"
+  },
+  "notes": [
+    "Frozen annotations retain independent=false as a historical field; this evidence is the independent blind annotation.",
+    "Line-level ambiguity for color/selector and per-declaration spacing was resolved identically in this sample."
+  ]
+}
