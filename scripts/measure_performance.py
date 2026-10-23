@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import statistics
 import sys
 import time
@@ -46,9 +47,7 @@ def main() -> int:
     def token_run() -> None:
         token_compiler.to_css()
 
-    discovery_root = Path(r"G:\AI\uiux-stage5-sandbox\new-manga-src")
-    if not discovery_root.is_dir():
-        discovery_root = REPO_ROOT / "sandbox" / "workbench_app"
+    discovery_root = Path(os.environ.get("UIUX_DISCOVERY_ROOT", str(REPO_ROOT / "sandbox" / "workbench_app")))
 
     def discovery_run() -> None:
         discovery.discover(discovery_root)

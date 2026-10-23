@@ -144,7 +144,7 @@
         "T0.2"
       ],
       "due_before": "Stage 1 Exit",
-      "evidence": "tests/fixtures/ground_truth/{web,qt,annotations}; scripts/_build_fixtures.py",
+      "evidence": "tests/fixtures/ground_truth/{web,qt,annotations}; tests/fixtures/_build_fixtures.py",
       "files": [],
       "source": null,
       "note": "18 样本 + 混淆矩阵冻结；GT 为单 Agent 标注（independent=false），独立标注留 Stage5/Reviewer。"
@@ -174,7 +174,7 @@
         "T1.1"
       ],
       "due_before": "Stage 1 Exit",
-      "evidence": "runtime/uiux_engine/flow_validator.py; tests/unit/test_flow_validator.py; contracts/flow-graph.v1.3.3.schema.json",
+      "evidence": "runtime/uiux_engine/flow_validator.py; tests/unit/test_flow_validator.py; contracts/flows.v1.3.3.schema.json",
       "files": [],
       "source": null,
       "note": "14 用例、6 规则；静态推导，不替代真实运行。"
@@ -558,7 +558,7 @@
       "evidence": "dist/uiux-suite-1.3.3-win64.zip; evidence/T5.5/release-verification.json; docs/RELEASE_NOTES.md",
       "files": [],
       "source": null,
-      "note": "131 载荷 + RELEASE_MANIFEST（ZIP 共 132 项），安装/启动/doctor 实测 exit 0；交付报告随最终复核更新。"
+      "note": "143 载荷 + RELEASE_MANIFEST（ZIP 共 144 项），安装/启动/doctor 实测 exit 0；交付报告随最终复核更新。"
     },
     {
       "id": "M1",
@@ -705,7 +705,7 @@
         "T1.1"
       ],
       "due_before": "Stage 1 Exit",
-      "evidence": null,
+      "evidence": "evidence/T1.0/ci-local.json; .github/workflows",
       "files": [],
       "source": null,
       "note": "GitHub workflow + 本地 scripts/run_ci.py 已实现并留证；真实 GitHub/gitea runner 未执行。"
