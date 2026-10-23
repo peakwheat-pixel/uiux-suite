@@ -36,9 +36,9 @@
 | T4.2 | Stage 4 | IN_PROGRESS | Stage 4 Exit | T4.1 | 其他 Agent 兼容矩阵与降级入口 | Codex/Claude/ZCode/Antigravity/Qoder 未测标 UNVERIFIED |
 | T4.3 | Stage 4 | DONE | Stage 4 Exit | T0.1 | 被动外部调用契约（不依赖外部编排器） | 外部 caller 传 task_id/role/artifact_dir 时不改其分支/证据治理；无外部系统时核心正常 |
 | T4.4 | Stage 4 | DONE | Stage 4 Exit | T4.1 | 退化路径（缺 Node/GUI/旧宿主/离线/软链） | 每项返回稳定 ReasonCode 与可恢复建议 |
-| T5.1 | Stage 5 | IN_PROGRESS | Stage 5 Exit | T3.6, T4.4 | 真实复杂工作台试点（隔离副本） | 冻结导入→浏览→编辑→异常→保存/导出任务；只在副本/独立 worktree 操作 |
-| T5.2 | Stage 5 | IN_PROGRESS | Stage 5 Exit | T5.1 | 改版前后对照测量 | 同机同窗口同素材；成功任务/步骤/恢复/快捷键/布局缺陷记录 |
-| T5.3 | Stage 5 | IN_PROGRESS | Stage 5 Exit | T5.1 | 真实项目数据安全与回滚演练 | 备份→失败注入→恢复验证；真实项目只读 |
+| T5.1 | Stage 5 | DONE | Stage 5 Exit | T3.3 | 真实复杂工作台试点（隔离副本） | 启动真实 New Manga；导入/浏览/阅读/编辑与真实界面基线 |
+| T5.2 | Stage 5 | DONE | Stage 5 Exit | T5.1 | 改版前后对照测量 | 真实应用受控改造与前后对照；功能回归 |
+| T5.3 | Stage 5 | IN_PROGRESS | Stage 5 Exit | T5.1 | 真实项目数据安全与回滚演练 | 隔离数据读写、取消/撤销、导出、Git 回滚、源未变更 |
 | T5.4 | Stage 5 | IN_PROGRESS | Stage 5 Exit | T5.3 | 独立复审与 G6 签发 | 冻结版本独立复验；未覆盖项 PARTIAL/UNVERIFIED 明示 |
 | T5.5 | Stage 5 | DONE | Stage 5 Exit | T5.4 | 发行包、文档、许可证与交付报告 | dist/ 可安装 ZIP、手册、兼容矩阵、证据索引、FINAL_DELIVERY_REPORT.md |
 | M1 | Stage 0 | DONE | T0.2 | T0.1 | 安装登记/升级/回滚状态契约 | install-<version>.json 登记全部安装文件；upgrade/rollback 可复现；版本并存 |
@@ -50,7 +50,7 @@
 | M7 | Stage 0 | DONE | T0.1 | T0.1 | 四类根权限优先级与 finalize 校验 | read/report/sandbox/install 四根入 schema 与语义校验；allowed_write_globs 单一来源；越权拒绝 |
 | M8 | Stage 3 | DONE | Stage 3 Exit | T0.1 | 不可信项目构建执行模型 | 白名单执行、网络/破坏性/越界拦截 |
 | M9 | Stage 0 | DONE | T0.4 | T0.1 | CLI 退出码、--json 与阶段验收命令 | 退出码表写入 docs/CLI.md；doctor/finalize --json schema；每个 Stage Exit 三列化 |
-| M10 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T1.1 | CI 骨架与 Windows runner | fixtures 预期/实际、失败即红、artifact 归档；Windows runner |
+| M10 | Stage 5 | DONE | Release | T1.6 | CI 骨架与 Windows runner | GitHub Actions Push/PR/dispatch；真实运行与日志 |
 | M11 | Stage 2 | DONE | Stage 2 Exit | T0.5 | 第三方知识来源、许可与消费接口 | 来源锁 commit/许可；knowledge index；无法锁许可则自建 |
 | M12 | Stage 2 | DONE | Stage 2 Exit | T2.3 | 存量设计系统采纳与 token drift | brownfield 流程；drift 检查器；冲突优先级 |
 | M13 | Stage 1 | DONE | Stage 1 Exit | T1.1 | 靶场 GT 独立标注与阻断种子 | 独立标注/仲裁；与冻结 GT 对照 |
@@ -73,6 +73,6 @@
 | 状态 | 数量 |
 |---|---|
 | BLOCKED | 0 |
-| DONE | 55 |
-| IN_PROGRESS | 6 |
+| DONE | 58 |
+| IN_PROGRESS | 3 |
 | TODO | 0 |

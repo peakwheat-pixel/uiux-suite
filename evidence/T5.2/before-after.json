@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.3.3",
+  "evidence_id": "EV-T5.2-BEFORE-AFTER",
+  "kind": "tool_log",
+  "runtime_level": "NATIVE_APP",
+  "generated_at": "2026-10-23T23:29:40.524920+00:00",
+  "changes": [
+    {
+      "file": "apps/desktop/frontend/src/theme/global.css",
+      "summary": "focus-visible ring, 32px controls, 12/14px typography, scrollbar and disabled contrast"
+    },
+    {
+      "file": "apps/desktop/frontend/src/theme/tokens.ts",
+      "summary": "base 13→14, badge 10→11, secondary 11→12, rail 64→72, toolbar 48→56"
+    },
+    {
+      "file": "apps/desktop/frontend/src/shell/AppShell.tsx",
+      "summary": "nav labels 10→12px and icons 18→20px"
+    },
+    {
+      "file": "apps/desktop/frontend/src/workbench/WorkbenchToolbar.tsx",
+      "summary": "two-row grouped toolbar, primary/secondary actions, disabled capabilities collapsed under details"
+    },
+    {
+      "file": "apps/desktop/frontend/src/bookshelf/EmptyStateBookshelf.tsx",
+      "summary": "3-step onboarding, keyboard hint, clearer hierarchy"
+    },
+    {
+      "file": "apps/desktop/frontend/src/bookshelf/ImportDialog.tsx",
+      "summary": "auto-preselect single book/chapter, enable target select and folder picker"
+    }
+  ],
+  "before": {
+    "bookshelf": {
+      "buttons": 13,
+      "too_small": 0,
+      "min_font": 10,
+      "overflow": false,
+      "focus_outline": "rgb(79, 107, 237) none 3px"
+    },
+    "workbench": {
+      "buttons": 29,
+      "too_small": 1,
+      "min_font": 10,
+      "overflow": false,
+      "focus_outline": "rgb(107, 114, 128) none 3px"
+    },
+    "reader": {
+      "buttons": 10,
+      "too_small": 2,
+      "min_font": 10,
+      "overflow": false,
+      "focus_outline": "rgb(107, 114, 128) none 3px"
+    },
+    "settings": {
+      "buttons": 19,
+      "too_small": 0,
+      "min_font": 10,
+      "overflow": false,
+      "focus_outline": "rgb(107, 114, 128) none 3px"
+    }
+  },
+  "after": {
+    "bookshelf": {
+      "buttons": 13,
+      "too_small": 0,
+      "min_font": 12,
+      "overflow": false,
+      "focus_outline": "rgb(79, 107, 237) none 3px"
+    },
+    "workbench": {
+      "buttons": 29,
+      "too_small": 0,
+      "min_font": 11,
+      "overflow": false,
+      "focus_outline": "rgb(107, 114, 128) none 3px"
+    },
+    "reader": {
+      "buttons": 10,
+      "too_small": 0,
+      "min_font": 12,
+      "overflow": false,
+      "focus_outline": "rgb(107, 114, 128) none 3px"
+    },
+    "settings": {
+      "buttons": 19,
+      "too_small": 0,
+      "min_font": 12,
+      "overflow": false,
+      "focus_outline": "rgb(107, 114, 128) none 3px"
+    }
+  },
+  "screenshots": [
+    {
+      "path": "T5.2/baseline-bookshelf.png",
+      "sha256": "0669b2272e1ea8cefff486b8ef3711a3994b65be5e20bd734bf8570e465f5938",
+      "size": 37808
+    },
+    {
+      "path": "T5.2/after-bookshelf.png",
+      "sha256": "10d2f8a98c4a8a0c6abb513eb5c8e01b8f69129f3dd0708b4852bb5f7693d0c2",
+      "size": 43097
+    },
+    {
+      "path": "T5.2/baseline-workbench.png",
+      "sha256": "b96a1788cee8571308fb880ab84080c7746f67b34267402ab79f7b268bc08586",
+      "size": 68961
+    },
+    {
+      "path": "T5.2/after-workbench.png",
+      "sha256": "01b790178702e7a004e4e58f78224435341d4d42b947884d0bf58c79cea995cf",
+      "size": 65014
+    }
+  ],
+  "functional_regression": {
+    "nav_pages": [
+      "bookshelf",
+      "workbench",
+      "reader",
+      "settings"
+    ],
+    "console_errors": 0,
+    "create_book": true,
+    "create_chapter": true,
+    "import_folder": true,
+    "duplicate_import": true,
+    "reader_next_pages": true,
+    "export": "FAILED (product translated-input requirement)",
+    "undo_redo": "NOT_AVAILABLE"
+  },
+  "ux_findings": [
+    "After import the book/chapter counts stayed stale until reload (fixed by manual refresh only; not patched in RC2).",
+    "CJK title entered through Playwright appeared mojibake in the rendered UI; root cause not isolated.",
+    "Import dialog target book was disabled from the detail panel; fixed by preselecting the single book/chapter.",
+    "Export requires a translated artifact; untranslated pages correctly fail closed with EXPORT_INPUT_UNAVAILABLE."
+  ],
+  "limitations": [
+    "No production user task observation; one synthetic title.",
+    "No accessibility tree/runtime AT validation of the redesign."
+  ]
+}

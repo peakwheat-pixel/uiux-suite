@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import os
+
 from uiux_engine import build_guard, input_policy, safety
 
 
@@ -44,7 +46,8 @@ def test_build_guard_denies_network_without_flag(tmp_path):
 
 
 def test_build_guard_denies_outside_root(tmp_path):
-    result = build_guard.check("python C:\\Windows\\setup.py", tmp_path)
+    outside_path = "C:\\Windows\\setup.py" if os.name == "nt" else "/etc/setup.py"
+    result = build_guard.check(f"python {outside_path}", tmp_path)
     assert result["decision"] == "DENY"
     assert any("PATH_OUTSIDE_ROOT" in reason for reason in result["reasons"])
 

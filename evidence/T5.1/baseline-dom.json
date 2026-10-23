@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.3.3",
+  "evidence_id": "EV-T5.1-REAL-APP-BASELINE",
+  "kind": "tool_log",
+  "runtime_level": "NATIVE_APP",
+  "generated_at": "2026-10-23T23:00:42.200Z",
+  "transport": "WebView2 CDP via tauri.conf additionalBrowserArgs --remote-debugging-port=9222",
+  "app": {
+    "source": "G:\\CODEX\\New Manga (read-only)",
+    "isolated_copy": "G:\\AI\\uiux-workbench-copy",
+    "exe_sha256_note": "binary rebuilt in isolated copy with CDP flag"
+  },
+  "meta": {
+    "title": "M2RC1|interactive|deny=5/5|allow=0/0|results=5",
+    "lang": "en",
+    "viewport": {
+      "w": 1180,
+      "h": 860,
+      "dpr": 1
+    },
+    "tauri": true,
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
+  },
+  "pages": [
+    {
+      "name": "bookshelf",
+      "bodyText": "NM\n📚\n书架\n🛠️\n工作台\n📖\n阅读器\n⚙️\n设置\n+ 新建作品\n导入作品\n🗑️ 回收站\n★ 收藏\n归档\n按标题排序\n按更新时间\n⊞\n☰\n📚\n还没有作品\n\n书架当前为空。你可以通过导入已有的本地漫画文件或文件夹开始使用。\n\n导入作品\n新建作品\n📖\n未选择作品\n从左侧列表中点击选择一部漫画以查看章节和详情",
+      "buttonCount": 13,
+      "tooSmallButtons": [],
+      "minFont": 10,
+      "fontUnder12": 12,
+      "hasHorizontalOverflow": false,
+      "focus": {
+        "outline": "rgb(79, 107, 237) none 3px",
+        "boxShadow": "none",
+        "border": "0px none rgb(79, 107, 237)"
+      }
+    },
+    {
+      "name": "workbench",
+      "bodyText": "NM\n📚\n书架\n🛠️\n工作台\n📖\n阅读器\n⚙️\n设置\n选择作品与章节\n拖动调整页序\n页序写入 wire 尚未冻结，页面顺序保持 Core 投影结果。\n页面缩略图\n当前只有原图资源通道，低清缩略图能力尚未接入。\n按页面 ID 定位\n暂无作品\n页面查看器\n−\n100%\n＋\n适配\n选择页面以查看图像\nInspector\n\nno region selected\n\n人工译文\n保存人工译文\nSaveManualTranslation 写入接口尚未冻结，因此人工译文与 Ctrl+Enter 提交保持禁用。\n设置/解除锁定\nLock 写入接口尚未冻结；当前锁态只读显示。\n固定此修订\nRevision pin 写入接口尚未冻结；历史固定状态只读显示。\n选择作品与章节\nRegion：0\n批处理\n全章翻译\n翻译未完成页\n翻译选择页\n翻译当前页\n重渲染全章\n重渲染选择页\n重渲染当前页\n重修复全章\n重修复选择页\n重修复当前页\n重新 OCR 全章\n重新 OCR 选择页\n重新 OCR 当前页\nOCR 当前 Region\n重翻译当前 Region\n重翻译当前 Region（全流程）\n重修复当前 Region\n重渲染当前 Region\n启动\n导入页面\n导出选择页\n查看模式\n查看\n平移\nRegion 选择\n新建 Region\n等待 CreateRegion 能力接入。\n删除 Region\n等待 DeleteRegion 能力接入。\n编辑 Region 几何\n移动、缩放、合并、拆分与顺序写入 wire 尚未冻结。\nCore 状态\nCore 可用性查询/事件 wire 尚未冻结；此处不推断运行状态。\n逐页导入进度\n当前只返回同步导入结果，细分进度 snapshot 尚未冻结。\n任务进度\n折叠\n没有本次会话中已知的 Run。\n查看已有任务与中断 Run\n暂不可用：Core 尚无 ListRuns 查询；仅能查看本次工作台明确启动的 Run。\n暂停\n停止\n继续\n重新启动\n放弃\n解除阻塞\n重试失败页",
+      "buttonCount": 29,
+      "tooSmallButtons": [
+        {
+          "text": "−",
+          "w": 24,
+          "h": 21
+        }
+      ],
+      "minFont": 10,
+      "fontUnder12": 34,
+      "hasHorizontalOverflow": false,
+      "focus": {
+        "outline": "rgb(107, 114, 128) none 3px",
+        "boxShadow": "none",
+        "border": "0px none rgb(107, 114, 128)"
+      }
+    },
+    {
+      "name": "reader",
+      "bodyText": "NM\n📚\n书架\n🛠️\n工作台\n📖\n阅读器\n⚙️\n设置\n← 返回书架\n尚未选择章节\n继续\n从头开始\n原文 (Original)\n译文 (Translated)\n📖\n尚未选择阅读章节\n请先在书架中选择一个作品及章节，然后点击「进入阅读」\n前往书架",
+      "buttonCount": 10,
+      "tooSmallButtons": [
+        {
+          "text": "继续",
+          "w": 38,
+          "h": 22
+        },
+        {
+          "text": "从头开始",
+          "w": 60,
+          "h": 22
+        }
+      ],
+      "minFont": 10,
+      "fontUnder12": 13,
+      "hasHorizontalOverflow": false,
+      "focus": {
+        "outline": "rgb(107, 114, 128) none 3px",
+        "boxShadow": "none",
+        "border": "0px none rgb(107, 114, 128)"
+      }
+    },
+    {
+      "name": "settings",
+      "bodyText": "NM\n📚\n书架\n🛠️\n工作台\n📖\n阅读器\n⚙️\n设置\n系统设置\nProvider\n网络/代理\nOCR\n未开放\n翻译\n图片修复\n未开放\n排版样式\n未开放\n模型/GPU\n未开放\n任务/并发\n未开放\n缓存/Revision\n未开放\n回收站\n未开放\n备份/恢复\n未开放\nPlugin/Hooks\n未开放\nProvider Profile\n\n同一 Provider 类型可配置多个 Profile（以 profile_id 区分）；凭据只经专用一次性通道配置，永不回显明文。\n\n暂无 Provider Profile。\n新建 Profile\nCapability 默认绑定\n\n解析优先级：当前 Run 临时绑定 → Chapter → Book → Global。Run 临时范围只能经工作台 StartRun.overrides.provider_profiles 设置，不在本页操作。\n\nscope 范围\nglobal（全局）\nbook（作品）\nchapter（章节）\ncapability\nOCR\nTranslation\nInpaint\nDetection\nRendering\n当前绑定（global 查询）：未绑定\n要绑定的 profile_id\n设置绑定 (set)\n清除绑定 (clear)",
+      "buttonCount": 19,
+      "tooSmallButtons": [],
+      "minFont": 10,
+      "fontUnder12": 23,
+      "hasHorizontalOverflow": false,
+      "focus": {
+        "outline": "rgb(107, 114, 128) none 3px",
+        "boxShadow": "none",
+        "border": "0px none rgb(107, 114, 128)"
+      }
+    }
+  ],
+  "consoleErrors": [],
+  "limitations": [
+    "Read-only UI baseline; no import/edit/save actions were performed in this script.",
+    "The isolated copy binary was rebuilt with --remote-debugging-port=9222 for testing only."
+  ]
+}

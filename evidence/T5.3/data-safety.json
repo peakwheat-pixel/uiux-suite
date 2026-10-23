@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.3.3",
+  "evidence_id": "EV-T5.3-DATA-SAFETY",
+  "kind": "tool_log",
+  "runtime_level": "OS_INTEGRATION",
+  "generated_at": "2026-10-23T23:29:40.524920+00:00",
+  "source_unchanged": {
+    "head": "349e61faff5f93067af5d4ce2d9e394e0d665b8c",
+    "dirty": true,
+    "unchanged_vs_baseline": true,
+    "files": 62350,
+    "bytes": 16595685848
+  },
+  "isolated_copy": {
+    "path": "G:\\AI\\uiux-workbench-copy",
+    "files": 64982,
+    "bytes": 16776818733,
+    "same_bytes": false
+  },
+  "database": {
+    "path": "C:\\Users\\49745\\AppData\\Roaming\\com.newmanga.m2rc1.desktop\\data\\library.db",
+    "exists": true,
+    "size": 344064,
+    "sha256": "4fb95ca031d5af0f751963ee72555bee7c59e85b8255d3ee1dd869384d220199",
+    "counts": {
+      "books": 1,
+      "chapters": 1,
+      "pages": 3
+    }
+  },
+  "cancel": {
+    "result": "PASS",
+    "message": "用户取消了文件夹选择。",
+    "page_count_after": 3
+  },
+  "duplicate_policy": {
+    "result": "PASS",
+    "imported": 0,
+    "skipped": 3,
+    "page_count_after": 3
+  },
+  "export": {
+    "result": "FAILED_CLOSED",
+    "codes": [
+      "INVALID_REQUEST",
+      "EXPORT_INPUT_UNAVAILABLE"
+    ],
+    "reason": "pages have no translated artifact; product refused export"
+  },
+  "undo_redo": {
+    "result": "NOT_AVAILABLE",
+    "reason": "no undo model in RC2; region writes gated"
+  },
+  "git_rollback_drill": {
+    "result": "PENDING",
+    "note": "to be executed on isolated copy with a reversible commit/revert"
+  },
+  "generator": {
+    "path": "scripts/collect_t51_t52_evidence.py",
+    "sha256": "2e2cfd53cf54a792b37b3fba1e1d01130953bc1afe97ec68064acd3f59693cf0"
+  },
+  "limitations": [
+    "Export PASS cannot be claimed without a translated page; this is a product-path prerequisite, not a tool failure.",
+    "Library data lives in the packaged default profile for this pilot."
+  ]
+}

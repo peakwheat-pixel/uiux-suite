@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.3.3",
+  "evidence_id": "EV-T5.3-GIT-ROLLBACK",
+  "kind": "tool_log",
+  "runtime_level": "OS_INTEGRATION",
+  "generated_at": "2026-10-23T23:30:18.0646340Z",
+  "repo": "G:\\AI\\uiux-workbench-copy",
+  "file": "apps/desktop/frontend/src/theme/tokens.ts",
+  "before_sha256": "F98796DDA0C18AAD54ACEFBC7CC615767599F3931F59AC28293C1D8474564ECA",
+  "patch": "testdata\\rollback.patch",
+  "patch_sha256": "F96B2F46F899C4787D021FF1F6530394AD05154227370014221DC901A8380CE8",
+  "reverted_sha256": "291EA0E7F15A34C44F09F3030DB88D6A62ADF43F245813DACD0F1E3F6AA01DBD",
+  "restored_sha256": "F98796DDA0C18AAD54ACEFBC7CC615767599F3931F59AC28293C1D8474564ECA",
+  "result": "PASS",
+  "steps": [
+    "save git diff to patch",
+    "git checkout -- file",
+    "hash reverted",
+    "git apply patch",
+    "hash restored"
+  ],
+  "limitations": [
+    "Single-file rollback drill on the isolated copy; the broader working tree retains original user changes."
+  ]
+}

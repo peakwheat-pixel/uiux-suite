@@ -1,0 +1,898 @@
+{
+  "schema_version": "1.3.3",
+  "evidence_id": "EV-T3.4-UIA-PROBE",
+  "kind": "uia_tree",
+  "runtime_level": "NATIVE_UIA",
+  "generated_at": "2026-10-23T22:57:31Z",
+  "window": {
+    "title": "M2-RC1 resource channel runtime",
+    "class_name": "Tauri Window",
+    "process_id": 4760
+  },
+  "element_count": 14,
+  "max_depth": 5,
+  "elements": [
+    {
+      "name": "M2-RC1 resource channel runtime",
+      "control_type": "ControlType.Window",
+      "automation_id": "",
+      "class_name": "Tauri Window",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 26.0,
+        "y": 26.0,
+        "width": 1196.0,
+        "height": 899.0
+      },
+      "patterns": [
+        "WindowPatternIdentifiers.Pattern",
+        "TransformPatternIdentifiers.Pattern"
+      ],
+      "children": [
+        {
+          "name": "",
+          "control_type": "ControlType.Pane",
+          "automation_id": "",
+          "class_name": "WRY_WEBVIEW",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 34.0,
+            "y": 57.0,
+            "width": 1180.0,
+            "height": 860.0
+          },
+          "patterns": null,
+          "children": [
+            {
+              "name": "M2RC1|interactive|deny=5/5|allow=0/0|results=5",
+              "control_type": "ControlType.Pane",
+              "automation_id": "",
+              "class_name": "Chrome_WidgetWin_1",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 34.0,
+                "y": 57.0,
+                "width": 1180.0,
+                "height": 860.0
+              },
+              "patterns": [
+                "ScrollItemPatternIdentifiers.Pattern",
+                "ItemContainerPatternIdentifiers.Pattern"
+              ],
+              "children": [
+                {
+                  "name": "",
+                  "control_type": "ControlType.Pane",
+                  "automation_id": "",
+                  "class_name": "Intermediate D3D Window",
+                  "is_enabled": false,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": 34.0,
+                    "y": 57.0,
+                    "width": 1180.0,
+                    "height": 860.0
+                  },
+                  "patterns": null,
+                  "children": []
+                },
+                {
+                  "name": "M2RC1|interactive|deny=5/5|allow=0/0|results=5 - Web 内容",
+                  "control_type": "ControlType.Pane",
+                  "automation_id": "",
+                  "class_name": "RootView",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": 34.0,
+                    "y": 57.0,
+                    "width": 1180.0,
+                    "height": 860.0
+                  },
+                  "patterns": "ScrollItemPatternIdentifiers.Pattern",
+                  "children": [
+                    {
+                      "name": "",
+                      "control_type": "ControlType.Pane",
+                      "automation_id": "",
+                      "class_name": "NonClientView",
+                      "is_enabled": true,
+                      "is_offscreen": false,
+                      "is_keyboard_focusable": false,
+                      "bounds": {
+                        "x": 34.0,
+                        "y": 57.0,
+                        "width": 1180.0,
+                        "height": 860.0
+                      },
+                      "patterns": "ScrollItemPatternIdentifiers.Pattern",
+                      "children": [
+                        {
+                          "name": "",
+                          "control_type": "ControlType.Pane",
+                          "automation_id": "",
+                          "class_name": "EmbeddedBrowserTabRootView",
+                          "is_enabled": true,
+                          "is_offscreen": false,
+                          "is_keyboard_focusable": true,
+                          "bounds": {
+                            "x": "Infinity",
+                            "y": "Infinity",
+                            "width": "-Infinity",
+                            "height": "-Infinity"
+                          },
+                          "patterns": "ScrollItemPatternIdentifiers.Pattern",
+                          "children": []
+                        },
+                        {
+                          "name": "",
+                          "control_type": "ControlType.Pane",
+                          "automation_id": "",
+                          "class_name": "NativeFrameView",
+                          "is_enabled": true,
+                          "is_offscreen": false,
+                          "is_keyboard_focusable": false,
+                          "bounds": {
+                            "x": 34.0,
+                            "y": 57.0,
+                            "width": 1180.0,
+                            "height": 860.0
+                          },
+                          "patterns": "ScrollItemPatternIdentifiers.Pattern",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "M2-RC1 resource channel runtime",
+          "control_type": "ControlType.TitleBar",
+          "automation_id": "TitleBar",
+          "class_name": "",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 34.0,
+            "y": 34.0,
+            "width": 1180.0,
+            "height": 23.0
+          },
+          "patterns": null,
+          "children": [
+            {
+              "name": "系统菜单栏",
+              "control_type": "ControlType.MenuBar",
+              "automation_id": "SystemMenuBar",
+              "class_name": "",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": 34.0,
+                "y": 34.0,
+                "width": 22.0,
+                "height": 22.0
+              },
+              "patterns": null,
+              "children": [
+                {
+                  "name": "系统",
+                  "control_type": "ControlType.MenuItem",
+                  "automation_id": "Item 1",
+                  "class_name": "",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": true,
+                  "bounds": {
+                    "x": 34.0,
+                    "y": 34.0,
+                    "width": 22.0,
+                    "height": 22.0
+                  },
+                  "patterns": "ExpandCollapsePatternIdentifiers.Pattern",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "最小化",
+              "control_type": "ControlType.Button",
+              "automation_id": "Minimize",
+              "class_name": "",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 1075.0,
+                "y": 27.0,
+                "width": 47.0,
+                "height": 30.0
+              },
+              "patterns": "InvokePatternIdentifiers.Pattern",
+              "children": []
+            },
+            {
+              "name": "最大化",
+              "control_type": "ControlType.Button",
+              "automation_id": "Maximize",
+              "class_name": "",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 1122.0,
+                "y": 27.0,
+                "width": 46.0,
+                "height": 30.0
+              },
+              "patterns": "InvokePatternIdentifiers.Pattern",
+              "children": []
+            },
+            {
+              "name": "关闭",
+              "control_type": "ControlType.Button",
+              "automation_id": "Close",
+              "class_name": "",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 1168.0,
+                "y": 27.0,
+                "width": 47.0,
+                "height": 30.0
+              },
+              "patterns": "InvokePatternIdentifiers.Pattern",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "automation_id": "",
+      "class_name": "WRY_WEBVIEW",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 34.0,
+        "y": 57.0,
+        "width": 1180.0,
+        "height": 860.0
+      },
+      "patterns": null,
+      "children": [
+        {
+          "name": "M2RC1|interactive|deny=5/5|allow=0/0|results=5",
+          "control_type": "ControlType.Pane",
+          "automation_id": "",
+          "class_name": "Chrome_WidgetWin_1",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 34.0,
+            "y": 57.0,
+            "width": 1180.0,
+            "height": 860.0
+          },
+          "patterns": [
+            "ScrollItemPatternIdentifiers.Pattern",
+            "ItemContainerPatternIdentifiers.Pattern"
+          ],
+          "children": [
+            {
+              "name": "",
+              "control_type": "ControlType.Pane",
+              "automation_id": "",
+              "class_name": "Intermediate D3D Window",
+              "is_enabled": false,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 34.0,
+                "y": 57.0,
+                "width": 1180.0,
+                "height": 860.0
+              },
+              "patterns": null,
+              "children": []
+            },
+            {
+              "name": "M2RC1|interactive|deny=5/5|allow=0/0|results=5 - Web 内容",
+              "control_type": "ControlType.Pane",
+              "automation_id": "",
+              "class_name": "RootView",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 34.0,
+                "y": 57.0,
+                "width": 1180.0,
+                "height": 860.0
+              },
+              "patterns": "ScrollItemPatternIdentifiers.Pattern",
+              "children": [
+                {
+                  "name": "",
+                  "control_type": "ControlType.Pane",
+                  "automation_id": "",
+                  "class_name": "NonClientView",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": 34.0,
+                    "y": 57.0,
+                    "width": 1180.0,
+                    "height": 860.0
+                  },
+                  "patterns": "ScrollItemPatternIdentifiers.Pattern",
+                  "children": [
+                    {
+                      "name": "",
+                      "control_type": "ControlType.Pane",
+                      "automation_id": "",
+                      "class_name": "EmbeddedBrowserTabRootView",
+                      "is_enabled": true,
+                      "is_offscreen": false,
+                      "is_keyboard_focusable": true,
+                      "bounds": {
+                        "x": "Infinity",
+                        "y": "Infinity",
+                        "width": "-Infinity",
+                        "height": "-Infinity"
+                      },
+                      "patterns": "ScrollItemPatternIdentifiers.Pattern",
+                      "children": []
+                    },
+                    {
+                      "name": "",
+                      "control_type": "ControlType.Pane",
+                      "automation_id": "",
+                      "class_name": "NativeFrameView",
+                      "is_enabled": true,
+                      "is_offscreen": false,
+                      "is_keyboard_focusable": false,
+                      "bounds": {
+                        "x": 34.0,
+                        "y": 57.0,
+                        "width": 1180.0,
+                        "height": 860.0
+                      },
+                      "patterns": "ScrollItemPatternIdentifiers.Pattern",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "M2RC1|interactive|deny=5/5|allow=0/0|results=5",
+      "control_type": "ControlType.Pane",
+      "automation_id": "",
+      "class_name": "Chrome_WidgetWin_1",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 34.0,
+        "y": 57.0,
+        "width": 1180.0,
+        "height": 860.0
+      },
+      "patterns": [
+        "ScrollItemPatternIdentifiers.Pattern",
+        "ItemContainerPatternIdentifiers.Pattern"
+      ],
+      "children": [
+        {
+          "name": "",
+          "control_type": "ControlType.Pane",
+          "automation_id": "",
+          "class_name": "Intermediate D3D Window",
+          "is_enabled": false,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 34.0,
+            "y": 57.0,
+            "width": 1180.0,
+            "height": 860.0
+          },
+          "patterns": null,
+          "children": []
+        },
+        {
+          "name": "M2RC1|interactive|deny=5/5|allow=0/0|results=5 - Web 内容",
+          "control_type": "ControlType.Pane",
+          "automation_id": "",
+          "class_name": "RootView",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 34.0,
+            "y": 57.0,
+            "width": 1180.0,
+            "height": 860.0
+          },
+          "patterns": "ScrollItemPatternIdentifiers.Pattern",
+          "children": [
+            {
+              "name": "",
+              "control_type": "ControlType.Pane",
+              "automation_id": "",
+              "class_name": "NonClientView",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 34.0,
+                "y": 57.0,
+                "width": 1180.0,
+                "height": 860.0
+              },
+              "patterns": "ScrollItemPatternIdentifiers.Pattern",
+              "children": [
+                {
+                  "name": "",
+                  "control_type": "ControlType.Pane",
+                  "automation_id": "",
+                  "class_name": "EmbeddedBrowserTabRootView",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": true,
+                  "bounds": {
+                    "x": "Infinity",
+                    "y": "Infinity",
+                    "width": "-Infinity",
+                    "height": "-Infinity"
+                  },
+                  "patterns": "ScrollItemPatternIdentifiers.Pattern",
+                  "children": []
+                },
+                {
+                  "name": "",
+                  "control_type": "ControlType.Pane",
+                  "automation_id": "",
+                  "class_name": "NativeFrameView",
+                  "is_enabled": true,
+                  "is_offscreen": false,
+                  "is_keyboard_focusable": false,
+                  "bounds": {
+                    "x": 34.0,
+                    "y": 57.0,
+                    "width": 1180.0,
+                    "height": 860.0
+                  },
+                  "patterns": "ScrollItemPatternIdentifiers.Pattern",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "automation_id": "",
+      "class_name": "Intermediate D3D Window",
+      "is_enabled": false,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 34.0,
+        "y": 57.0,
+        "width": 1180.0,
+        "height": 860.0
+      },
+      "patterns": null,
+      "children": []
+    },
+    {
+      "name": "M2RC1|interactive|deny=5/5|allow=0/0|results=5 - Web 内容",
+      "control_type": "ControlType.Pane",
+      "automation_id": "",
+      "class_name": "RootView",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 34.0,
+        "y": 57.0,
+        "width": 1180.0,
+        "height": 860.0
+      },
+      "patterns": "ScrollItemPatternIdentifiers.Pattern",
+      "children": [
+        {
+          "name": "",
+          "control_type": "ControlType.Pane",
+          "automation_id": "",
+          "class_name": "NonClientView",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 34.0,
+            "y": 57.0,
+            "width": 1180.0,
+            "height": 860.0
+          },
+          "patterns": "ScrollItemPatternIdentifiers.Pattern",
+          "children": [
+            {
+              "name": "",
+              "control_type": "ControlType.Pane",
+              "automation_id": "",
+              "class_name": "EmbeddedBrowserTabRootView",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": "Infinity",
+                "y": "Infinity",
+                "width": "-Infinity",
+                "height": "-Infinity"
+              },
+              "patterns": "ScrollItemPatternIdentifiers.Pattern",
+              "children": []
+            },
+            {
+              "name": "",
+              "control_type": "ControlType.Pane",
+              "automation_id": "",
+              "class_name": "NativeFrameView",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": false,
+              "bounds": {
+                "x": 34.0,
+                "y": 57.0,
+                "width": 1180.0,
+                "height": 860.0
+              },
+              "patterns": "ScrollItemPatternIdentifiers.Pattern",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "automation_id": "",
+      "class_name": "NonClientView",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 34.0,
+        "y": 57.0,
+        "width": 1180.0,
+        "height": 860.0
+      },
+      "patterns": "ScrollItemPatternIdentifiers.Pattern",
+      "children": [
+        {
+          "name": "",
+          "control_type": "ControlType.Pane",
+          "automation_id": "",
+          "class_name": "EmbeddedBrowserTabRootView",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": "Infinity",
+            "y": "Infinity",
+            "width": "-Infinity",
+            "height": "-Infinity"
+          },
+          "patterns": "ScrollItemPatternIdentifiers.Pattern",
+          "children": []
+        },
+        {
+          "name": "",
+          "control_type": "ControlType.Pane",
+          "automation_id": "",
+          "class_name": "NativeFrameView",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 34.0,
+            "y": 57.0,
+            "width": 1180.0,
+            "height": 860.0
+          },
+          "patterns": "ScrollItemPatternIdentifiers.Pattern",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "automation_id": "",
+      "class_name": "EmbeddedBrowserTabRootView",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": "Infinity",
+        "y": "Infinity",
+        "width": "-Infinity",
+        "height": "-Infinity"
+      },
+      "patterns": "ScrollItemPatternIdentifiers.Pattern",
+      "children": []
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "automation_id": "",
+      "class_name": "NativeFrameView",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 34.0,
+        "y": 57.0,
+        "width": 1180.0,
+        "height": 860.0
+      },
+      "patterns": "ScrollItemPatternIdentifiers.Pattern",
+      "children": []
+    },
+    {
+      "name": "M2-RC1 resource channel runtime",
+      "control_type": "ControlType.TitleBar",
+      "automation_id": "TitleBar",
+      "class_name": "",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 34.0,
+        "y": 34.0,
+        "width": 1180.0,
+        "height": 23.0
+      },
+      "patterns": null,
+      "children": [
+        {
+          "name": "系统菜单栏",
+          "control_type": "ControlType.MenuBar",
+          "automation_id": "SystemMenuBar",
+          "class_name": "",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": 34.0,
+            "y": 34.0,
+            "width": 22.0,
+            "height": 22.0
+          },
+          "patterns": null,
+          "children": [
+            {
+              "name": "系统",
+              "control_type": "ControlType.MenuItem",
+              "automation_id": "Item 1",
+              "class_name": "",
+              "is_enabled": true,
+              "is_offscreen": false,
+              "is_keyboard_focusable": true,
+              "bounds": {
+                "x": 34.0,
+                "y": 34.0,
+                "width": 22.0,
+                "height": 22.0
+              },
+              "patterns": "ExpandCollapsePatternIdentifiers.Pattern",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "最小化",
+          "control_type": "ControlType.Button",
+          "automation_id": "Minimize",
+          "class_name": "",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 1075.0,
+            "y": 27.0,
+            "width": 47.0,
+            "height": 30.0
+          },
+          "patterns": "InvokePatternIdentifiers.Pattern",
+          "children": []
+        },
+        {
+          "name": "最大化",
+          "control_type": "ControlType.Button",
+          "automation_id": "Maximize",
+          "class_name": "",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 1122.0,
+            "y": 27.0,
+            "width": 46.0,
+            "height": 30.0
+          },
+          "patterns": "InvokePatternIdentifiers.Pattern",
+          "children": []
+        },
+        {
+          "name": "关闭",
+          "control_type": "ControlType.Button",
+          "automation_id": "Close",
+          "class_name": "",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": false,
+          "bounds": {
+            "x": 1168.0,
+            "y": 27.0,
+            "width": 47.0,
+            "height": 30.0
+          },
+          "patterns": "InvokePatternIdentifiers.Pattern",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "系统菜单栏",
+      "control_type": "ControlType.MenuBar",
+      "automation_id": "SystemMenuBar",
+      "class_name": "",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 34.0,
+        "y": 34.0,
+        "width": 22.0,
+        "height": 22.0
+      },
+      "patterns": null,
+      "children": [
+        {
+          "name": "系统",
+          "control_type": "ControlType.MenuItem",
+          "automation_id": "Item 1",
+          "class_name": "",
+          "is_enabled": true,
+          "is_offscreen": false,
+          "is_keyboard_focusable": true,
+          "bounds": {
+            "x": 34.0,
+            "y": 34.0,
+            "width": 22.0,
+            "height": 22.0
+          },
+          "patterns": "ExpandCollapsePatternIdentifiers.Pattern",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "系统",
+      "control_type": "ControlType.MenuItem",
+      "automation_id": "Item 1",
+      "class_name": "",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": true,
+      "bounds": {
+        "x": 34.0,
+        "y": 34.0,
+        "width": 22.0,
+        "height": 22.0
+      },
+      "patterns": "ExpandCollapsePatternIdentifiers.Pattern",
+      "children": []
+    },
+    {
+      "name": "最小化",
+      "control_type": "ControlType.Button",
+      "automation_id": "Minimize",
+      "class_name": "",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 1075.0,
+        "y": 27.0,
+        "width": 47.0,
+        "height": 30.0
+      },
+      "patterns": "InvokePatternIdentifiers.Pattern",
+      "children": []
+    },
+    {
+      "name": "最大化",
+      "control_type": "ControlType.Button",
+      "automation_id": "Maximize",
+      "class_name": "",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 1122.0,
+        "y": 27.0,
+        "width": 46.0,
+        "height": 30.0
+      },
+      "patterns": "InvokePatternIdentifiers.Pattern",
+      "children": []
+    },
+    {
+      "name": "关闭",
+      "control_type": "ControlType.Button",
+      "automation_id": "Close",
+      "class_name": "",
+      "is_enabled": true,
+      "is_offscreen": false,
+      "is_keyboard_focusable": false,
+      "bounds": {
+        "x": 1168.0,
+        "y": 27.0,
+        "width": 47.0,
+        "height": 30.0
+      },
+      "patterns": "InvokePatternIdentifiers.Pattern",
+      "children": []
+    }
+  ],
+  "accessibility_summary": {
+    "interactive_count": 4,
+    "missing_name_count": 0,
+    "unnamed_edit_count": 0,
+    "zero_size_interactive_count": 0
+  },
+  "producer": {
+    "script": "scripts/collect_uia_evidence.ps1",
+    "script_sha256": "ec4a25d9d1c477157498955675f88b19127c9d98b4d36d5d1bde20560a42f695",
+    "host": "HOME-MY",
+    "os": "Microsoft Windows NT 10.0.26300.0",
+    "read_only": true
+  },
+  "limitations": [
+    "Read-only UIA control-view snapshot; no click-through or focus-order verification.",
+    "One Windows 11 Notepad (WinUI 3) window, UIA control view only; click-through, focus order and WPF/Qt/Win32-classic paths are unverified."
+  ]
+}

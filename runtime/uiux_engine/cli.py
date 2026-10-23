@@ -34,7 +34,14 @@ STATUS_EXIT = {
 
 
 def _emit(payload: dict[str, Any]) -> None:
-    print(json.dumps(payload, ensure_ascii=False, indent=2))
+    text = json.dumps(payload, ensure_ascii=False, indent=2)
+    # Windows hosted runners default stdout to a legacy code page; the CLI
+    # contract is UTF-8 JSON and must not depend on the caller's console.
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except (AttributeError, OSError):
+        pass
+    print(text)
 
 
 def _invalid(errors: list[str], context: str = "") -> int:

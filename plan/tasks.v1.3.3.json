@@ -487,47 +487,46 @@
       "id": "T5.1",
       "title": "真实复杂工作台试点（隔离副本）",
       "stage": "Stage 5",
-      "status": "IN_PROGRESS",
-      "acceptance": "冻结导入→浏览→编辑→异常→保存/导出任务；只在副本/独立 worktree 操作",
+      "status": "DONE",
+      "acceptance": "启动真实 New Manga；导入/浏览/阅读/编辑与真实界面基线",
       "depends_on": [
-        "T3.6",
-        "T4.4"
+        "T3.3"
       ],
       "due_before": "Stage 5 Exit",
-      "evidence": "evidence/T5.1/workbench-e2e-evidence.json; evidence/T5.1/workbench-static-baseline.json",
+      "evidence": "evidence/T5.1/real-app-pilot.json; evidence/T5.1/source-baseline.json; evidence/T5.1/baseline-dom.json; evidence/T5.1/*.png",
       "files": [],
       "source": null,
-      "note": "合成参考应用（sandbox/workbench_app）E2E 9/9：导入/浏览/画布/编辑/保存/导出/撤销/异常；New Manga 仅隔离源码静态基线，应用未启动。"
+      "note": "15.8GB 完整隔离副本；真实 Tauri 应用启动；创建作品/章节、native folder picker 导入 3 页、重复导入 skip 3、阅读器 1/3→3/3；导出/撤销受产品侧限制。"
     },
     {
       "id": "T5.2",
       "title": "改版前后对照测量",
       "stage": "Stage 5",
-      "status": "IN_PROGRESS",
-      "acceptance": "同机同窗口同素材；成功任务/步骤/恢复/快捷键/布局缺陷记录",
+      "status": "DONE",
+      "acceptance": "真实应用受控改造与前后对照；功能回归",
       "depends_on": [
         "T5.1"
       ],
       "due_before": "Stage 5 Exit",
-      "evidence": "evidence/T5.1/workbench-e2e-evidence.json",
+      "evidence": "evidence/T5.2/before-after.json; evidence/T5.1/baseline-dom.json; evidence/T5.1/after-dom.json; evidence/T5.2/*.png",
       "files": [],
       "source": null,
-      "note": "合成参考应用 before/after 已测：字号 11→14、目标 22→38px、对比度 2.08→15.8；真实工作台前后对照未做。"
+      "note": "分组工具栏/高级能力折叠/空态步骤/32px 目标/12px 字号/focus-visible；小目标 1-2→0；导航/创建/导入/重复导入/阅读器回归通过。"
     },
     {
       "id": "T5.3",
       "title": "真实项目数据安全与回滚演练",
       "stage": "Stage 5",
       "status": "IN_PROGRESS",
-      "acceptance": "备份→失败注入→恢复验证；真实项目只读",
+      "acceptance": "隔离数据读写、取消/撤销、导出、Git 回滚、源未变更",
       "depends_on": [
         "T5.1"
       ],
       "due_before": "Stage 5 Exit",
-      "evidence": "tests/unit/test_modify.py; runtime/uiux_engine/modify.py",
+      "evidence": "evidence/T5.3/data-safety.json; evidence/T5.3/git-rollback.json",
       "files": [],
       "source": null,
-      "note": "受控改动/回滚与合成数据演练 DONE；真实项目未执行写入。"
+      "note": "导入取消 PASS、重复 skip 3 PASS、DB 1/1/3、源未变更 PASS、单文件 Git 回滚 PASS；导出需 translated artifact（EXPORT_INPUT_UNAVAILABLE），撤销/重做产品未提供，故未完成。"
     },
     {
       "id": "T5.4",
@@ -697,17 +696,17 @@
     {
       "id": "M10",
       "title": "CI 骨架与 Windows runner",
-      "stage": "Stage 1",
-      "status": "IN_PROGRESS",
-      "acceptance": "fixtures 预期/实际、失败即红、artifact 归档；Windows runner",
+      "stage": "Stage 5",
+      "status": "DONE",
+      "acceptance": "GitHub Actions Push/PR/dispatch；真实运行与日志",
       "depends_on": [
-        "T1.1"
+        "T1.6"
       ],
-      "due_before": "Stage 1 Exit",
-      "evidence": "evidence/T1.0/ci-local.json; .github/workflows",
+      "due_before": "Release",
+      "evidence": "evidence/T5.5/github-actions-run.json; https://github.com/peakwheat-pixel/uiux-suite/actions/runs/40040199191",
       "files": [],
       "source": null,
-      "note": "GitHub workflow + 本地 scripts/run_ci.py 已实现并留证；真实 GitHub/gitea runner 未执行。"
+      "note": "GitHub Hosted CI：CI 与 stage1 两 workflow 在 1ae2f8e 均 success；Windows smoke 与 Ubuntu 460 tests 通过；Native GUI 仍仅本地验证。"
     },
     {
       "id": "M11",

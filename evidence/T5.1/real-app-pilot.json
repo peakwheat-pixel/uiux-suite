@@ -1,0 +1,180 @@
+{
+  "schema_version": "1.3.3",
+  "evidence_id": "EV-T5.1-REAL-APP-PILOT",
+  "kind": "tool_log",
+  "runtime_level": "NATIVE_APP",
+  "generated_at": "2026-10-23T23:29:40.524920+00:00",
+  "source": {
+    "path": "G:\\CODEX\\New Manga",
+    "git_head": "349e61faff5f93067af5d4ce2d9e394e0d665b8c",
+    "dirty": true,
+    "unchanged": true,
+    "files": 62350,
+    "bytes": 16595685848
+  },
+  "isolated_copy": {
+    "path": "G:\\AI\\uiux-workbench-copy",
+    "files": 64982,
+    "bytes": 16776818733,
+    "same_file_count": false,
+    "same_bytes": false,
+    "app_exe_sha256": "8730d15478d84ee8ed38b7d62eef7d048af98778242654d13b39e95734b4740b",
+    "git_status_sample": [
+      "D .codex/skills/ask-matt",
+      " D .codex/skills/grill-me-2",
+      " D .codex/skills/grill-with-docs-2",
+      " D .codex/skills/handoff-2",
+      " D .codex/skills/manage-skills",
+      " D .codex/skills/vibehub",
+      " D .dsh/skills/ask-matt",
+      " D .dsh/skills/grill-me-2",
+      " D .dsh/skills/grill-with-docs-2",
+      " D .dsh/skills/handoff-2",
+      " D .dsh/skills/manage-skills",
+      " D .dsh/skills/vibehub",
+      " D .gemini/antigravity/skills/ask-matt",
+      " D .gemini/antigravity/skills/grill-me-2",
+      " D .gemini/antigravity/skills/grill-with-docs-2",
+      " D .gemini/antigravity/skills/handoff-2",
+      " D .gemini/antigravity/skills/manage-skills",
+      " D .gemini/antigravity/skills/vibehub",
+      " D .qoder/skills/ask-matt",
+      " D .qoder/skills/grill-me-2"
+    ]
+  },
+  "launch": {
+    "title": "M2-RC1 resource channel runtime",
+    "mode": "packaged core-sidecar",
+    "cdp": "WebView2 --remote-debugging-port=9222 (test-only config)",
+    "uia_elements": 14,
+    "dom_page_text_chars": 153
+  },
+  "baseline": {
+    "pages": {
+      "bookshelf": {
+        "buttons": 13,
+        "too_small": 0,
+        "min_font": 10,
+        "overflow": false,
+        "focus_outline": "rgb(79, 107, 237) none 3px"
+      },
+      "workbench": {
+        "buttons": 29,
+        "too_small": 1,
+        "min_font": 10,
+        "overflow": false,
+        "focus_outline": "rgb(107, 114, 128) none 3px"
+      },
+      "reader": {
+        "buttons": 10,
+        "too_small": 2,
+        "min_font": 10,
+        "overflow": false,
+        "focus_outline": "rgb(107, 114, 128) none 3px"
+      },
+      "settings": {
+        "buttons": 19,
+        "too_small": 0,
+        "min_font": 10,
+        "overflow": false,
+        "focus_outline": "rgb(107, 114, 128) none 3px"
+      }
+    },
+    "console_errors": [],
+    "screenshots": [
+      {
+        "path": "T5.1/baseline-bookshelf.png",
+        "sha256": "0669b2272e1ea8cefff486b8ef3711a3994b65be5e20bd734bf8570e465f5938",
+        "size": 37808
+      },
+      {
+        "path": "T5.1/baseline-workbench.png",
+        "sha256": "b96a1788cee8571308fb880ab84080c7746f67b34267402ab79f7b268bc08586",
+        "size": 68961
+      },
+      {
+        "path": "T5.1/baseline-reader.png",
+        "sha256": "5f017a558299848eeab7f3da3e3651d4bec1c44327397f97b927d556356762cf",
+        "size": 27008
+      },
+      {
+        "path": "T5.1/baseline-settings.png",
+        "sha256": "c6ab58c9c26f5a32fbdd1dad7898fece4c7b96de7fdd469c68a5123a202a30e8",
+        "size": 61612
+      }
+    ]
+  },
+  "real_flows": {
+    "create_book": {
+      "title": "DSH 娴嬭瘯浣滃搧",
+      "note": "CJK title displayed mojibake in UI; underlying IPC stored the same string"
+    },
+    "create_chapter": {
+      "chapter": "Chapter 1",
+      "chapter_id": "89a26b829f824bb09005a71e2886df8f"
+    },
+    "import_folder": {
+      "folder": "testdata/manga-demo/ch01",
+      "imported": 3,
+      "skipped": 0,
+      "rejected": 0,
+      "book_page_count": 3,
+      "native_picker": "UIA folder picker, path set via ValuePattern"
+    },
+    "duplicate_import": {
+      "imported": 0,
+      "skipped": 3,
+      "rejected": 0,
+      "book_page_count": 3
+    },
+    "reader": {
+      "start": "1 / 3",
+      "after_next": "2 / 3",
+      "after_next_2": "3 / 3",
+      "image_loaded": true
+    },
+    "export": {
+      "attempted_formats": [
+        "png",
+        "zip"
+      ],
+      "result": "FAILED",
+      "codes": [
+        "INVALID_REQUEST",
+        "EXPORT_INPUT_UNAVAILABLE"
+      ],
+      "reason": "export requires translated_path/artifact; pages are unprocessed in this pilot"
+    },
+    "undo_redo": {
+      "result": "NOT_AVAILABLE",
+      "reason": "RC2 exposes no undo/redo model; region writes are gated GAP-G9/G12/G13"
+    }
+  },
+  "screenshots": [
+    {
+      "path": "T5.1/real-bookshelf-with-data.png",
+      "sha256": "866637f3c37f5c6845190ac9f4c523bcc12cb402b2abb6dfe0e06ba9ef18ca93",
+      "size": 44912
+    },
+    {
+      "path": "T5.1/real-reader-page1.png",
+      "sha256": "5a97cbc29207cc8289e7fbb0a1cf216616664019ad619f0893fb033b368ebebe",
+      "size": 23110
+    },
+    {
+      "path": "T5.2/after-workbench-real.png",
+      "sha256": "4eae579bde6a010c70465ddc31a462e32301f365971568389df09ba2e67a2a46",
+      "size": 77572
+    }
+  ],
+  "generator": {
+    "path": "scripts/collect_t51_t52_evidence.py",
+    "sha256": "2e2cfd53cf54a792b37b3fba1e1d01130953bc1afe97ec68064acd3f59693cf0"
+  },
+  "limitations": [
+    "App data (library.db) lives in the packaged default profile; the copy itself is isolated but the profile was not fully isolated.",
+    "The binary was rebuilt in the isolated copy with a CDP test flag; production package is unchanged.",
+    "Export and undo/redo were not accepted by the product path; recorded as limitations, not PASS.",
+    "This is one synthetic 3-page title, not production data."
+  ]
+}
