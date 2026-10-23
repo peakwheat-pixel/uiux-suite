@@ -26,12 +26,12 @@
 | T2.4 | Stage 2 | IN_PROGRESS | Stage 2 Exit | T0.5 | 离线知识库消费接口与合规来源 | knowledge index schema；来源/许可/checksum 可核查；无许可则自建量表 |
 | T2.5 | Stage 2 | DONE | Stage 2 Exit | T2.2, T2.3 | design-only 与 prototype（≥2 方案比较） | 两套可比较原型与取舍证据；不先写生产代码 |
 | T2.6 | Stage 2 | IN_PROGRESS | Stage 2 Exit | T2.3 | 设计系统权威与存量组件采纳/漂移检测 | brownfield 采纳流程；token drift 检查；冲突优先级 |
-| T3.1 | Stage 3 | TODO | Stage 3 Exit | T2.5 | 受控改造与 G4 范围校验 | 改动在 write scope 内；可回退；G4 证据完整 |
-| T3.2 | Stage 3 | TODO | Stage 3 Exit | T3.1 | Tauri .exe + WDIO Native IPC 验证 | 至少一个非 Mock Rust IPC 场景；驱动握手与权限记录 |
-| T3.3 | Stage 3 | TODO | Stage 3 Exit | T3.1 | PySide6 Windows Native QPA 与 DPI 验证 | 100/125/150% DPI、中文字体、分栏与焦点 |
-| T3.4 | Stage 3 | TODO | Stage 3 Exit | T3.2, T3.3 | OS 集成测试（原生对话框/菜单） | 隔离测试环境；UIA 优先；物理输入默认禁用；TOCTOU 说明 |
-| T3.5 | Stage 3 | TODO | Stage 3 Exit | T3.1 | 证据生命周期、脱敏与 Vault 退化验证 | 删除 Vault 后不得重新签发 PASS；脱敏后扫描；保留期策略 |
-| T3.6 | Stage 3 | TODO | Stage 3 Exit | T3.4 | 独立审查隔离验证 | 自报 session 不能签发独立 PASS；隔离证明与 reviewed_head 绑定 |
+| T3.1 | Stage 3 | DONE | Stage 3 Exit | T2.5 | 受控改造与 G4 范围校验 | 改动在 write scope 内；可回退；G4 证据完整 |
+| T3.2 | Stage 3 | IN_PROGRESS | Stage 3 Exit | T3.1 | Tauri .exe + WDIO Native IPC 验证 | 至少一个非 Mock Rust IPC 场景；驱动握手与权限记录 |
+| T3.3 | Stage 3 | IN_PROGRESS | Stage 3 Exit | T3.1 | PySide6 Windows Native QPA 与 DPI 验证 | 100/125/150% DPI、中文字体、分栏与焦点 |
+| T3.4 | Stage 3 | IN_PROGRESS | Stage 3 Exit | T3.2, T3.3 | OS 集成测试（原生对话框/菜单） | 隔离测试环境；UIA 优先；物理输入默认禁用；TOCTOU 说明 |
+| T3.5 | Stage 3 | DONE | Stage 3 Exit | T3.1 | 证据生命周期、脱敏与 Vault 退化验证 | 删除 Vault 后不得重新签发 PASS；脱敏后扫描；保留期策略 |
+| T3.6 | Stage 3 | DONE | Stage 3 Exit | T3.4 | 独立审查隔离验证 | 自报 session 不能签发独立 PASS；隔离证明与 reviewed_head 绑定 |
 | T4.1 | Stage 4 | TODO | Stage 4 Exit | T0.3 | DSH 宿主兼容实测 | 两入口发现/脚本执行/GUI/MCP/断点恢复逐项记录 |
 | T4.2 | Stage 4 | TODO | Stage 4 Exit | T4.1 | 其他 Agent 兼容矩阵与降级入口 | Codex/Claude/ZCode/Antigravity/Qoder 未测标 UNVERIFIED |
 | T4.3 | Stage 4 | TODO | Stage 4 Exit | T0.1 | 被动外部调用契约（不依赖外部编排器） | 外部 caller 传 task_id/role/artifact_dir 时不改其分支/证据治理；无外部系统时核心正常 |
@@ -54,7 +54,7 @@
 | M11 | Stage 2 | IN_PROGRESS | Stage 2 Exit | T0.5 | 第三方知识来源、许可与消费接口 | 来源锁 commit/许可；knowledge index；无法锁许可则自建 |
 | M12 | Stage 2 | IN_PROGRESS | Stage 2 Exit | T2.3 | 存量设计系统采纳与 token drift | brownfield 流程；drift 检查器；冲突优先级 |
 | M13 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T1.0 | 靶场 GT 独立标注与阻断种子 | 标注流程与分歧仲裁；阻断种子清单；零误判硬 FAIL |
-| M14 | Stage 3 | TODO | Stage 3 Exit | T0.1 | P0–P3 分级与可观测安全指标 | qa-report schema；数据写入 0 次可证；Release 判定 |
+| M14 | Stage 3 | IN_PROGRESS | Stage 3 Exit | T0.1 | P0–P3 分级与可观测安全指标 | qa-report schema；数据写入 0 次可证；Release 判定 |
 | M15 | Stage 0 | DONE | T0.1 | — | DAG 循环与遗漏修复 | T1.0 作为共同上游；DAG 补齐 T0.4/T0.6/T1.7/T2.4/T2.6；编号修正 |
 | M16 | Stage 5 | TODO | Stage 5 Exit | T5.5 | 附录命令一致性 | 统一 python 解释器与引号；附录拆分 Stage 0/1 与 2/3 |
 | M17 | Stage 0 | DONE | T0.2 | T0.1 | 非 Git 快照与回退 | dir_digest + 备份副本 + 差异哈希；回滚路径 |
@@ -73,6 +73,6 @@
 | 状态 | 数量 |
 |---|---|
 | BLOCKED | 0 |
-| DONE | 25 |
-| IN_PROGRESS | 11 |
-| TODO | 25 |
+| DONE | 28 |
+| IN_PROGRESS | 15 |
+| TODO | 18 |

@@ -169,7 +169,7 @@ TASKS: list[dict] = [
     task("M15", "DAG 循环与遗漏修复", "Stage 0", "DONE", "T1.0 作为共同上游；DAG 补齐 T0.4/T0.6/T1.7/T2.4/T2.6；编号修正", depends_on=[], due_before="T0.1", evidence="SPEC_V1.3.3.md §13", source="MAJOR"),
     task("M16", "附录命令一致性", "Stage 5", "TODO", "统一 python 解释器与引号；附录拆分 Stage 0/1 与 2/3", depends_on=["T5.5"], due_before="Stage 5 Exit", source="MAJOR"),
     task("M17", "非 Git 快照与回退", "Stage 0", "DONE", "dir_digest + 备份副本 + 差异哈希；回滚路径", depends_on=["T0.1"], due_before="T0.2", evidence="runtime/uiux_engine/snapshot.py; tests/unit/test_snapshot.py", source="MAJOR", note="snapshot/diff/backup 已实现；CLI 支持 --out/--backup/--diff；回滚=备份副本拷回（显式运维命令）。"),
-    task("M18", "无障碍维度与 Rule ID", "Stage 1", "IN_PROGRESS", "accessible name/键盘/target size/ARIA-UIA 语义规则", depends_on=["T1.0"], due_before="Stage 1 Exit", evidence="knowledge/rules/catalog.v1.0.json; evidence/T3.4/uia-probe.json; runtime/uiux_engine/uia.py", source="MAJOR", note="A11Y-001..004 规则与静态子集 DONE；真实 Win32 UIA 只读树已采；WinUI/WPF/Qt 与动态键盘待后续。")),
+    task("M18", "无障碍维度与 Rule ID", "Stage 1", "IN_PROGRESS", "accessible name/键盘/target size/ARIA-UIA 语义规则", depends_on=["T1.0"], due_before="Stage 1 Exit", evidence="knowledge/rules/catalog.v1.0.json; evidence/T3.4/uia-probe.json; runtime/uiux_engine/uia.py", source="MAJOR", note="A11Y-001..004 规则与静态子集 DONE；真实 Win32 UIA 只读树已采；WinUI/WPF/Qt 与动态键盘待后续。"),
     # ---------------- Remediation tasks: MINOR ----------------
     task("m1", "Prompt Injection 威胁模型", "Stage 3", "TODO", "项目内容视为不可信输入；提示隔离与拒绝规则", depends_on=["M8"], due_before="Stage 3 Exit", source="MINOR"),
     task("m2", "同模型系统性偏差提示", "Stage 4", "TODO", "独立审查要求不同模型家族或明示风险", depends_on=["T3.6"], due_before="Stage 4 Exit", source="MINOR"),

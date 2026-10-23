@@ -340,22 +340,22 @@
       "id": "T3.1",
       "title": "受控改造与 G4 范围校验",
       "stage": "Stage 3",
-      "status": "TODO",
+      "status": "DONE",
       "acceptance": "改动在 write scope 内；可回退；G4 证据完整",
       "depends_on": [
         "T2.5"
       ],
       "due_before": "Stage 3 Exit",
-      "evidence": null,
+      "evidence": "runtime/uiux_engine/modify.py; tests/unit/test_modify.py; contracts/change-plan.v1.3.3.schema.json",
       "files": [],
       "source": null,
-      "note": null
+      "note": "10 用例：scope/traversal/hash/回退/试运行。"
     },
     {
       "id": "T3.2",
       "title": "Tauri .exe + WDIO Native IPC 验证",
       "stage": "Stage 3",
-      "status": "TODO",
+      "status": "IN_PROGRESS",
       "acceptance": "至少一个非 Mock Rust IPC 场景；驱动握手与权限记录",
       "depends_on": [
         "T3.1"
@@ -364,13 +364,13 @@
       "evidence": null,
       "files": [],
       "source": null,
-      "note": null
+      "note": "本机无 Tauri 示例/驱动，未伪造 Native IPC 证据。"
     },
     {
       "id": "T3.3",
       "title": "PySide6 Windows Native QPA 与 DPI 验证",
       "stage": "Stage 3",
-      "status": "TODO",
+      "status": "IN_PROGRESS",
       "acceptance": "100/125/150% DPI、中文字体、分栏与焦点",
       "depends_on": [
         "T3.1"
@@ -379,53 +379,53 @@
       "evidence": null,
       "files": [],
       "source": null,
-      "note": null
+      "note": "本机未安装 PySide6；不伪造 QPA/DPI 证据。"
     },
     {
       "id": "T3.4",
       "title": "OS 集成测试（原生对话框/菜单）",
       "stage": "Stage 3",
-      "status": "TODO",
+      "status": "IN_PROGRESS",
       "acceptance": "隔离测试环境；UIA 优先；物理输入默认禁用；TOCTOU 说明",
       "depends_on": [
         "T3.2",
         "T3.3"
       ],
       "due_before": "Stage 3 Exit",
-      "evidence": null,
+      "evidence": "evidence/T3.4/uia-probe.json; runtime/uiux_engine/uia.py; tests/unit/test_uia.py",
       "files": [],
       "source": "M6/M8",
-      "note": null
+      "note": "真实 Win32/Notepad UIA 只读树已采（NATIVE_UIA，53 元素）；原生对话框/WinUI/WPF/Qt 未验证。"
     },
     {
       "id": "T3.5",
       "title": "证据生命周期、脱敏与 Vault 退化验证",
       "stage": "Stage 3",
-      "status": "TODO",
+      "status": "DONE",
       "acceptance": "删除 Vault 后不得重新签发 PASS；脱敏后扫描；保留期策略",
       "depends_on": [
         "T3.1"
       ],
       "due_before": "Stage 3 Exit",
-      "evidence": null,
+      "evidence": "runtime/uiux_engine/vault.py; tests/unit/test_integrity_safety.py",
       "files": [],
       "source": "B6",
-      "note": null
+      "note": "字节级哈希校验/隔离/缺失检测；删除 Vault 后不重签 PASS。"
     },
     {
       "id": "T3.6",
       "title": "独立审查隔离验证",
       "stage": "Stage 3",
-      "status": "TODO",
+      "status": "DONE",
       "acceptance": "自报 session 不能签发独立 PASS；隔离证明与 reviewed_head 绑定",
       "depends_on": [
         "T3.4"
       ],
       "due_before": "Stage 3 Exit",
-      "evidence": null,
+      "evidence": "runtime/uiux_engine/integrity.py; tests/unit/test_integrity_safety.py",
       "files": [],
       "source": "V132-04",
-      "note": null
+      "note": "user_attested 独立性被拒；reviewed_head 绑定与 host_verified 证据校验。"
     },
     {
       "id": "T4.1",
@@ -762,7 +762,7 @@
       "id": "M14",
       "title": "P0–P3 分级与可观测安全指标",
       "stage": "Stage 3",
-      "status": "TODO",
+      "status": "IN_PROGRESS",
       "acceptance": "qa-report schema；数据写入 0 次可证；Release 判定",
       "depends_on": [
         "T0.1"
@@ -826,10 +826,10 @@
         "T1.0"
       ],
       "due_before": "Stage 1 Exit",
-      "evidence": "knowledge/rules/catalog.v1.0.json",
+      "evidence": "knowledge/rules/catalog.v1.0.json; evidence/T3.4/uia-probe.json; runtime/uiux_engine/uia.py",
       "files": [],
       "source": "MAJOR",
-      "note": "A11Y-001..004 已入冻结规则并由 linter/geometry 静态子集实现；ARIA-UIA 语义对照矩阵与动态键盘验证待 T3.3/T3.4。"
+      "note": "A11Y-001..004 规则与静态子集 DONE；真实 Win32 UIA 只读树已采；WinUI/WPF/Qt 与动态键盘待后续。"
     },
     {
       "id": "m1",
