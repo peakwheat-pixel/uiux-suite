@@ -22,6 +22,7 @@
 - **Stage 0–2**：T0.1 独立复核 PASS；Stage 2 的 discovery/flows/Token 编译器（CSS/Tailwind/PySide6）/knowledge index/brownfield/prototype/options 全部 DONE。
 - **检测器**（SIMULATED 标注）：`style_token_linter`、`ux_flow_validator`、`layout_geometry_probe`、`discovery`、`design_system`、`component_matrix`、`prototype`、`options`。
 - **Stage 3**：受控改动/回滚、Vault 字节校验、哈希链/独立性、P0–P3 安全分级；**PySide6 Windows QPA 实测**（`NATIVE_QPA`，DPR 1/1.25/1.5，CJK 字体，截图哈希）；Win11 Notepad（WinUI 3）UIA 只读树。
+- **Stage 3 DONE**：受控改动/回滚、Tauri WDIO IPC、PySide6 QPA、Win11 Notepad UIA、WPF UIA/对话框/菜单。
 - **Tauri Native IPC**：Tauri 2 应用 + embedded `@wdio/tauri-service`，真实启动并调用 Rust `greet` IPC，断言返回 `Hello, DSH-Native-IPC`；截图/日志哈希见 `evidence/T3.2/`。
 - **独立 GT**：Reviewer 盲标 18/18 与冻结 GT 完全一致（未读 annotations）；`evidence/T1.1/independent-annotation.json`。
 - **安全/CI**：M6 输入分权（全局物理输入默认拒绝）、M8 构建守卫（白名单/网络/越界）、M14 qa-report 指标、M10 本地 CI runner（真实 hosted runner 未验证）；m1/m2/m3/m5/m8 文档齐备。
@@ -73,4 +74,4 @@ python skills\uiux\scripts\launch.py doctor --scope user
 
 ## 7. 结论
 
-本版本可作为**受控试用的 Release Candidate 2**：契约、安装、双入口、Stage 0–2、静态检测器、Qt QPA、证据链与发行包均可用且有机器证据；但**不是完整 G6 发布**。完成 T3.4 其他框架、T5.1/T5.2 真实应用级试点与独立 G6 复审后，才可升级为正式发布。
+本版本可作为**受控试用的 Release Candidate 2**：契约、安装、双入口、Stage 0–2、静态检测器、Qt QPA、证据链与发行包均可用且有机器证据；但**不是完整 G6 发布**。T3.4 已通过 WPF UIA/对话框/菜单与 WinUI 只读；完成 T5.1/T5.2 真实应用级试点与独立 G6 复审后，才可升级为正式发布。

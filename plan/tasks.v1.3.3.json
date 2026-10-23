@@ -382,7 +382,7 @@
       "id": "T3.4",
       "title": "OS 集成测试（原生对话框/菜单/UIA）",
       "stage": "Stage 3",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "acceptance": "WPF/WinUI/Qt UIA 读写、原生对话框、菜单、快捷键",
       "depends_on": [
         "T3.3"
@@ -391,7 +391,7 @@
       "evidence": "evidence/T3.4/wpf-uia-evidence.json; evidence/T3.4/uia-probe.json; scripts/collect_wpf_uia_evidence.ps1",
       "files": [],
       "source": null,
-      "note": "Win11 Notepad（WinUI 3）只读 + WPF UIA 16 元素/ValuePattern/InvokePattern 通过（状态=Invoked by UIA: DSH-WPF）；WPF MessageBox 未自动识别；WinUI/WPF 原生对话框与全局物理输入未验证。"
+      "note": "Win11 Notepad（WinUI 3）只读；WPF 16 元素 + ValuePattern/InvokePattern + MessageBox（打开→读文本→确定→关闭）+ File 菜单展开全部通过；无全局物理输入，WinUI 动作未验证。"
     },
     {
       "id": "T3.5",

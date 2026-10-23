@@ -5,7 +5,7 @@
 ## 1. 当前结论
 
 - **Release Candidate（整体 PARTIAL）**：`dist/uiux-suite-1.3.3-win64.zip` 可安装并验证（install/enums/doctor exit 0）。
-- **不是 G6 PASS**：T3.2 DONE；T3.4 部分、T5.1/T5.2、其他 Agent 宿主、MCP/断点恢复未验证，见 `FINAL_DELIVERY_REPORT.md` §4。
+- **不是 G6 PASS**：T3.1–T3.6 DONE、T5.1/T5.2、其他 Agent 宿主、MCP/断点恢复未验证，见 `FINAL_DELIVERY_REPORT.md` §4。
 - 分支：`v1.3.3-contract-closure`；基线 `main` `e7e921e`（tag `v1.3.2-baseline`，SHA256 `70f5f339…9411ea04` 未变）。
 - 当前测试：**460 passed**（`$env:PYTHONPATH='runtime'; .venv\Scripts\python.exe -m pytest tests -q`）。
 
@@ -28,7 +28,7 @@
 | 0 | **DONE / FROZEN** | T0.1 独立复核 PASS；T0.2–T0.6、M5 有机器证据 |
 | 1 | PARTIAL | T1.0–T1.3/T1.5–T1.7 DONE；T1.4 部分；M13 独立 GT DONE |
 | 2 | **DONE** | T2.1–T2.6、M11、M12 均有测试/证据 |
-| 3 | PARTIAL | T3.1/T3.2/T3.3/T3.5/T3.6 DONE；T3.4 WinUI3 UIA 只读 |
+| 3 | **DONE** | T3.1–T3.6 全部有证据；WinUI 动作/全局物理输入限制见 STAGE3 |
 | 4 | PARTIAL | T4.1/T4.3/T4.4 DONE；T4.2 其他宿主 UNVERIFIED |
 | 5 | RC / PARTIAL | T5.5 DONE；T5.1/T5.2 合成应用 E2E + 静态基线；T5.4 待独立 G6 |
 
