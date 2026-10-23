@@ -6,7 +6,7 @@
 
 | 交付物 | 位置 |
 |---|---|
-| 可安装 ZIP（129 个载荷文件 + `RELEASE_MANIFEST.json`，ZIP 共 130 项，含 7 wheels） | [`dist/uiux-suite-1.3.3-win64.zip`](dist/uiux-suite-1.3.3-win64.zip) |
+| 可安装 ZIP（131 个载荷文件 + `RELEASE_MANIFEST.json`，ZIP 共 132 项，含 7 wheels） | [`dist/uiux-suite-1.3.3-win64.zip`](dist/uiux-suite-1.3.3-win64.zip) |
 | ZIP SHA256 | 见 `dist/SHA256SUMS.txt`（每次构建以该文件与 `evidence/T5.5` 为准） |
 | ZIP 与逐文件 SHA256 | [`dist/SHA256SUMS.txt`](dist/SHA256SUMS.txt) |
 | 规范 | [`SPEC_V1.3.3.md`](SPEC_V1.3.3.md) |
@@ -22,14 +22,14 @@
 - **Stage 0–2**：T0.1 独立复核 PASS；Stage 2 的 discovery/flows/Token 编译器（CSS/Tailwind/PySide6）/knowledge index/brownfield/prototype/options 全部 DONE。
 - **检测器**（SIMULATED 标注）：`style_token_linter`、`ux_flow_validator`、`layout_geometry_probe`、`discovery`、`design_system`、`component_matrix`、`prototype`、`options`。
 - **Stage 3**：受控改动/回滚、Vault 字节校验、哈希链/独立性、P0–P3 安全分级；**PySide6 Windows QPA 实测**（`NATIVE_QPA`，DPR 1/1.25/1.5，CJK 字体，截图哈希）；Win11 Notepad（WinUI 3）UIA 只读树。
-- **Stage 5 基线**：对 `New Manga` 的隔离源码副本（3435 文件）做只读 discovery/style 扫描，未启动应用、未修改原项目。
+- **Stage 5 基线**：对 `New Manga` 的隔离源码副本（3435 文件）做只读 discovery/style 扫描；合成 Qt 参考应用完成导入→浏览→画布→编辑→保存→导出→撤销→异常 9/9 E2E（NATIVE_QT_APP），before/after 指标：字号 11→14、目标 22→38px、对比度 2.08→15.8。
 
 ## 3. 机器验收
 
 ```powershell
 cd <repo>
 $env:PYTHONPATH='runtime'
-.\.venv\Scripts\python.exe -m pytest tests -q            # 447 passed
+.\.venv\Scripts\python.exe -m pytest tests -q            # 448 passed
 .\.venv\Scripts\python.exe scripts\run_attack_suite.py   # 11/11 攻击被拒
 .\.venv\Scripts\python.exe scripts\run_stage1_suite.py   # TP38/FP0/TN8/FN0
 .\.venv\Scripts\python.exe scripts\collect_qt_evidence.py # 3 scales, NATIVE_QPA
@@ -42,7 +42,7 @@ $env:PYTHONPATH='runtime'
 |---|---|---|
 | T3.2 Tauri + WDIO Native IPC | UNVERIFIED | 本机无 Tauri 示例/驱动，未伪造 Native IPC |
 | T3.4 原生对话框/WinUI/WPF/Qt 点击 | PARTIAL | 仅 Win11 Notepad（WinUI 3） UIA 控制视图只读 |
-| T5.1/T5.2 真实工作台交互/前后测量 | PARTIAL | 仅有隔离源码静态基线；应用未启动 |
+| T5.1/T5.2 真实工作台交互/前后测量 | PARTIAL | 合成应用 E2E 9/9 + before/after 已完成；New Manga 仅静态基线，应用未启动 |
 | T5.3 真实项目数据安全 | PARTIAL | 仅代码/测试级回滚 |
 | T5.4 独立 G6 | IN_PROGRESS | 待独立 Reviewer 最终签发 |
 | M10 CI runner | IN_PROGRESS | workflow 已提交，未在真实 runner 执行 |

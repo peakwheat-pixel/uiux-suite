@@ -38,7 +38,7 @@
 | T4.4 | Stage 4 | DONE | Stage 4 Exit | T4.1 | 退化路径（缺 Node/GUI/旧宿主/离线/软链） | 每项返回稳定 ReasonCode 与可恢复建议 |
 | T5.1 | Stage 5 | IN_PROGRESS | Stage 5 Exit | T3.6, T4.4 | 真实复杂工作台试点（隔离副本） | 冻结导入→浏览→编辑→异常→保存/导出任务；只在副本/独立 worktree 操作 |
 | T5.2 | Stage 5 | IN_PROGRESS | Stage 5 Exit | T5.1 | 改版前后对照测量 | 同机同窗口同素材；成功任务/步骤/恢复/快捷键/布局缺陷记录 |
-| T5.3 | Stage 5 | IN_PROGRESS | Stage 5 Exit | T5.1 | 数据安全、回滚与导出正确性 | 真实数据写入 0 次；源码前后 hash 一致；回滚演练通过 |
+| T5.3 | Stage 5 | IN_PROGRESS | Stage 5 Exit | T5.1 | 真实项目数据安全与回滚演练 | 备份→失败注入→恢复验证；真实项目只读 |
 | T5.4 | Stage 5 | IN_PROGRESS | Stage 5 Exit | T5.3 | 独立复审与 G6 签发 | 冻结版本独立复验；未覆盖项 PARTIAL/UNVERIFIED 明示 |
 | T5.5 | Stage 5 | DONE | Stage 5 Exit | T5.4 | 发行包、文档、许可证与交付报告 | dist/ 可安装 ZIP、手册、兼容矩阵、证据索引、FINAL_DELIVERY_REPORT.md |
 | M1 | Stage 0 | DONE | T0.2 | T0.1 | 安装登记/升级/回滚状态契约 | install-<version>.json 登记全部安装文件；upgrade/rollback 可复现；版本并存 |

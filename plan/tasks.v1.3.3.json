@@ -498,10 +498,10 @@
         "T4.4"
       ],
       "due_before": "Stage 5 Exit",
-      "evidence": "evidence/T5.1/workbench-static-baseline.json",
+      "evidence": "evidence/T5.1/workbench-e2e-evidence.json; evidence/T5.1/workbench-static-baseline.json",
       "files": [],
       "source": null,
-      "note": "已对 New Manga 的隔离源码副本做只读静态基线（3435 文件/80 style findings）；应用未启动，导入/编辑/保存/导出未执行。"
+      "note": "合成参考应用（sandbox/workbench_app）E2E 9/9：导入/浏览/画布/编辑/保存/导出/撤销/异常；New Manga 仅隔离源码静态基线，应用未启动。"
     },
     {
       "id": "T5.2",
@@ -513,25 +513,25 @@
         "T5.1"
       ],
       "due_before": "Stage 5 Exit",
-      "evidence": null,
+      "evidence": "evidence/T5.1/workbench-e2e-evidence.json",
       "files": [],
       "source": null,
-      "note": "依赖 T5.1 的应用运行；仅静态基线，未做前后对照。"
+      "note": "合成参考应用 before/after 已测：字号 11→14、目标 22→38px、对比度 2.08→15.8；真实工作台前后对照未做。"
     },
     {
       "id": "T5.3",
-      "title": "数据安全、回滚与导出正确性",
+      "title": "真实项目数据安全与回滚演练",
       "stage": "Stage 5",
       "status": "IN_PROGRESS",
-      "acceptance": "真实数据写入 0 次；源码前后 hash 一致；回滚演练通过",
+      "acceptance": "备份→失败注入→恢复验证；真实项目只读",
       "depends_on": [
         "T5.1"
       ],
       "due_before": "Stage 5 Exit",
-      "evidence": "runtime/uiux_engine/safety.py; runtime/uiux_engine/modify.py",
+      "evidence": "tests/unit/test_modify.py; runtime/uiux_engine/modify.py",
       "files": [],
-      "source": "M14",
-      "note": "受控改动/回滚/0 真实数据写入指标已测；真实项目演练未执行。"
+      "source": null,
+      "note": "受控改动/回滚与合成数据演练 DONE；真实项目未执行写入。"
     },
     {
       "id": "T5.4",

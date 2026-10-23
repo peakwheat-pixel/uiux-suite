@@ -4,7 +4,7 @@
 
 | 宿主 | 状态 | 证据 / 原因 |
 |---|---|---|
-| DSH | **OBSERVED** | `evidence/T0.3/host-install-evidence.json`：双入口发现、rank 500、doctor、外部 cwd、`pytest` 447 |
+| DSH | **OBSERVED** | `evidence/T0.3/host-install-evidence.json`：双入口发现、rank 500、doctor、外部 cwd、`pytest` 448 |
 | Codex | UNVERIFIED | `HOST_UNVERIFIED`（未安装/未实测） |
 | Claude Code | UNVERIFIED | 同上 |
 | ZCode | UNVERIFIED | 同上 |

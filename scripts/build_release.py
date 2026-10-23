@@ -20,7 +20,7 @@ ZIP_PATH = DIST / f"{SUITE_NAME}-win64.zip"
 STAGING = DIST / SUITE_NAME
 EVIDENCE = REPO_ROOT / "evidence" / "T5.5"
 
-INCLUDE_DIRS = ["runtime", "contracts", "knowledge", "skills", "scripts", "docs", "qa"]
+INCLUDE_DIRS = ["runtime", "contracts", "knowledge", "skills", "scripts", "docs", "qa", "sandbox"]
 INCLUDE_FILES = [
     "SPEC_V1.3.3.md",
     "README.md",

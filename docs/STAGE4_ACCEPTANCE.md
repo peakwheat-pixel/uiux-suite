@@ -12,7 +12,7 @@
 ## 机器验收
 
 ```powershell
-$env:PYTHONPATH='runtime'; .venv\Scripts\python.exe -m pytest tests -q   # 447 passed
+$env:PYTHONPATH='runtime'; .venv\Scripts\python.exe -m pytest tests -q   # 448 passed
 ```
 
 ## 未验证
