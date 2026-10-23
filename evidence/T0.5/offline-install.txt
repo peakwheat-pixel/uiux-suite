@@ -1,0 +1,84 @@
+=== python -m venv ===
+
+=== pip install --no-index ===
+Looking in links: g:\AI\universal-uiux-engineering\dist\wheels
+Processing g:\ai\universal-uiux-engineering\dist\wheels\jsonschema-4.23.0-py3-none-any.whl (from -r G:\AI\universal-uiux-engineering\requirements.txt (line 2))
+Processing g:\ai\universal-uiux-engineering\dist\wheels\jsonschema_specifications-2025.9.1-py3-none-any.whl (from -r G:\AI\universal-uiux-engineering\requirements.txt (line 3))
+Processing g:\ai\universal-uiux-engineering\dist\wheels\referencing-0.37.0-py3-none-any.whl (from -r G:\AI\universal-uiux-engineering\requirements.txt (line 4))
+Processing g:\ai\universal-uiux-engineering\dist\wheels\rpds_py-2026.9.1-cp312-cp312-win_amd64.whl (from -r G:\AI\universal-uiux-engineering\requirements.txt (line 5))
+Processing g:\ai\universal-uiux-engineering\dist\wheels\attrs-26.1.0-py3-none-any.whl (from -r G:\AI\universal-uiux-engineering\requirements.txt (line 6))
+Processing g:\ai\universal-uiux-engineering\dist\wheels\typing_extensions-4.16.0-py3-none-any.whl (from -r G:\AI\universal-uiux-engineering\requirements.txt (line 7))
+Installing collected packages: typing_extensions, rpds-py, attrs, referencing, jsonschema-specifications, jsonschema
+Successfully installed attrs-26.1.0 jsonschema-4.23.0 jsonschema-specifications-2025.9.1 referencing-0.37.0 rpds-py-2026.9.1 typing_extensions-4.16.0
+
+=== uiux_engine.cli enums ===
+{
+  "schema_version": "1.3.3",
+  "document": "Universal UI/UX Engineering Skill Suite — canonical enum dictionary (V1.3.3)",
+  "rule": "This file is the single source of truth for every status vocabulary used by contracts, runtime, tests and SPEC_V1.3.3.md. No document, example or schema may introduce a value that is absent here.",
+  "enums": {
+    "Mode": {
+      "values": [
+        "audit",
+        "design-only",
+        "prototype",
+        "new-build",
+        "redesign",
+        "targeted-fix",
+        "verify"
+      ],
+      "meaning": {
+        "audit": "只读审查已有软件，输出 UI/UX 缺陷与建议",
+        "design-only": "设计用户流程、信息架构、Token 与方案，不写生产代码",
+        "prototype": "在隔离沙箱生成可交互原型并测试",
+        "new-build": "新软件/新模块按先设计后开发实施",
+        "redesign": "已有软件模块的完整 UI/UX 重构",
+        "targeted-fix": "只修改目标页面/交互/控件的缺陷",
+        "verify": "对冻结版本独立执行 QA/Review"
+      }
+    },
+    "DeliverableTier": {
+      "values": [
+        "report-only",
+        "design-spec",
+        "interactive-prototype",
+        "production-code",
+        "verification-report"
+      ],
+      "meaning": {
+        "report-only": "只交付审查报告与证据",
+        "design-spec": "交付设计规范与流程契约",
+        "interactive-prototype": "交付隔离沙箱内可交互原型",
+        "production-code": "交付受控生产代码改动",
+        "verification-report": "交付对冻结版本的验证报告"
+      }
+    },
+    "GateState": {
+      "values": [
+        "PASS",
+        "FAIL",
+        "WARN_REVIEW_REQUIRED",
+        "BLOCKED",
+        "UNVERIFIED",
+        "NOT_APPLICABLE"
+      ],
+      "meaning": {
+        "PASS": "该 Gate 必选证据齐全且校验通过",
+        "FAIL": "证据表明不满足 Gate 要求",
+        "WARN_REVIEW_REQUIRED": "存在需人工/独立记录裁决的告警，未处置不得升级为 PASS",
+        "BLOCKED": "被环境、权限、依赖或不可逆风险明确阻断",
+        "UNVERIFIED": "应测但没有可用的有效证据",
+        "NOT_APPLICABLE": "按 Mode×Gate 策略判定不适用"
+      },
+      "terminal_for_pass": [
+        "PASS"
+      ],
+      "non_pass": [
+        "FAIL",
+        "WARN_REVIEW_REQUIRED",
+        "BLOCKED",
+        "UNVERIFIED",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "GateApplicability":

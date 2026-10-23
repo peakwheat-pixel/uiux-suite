@@ -2,9 +2,9 @@
   "schema_version": "1.3.3",
   "evidence_id": "EV-T0.1-CONTRACT-TESTS",
   "kind": "test_log",
-  "generated_at": "2026-10-23T18:18:44.327853+00:00",
+  "generated_at": "2026-10-23T18:31:41.695556+00:00",
   "git": {
-    "commit": "95ab5a2f3d30cb943a95da76c2d8ee2ed532c241",
+    "commit": "d6be0a97a6ecae3b7a8fdba1ad6a87630e04287e",
     "branch": "v1.3.3-contract-closure",
     "baseline_tag": "v1.3.2-baseline"
   },
@@ -18,7 +18,7 @@
   ],
   "cwd": "G:\\AI\\universal-uiux-engineering",
   "exit_code": 0,
-  "duration_s": 19.233,
+  "duration_s": 19.241,
   "environment": {
     "os": "Windows-11-10.0.26300-SP0",
     "machine": "AMD64",
@@ -34,28 +34,28 @@
     "failures": 0,
     "errors": 0,
     "skipped": 0,
-    "time": 18.719
+    "time": 18.733
   },
   "failed_cases": [],
   "test_cases": [
     {
       "name": "tests.integration.test_cli::test_cli_validates_valid_request",
-      "time_s": 0.191,
+      "time_s": 0.188,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_cli::test_cli_rejects_invalid_request",
-      "time_s": 0.186,
+      "time_s": 0.189,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_cli::test_cli_finalize_complete_happy_path",
-      "time_s": 0.218,
+      "time_s": 0.213,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_cli::test_cli_missing_l4_review_is_partial",
-      "time_s": 0.193,
+      "time_s": 0.194,
       "status": "PASS"
     },
     {
@@ -65,37 +65,37 @@
     },
     {
       "name": "tests.integration.test_cli::test_cli_policy_matrix_design_only",
-      "time_s": 0.183,
+      "time_s": 0.186,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_cli::test_cli_enums_prints_dictionary",
-      "time_s": 0.182,
+      "time_s": 0.181,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_cli::test_cli_unknown_schema_is_usage_error",
-      "time_s": 0.365,
+      "time_s": 0.367,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_cli::test_cli_rejects_invalid_now_timestamp",
-      "time_s": 0.18,
+      "time_s": 0.181,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_cli::test_cli_rejects_invalid_warn_review_file",
-      "time_s": 0.193,
+      "time_s": 0.191,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_cli::test_cli_rejects_request_digest_mismatch",
-      "time_s": 0.196,
+      "time_s": 0.2,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_cli::test_cli_rejects_repair_cycles_out_of_range",
-      "time_s": 0.18,
+      "time_s": 0.181,
       "status": "PASS"
     },
     {
@@ -105,7 +105,7 @@
     },
     {
       "name": "tests.integration.test_finalize::test_warn_without_disposition_blocks_complete",
-      "time_s": 0.001,
+      "time_s": 0.002,
       "status": "PASS"
     },
     {
@@ -160,7 +160,7 @@
     },
     {
       "name": "tests.integration.test_finalize::test_design_review_fail_yields_failed_status",
-      "time_s": 0.001,
+      "time_s": 0.002,
       "status": "PASS"
     },
     {
@@ -180,7 +180,7 @@
     },
     {
       "name": "tests.integration.test_finalize::test_expired_evidence_cannot_support_pass",
-      "time_s": 0.002,
+      "time_s": 0.001,
       "status": "PASS"
     },
     {
@@ -235,72 +235,72 @@
     },
     {
       "name": "tests.integration.test_install::test_install_doctor_launch_and_uninstall",
-      "time_s": 1.557,
+      "time_s": 1.56,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_install::test_launch_works_after_source_tree_is_deleted",
-      "time_s": 1.324,
+      "time_s": 1.332,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_install::test_installed_launcher_exposes_doctor_after_source_deletion",
-      "time_s": 1.131,
+      "time_s": 1.128,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_install::test_unknown_existing_skill_is_not_overwritten",
-      "time_s": 0.215,
+      "time_s": 0.216,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_install::test_version_coexistence_and_uninstall_old",
-      "time_s": 1.491,
+      "time_s": 1.505,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_install::test_shadow_detection_reports_project_skill",
-      "time_s": 0.951,
+      "time_s": 0.96,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_install::test_project_scope_with_chinese_and_space_path",
-      "time_s": 1.321,
+      "time_s": 1.317,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_install::test_launch_rejects_manifest_hash_mismatch",
-      "time_s": 1.041,
+      "time_s": 1.036,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_install::test_launch_reports_missing_link_and_version_mismatch",
-      "time_s": 0.647,
+      "time_s": 0.646,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_install::test_launch_falls_back_when_linked_python_missing",
-      "time_s": 0.878,
+      "time_s": 0.88,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_install::test_upgrade_and_rollback_switch_active_version",
-      "time_s": 2.044,
+      "time_s": 2.038,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_paths::test_project_install_through_junction",
-      "time_s": 0.885,
+      "time_s": 0.877,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_paths::test_project_install_with_long_path",
-      "time_s": 0.866,
+      "time_s": 0.863,
       "status": "PASS"
     },
     {
       "name": "tests.integration.test_paths::test_custom_rank_300_is_reported",
-      "time_s": 1.039,
+      "time_s": 1.035,
       "status": "PASS"
     },
     {
@@ -375,7 +375,7 @@
     },
     {
       "name": "tests.unit.test_enums::test_every_schema_enum_belongs_to_one_dictionary_namespace[task-request]",
-      "time_s": 0.0,
+      "time_s": 0.001,
       "status": "PASS"
     },
     {
@@ -725,12 +725,12 @@
     },
     {
       "name": "tests.unit.test_semantics::test_valid_requests_have_no_semantic_errors[contracts/valid/task-request-redesign.json]",
-      "time_s": 0.0,
+      "time_s": 0.001,
       "status": "PASS"
     },
     {
       "name": "tests.unit.test_semantics::test_valid_requests_have_no_semantic_errors[contracts/valid/task-request-audit.json]",
-      "time_s": 0.0,
+      "time_s": 0.001,
       "status": "PASS"
     },
     {
@@ -805,7 +805,7 @@
     },
     {
       "name": "tests.unit.test_snapshot::test_diff_detects_added_removed_changed",
-      "time_s": 0.01,
+      "time_s": 0.009,
       "status": "PASS"
     },
     {
@@ -815,7 +815,7 @@
     },
     {
       "name": "tests.unit.test_snapshot::test_cli_snapshot_and_diff",
-      "time_s": 0.574,
+      "time_s": 0.576,
       "status": "PASS"
     },
     {
@@ -965,11 +965,11 @@
     "tests/fixtures/scenarios/complete-redesign/review-attestation.json": "8f112265e2287b5c04f316e39104fd227bb394701720ae78ad882a720028c862",
     "tests/fixtures/scenarios/complete-redesign/tool-logs.json": "c8de31d8b64e2ed6aba6a08d097d0ac234444bc04c8c29052adeec0fd799ac2c",
     "scripts/run_contract_tests.py": "112eacfca394105ebc114fe1b24c9103c47137211fc4dcf2641240e41e5bc147",
-    "scripts/setup_skill.py": "678f75b79de3f67ce9f0ee475ba921ae786a2b12f9717fd513c0e7fdcf637b7a",
+    "scripts/setup_skill.py": "fbff664799dde889e8ac4b8ad2af9fb98725cca4a596428a02defc5accc0303a",
     "scripts/uninstall_skill.py": "7ae0aa13955b108578cbda25845379a05c17ead4d17482e2312f0df4e89839e5",
-    "scripts/build_task_registry.py": "d10ff52ec8ea45b05e06e974e7c5723598f5d6765e7b1d59552a677be4b02291",
-    "scripts/collect_host_evidence.py": "a9a7016f91b68bb237269a4334c9ccfe54ccb4445c4292b73b871b0fe1651c21",
-    "scripts/collect_offline_evidence.py": "3d6069d59f2dc567f92c18c8d90466ce52c705f7fe17eccc3793eaaa47fb283f",
+    "scripts/build_task_registry.py": "269c1a4bc07a3c7e01eb0d236e0171400bc6950290e4d776fb83f8a058f263d4",
+    "scripts/collect_host_evidence.py": "cb6afdbf8825ad9b902351ce0e53d1abcbd787afd80b01b303bd826d3a45327a",
+    "scripts/collect_offline_evidence.py": "2f5b8dc1a253ea013bf25a2a4c56b0aebe93f29b1ea2356a1c0916bf4588023a",
     "skills/uiux/references/build.md": "625257057218a0016950903fdf0f82bb40e36a46f079698df59650e4c7c85df5",
     "skills/uiux/references/design.md": "27b94f358b86b88bc88750259d94fefefa86a9c27db6a20821fe584c93a9b66a",
     "skills/uiux/references/discover.md": "c42830a5278565b946ee274fc0a948199cdb9358549d4998d2513d9634dc454f",
@@ -979,28 +979,28 @@
     "skills/uiux-verify/references/expert-review.md": "bf5f9b3ae39100272c760f92a72079c8b2f09b8cd905ce0f87a5ead0ad262842",
     "skills/uiux-verify/references/test.md": "b208f083e595b21b1a14fdfc2c87fc6e27eb829415a9b9e3c6ca52abb244c282",
     "skills/uiux-verify/SKILL.md": "58ea6a9c08f8be2eef7a12aab075fcfe80a31355d6d52b6f7e7a31f6243207df",
-    "skills/uiux/scripts/launch.py": "de3a2a738fb66ce243d3d6b4a2a244429dbceb2edd1a221fc81f9b07276e6b34",
+    "skills/uiux/scripts/launch.py": "975620d121383e43386927a9da31f78cc3a9392b072df350e3c5e240e5566de5",
     "skills/uiux-verify/scripts/launch.py": "de3a2a738fb66ce243d3d6b4a2a244429dbceb2edd1a221fc81f9b07276e6b34",
-    "SPEC_V1.3.3.md": "f37ade85ca1ecf562669efe1bcd0a1ad98123b42478336caa61e49b2dd3bd418",
+    "SPEC_V1.3.3.md": "94866542d3570fcc72f0605dc33cf1ec787c34e30961f42348dacfdc7689d70d",
     "README.md": "a7bd7bb29382fb69bcafbcad78f6103c4f1a0e0da6f7cf7d9fce346b251a5574",
     "LICENSE": "4b10d86e0b4905727bc50d47dd72683f09f154abf3e94e3287ec42b55f3c7cf0",
-    "THIRD_PARTY_NOTICES.md": "487c10dfbb9ac66245b076e3f0cce1620d6bef4be0671a17ce39e35e73765d92",
+    "THIRD_PARTY_NOTICES.md": "d456342b83573e6daa6f3f1639d97b5719b16e53d887cc57ca5cc3b3216cc96d",
     "docs/BLOCKERS.md": "76f7fb7fd8bc6a2d8f2753de3c6a36ce97a707eda922dac4de638f549f0f9c73",
     "docs/CLI.md": "e04b342b8e7ff3236667505a6d5de7f5bc7844302c62647eeb98a8a057047ee7",
     "docs/DECISIONS.md": "f6ba535b252b026b123fddedc3030a7b79dc85e4cb23802e62af6937d38a08f3",
-    "docs/IMPLEMENTATION_STATUS.md": "c3c1ee089f9f9e4ffc3cc7f4c6d2b827c7154faeb4116b7588404ded1b4b168c",
-    "docs/INSTALL.md": "e4144a2edc1d425779ac61f7b4042881fa7409f465ae3ba5b9630beef94c64aa",
+    "docs/IMPLEMENTATION_STATUS.md": "f96bebba9cfecae41f8375bcdf0b52d34ecd9e1c10f2fd971f50734bb33669c8",
+    "docs/INSTALL.md": "529ad9b697d5ea372a35f4a453aa12d541247ab68232e60e4cceb4ae76a26bc2",
     "docs/STAGE0_ACCEPTANCE.md": "b2ce1c40f22dfa25c299181d4c5f013f0ccaea6c2bbf44961cffb6834f3a72ea",
     "docs/STAGE_GATES.md": "5ae62143ee5f3680e30391edfe5f02cede567db04e29e8b83cb88b3bf452e842",
     "docs/TASK_PLAN.md": "21831256b7118d3489810c1cdfcff02e2457e9bd56ad15581c19531ee9fa0bff",
     "docs/V1.3.3_CHANGELOG.md": "bdb54674c5061b55873d00097fea530a74bf71d7fce5489986b0e50707d455b2",
     "docs/audits/V1.3.2_DSH_REVIEW_SUMMARY.md": "a1317079bed7f345d4faadd4186ceadd8337d36a6689a0f389fd801153512733",
-    "docs/audits/V1.3.3_CONTRACT_REVIEW.md": "7caf0be898636af34f6e847ce6a71a8cd82bb8271a8d2387b089db26c8fbdf91",
-    "plan/tasks.v1.3.3.json": "21ebaefaae9e6669f0c6cc489b66178095f65d4fdec779cef77f6b85193b28f3",
+    "docs/audits/V1.3.3_CONTRACT_REVIEW.md": "c3b33994773c30057cb610080ea0e7893fe839d90d1276b382af61ee793f36e9",
+    "plan/tasks.v1.3.3.json": "e28f50c83f2a1d8d7bb75976b397f87132c56fa71562a5db331dbbafbb27b315",
     "requirements-dev.txt": "2b133f884b70db9eb6d1eff1c7f1f07aeec339a3981ecce1b43b11d57c3c0f26",
     "requirements.txt": "4c09dc8193bf23558030c67046c5be9bbd90116ec9f2b60cd58cbb6d02c3cd72"
   },
-  "stdout_sha256": "7c9495295ed8f48d7caca0b505d1e3917d72828af65734ef9bc847623d135b6a",
+  "stdout_sha256": "0f75781e15c5192816f4960b1c2661ecbe91a8ba50420fb1efedfdabb3c38ea5",
   "limitations": [
     "This evidence covers contract, gate logic and local install tests only.",
     "It does not prove DSH host discovery, native GUI probes or independent human review.",

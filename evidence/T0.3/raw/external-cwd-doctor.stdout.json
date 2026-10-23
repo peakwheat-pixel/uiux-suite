@@ -1,0 +1,430 @@
+{
+  "ok": true,
+  "overall_status": "UNVERIFIED",
+  "links": {
+    "uiux": {
+      "found": true,
+      "problems": [],
+      "active_version": "1.3.3",
+      "suite_root": "../../uiux-suite/versions/1.3.3"
+    },
+    "uiux-verify": {
+      "found": true,
+      "problems": [],
+      "active_version": "1.3.3",
+      "suite_root": "../../uiux-suite/versions/1.3.3"
+    }
+  },
+  "problems": [],
+  "host_capability": {
+    "schema_version": "1.3.3",
+    "host": "dsh",
+    "host_version": null,
+    "os": "nt-win32",
+    "python": "3.14.6",
+    "node": "E:\\Program Files\\nodejs\\node.EXE",
+    "skill_roots": [
+      {
+        "path": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpze5qco7s\\.dsh\\skills",
+        "rank": 100,
+        "source": "project-dsh",
+        "exists": false
+      },
+      {
+        "path": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpze5qco7s\\.agents\\skills",
+        "rank": 200,
+        "source": "project-agents",
+        "exists": false
+      },
+      {
+        "path": "C:\\Users\\49745\\.dsh\\skills",
+        "rank": 400,
+        "source": "user-dsh",
+        "exists": true
+      },
+      {
+        "path": "C:\\Users\\49745\\.agents\\skills",
+        "rank": 500,
+        "source": "user-agents",
+        "exists": true
+      }
+    ],
+    "entries": [
+      {
+        "name": "archify",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\archify",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "ask-matt",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\ask-matt",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "code-review",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\code-review",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "codebase-design",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\codebase-design",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "diagnosing-bugs",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\diagnosing-bugs",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "domain-modeling",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\domain-modeling",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "find-skills",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\find-skills",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "git-guardrails-claude-code",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\git-guardrails-claude-code",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "grill-me-2",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\grill-me-2",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "grill-with-docs-2",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\grill-with-docs-2",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "grilling",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\grilling",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "handoff-2",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\handoff-2",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "implement",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\implement",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "improve-codebase-architecture",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\improve-codebase-architecture",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "loop-me",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\loop-me",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "manage-skills",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\manage-skills",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "migrate-to-shoehorn",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\migrate-to-shoehorn",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "ponytail",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\ponytail",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "ponytail-audit",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\ponytail-audit",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "ponytail-debt",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\ponytail-debt",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "ponytail-gain",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\ponytail-gain",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "ponytail-help",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\ponytail-help",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "ponytail-review",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\ponytail-review",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "prototype",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\prototype",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "research",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\research",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "resolving-merge-conflicts",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\resolving-merge-conflicts",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "scaffold-exercises",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\scaffold-exercises",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "setup-matt-pocock-skills",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\setup-matt-pocock-skills",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "setup-pre-commit",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\setup-pre-commit",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "setup-ts-deep-modules",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\setup-ts-deep-modules",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "tdd",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\tdd",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "teach",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\teach",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "to-questionnaire",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\to-questionnaire",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "to-spec",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\to-spec",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "to-tickets",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\to-tickets",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "triage",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\triage",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "wait-what",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\wait-what",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "wayfinder",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\wayfinder",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "wizard",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\wizard",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "writing-beats",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\writing-beats",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "writing-for-agents",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\writing-for-agents",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "writing-fragments",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\writing-fragments",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "writing-shape",
+        "root": "C:\\Users\\49745\\.dsh\\skills\\writing-shape",
+        "rank": 400,
+        "shadowed_by": null
+      },
+      {
+        "name": "antigravity-dispatch",
+        "root": "C:\\Users\\49745\\.agents\\skills\\antigravity-dispatch",
+        "rank": 500,
+        "shadowed_by": null
+      },
+      {
+        "name": "codex-dispatch",
+        "root": "C:\\Users\\49745\\.agents\\skills\\codex-dispatch",
+        "rank": 500,
+        "shadowed_by": null
+      },
+      {
+        "name": "dsh-dispatch",
+        "root": "C:\\Users\\49745\\.agents\\skills\\dsh-dispatch",
+        "rank": 500,
+        "shadowed_by": null
+      },
+      {
+        "name": "multi-agent-project-orchestrator",
+        "root": "C:\\Users\\49745\\.agents\\skills\\multi-agent-project-orchestrator",
+        "rank": 500,
+        "shadowed_by": null
+      },
+      {
+        "name": "qoder-dispatch",
+        "root": "C:\\Users\\49745\\.agents\\skills\\qoder-dispatch",
+        "rank": 500,
+        "shadowed_by": null
+      },
+      {
+        "name": "team-mode",
+        "root": "C:\\Users\\49745\\.agents\\skills\\team-mode",
+        "rank": 500,
+        "shadowed_by": null
+      },
+      {
+        "name": "uiux",
+        "root": "C:\\Users\\49745\\.agents\\skills\\uiux",
+        "rank": 500,
+        "shadowed_by": null
+      },
+      {
+        "name": "uiux-verify",
+        "root": "C:\\Users\\49745\\.agents\\skills\\uiux-verify",
+        "rank": 500,
+        "shadowed_by": null
+      },
+      {
+        "name": "zcode-dispatch",
+        "root": "C:\\Users\\49745\\.agents\\skills\\zcode-dispatch",
+        "rank": 500,
+        "shadowed_by": null
+      }
+    ],
+    "capabilities": {
+      "skill_discovery": "READY",
+      "script_exec": "READY",
+      "gui_access": "READY",
+      "mcp": "UNVERIFIED",
+      "file_permissions": "READY",
+      "resume": "UNVERIFIED"
+    },
+    "checks": [
+      {
+        "id": "skill:uiux",
+        "status": "READY",
+        "detail": "linked and manifest-verified"
+      },
+      {
+        "id": "skill:uiux-verify",
+        "status": "READY",
+        "detail": "linked and manifest-verified"
+      },
+      {
+        "id": "python",
+        "status": "READY",
+        "detail": "C:\\Python314\\python.EXE (3.14.6)"
+      },
+      {
+        "id": "jsonschema",
+        "status": "READY",
+        "detail": "4.26.0"
+      },
+      {
+        "id": "python_runner",
+        "status": "READY",
+        "detail": "C:\\Python314\\python.EXE (3.14.6)"
+      },
+      {
+        "id": "node",
+        "status": "READY",
+        "detail": "E:\\Program Files\\nodejs\\node.EXE (v24.15.0)"
+      },
+      {
+        "id": "gui",
+        "status": "READY",
+        "detail": "windows desktop"
+      },
+      {
+        "id": "file_permissions",
+        "status": "READY",
+        "detail": "C:\\Users\\49745\\.agents"
+      },
+      {
+        "id": "mcp",
+        "status": "UNVERIFIED",
+        "detail": "not exercised by doctor"
+      },
+      {
+        "id": "resume",
+        "status": "UNVERIFIED",
+        "detail": "not exercised by doctor"
+      }
+    ],
+    "doctor_version": "1.3.3",
+    "overall_status": "UNVERIFIED",
+    "checked_at": "2026-10-23T18:31:17.005843+00:00"
+  }
+}
