@@ -1,0 +1,43 @@
+# ---- 依赖 / 构建产物 ----
+node_modules/
+dist/
+build/
+out/
+.cache/
+.next/
+.nuxt/
+.turbo/
+coverage/
+*.tsbuildinfo
+
+# ---- 环境变量 / 密钥 (切勿提交) ----
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ---- 日志与临时文件 ----
+*.log
+logs/
+npm-debug.log*
+pnpm-debug.log*
+yarn-error.log*
+tmp/
+temp/
+
+# ---- 编辑器 / IDE ----
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+
+# ---- 操作系统 ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- 其他 ----
+*.local
