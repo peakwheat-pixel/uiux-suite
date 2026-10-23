@@ -3,91 +3,91 @@
   "evidence_id": "EV-T5.1-WORKBENCH-E2E",
   "kind": "tool_log",
   "runtime_level": "NATIVE_QT_APP",
-  "generated_at": "2026-10-23T20:34:52.034248+00:00",
+  "generated_at": "2026-10-23T20:35:52.826997+00:00",
   "generator": {
     "path": "scripts/run_workbench_e2e.py",
-    "sha256": "5cba7155b4b80f7265777b6c83cc9c70b8059e9209362485baab39cb2eb1faef"
+    "sha256": "8cdb6639827116bc7da64e8bf807f68b3cb04f4a0fbd07fb1c584e887481ad53"
   },
   "git": {
-    "commit": "9fc2e8838b7bbf97a2209e7c880be5bfb3e87681",
-    "dirty": true,
+    "commit": "746b956af68554ed312174e8b88bb726b489c6ce",
+    "dirty": false,
     "dirty_scope": "tracked files excluding evidence/"
   },
   "app": "sandbox/workbench_app/app.py",
-  "isolated_data_dir": "C:\\Users\\49745\\AppData\\Local\\Temp\\uiux-workbench-gfap7jc2",
+  "isolated_data_dir": "C:\\Users\\49745\\AppData\\Local\\Temp\\uiux-workbench-xaedzfbf",
   "synthetic_data_only": true,
   "steps": [
     {
       "name": "import",
       "ok": true,
       "detail": "5 items",
-      "ms": 2.5
+      "ms": 2.16
     },
     {
       "name": "browse_list",
       "ok": true,
       "detail": "Frame 3",
-      "ms": 4.31
+      "ms": 4.15
     },
     {
       "name": "canvas_add",
       "ok": true,
       "detail": "scene items 5->6",
-      "ms": 3.2
+      "ms": 2.36
     },
     {
       "name": "canvas_drag",
       "ok": true,
       "detail": "drag delta -20,-30",
-      "ms": 9.56
+      "ms": 7.81
     },
     {
       "name": "edit",
       "ok": true,
       "detail": "Router",
-      "ms": 4.48
+      "ms": 3.79
     },
     {
       "name": "save",
       "ok": true,
-      "detail": "C:\\Users\\49745\\AppData\\Local\\Temp\\uiux-workbench-gfap7jc2\\sample.json",
-      "ms": 1.97
+      "detail": "C:\\Users\\49745\\AppData\\Local\\Temp\\uiux-workbench-xaedzfbf\\sample.json",
+      "ms": 1.62
     },
     {
       "name": "export",
       "ok": true,
-      "detail": "C:\\Users\\49745\\AppData\\Local\\Temp\\uiux-workbench-gfap7jc2\\workbench-export.json",
-      "ms": 1.28
+      "detail": "C:\\Users\\49745\\AppData\\Local\\Temp\\uiux-workbench-xaedzfbf\\workbench-export.json",
+      "ms": 1.24
     },
     {
       "name": "undo_redo",
       "ok": true,
       "detail": "undo/redo around 6 items",
-      "ms": 9.31
+      "ms": 8.92
     },
     {
       "name": "keyboard_shortcut",
       "ok": true,
       "detail": "Ctrl+Z / Ctrl+Y actions (shortcut metadata + trigger)",
-      "ms": 3.25
+      "ms": 2.35
     },
     {
       "name": "error_handling",
       "ok": true,
       "detail": "invalid import rejected",
-      "ms": 1.18
+      "ms": 0.85
     },
     {
       "name": "focus_order",
       "ok": true,
       "detail": "nameEdit -> xSpin -> ySpin -> applyButton -> importButton -> addButton",
-      "ms": 15.02
+      "ms": 15.99
     },
     {
       "name": "screenshots",
       "ok": true,
       "detail": "workbench-before.png,workbench-after.png",
-      "ms": 24.5
+      "ms": 24.0
     }
   ],
   "all_steps_ok": true,
@@ -146,11 +146,13 @@
       "sha256": "73a82f0a8b9f9ec398cf552126848a7e5f3258789abd6f414fd355f57bef4f08"
     }
   ],
-  "duration_ms": 254.64,
+  "duration_ms": 251.16,
   "limitations": [
     "Synthetic reference application; this is not the real New Manga workbench.",
-    "QTest sends Qt-level events to widgets; no OS-level physical mouse/keyboard or UIA click-through.",
+    "QTest sends Qt-level events; the canvas drag is Qt-level, not OS physical mouse input.",
+    "Ctrl+Z/Ctrl+Y verify QAction shortcut metadata and trigger; the OS-level shortcut map is not exercised.",
     "The invalid-import modal dialog is auto-accepted in the harness; visual dialog interaction is not measured.",
+    "Focus traversal uses Qt focusNextChild, not OS-level keyboard navigation.",
     "Screenshots are QWidget.grab() renders, not OS screen captures."
   ]
 }
