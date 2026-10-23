@@ -4,9 +4,9 @@
   "installed": true,
   "version": "1.3.3",
   "scope": "project",
-  "agents_home": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpwq09o3oo\\project\\.agents",
-  "suite_root": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpwq09o3oo\\project\\.agents\\uiux-suite\\versions\\1.3.3",
-  "skills_root": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpwq09o3oo\\project\\.agents\\skills",
+  "agents_home": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpa6fxdcj4\\project\\.agents",
+  "suite_root": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpa6fxdcj4\\project\\.agents\\uiux-suite\\versions\\1.3.3",
+  "skills_root": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpa6fxdcj4\\project\\.agents\\skills",
   "activated": true,
   "files": 85
 }
@@ -71,25 +71,25 @@
     "node": "E:\\Program Files\\nodejs\\node.EXE",
     "skill_roots": [
       {
-        "path": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpwq09o3oo\\project\\.dsh\\skills",
+        "path": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpa6fxdcj4\\project\\.dsh\\skills",
         "rank": 100,
         "source": "project-dsh",
         "exists": false
       },
       {
-        "path": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpwq09o3oo\\project\\.agents\\skills",
+        "path": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpa6fxdcj4\\project\\.agents\\skills",
         "rank": 200,
         "source": "project-agents",
         "exists": true
       },
       {
-        "path": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpwq09o3oo\\dsh\\skills",
+        "path": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpa6fxdcj4\\dsh\\skills",
         "rank": 400,
         "source": "user-dsh",
         "exists": false
       },
       {
-        "path": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpwq09o3oo\\agents\\skills",
+        "path": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpa6fxdcj4\\agents\\skills",
         "rank": 500,
         "source": "user-agents",
         "exists": false
@@ -98,13 +98,13 @@
     "entries": [
       {
         "name": "uiux",
-        "root": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpwq09o3oo\\project\\.agents\\skills\\uiux",
+        "root": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpa6fxdcj4\\project\\.agents\\skills\\uiux",
         "rank": 200,
         "shadowed_by": null
       },
       {
         "name": "uiux-verify",
-        "root": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpwq09o3oo\\project\\.agents\\skills\\uiux-verify",
+        "root": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpa6fxdcj4\\project\\.agents\\skills\\uiux-verify",
         "rank": 200,
         "shadowed_by": null
       }
@@ -156,4 +156,4 @@
       {
         "id": "file_permissions",
         "status": "READY",
-        "detail": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpwq09o3oo\\project\\.agen
+        "detail": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpa6fxdcj4\\project\\.agen
