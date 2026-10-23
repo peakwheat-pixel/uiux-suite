@@ -16,7 +16,7 @@
 
 ## 2. 已实现能力
 
-- **契约**：19 份 JSON Schema、枚举唯一来源、Mode×Gate、G0–G6 派生规则、证据生命周期、L4 独立审查。
+- **契约**：23 份 JSON Schema、枚举唯一来源、Mode×Gate、G0–G6 派生规则、证据生命周期、L4 独立审查。
 - **安装**：`uiux` + `uiux-verify` 双入口；版本化 `versions/<ver>/`；install/doctor/repair/upgrade/rollback/uninstall；中文/空格/junction/长路径；UNC 稳定拒绝。
 - **检测器**（SIMULATED 标注）：
   - `style_token_linter`（10 规则，QSS/Web/TSX）；
