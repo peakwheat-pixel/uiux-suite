@@ -2,11 +2,11 @@
   "schema_version": "1.3.3",
   "evidence_id": "EV-T0.3-HOST-INSTALL",
   "kind": "tool_log",
-  "generated_at": "2026-10-23T18:31:17.032352+00:00",
+  "generated_at": "2026-10-23T18:32:08.109357+00:00",
   "git": {
-    "commit": "d6be0a97a6ecae3b7a8fdba1ad6a87630e04287e",
+    "commit": "4282cc14888978a3b32599aa1da0d233b3a0fb52",
     "branch": "v1.3.3-contract-closure",
-    "dirty": true
+    "dirty": false
   },
   "privacy": "local_private_unredacted: contains machine-specific absolute paths; not for distribution",
   "generator_sha256": "cb6afdbf8825ad9b902351ce0e53d1abcbd787afd80b01b303bd826d3a45327a",
@@ -51,7 +51,7 @@
   "doctor": {
     "exit_code": 0,
     "stdout_file": "evidence\\T0.3\\raw\\doctor.stdout.json",
-    "stdout_file_sha256": "6f727e325f1ba4f4a5e5078475df41b9133e75557de24f1a6fac9df94aa08d81",
+    "stdout_file_sha256": "b1a63bdd0fe9a28a765e4d37544e63c61f1775d8e81147240b2d895cf2f18547",
     "overall_status": "UNVERIFIED",
     "links": {
       "uiux": {
@@ -94,8 +94,8 @@
   "repo_independence": {
     "external_cwd_doctor_exit_code": 0,
     "external_cwd_doctor_stdout_file": "evidence\\T0.3\\raw\\external-cwd-doctor.stdout.json",
-    "external_cwd_doctor_stdout_file_sha256": "6539a388861b5f77ef720124c62168df2c7f5bc92d8ca033c35cd44ee5d06b81",
-    "external_cwd_doctor_stdout_sha256": "412c8667590119e816614ae4d39405f867181f15969a6e20d71d12a04ce3424e",
+    "external_cwd_doctor_stdout_file_sha256": "8f2c8ae054051c78a2c7470f3563dac9e9a84e00410c85046e0520394fbcc2b6",
+    "external_cwd_doctor_stdout_sha256": "0d1db6775f5fec56bdc2558ebb7e9c2185991320fed606e9c9e31ce3f8b15251",
     "source_checkout_absolute_references": [],
     "source_checkout_scan_scope": "all install-root files under suite_root (<=2MB, text-decodable)",
     "independent_of_source_checkout": true

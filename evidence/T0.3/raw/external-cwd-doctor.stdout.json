@@ -25,13 +25,13 @@
     "node": "E:\\Program Files\\nodejs\\node.EXE",
     "skill_roots": [
       {
-        "path": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpze5qco7s\\.dsh\\skills",
+        "path": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpgfnlduxd\\.dsh\\skills",
         "rank": 100,
         "source": "project-dsh",
         "exists": false
       },
       {
-        "path": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpze5qco7s\\.agents\\skills",
+        "path": "C:\\Users\\49745\\AppData\\Local\\Temp\\tmpgfnlduxd\\.agents\\skills",
         "rank": 200,
         "source": "project-agents",
         "exists": false
@@ -425,6 +425,6 @@
     ],
     "doctor_version": "1.3.3",
     "overall_status": "UNVERIFIED",
-    "checked_at": "2026-10-23T18:31:17.005843+00:00"
+    "checked_at": "2026-10-23T18:32:08.084523+00:00"
   }
 }
