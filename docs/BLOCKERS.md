@@ -32,3 +32,13 @@
 ```text
 ID | 任务 | 类型（数据/权限/不可逆/凭据/外部服务） | 已尝试的安全替代 | 所需外部条件 | 当前状态 | 证据路径
 ```
+
+## V1.3.3 RC2 剩余外部阻断（2026-10-24）
+
+| 任务 | 状态 | 所需外部条件 |
+|---|---|---|
+| T5.1/T5.2 真实工作台试点与前后对照 | BLOCKED_WAITING_EXTERNAL | 对 `New Manga` 真实应用、数据与权重目录的隔离运行授权；不得直接启动/修改原工作目录。合成应用 12/12 E2E 已完成。 |
+| T5.3 真实项目数据安全/回滚演练 | BLOCKED_WAITING_EXTERNAL | 同上；需要允许在隔离副本写入并恢复真实项目数据。 |
+| T5.4 独立 G6 签发 | BLOCKED_BY_DEPENDENCY | 依赖 T5.1–T5.3 与真实证据；当前只能签发 RC2 审阅，不能签发 G6 PASS。 |
+| T4.2 其他 Agent 兼容矩阵 | BLOCKED_WAITING_EXTERNAL | Codex/Claude/ZCode/Antigravity/Qoder 的隔离配置目录与离线技能发现方式；需避免调用收费模型。 |
+| M10 真实 CI runner | BLOCKED_WAITING_EXTERNAL | GitHub/gitea runner、仓库凭据或本地 Docker/act 执行环境。 |

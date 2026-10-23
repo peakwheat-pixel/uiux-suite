@@ -43,7 +43,11 @@ $env:PYTHONPATH='runtime'
 .\.venv\Scripts\python.exe scripts\build_release.py
 ```
 
-## 5. 恢复点
+## 5. 外部阻断
+
+T5.1–T5.4、T4.2、M10 需要真实应用/数据授权、其他宿主隔离配置或 CI runner；详见 `docs/BLOCKERS.md`。
+
+## 6. 恢复点
 
 - 最新提交与标签以 `git log --oneline -1` / `git tag` 为准；不得在 `SPEC_V1.3.2.md` 上修改（基线哈希冻结）。
 - 所有证据脚本重跑后必须重新提交 evidence；发行包重建后必须更新 `dist/SHA256SUMS.txt` 与 `evidence/T5.5/`。

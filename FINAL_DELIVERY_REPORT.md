@@ -1,5 +1,7 @@
 # UIUX Suite V1.3.3 最终交付报告
 
+> 剩余外部阻断：真实工作台应用级试点、其他 Agent 宿主、真实 CI runner 需用户授权/外部环境；详见 `docs/BLOCKERS.md`。
+>
 > 结论先行：**Release Candidate 2（RC2，整体 PARTIAL）**。契约闭环、Stage 0–2、检测器、安装/发行包与证据体系已实现并通过机器验收；Stage 3 的 Tauri/WDIO 与其他框架真机路径、Stage 5 真实工作台交互与独立 G6 仍未验证，已在 `docs/RELEASE_NOTES.md` 与各 Stage 验收记录中明确标注，**不宣称 G6 PASS**。
 
 ## 1. 交付物
