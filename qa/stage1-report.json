@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "samples": 25,
+  "matrix": {
+    "tp": 38,
+    "fp": 0,
+    "tn": 8,
+    "fn": 0
+  },
+  "hard_failures": [],
+  "schema_errors": [],
+  "evidence": "qa/confusion-matrix.json",
+  "inputs_sha256": {
+    "catalog": "d71fe8111ac4e380765b8016349793b564ec36d910fc1fff1d1951c4a3fb374b",
+    "style_fixtures": "cca2112fb500f1787e83e985fbd8dbde749f1b054d7caefebd27f2d94bdadbf3",
+    "flows_gt": "f842c35c60950c8848686f74eda4f7aed3b152efad0903276f34696ec67d59a1",
+    "geometry_gt": "33a5798d295edef25e0e46e9f78d04e713488e007907805e4915abaa24e1ede8"
+  }
+}

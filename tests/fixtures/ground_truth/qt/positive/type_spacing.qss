@@ -1,0 +1,7 @@
+QLabel#hintLabel {
+    font-size: 10px;
+}
+
+QFrame#cardFrame {
+    padding: 13px;
+}

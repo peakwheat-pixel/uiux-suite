@@ -1,0 +1,176 @@
+{
+  "name": "clipped-overlap-targets",
+  "description": "Seeded defects: scroll overflow, ancestor clipping, explicit clipped flag, overlapping targets. Also keeps legal negatives: contained child inside the clipping card, fully nested targets, adjacent targets.",
+  "runtime_level": "SIMULATED",
+  "viewport": {"w": 1000, "h": 700},
+  "background": "#ffffff",
+  "elements": [
+    {
+      "id": "toolbar",
+      "role": "region",
+      "rect": {"x": 0, "y": 0, "w": 1000, "h": 56},
+      "overflow": {"hidden": true}
+    },
+    {
+      "id": "toolbar-title",
+      "role": "heading",
+      "rect": {"x": 16, "y": 12, "w": 200, "h": 32},
+      "text": "项目设置",
+      "parentId": "toolbar",
+      "styles": {"fontSize": 20, "lineHeight": 28, "color": "#111827"}
+    },
+    {
+      "id": "toolbar-action-1",
+      "role": "button",
+      "rect": {"x": 640, "y": 12, "w": 120, "h": 32},
+      "text": "保存草稿",
+      "interactive": true,
+      "styles": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#ffffff",
+        "bgColor": "#1d4ed8",
+        "focusVisible": true,
+        "focusColor": "#1d4ed8"
+      }
+    },
+    {
+      "id": "toolbar-action-2",
+      "role": "button",
+      "rect": {"x": 730, "y": 22, "w": 120, "h": 32},
+      "text": "发布",
+      "interactive": true,
+      "styles": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#ffffff",
+        "bgColor": "#0b5ed7",
+        "focusVisible": true,
+        "focusColor": "#1d4ed8"
+      }
+    },
+    {
+      "id": "clipped-label",
+      "role": "text",
+      "rect": {"x": 16, "y": 80, "w": 180, "h": 20},
+      "text": "这是一个非常长的标签文本会被截断",
+      "styles": {"fontSize": 14, "lineHeight": 20, "color": "#111827"},
+      "overflow": {"scrollWidth": 260, "clientWidth": 180, "scrollHeight": 20, "clientHeight": 20}
+    },
+    {
+      "id": "card",
+      "role": "region",
+      "rect": {"x": 16, "y": 120, "w": 240, "h": 100},
+      "overflow": {"hidden": true}
+    },
+    {
+      "id": "card-text",
+      "role": "text",
+      "rect": {"x": 32, "y": 136, "w": 260, "h": 20},
+      "text": "超出卡片宽度的说明文字",
+      "parentId": "card",
+      "styles": {"fontSize": 14, "lineHeight": 20, "color": "#111827"}
+    },
+    {
+      "id": "card-ok",
+      "role": "text",
+      "rect": {"x": 32, "y": 164, "w": 200, "h": 20},
+      "text": "正常说明",
+      "parentId": "card",
+      "styles": {"fontSize": 14, "lineHeight": 20, "color": "#111827"}
+    },
+    {
+      "id": "explicit-clipped",
+      "role": "text",
+      "rect": {"x": 16, "y": 240, "w": 120, "h": 20},
+      "text": "工具已判定裁切",
+      "styles": {"fontSize": 14, "lineHeight": 20, "color": "#111827"},
+      "overflow": {"clipped": true}
+    },
+    {
+      "id": "ellipsis-legal",
+      "role": "text",
+      "rect": {"x": 16, "y": 268, "w": 120, "h": 20},
+      "text": "合法的省略号文本…",
+      "styles": {"fontSize": 14, "lineHeight": 20, "color": "#111827"},
+      "overflow": {
+        "scrollWidth": 200,
+        "clientWidth": 120,
+        "scrollHeight": 20,
+        "clientHeight": 20,
+        "ellipsis": true
+      }
+    },
+    {
+      "id": "nested-toggle",
+      "role": "switch",
+      "rect": {"x": 600, "y": 120, "w": 120, "h": 32},
+      "interactive": true,
+      "styles": {"focusVisible": true, "focusColor": "#1d4ed8"}
+    },
+    {
+      "id": "nested-toggle-icon",
+      "role": "button",
+      "rect": {"x": 608, "y": 124, "w": 24, "h": 24},
+      "interactive": true,
+      "styles": {"focusVisible": true, "focusColor": "#1d4ed8"}
+    },
+    {
+      "id": "adjacent-a",
+      "role": "button",
+      "rect": {"x": 600, "y": 200, "w": 80, "h": 32},
+      "text": "A",
+      "interactive": true,
+      "styles": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#111827",
+        "bgColor": "#f3f4f6",
+        "focusVisible": true,
+        "focusColor": "#1d4ed8"
+      }
+    },
+    {
+      "id": "adjacent-b",
+      "role": "button",
+      "rect": {"x": 680, "y": 200, "w": 80, "h": 32},
+      "text": "B",
+      "interactive": true,
+      "styles": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#111827",
+        "bgColor": "#f3f4f6",
+        "focusVisible": true,
+        "focusColor": "#1d4ed8"
+      }
+    },
+    {
+      "id": "small-target",
+      "role": "button",
+      "rect": {"x": 800, "y": 200, "w": 20, "h": 20},
+      "text": "×",
+      "interactive": true,
+      "styles": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#111827",
+        "bgColor": "#f3f4f6"
+      }
+    },
+    {
+      "id": "focus-invisible",
+      "role": "button",
+      "rect": {"x": 800, "y": 240, "w": 80, "h": 32},
+      "text": "更多",
+      "interactive": true,
+      "styles": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#ffffff",
+        "bgColor": "#1d4ed8",
+        "focusVisible": false
+      }
+    }
+  ]
+}

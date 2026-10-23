@@ -1,0 +1,15 @@
+{
+  "measurement": "low-contrast-measurement.json",
+  "description": "Contrast defects plus legal negatives for large text (32 px, 19 px bold) and for 20 px non-bold text which must fail.",
+  "runtime_level": "SIMULATED",
+  "expected_fail_count": 6,
+  "expected_findings": [
+    {"rule_id": "UX-COLOR-001", "element_id": "body-copy"},
+    {"rule_id": "UX-COLOR-001", "element_id": "card-copy-inherited"},
+    {"rule_id": "UX-COLOR-001", "element_id": "compact-copy"},
+    {"rule_id": "UX-COLOR-001", "element_id": "faint-note"},
+    {"rule_id": "UX-COLOR-001", "element_id": "rgb-color-copy"},
+    {"rule_id": "UX-COLOR-001", "element_id": "short-hex-copy"}
+  ],
+  "must_not_match": ["heading-large", "bold-copy", "card-heading-inherited", "ok-copy"]
+}

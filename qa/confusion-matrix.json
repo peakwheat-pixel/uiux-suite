@@ -1,0 +1,395 @@
+{
+  "schema_version": "1.3.3",
+  "suite": "stage1-detectors",
+  "git_commit": "675491d3c838a8081733f60ad5e4a6001b961c2f",
+  "generated_at": "2026-10-23T18:59:46.601733+00:00",
+  "matrix": {
+    "tp": 38,
+    "fp": 0,
+    "tn": 8,
+    "fn": 0
+  },
+  "per_rule": [
+    {
+      "rule_id": "UX-A11Y-001",
+      "tp": 1,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0
+    },
+    {
+      "rule_id": "UX-A11Y-003",
+      "tp": 3,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0
+    },
+    {
+      "rule_id": "UX-A11Y-004",
+      "tp": 1,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0
+    },
+    {
+      "rule_id": "UX-COLOR-001",
+      "tp": 4,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0
+    },
+    {
+      "rule_id": "UX-COLOR-002",
+      "tp": 2,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0
+    },
+    {
+      "rule_id": "UX-COPY-001",
+      "tp": 1,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0
+    },
+    {
+      "rule_id": "UX-FLOW-001",
+      "tp": 1,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0
+    },
+    {
+      "rule_id": "UX-FLOW-002",
+      "tp": 1,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0
+    },
+    {
+      "rule_id": "UX-FLOW-003",
+      "tp": 1,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0
+    },
+    {
+      "rule_id": "UX-GEOM-001",
+      "tp": 1,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0
+    },
+    {
+      "rule_id": "UX-GEOM-002",
+      "tp": 1,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0
+    },
+    {
+      "rule_id": "UX-MOTION-001",
+      "tp": 1,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0
+    },
+    {
+      "rule_id": "UX-SPACE-001",
+      "tp": 3,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0
+    },
+    {
+      "rule_id": "UX-SPACE-002",
+      "tp": 2,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0
+    },
+    {
+      "rule_id": "UX-STATE-002",
+      "tp": 1,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0
+    },
+    {
+      "rule_id": "UX-TYPE-001",
+      "tp": 3,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0
+    },
+    {
+      "rule_id": "UX-TYPE-002",
+      "tp": 1,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0
+    }
+  ],
+  "samples": [
+    {
+      "sample_id": "style:qt/negative/state_cue.qss",
+      "expected": [],
+      "actual": [],
+      "status": "TN"
+    },
+    {
+      "sample_id": "style:qt/negative/tokens.qss",
+      "expected": [],
+      "actual": [],
+      "status": "TN"
+    },
+    {
+      "sample_id": "style:qt/positive/color_only.qss",
+      "expected": [
+        "UX-COLOR-002"
+      ],
+      "actual": [
+        "UX-COLOR-002"
+      ],
+      "status": "TP"
+    },
+    {
+      "sample_id": "style:qt/positive/contrast.qss",
+      "expected": [
+        "UX-COLOR-001"
+      ],
+      "actual": [
+        "UX-COLOR-001"
+      ],
+      "status": "TP"
+    },
+    {
+      "sample_id": "style:qt/positive/type_spacing.qss",
+      "expected": [
+        "UX-SPACE-001",
+        "UX-TYPE-001"
+      ],
+      "actual": [
+        "UX-SPACE-001",
+        "UX-TYPE-001"
+      ],
+      "status": "TP"
+    },
+    {
+      "sample_id": "style:web/negative/a11y.html",
+      "expected": [],
+      "actual": [],
+      "status": "TN"
+    },
+    {
+      "sample_id": "style:web/negative/focus_replacement.css",
+      "expected": [],
+      "actual": [],
+      "status": "TN"
+    },
+    {
+      "sample_id": "style:web/negative/inline_style.html",
+      "expected": [],
+      "actual": [],
+      "status": "TN"
+    },
+    {
+      "sample_id": "style:web/negative/tokens.css",
+      "expected": [],
+      "actual": [],
+      "status": "TN"
+    },
+    {
+      "sample_id": "style:web/positive/a11y.html",
+      "expected": [
+        "UX-A11Y-001",
+        "UX-A11Y-004",
+        "UX-COPY-001"
+      ],
+      "actual": [
+        "UX-A11Y-001",
+        "UX-A11Y-004",
+        "UX-COPY-001"
+      ],
+      "status": "TP"
+    },
+    {
+      "sample_id": "style:web/positive/color_only.css",
+      "expected": [
+        "UX-COLOR-002"
+      ],
+      "actual": [
+        "UX-COLOR-002"
+      ],
+      "status": "TP"
+    },
+    {
+      "sample_id": "style:web/positive/contrast.css",
+      "expected": [
+        "UX-COLOR-001"
+      ],
+      "actual": [
+        "UX-COLOR-001"
+      ],
+      "status": "TP"
+    },
+    {
+      "sample_id": "style:web/positive/focus.css",
+      "expected": [
+        "UX-A11Y-003"
+      ],
+      "actual": [
+        "UX-A11Y-003"
+      ],
+      "status": "TP"
+    },
+    {
+      "sample_id": "style:web/positive/inline_style.html",
+      "expected": [
+        "UX-COLOR-001"
+      ],
+      "actual": [
+        "UX-COLOR-001"
+      ],
+      "status": "TP"
+    },
+    {
+      "sample_id": "style:web/positive/motion.css",
+      "expected": [
+        "UX-MOTION-001"
+      ],
+      "actual": [
+        "UX-MOTION-001"
+      ],
+      "status": "TP"
+    },
+    {
+      "sample_id": "style:web/positive/spacing.css",
+      "expected": [
+        "UX-SPACE-001",
+        "UX-SPACE-001",
+        "UX-SPACE-001"
+      ],
+      "actual": [
+        "UX-SPACE-001",
+        "UX-SPACE-001",
+        "UX-SPACE-001"
+      ],
+      "status": "TP"
+    },
+    {
+      "sample_id": "style:web/positive/tsx_inline.tsx",
+      "expected": [
+        "UX-SPACE-001",
+        "UX-TYPE-001"
+      ],
+      "actual": [
+        "UX-SPACE-001",
+        "UX-TYPE-001"
+      ],
+      "status": "TP"
+    },
+    {
+      "sample_id": "style:web/positive/typography.css",
+      "expected": [
+        "UX-TYPE-001",
+        "UX-TYPE-002"
+      ],
+      "actual": [
+        "UX-TYPE-001",
+        "UX-TYPE-002"
+      ],
+      "status": "TP"
+    },
+    {
+      "sample_id": "flows:good.json",
+      "expected": [],
+      "actual": [],
+      "status": "TN"
+    },
+    {
+      "sample_id": "flows:unreachable.json",
+      "expected": [
+        "UX-FLOW-001",
+        "UX-FLOW-003",
+        "UX-STATE-002"
+      ],
+      "actual": [
+        "UX-FLOW-001",
+        "UX-FLOW-003",
+        "UX-STATE-002"
+      ],
+      "status": "TP"
+    },
+    {
+      "sample_id": "flows:destructive-missing.json",
+      "expected": [
+        "UX-FLOW-002"
+      ],
+      "actual": [
+        "UX-FLOW-002"
+      ],
+      "status": "TP"
+    },
+    {
+      "sample_id": "geometry:clean-measurement.json",
+      "expected": [],
+      "actual": [],
+      "status": "TN"
+    },
+    {
+      "sample_id": "geometry:clipped-overlap-measurement.json",
+      "expected": [
+        "UX-A11Y-003",
+        "UX-GEOM-001",
+        "UX-GEOM-001",
+        "UX-GEOM-001",
+        "UX-GEOM-002",
+        "UX-SPACE-002"
+      ],
+      "actual": [
+        "UX-A11Y-003",
+        "UX-GEOM-001",
+        "UX-GEOM-001",
+        "UX-GEOM-001",
+        "UX-GEOM-002",
+        "UX-SPACE-002"
+      ],
+      "status": "TP"
+    },
+    {
+      "sample_id": "geometry:focus-measurement.json",
+      "expected": [
+        "UX-A11Y-003",
+        "UX-A11Y-003",
+        "UX-SPACE-002"
+      ],
+      "actual": [
+        "UX-A11Y-003",
+        "UX-A11Y-003",
+        "UX-SPACE-002"
+      ],
+      "status": "TP"
+    },
+    {
+      "sample_id": "geometry:low-contrast-measurement.json",
+      "expected": [
+        "UX-COLOR-001",
+        "UX-COLOR-001",
+        "UX-COLOR-001",
+        "UX-COLOR-001",
+        "UX-COLOR-001",
+        "UX-COLOR-001"
+      ],
+      "actual": [
+        "UX-COLOR-001",
+        "UX-COLOR-001",
+        "UX-COLOR-001",
+        "UX-COLOR-001",
+        "UX-COLOR-001",
+        "UX-COLOR-001"
+      ],
+      "status": "TP"
+    }
+  ]
+}

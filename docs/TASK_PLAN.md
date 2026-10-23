@@ -16,10 +16,10 @@
 | T1.1 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T0.1, T1.0 | 双栈正反 Fixtures 与冻结 GT | Web/Tauri 与 Qt 正负样本含预期结果、Rule ID、环境与截图；独立标注记录 |
 | T1.2 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T1.0, T1.1 | style_token_linter（AST/CSS/QSS 分级规则） | 硬失败/告警分级；豁免审计；正反样本零误判硬 FAIL |
 | T1.3 | Stage 1 | TODO | Stage 1 Exit | T1.0, T1.1 | ux_flow_validator（Schema + 能力交叉发现） | flows.json 校验；静态与契约能力差异告警；destructive 漏报触发 WARN/FAIL |
-| T1.4 | Stage 1 | TODO | Stage 1 Exit | T1.1 | layout_geometry_probe（Web DOM / Qt Offscreen 真实测量） | 裁切/对比度/间距测量；合法负样本零硬 FAIL；Offscreen 结果标注 SIMULATED |
-| T1.5 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T0.1 | Runner/Gate 引擎完整化（G0–G5 工具日志与证据闭环） | finalize 从真实工具日志重算；拒绝伪造 PASS；CLI 退出码稳定 |
-| T1.6 | Stage 1 | TODO | Stage 1 Exit | T1.5 | 负向攻击测试（假 PASS/删证据/跨层/Mock 冒充） | 全部攻击用例被拒绝并附退出码与日志 |
-| T1.7 | Stage 1 | TODO | Stage 1 Exit | T1.1, T1.2, T1.3, T1.4 | 混淆矩阵、CI 与误报/漏报报告 | TP/FP/TN/FN 输出；CI 显示每条样本预期与实际；Windows runner |
+| T1.4 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T1.1 | layout_geometry_probe（Web DOM / Qt Offscreen 真实测量） | 裁切/对比度/间距测量；合法负样本零硬 FAIL；Offscreen 结果标注 SIMULATED |
+| T1.5 | Stage 1 | DONE | Stage 1 Exit | T0.1 | Runner/Gate 引擎完整化（G0–G5 工具日志与证据闭环） | finalize 从真实工具日志重算；拒绝伪造 PASS；CLI 退出码稳定 |
+| T1.6 | Stage 1 | DONE | Stage 1 Exit | T1.5 | 负向攻击测试（假 PASS/删证据/跨层/Mock 冒充） | 全部攻击用例被拒绝并附退出码与日志 |
+| T1.7 | Stage 1 | DONE | Stage 1 Exit | T1.1, T1.2, T1.3, T1.4 | 混淆矩阵、CI 与误报/漏报报告 | TP/FP/TN/FN 输出；CI 显示每条样本预期与实际；Windows runner |
 | T2.1 | Stage 2 | TODO | Stage 2 Exit | T1.3 | 页面/窗口/路由识别与三源能力比对 | 功能地图；源码/运行/契约差异报告 |
 | T2.2 | Stage 2 | TODO | Stage 2 Exit | T1.3 | flows.json 设计工具与状态推导 | 按能力派生状态；可测试路径生成；review required 记录 |
 | T2.3 | Stage 2 | TODO | Stage 2 Exit | T1.2 | DTCG Token 与 CSS/Tailwind/PySide6 编译器 | 明暗主题与 CJK 字体测试；Token 可编译 |
@@ -50,7 +50,7 @@
 | M7 | Stage 0 | DONE | T0.1 | T0.1 | 四类根权限优先级与 finalize 校验 | read/report/sandbox/install 四根入 schema 与语义校验；allowed_write_globs 单一来源；越权拒绝 |
 | M8 | Stage 3 | TODO | Stage 3 Exit | T0.1 | 不可信项目构建执行模型 | 只读模式构建沙箱/副本；执行清单；网络与清理策略；SECURITY.md |
 | M9 | Stage 0 | DONE | T0.4 | T0.1 | CLI 退出码、--json 与阶段验收命令 | 退出码表写入 docs/CLI.md；doctor/finalize --json schema；每个 Stage Exit 三列化 |
-| M10 | Stage 1 | TODO | Stage 1 Exit | T1.1 | CI 骨架与 Windows runner | CI 显示每条 fixture 预期/实际；Artifacts 归档 |
+| M10 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T1.1 | CI 骨架与 Windows runner | CI 显示每条 fixture 预期/实际；Artifacts 归档 |
 | M11 | Stage 2 | TODO | Stage 2 Exit | T0.5 | 第三方知识来源、许可与消费接口 | 来源锁 commit/许可；knowledge index；无法锁许可则自建 |
 | M12 | Stage 2 | TODO | Stage 2 Exit | T2.3 | 存量设计系统采纳与 token drift | brownfield 流程；drift 检查器；冲突优先级 |
 | M13 | Stage 1 | TODO | Stage 1 Exit | T1.0 | 靶场 GT 独立标注与阻断种子 | 标注流程与分歧仲裁；阻断种子清单；零误判硬 FAIL |
@@ -58,11 +58,11 @@
 | M15 | Stage 0 | DONE | T0.1 | — | DAG 循环与遗漏修复 | T1.0 作为共同上游；DAG 补齐 T0.4/T0.6/T1.7/T2.4/T2.6；编号修正 |
 | M16 | Stage 5 | TODO | Stage 5 Exit | T5.5 | 附录命令一致性 | 统一 python 解释器与引号；附录拆分 Stage 0/1 与 2/3 |
 | M17 | Stage 0 | DONE | T0.2 | T0.1 | 非 Git 快照与回退 | dir_digest + 备份副本 + 差异哈希；回滚路径 |
-| M18 | Stage 1 | TODO | Stage 1 Exit | T1.0 | 无障碍维度与 Rule ID | accessible name/键盘/target size/ARIA-UIA 语义规则 |
+| M18 | Stage 1 | IN_PROGRESS | Stage 1 Exit | T1.0 | 无障碍维度与 Rule ID | accessible name/键盘/target size/ARIA-UIA 语义规则 |
 | m1 | Stage 3 | TODO | Stage 3 Exit | M8 | Prompt Injection 威胁模型 | 项目内容视为不可信输入；提示隔离与拒绝规则 |
 | m2 | Stage 4 | TODO | Stage 4 Exit | T3.6 | 同模型系统性偏差提示 | 独立审查要求不同模型家族或明示风险 |
 | m3 | Stage 2 | TODO | Stage 2 Exit | T2.3 | 字体许可与 CJK 字体分发 | 字体栈许可核查；不随包分发未授权字体 |
-| m4 | Stage 1 | TODO | Stage 1 Exit | T1.7 | 混淆矩阵契约与产物登记 | confusion-matrix schema；纳入 §3.1 目录与 CLI 输出 |
+| m4 | Stage 1 | DONE | Stage 1 Exit | T1.7 | 混淆矩阵契约与产物登记 | confusion-matrix schema；纳入 §3.1 目录与 CLI 输出 |
 | m5 | Stage 5 | TODO | Stage 5 Exit | T5.5 | 安全、兼容与迁移文档 | SECURITY/THREAT_MODEL/AGENT_COMPAT/MIGRATION |
 | m6 | Stage 0 | DONE | T0.4 | T0.1 | 统一 CLI 名称与 doctor 归属 | cli.py 单入口；setup doctor 与 engine doctor 分工写清 |
 | m7 | Stage 0 | DONE | T0.4 | T0.4 | Host Capability 消费者 | doctor --json 输出 host-capability.json；T4.1 复用 |
@@ -73,6 +73,6 @@
 | 状态 | 数量 |
 |---|---|
 | BLOCKED | 0 |
-| DONE | 18 |
-| IN_PROGRESS | 3 |
-| TODO | 40 |
+| DONE | 22 |
+| IN_PROGRESS | 5 |
+| TODO | 34 |

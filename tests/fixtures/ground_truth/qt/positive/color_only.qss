@@ -1,0 +1,3 @@
+QLineEdit[error="true"] {
+    color: #d93025;
+}

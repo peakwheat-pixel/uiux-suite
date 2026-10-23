@@ -32,6 +32,7 @@ SCHEMA_FILES: dict[str, str] = {
     "flows": "flows.v1.3.3.schema.json",
     "rule-catalog": "rule-catalog.v1.3.3.schema.json",
     "rule-exemption": "rule-exemption.v1.3.3.schema.json",
+    "confusion-matrix": "confusion-matrix.v1.3.3.schema.json",
 }
 
 

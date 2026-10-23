@@ -257,6 +257,9 @@
     "RuleScope": {
       "values": ["web", "tauri", "qt", "winui", "wpf", "flows", "any"]
     },
+    "ConfusionStatus": {
+      "values": ["TP", "TN", "FP", "FN", "PARTIAL"]
+    },
     "Capability": {
       "values": ["async_load", "collection_display", "user_mutation", "long_running_task", "destructive_operations", "canvas_rendering"]
     },
