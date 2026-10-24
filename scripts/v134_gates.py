@@ -301,8 +301,19 @@ def r7() -> dict:
     checks.append(check("independence_status_honest", ind["independence_status"] == "INDEPENDENCE_UNVERIFIED",
                         ind["independence_status"]))
     checks.append(check("verify_report_present", (verify / "VERIFY_REPORT.md").is_file(), "VERIFY_REPORT.md"))
+    prov_path = ACCEPTANCE_ROOT / "evidence" / "release" / "github-actions-provenance.json"
+    prov = json.loads(prov_path.read_text(encoding="utf-8")) if prov_path.is_file() else {}
+    prov_ok = prov.get("conclusion") == "success" and bool(prov.get("artifacts"))
+    checks.append({
+        "check": "external_build_provenance_recorded",
+        "ok": prov_ok,
+        "detail": f"run={prov.get('run_id')} conclusion={prov.get('conclusion')} scope={prov.get('trust_scope')}",
+        "blocking": False,
+    })
     return {"gate": "R7", "state": "PASS" if all(c["ok"] for c in checks if c["blocking"]) else "FAIL",
-            "checks": checks, "independent_review_pass": False}
+            "checks": checks, "independent_review_pass": False,
+            "external_build_provenance": prov_ok,
+            "note": "external CI proves build provenance only; independent review remains ISOLATED_SESSION/INDEPENDENCE_UNVERIFIED"}
 
 
 def r9() -> dict:
