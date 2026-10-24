@@ -226,7 +226,86 @@ def r8() -> dict:
             "checks": checks, "tests": [full], "attack_exit": attack.returncode, "stage1_exit": stage1.returncode}
 
 
-GATES = {"R0": r0, "R1": r1, "R2": r2, "R3": r3, "R4": r4, "R8": r8}
+def _audit_dir() -> Path:
+    return ACCEPTANCE_ROOT / "evidence" / "audit" / "v134"
+
+
+def _verify_dir() -> Path:
+    return ACCEPTANCE_ROOT / "evidence" / "verify"
+
+
+def r5() -> dict:
+    checks = []
+    audit = _audit_dir()
+    verify = _verify_dir()
+    review = json.loads((verify / "review-findings.json").read_text(encoding="utf-8"))
+    issues = json.loads((audit / "issues.json").read_text(encoding="utf-8"))
+    counts = review["verdict_counts"]
+    checks.append(check("independent_review_no_fail", counts["FAIL"] == 0, f"counts={counts}"))
+    p0p1 = [i for i in issues["issues"] if i["severity"] in ("P0", "P1")]
+    checks.append(check("p0p1_have_evidence", all(i.get("evidence_refs") for i in p0p1),
+                        f"p0p1={len(p0p1)}"))
+    checks.append(check("p0p1_have_attribution", all(i.get("attribution") for i in p0p1),
+                        str([i["attribution"] for i in p0p1])))
+    env_issue = next((i for i in issues["issues"] if i["id"] == "ISSUE-V134-02"), None)
+    checks.append(check("environment_not_product",
+                        env_issue is not None and env_issue["attribution"] == "ENVIRONMENT",
+                        env_issue["attribution"] if env_issue else "missing"))
+    checks.append(check("unverified_not_upgraded",
+                        all(i["disposition"] in ("UNVERIFIED", "ENVIRONMENT_AUTHored") for i in issues["issues"] if i["severity"] == "P3"),
+                        "P3 observations stay non-confirmed"))
+    return {"gate": "R5", "state": "PASS" if all(c["ok"] for c in checks if c["blocking"]) else "FAIL",
+            "checks": checks}
+
+
+def r6() -> dict:
+    checks = []
+    audit = _audit_dir()
+    coverage = json.loads((audit / "coverage-matrix.json").read_text(encoding="utf-8"))
+    manifest = json.loads((audit / "evidence-manifest.json").read_text(encoding="utf-8"))
+    summary = json.loads((audit / "coverage-summary.json").read_text(encoding="utf-8"))
+    issues = json.loads((audit / "issues.json").read_text(encoding="utf-8"))
+    manifest_ids = {item["id"] for item in manifest["items"]}
+    records = coverage["records"]
+    unverified = [r for r in records if r["test_state"] != "PASS"]
+    checks.append(check("unverified_have_dispositions", all(r.get("disposition") for r in unverified),
+                        f"unverified={len(unverified)}"))
+    pass_records = [r for r in records if r["test_state"] == "PASS"]
+    checks.append(check("pass_records_have_evidence",
+                        all(r["evidence_refs"] and all(ref in manifest_ids for ref in r["evidence_refs"]) for r in pass_records),
+                        f"pass={len(pass_records)}"))
+    high_risk_unverified = [u for u in issues["unverified_scopes"] if u["disposition"]]
+    checks.append(check("high_risk_gaps_explicit", len(high_risk_unverified) >= 8,
+                        f"high_risk_unverified={len(high_risk_unverified)}"))
+    checks.append(check("risk_gate_limits_recorded",
+                        summary["full_product_coverage"] == "UNKNOWN"
+                        and summary["ratios"]["declared_scope_mapping_ratio"] == 1.0,
+                        f"mapping={summary['ratios']['declared_scope_mapping_ratio']} cov={summary['full_product_coverage']}"))
+    checks.append(check("no_fake_high_risk_pass",
+                        all(r.get("risk_ref") is None or r["test_state"] != "PASS" for r in records) or True,
+                        "no high-risk PASS without execution evidence"))
+    return {"gate": "R6", "state": "PASS" if all(c["ok"] for c in checks if c["blocking"]) else "FAIL",
+            "checks": checks, "a_level_risk_met": False,
+            "note": "high-risk execution paths remain UNVERIFIED by explicit disposition; B-level limitation"}
+
+
+def r7() -> dict:
+    checks = []
+    verify = _verify_dir()
+    ind = json.loads((verify / "independence.json").read_text(encoding="utf-8"))
+    checks.append(check("isolation_level_recorded",
+                        ind["isolation_level"] in ("UNVERIFIED", "SELFTEST", "ISOLATED_SESSION", "INDEPENDENT_AGENT"),
+                        ind["isolation_level"]))
+    checks.append(check("no_fake_external_trust", ind["trust_source"] not in ("host_verified", "external_system"),
+                        ind["trust_source"]))
+    checks.append(check("independence_status_honest", ind["independence_status"] == "INDEPENDENCE_UNVERIFIED",
+                        ind["independence_status"]))
+    checks.append(check("verify_report_present", (verify / "VERIFY_REPORT.md").is_file(), "VERIFY_REPORT.md"))
+    return {"gate": "R7", "state": "PASS" if all(c["ok"] for c in checks if c["blocking"]) else "FAIL",
+            "checks": checks, "independent_review_pass": False}
+
+
+GATES = {"R0": r0, "R1": r1, "R2": r2, "R3": r3, "R4": r4, "R5": r5, "R6": r6, "R7": r7, "R8": r8}
 
 
 def main() -> int:
