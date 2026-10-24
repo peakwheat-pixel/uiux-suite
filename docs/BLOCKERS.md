@@ -33,10 +33,12 @@
 ID | 任务 | 类型（数据/权限/不可逆/凭据/外部服务） | 已尝试的安全替代 | 所需外部条件 | 当前状态 | 证据路径
 ```
 
-## V1.3.3 RC3 剩余阻断（2026-10-24）
+## V1.3.3 FINAL 残余能力限制（非阻断）
 
-| 任务 | 状态 | 所需外部条件 |
+| 项 | 状态 | 说明 |
 |---|---|---|
-| T5.3 导出/撤销 | BLOCKED_BY_PRODUCT | 导出需要 translated artifact；当前导入页未翻译。撤销/重做 RC2 产品未提供；取消/重复/DB/Git 回滚已 PASS。 |
-| T5.4 独立 G6 | BLOCKED_BY_DEPENDENCY | 依赖 T5.3；当前只能签 RC3 审阅，不能签 G6 PASS。 |
-| T4.2 其他 Agent 宿主 | PARTIAL/UNVERIFIED | DSH 实测；Codex/Claude/ZCode/AGY/Qoder 尚未完成隔离技能发现测试。 |
+| T5.3 导出 | PASS（合成 fixture） | 产品 acceptance bridge 的 mock/local providers + 2 页合成 fixture；ZIP 非 Tauri 对话框点击。 |
+| T5.3 撤销 | PASS（IPC/domain） | region retype→restore 真实 IPC 修订恢复；workbench overlay 测量 0x0，UI 点击撤销未走通，UI wiring 由单测覆盖。 |
+| T5.4 G6 | **PASS** | status=COMPLETE、G6=PASS；delivery=ISOLATED_REVIEW_VERIFIED；independent=INDEPENDENCE_UNVERIFIED（隔离会话，不是外部独立来源）。 |
+| T4.2 宿主 | DSH/AGY 已实测；Codex 发现/读通过 | Claude/ZCode/Qoder UNVERIFIED；Codex runtime 被其 sandbox helper 阻断。 |
+| 已知 UX 缺陷 | P2/P3（非 P0/P1） | CJK mojibake、导入后计数需刷新、无 AT 运行时验证；已列入 `FINAL_DELIVERY_REPORT` 风险。 |

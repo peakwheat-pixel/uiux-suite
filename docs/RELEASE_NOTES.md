@@ -1,4 +1,6 @@
-# UIUX Suite V1.3.3 发行说明
+# UIUX Suite V1.3.3 FINAL 发行说明
+
+> 状态：**V1.3.3 FINAL**；61/61 DONE；G6 PASS（ISOLATED_REVIEW_VERIFIED）；外部独立审查 INDEPENDENCE_UNVERIFIED；UI 撤销按钮 E2E 未通过。
 
 ## 交付物
 
@@ -32,7 +34,7 @@ python skills\uiux\scripts\launch.py doctor --scope user
 - 规则目录冻结 20 条；T1.2–T1.7 检测器、负向攻击 11/11、混淆矩阵 TP38/FP0/TN8/FN0。
 - Stage 2 discovery/design system/prototype/options。
 - Stage 3 受控改动/回滚、Vault 字节校验、完整性链、安全分级、真实 Win11 Notepad（WinUI 3）UIA 只读证据。
-- 发行包内安装、双入口、doctor 均 exit 0（临时隔离目录，155 个载荷文件 + `RELEASE_MANIFEST.json`（ZIP 共 156 项））。
+- 发行包内安装、双入口、doctor 均 exit 0；干净卸载 85 files；rollback same-version exit 0；install 集成测试 11 passed（临时隔离目录，155 个载荷文件 + `RELEASE_MANIFEST.json`（ZIP 共 156 项））。
 
 ## 未验证（不得宣称 PASS）
 
