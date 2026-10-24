@@ -4,72 +4,65 @@
   "version_target": "1.3.5",
   "authority": "single-source-of-truth",
   "phase": "B",
-  "stage": "TASK-03",
-  "updated_at": "2026-10-24T06:25:00Z",
+  "stage": "TASK-04",
+  "updated_at": "2026-10-24T07:20:00Z",
   "source": {
     "repo": "G:\\AI\\universal-uiux-engineering",
     "worktree": "G:\\AI\\uiux-v135-wt",
     "branch": "v1.3.5-reliability",
     "base_commit": "33f792444b585e7af7f3d4d49222bd7d5118b6e78",
-    "latest_commit": "622e555"
+    "latest_commit": "ce2a2e1"
   },
   "evidence_root": "G:\\AI\\uiux-v135",
+  "contracts": {
+    "v135_layer": "26 schemas + enums.v1.3.5 + mode-gate-policy.v1.3.5",
+    "old_layers_untouched": ["1.3.3", "1.3.4"],
+    "dispatch": "SUPPORTED_SCHEMA_VERSIONS = 1.3.3/1.3.4/1.3.5; explicit version required for mixed inputs",
+    "coverage_additions": ["capability_available", "capability_evidence_refs", "execution_mode", "executed", "backup_verified", "restore_verified", "restore_consistent"]
+  },
   "tasks": {
-    "TASK-01": {
+    "TASK-01": {"state": "completed_core", "commit": "846720f", "summary": "risk_gate fail-closed + 24 negative tests; legacy 3/10"},
+    "TASK-02": {"state": "completed_core", "commit": "622e555", "summary": "G1 discovery 12 pages/6 dialogs/581 entries/7 GAPs; inventory v135 baseline 675de7a2; external dirty source recorded"},
+    "TASK-03": {
       "state": "completed_core",
-      "commit": "846720f",
-      "tests": "24 negative/fault-injection + 2 legacy; engine module risk_gate.py",
-      "evidence": "G:\\AI\\uiux-v135\\evidence\\task01\\risk-gate-v134-legacy.json",
-      "pending": ["independent reviewer (Phase C)", "release gate record (Phase D)"]
-    },
-    "TASK-02": {
-      "state": "completed_core",
-      "commit": "622e555",
-      "evidence": [
-        "G:\\AI\\uiux-v135\\evidence\\task02\\discovery.json",
-        "G:\\AI\\uiux-v135\\evidence\\task02\\inventory-reconciliation.json",
-        "G:\\AI\\uiux-v135\\evidence\\task02\\discovery-baseline.json",
-        "G:\\AI\\uiux-v135\\evidence\\task02\\inventory-v135-freeze.json",
-        "G:\\AI\\uiux-v135\\evidence\\task02\\scope-review.json",
-        "G:\\AI\\uiux-v135\\evidence\\task02\\SCOPE_REVIEW.md"
-      ],
+      "commit": "ce2a2e1",
+      "runs": ["pilot-run-v135 (12 captures)", "pilot-run-v135b (6 captures)"],
       "results": {
-        "pages": 12,
-        "dialogs": 6,
-        "entries": 581,
-        "gaps": 7,
-        "disabled_features": 7,
-        "state_machines": 24,
-        "inventory_items_found": 15,
-        "inventory_items_not_found": 0,
-        "inventory_excluded": 3,
-        "inventory_baseline_hash": "675de7a2bf3d66b2bec777cfa197b835bfa65bf3af8980a57cb4a01f374e095a",
-        "discovery_baseline_hash": "25dc0d4b342d7a37fb35978ebaa25fb6a3bcb0efce85cc8a846135ad682e6df0"
+        "captures": 18,
+        "evidence_items": 38,
+        "coverage_records": 16,
+        "pass": 8,
+        "unverified": 8,
+        "finalize": "PARTIAL / PARTIAL_VERIFIED / G6 UNVERIFIED (schema 1.3.5)",
+        "risk_gate_integrity": "PASS",
+        "high_risk_coverage": "3/10 (30%)",
+        "a_level_risk_met": false
       },
-      "critical_findings": [
-        "external uncommitted business-source changes in the isolated copy (8 files; HEAD 349e61faf; NOT modified by this session)",
-        "runtime EXE remains the old build sha256 8730d154... while the worktree source has newer edits -> runtime/source drift must be disclosed in UI audit binding",
-        "search is implemented inline in bookshelf components (bookshelf-search-input), not as a standalone page",
-        "PermanentDeleteConfirmDialog exists in source but its entry (detail-delete-btn) is disabled with GAP-G2",
-        "regioninspector dialog is covered by ITM-REGION-EDIT but not explicitly listed as an inventory item (refinement finding)"
+      "verified_now": ["ITM-PAGE-SEARCH (search/sort/filter)", "ITM-PAGE-READER", "ITM-PAGE-WORKBENCH", "ITM-PAGE-SETTINGS", "ITM-IMPORT-FLOW (dialog)", "ITM-MENU-MAIN", "ITM-ENTRY-DESKTOP"],
+      "still_unverified": [
+        "ITM-REGION-LIST/EDIT (no region data in fixture -> ENVIRONMENT_UNAVAILABLE)",
+        "ITM-TASK-STATES (Core lacks ListRuns -> TOOL_UNAVAILABLE)",
+        "ITM-DIALOG-DELETE (entry disabled GAP-G2 -> NOT_APPLICABLE with capability evidence)",
+        "ITM-DIALOG-IMPORT-CONFIRM / ITM-CMD-PERMANENT-DELETE / ITM-CMD-IMPORT-EXECUTE (NATIVE_INTERACTION_UNAVAILABLE)",
+        "ITM-EXPORT-FLOW (export-dialog did not open -> AUDITOR_OMISSION)"
+      ],
+      "evidence": [
+        "G:\\AI\\uiux-v135\\evidence\\audit\\probe\\pilot-run-v135",
+        "G:\\AI\\uiux-v135\\evidence\\audit\\probe\\pilot-run-v135b",
+        "G:\\AI\\uiux-v135\\evidence\\audit\\v135"
       ]
     },
-    "TASK-03": {"state": "in_progress", "deps": ["TASK-02", "TASK-05"], "goal": "backfill search/region/task-state/delete-confirm coverage with real runtime evidence"},
-    "TASK-04": {"state": "pending", "deps": ["TASK-03", "TASK-05"]},
-    "TASK-05": {"state": "pending", "deps": ["TASK-01"], "note": "fixture/A-B regression can run in parallel"},
-    "TASK-06": {"state": "pending", "deps": ["TASK-03", "TASK-04"]},
-    "TASK-07": {"state": "pending", "deps": ["TASK-04"]}
+    "TASK-04": {"state": "next", "goal": "isolated execution of safe high-risk flows (synthetic import/export/delete) with backup+restore proof; target >3/10 with real evidence only"},
+    "TASK-05": {"state": "completed_core", "commit": "ce2a2e1", "summary": "7 historical A/B environment cases classified ENVIRONMENT; 11 tests", "evidence": "G:\\AI\\uiux-v135\\evidence\\task05\\ab-regression.json"},
+    "TASK-06": {"state": "pending"},
+    "TASK-07": {"state": "pending"}
   },
-  "tests": {
-    "baseline_v134": 525,
-    "current": 557,
-    "added": ["risk_gate 24", "legacy regression 2", "discovery_g1 6"]
-  },
+  "tests": {"baseline": 525, "current": 568, "added": ["risk_gate 24", "legacy 2", "discovery 6", "ab regression 11", "version dispatch v1.3.5"]},
   "gates": {
     "R0": "pending", "R1": "pending", "R2": "pending", "R3": "pending",
     "R4": "pending", "R5": "pending", "R6": "pending", "R7": "pending",
     "R8": "pending", "R9": "pending"
   },
   "blockers": [],
-  "next_action": "TASK-05 fixture/A-B regression (parallel) then TASK-03 runtime coverage backfill: capture bookshelf search, region overlay/inspector, TaskProgressPanel states, delete-confirm disabled entry; use EXE 8730d154 with explicit runtime/source drift disclosure"
+  "next_action": "TASK-04 isolated execution: build a synthetic fixture data root with regions + tasks + deletable objects; execute safe writes in the sandbox with backup/restore proof; re-run risk gate to raise real high-risk coverage. Then TASK-06 reviewer/CI, TASK-07 report facts/linter, Phase D release."
 }
