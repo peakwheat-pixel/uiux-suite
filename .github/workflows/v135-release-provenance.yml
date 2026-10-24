@@ -8,7 +8,7 @@ on:
         required: false
   push:
     tags:
-      - "v1.3.5"
+      - "v1.3.5"\n      - "v1.3.5-*"
 
 permissions:
   contents: read
