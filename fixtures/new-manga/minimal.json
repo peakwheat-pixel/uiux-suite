@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "FIX-NEW-MANGA-MINIMAL",
+  "description": "New Manga 隔离试点最小合成数据：区域/流水线/媒体/任务/导入导出，全部为合成内容，不含真实用户数据",
+  "project": {
+    "name": "New Manga",
+    "stack": "tauri2-react-webview2",
+    "app_executable": "<sandbox>/app/m2rc1-desktop.exe"
+  },
+  "read_only": true,
+  "roots": {
+    "data_root": "<sandbox>/newmanga-data",
+    "derived_root": "<sandbox>/newmanga-derived",
+    "catalog_db": "<sandbox>/newmanga-data/catalog/catalog-snapshot.json",
+    "managed_root": "<sandbox>/newmanga-data/managed"
+  },
+  "environment": {
+    "required_executables": [
+      {"path": "<sandbox>/app/m2rc1-desktop.exe", "purpose": "app"}
+    ],
+    "required_env": ["M2RC1_PACKAGED"],
+    "ports": [{"port": 9222, "purpose": "cdp"}],
+    "min_free_gb": 1,
+    "os": "windows"
+  },
+  "data": {
+    "entities": {"regions": 2, "pipeline_runs": 2, "media_artifacts": 3, "tasks": 2, "pages": 2},
+    "files": [
+      {
+        "relative_path": "newmanga-data/regions.json",
+        "content_kind": "json",
+        "payload": {
+          "regions": [
+            {"id": "region-001", "name": "示例区域 A", "priority": 1},
+            {"id": "region-002", "name": "示例区域 B", "priority": 2}
+          ]
+        }
+      },
+      {
+        "relative_path": "newmanga-data/pipeline_runs.json",
+        "content_kind": "json",
+        "payload": {
+          "runs": [
+            {"id": "run-001", "region_id": "region-001", "status": "completed"},
+            {"id": "run-002", "region_id": "region-002", "status": "pending"}
+          ]
+        }
+      },
+      {
+        "relative_path": "newmanga-data/media_artifacts.json",
+        "content_kind": "json",
+        "payload": {
+          "artifacts": [
+            {"id": "art-001", "run_id": "run-001", "kind": "page", "path": "managed/art-001.png"},
+            {"id": "art-002", "run_id": "run-001", "kind": "page", "path": "managed/art-002.png"},
+            {"id": "art-003", "run_id": "run-002", "kind": "thumbnail", "path": "managed/art-003.png"}
+          ]
+        }
+      },
+      {
+        "relative_path": "newmanga-data/tasks.json",
+        "content_kind": "json",
+        "payload": {
+          "tasks": [
+            {"id": "task-001", "kind": "import", "status": "queued"},
+            {"id": "task-002", "kind": "export", "status": "draft"}
+          ]
+        }
+      },
+      {
+        "relative_path": "newmanga-data/import-bundle/import-manifest.json",
+        "content_kind": "json",
+        "payload": {
+          "schema": "uiux.import.v1",
+          "pages": [
+            {"index": 1, "name": "001"},
+            {"index": 2, "name": "002"}
+          ]
+        }
+      },
+      {
+        "relative_path": "newmanga-data/import-bundle/pages/001.txt",
+        "content_kind": "text",
+        "payload": "fixture page placeholder"
+      },
+      {
+        "relative_path": "app/m2rc1-desktop.exe",
+        "content_kind": "text",
+        "payload": "fixture placeholder: this is not an executable; it only satisfies preflight file checks"
+      }
+    ],
+    "catalog_snapshot": {
+      "kind": "json_snapshot",
+      "tables": {
+        "region": [{"id": "region-001", "name": "示例区域 A"}, {"id": "region-002", "name": "示例区域 B"}],
+        "pipeline_run": [{"id": "run-001", "count": 2}, {"id": "run-002", "count": 1}]
+      }
+    }
+  },
+  "failure_class_coverage": [
+    "fixture_invalid",
+    "missing_executable",
+    "missing_env",
+    "port_occupied",
+    "data_root_missing",
+    "readonly_violation",
+    "unsupported_stack"
+  ]
+}

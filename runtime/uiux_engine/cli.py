@@ -17,7 +17,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from . import build_guard, compat, contracts, enums, external, gates, input_policy, integrity, knowledge, modify, policy, rules, safety, snapshot, token_compiler, validation, vault
+from . import build_guard, compat, contracts, enums, evidence, external, fixture, gates, input_policy, integrity, knowledge, modify, policy, rules, safety, snapshot, token_compiler, validation, vault
 
 EXIT_OK = 0
 EXIT_USAGE = 2
@@ -107,6 +107,37 @@ def cmd_validate(args: argparse.Namespace) -> int:
         return _invalid(errors, context=f"schema={args.schema}")
     resolved = version or (instance.get("schema_version") if isinstance(instance, dict) else None)
     _emit({"ok": True, "schema": args.schema, "schema_version": resolved, "instance": args.instance})
+    return EXIT_OK
+
+
+def cmd_fixture(args: argparse.Namespace) -> int:
+    try:
+        payload = fixture.load_fixture(args.fixture)
+    except fixture.FixtureError as exc:
+        _emit({"ok": False, "errors": [str(exc)], "fixture": args.fixture})
+        return EXIT_INVALID
+
+    if args.action == "validate":
+        _emit({"ok": True, "fixture": args.fixture, "fixture_id": payload["fixture_id"]})
+        return EXIT_OK
+
+    if args.action == "preflight":
+        problems = fixture.preflight_problems(payload, sandbox_root=args.sandbox)
+        _emit({
+            "ok": not problems,
+            "fixture_id": payload["fixture_id"],
+            "problems": problems,
+            "classes": sorted({item["class"] for item in problems}),
+            "failure_class_matrix": fixture.failure_class_matrix(),
+        })
+        return EXIT_OK if not problems else EXIT_INVALID
+
+    try:
+        applied = fixture.apply_fixture(payload, args.sandbox)
+    except fixture.FixtureError as exc:
+        _emit({"ok": False, "errors": [str(exc)]})
+        return EXIT_INVALID
+    _emit({"ok": True, **applied})
     return EXIT_OK
 
 
@@ -497,6 +528,12 @@ def build_parser() -> argparse.ArgumentParser:
         help="contract version (default: inferred from the instance schema_version)",
     )
     p_validate.set_defaults(func=cmd_validate)
+
+    p_fixture = sub.add_parser("fixture", help="validate / preflight / materialise a declarative test fixture (TASK-01)")
+    p_fixture.add_argument("action", choices=["validate", "preflight", "apply"])
+    p_fixture.add_argument("--fixture", required=True)
+    p_fixture.add_argument("--sandbox", help="sandbox root that replaces <sandbox> placeholders")
+    p_fixture.set_defaults(func=cmd_fixture)
 
     p_policy = sub.add_parser("policy", help="resolve the Mode×Gate policy for a mode or request")
     p_policy.add_argument("--mode", choices=sorted(enums.values("Mode")))

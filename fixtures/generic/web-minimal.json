@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "FIX-GENERIC-WEB-MINIMAL",
+  "description": "通用 Web SPA 最小 fixture：用于非 Tauri 项目的环境预检与 A/B 对照",
+  "project": {
+    "name": "Generic Web App",
+    "stack": "web-spa"
+  },
+  "read_only": true,
+  "roots": {
+    "data_root": "<sandbox>/data",
+    "derived_root": "<sandbox>/derived",
+    "catalog_db": "<sandbox>/data/catalog.json",
+    "managed_root": "<sandbox>/data/managed"
+  },
+  "environment": {
+    "required_executables": [],
+    "required_env": [],
+    "ports": [{"port": 8080, "purpose": "http"}],
+    "min_free_gb": 0,
+    "os": "any"
+  },
+  "data": {
+    "entities": {"pages": 1, "tasks": 1},
+    "files": [
+      {
+        "relative_path": "data/pages.json",
+        "content_kind": "json",
+        "payload": {"pages": [{"id": "page-001", "route": "/"}]}
+      },
+      {
+        "relative_path": "data/tasks.json",
+        "content_kind": "json",
+        "payload": {"tasks": [{"id": "task-001", "kind": "audit", "status": "queued"}]}
+      }
+    ]
+  },
+  "failure_class_coverage": ["fixture_invalid", "data_root_missing", "readonly_violation", "unsupported_stack"]
+}

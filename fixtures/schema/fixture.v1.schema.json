@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uiux-suite.local/fixtures/schema/fixture.v1.schema.json",
+  "title": "UIUX Declarative Test Fixture V1.0",
+  "type": "object",
+  "required": ["schema_version", "fixture_id", "project", "roots", "environment", "data"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "fixture_id": {"type": "string", "pattern": "^FIX-[A-Za-z0-9._-]{3,64}$"},
+    "description": {"type": "string", "minLength": 1},
+    "project": {
+      "type": "object",
+      "required": ["name", "stack"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "stack": {
+          "enum": ["tauri2-react-webview2", "electron", "web-spa", "qt", "winui", "wpf", "unknown"]
+        },
+        "app_executable": {"type": "string", "minLength": 1},
+        "source_root": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "read_only": {"type": "boolean"},
+    "roots": {
+      "type": "object",
+      "required": ["data_root", "derived_root", "catalog_db", "managed_root"],
+      "properties": {
+        "data_root": {"type": "string", "minLength": 1},
+        "derived_root": {"type": "string", "minLength": 1},
+        "catalog_db": {"type": "string", "minLength": 1},
+        "managed_root": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "environment": {
+      "type": "object",
+      "properties": {
+        "required_executables": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["path", "purpose"],
+            "properties": {
+              "path": {"type": "string", "minLength": 1},
+              "purpose": {"enum": ["app", "python", "node", "tool"]}
+            },
+            "additionalProperties": false
+          }
+        },
+        "required_env": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "ports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["port", "purpose"],
+            "properties": {
+              "port": {"type": "integer", "minimum": 1, "maximum": 65535},
+              "purpose": {"enum": ["cdp", "http", "other"]}
+            },
+            "additionalProperties": false
+          }
+        },
+        "min_free_gb": {"type": "number", "minimum": 0},
+        "os": {"enum": ["windows", "macos", "linux", "any"]}
+      },
+      "additionalProperties": false
+    },
+    "data": {
+      "type": "object",
+      "required": ["entities", "files"],
+      "properties": {
+        "entities": {
+          "type": "object",
+          "properties": {
+            "regions": {"type": "integer", "minimum": 0},
+            "pipeline_runs": {"type": "integer", "minimum": 0},
+            "media_artifacts": {"type": "integer", "minimum": 0},
+            "tasks": {"type": "integer", "minimum": 0},
+            "pages": {"type": "integer", "minimum": 0}
+          },
+          "additionalProperties": false
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["relative_path", "content_kind"],
+            "properties": {
+              "relative_path": {"type": "string", "minLength": 1, "pattern": "^(?!/)(?!.*\\.\\.).+$"},
+              "content_kind": {"enum": ["json", "text", "dir"]},
+              "payload": {}
+            },
+            "additionalProperties": false
+          }
+        },
+        "catalog_snapshot": {
+          "type": "object",
+          "properties": {
+            "kind": {"enum": ["json_snapshot"]},
+            "tables": {"type": "object", "additionalProperties": {"type": "array"}}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "failure_class_coverage": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "fixture_invalid", "missing_executable", "missing_env", "port_occupied",
+          "data_root_missing", "readonly_violation", "unsupported_stack"
+        ]
+      },
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false
+}
