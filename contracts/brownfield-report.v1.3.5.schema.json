@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uiux-suite.local/contracts/brownfield-report.v1.3.5.schema.json",
+  "title": "UIUX Brownfield Adoption Report V1.3.5",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "project_id",
+    "generated_at",
+    "entries",
+    "summary"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "common.v1.3.5.schema.json#/$defs/schema_version"
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generated_at": {
+      "$ref": "common.v1.3.5.schema.json#/$defs/iso8601"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "suite_value",
+          "existing_value",
+          "action",
+          "priority"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "suite_value": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "existing_value": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "action": {
+            "enum": [
+              "ADOPT",
+              "OVERRIDE",
+              "KEEP_LOCAL",
+              "CONFLICT"
+            ]
+          },
+          "priority": {
+            "enum": [
+              "SUITE",
+              "PROJECT"
+            ]
+          },
+          "rationale": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "ok": {
+      "type": "boolean"
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "adopted",
+        "overridden",
+        "kept",
+        "conflicts"
+      ],
+      "properties": {
+        "adopted": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "overridden": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "kept": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "conflicts": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

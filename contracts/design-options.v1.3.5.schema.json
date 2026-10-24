@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uiux-suite.local/contracts/design-options.v1.3.5.schema.json",
+  "title": "UIUX Design Options and Decision Record V1.3.5",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "decision_id",
+    "created_at",
+    "options",
+    "selected_option_id",
+    "rationale"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "common.v1.3.5.schema.json#/$defs/schema_version"
+    },
+    "decision_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at": {
+      "$ref": "common.v1.3.5.schema.json#/$defs/iso8601"
+    },
+    "options": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "option_id",
+          "name",
+          "summary",
+          "pros",
+          "cons",
+          "risks",
+          "scores"
+        ],
+        "properties": {
+          "option_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1
+          },
+          "pros": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "cons": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "risks": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "scores": {
+            "type": "object",
+            "required": [
+              "usability",
+              "visual",
+              "feasibility",
+              "risk",
+              "accessibility"
+            ],
+            "properties": {
+              "usability": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "visual": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "feasibility": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "risk": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "accessibility": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "selected_option_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rationale": {
+      "type": "string",
+      "minLength": 10
+    }
+  },
+  "additionalProperties": false
+}

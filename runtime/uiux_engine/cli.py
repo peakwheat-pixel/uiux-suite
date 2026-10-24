@@ -593,7 +593,7 @@ def cmd_finalize(args: argparse.Namespace) -> int:
         "repair_cycles": outcome["repair_cycles"],
         "created_at": now.isoformat(),
     }
-    if contract_version == "1.3.4":
+    if contract_version in ("1.3.4", "1.3.5"):
         if "delivery_dimensions" in outcome:
             result["delivery_dimensions"] = outcome["delivery_dimensions"]
         if "scope_summary" in outcome:

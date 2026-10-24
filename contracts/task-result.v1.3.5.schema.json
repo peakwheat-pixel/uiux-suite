@@ -1,0 +1,490 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uiux-suite.local/contracts/task-result.v1.3.5.schema.json",
+  "title": "UIUX TaskResult V1.3.5",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "mode",
+    "status",
+    "delivery_status",
+    "independent_review_status",
+    "design_review_status",
+    "source_fingerprint",
+    "runtime_evidence_level",
+    "review_isolation_level",
+    "gates",
+    "derived_g6",
+    "coverage_matrix",
+    "unverified_paths",
+    "blocking_reasons",
+    "warn_reviews",
+    "evidence_manifest",
+    "design_review_ref",
+    "review_attestation_ref",
+    "repair_cycles",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "common.v1.3.5.schema.json#/$defs/schema_version"
+    },
+    "run_id": {
+      "$ref": "common.v1.3.5.schema.json#/$defs/run_id"
+    },
+    "mode": {
+      "enum": [
+        "audit",
+        "design-only",
+        "prototype",
+        "new-build",
+        "redesign",
+        "targeted-fix",
+        "verify"
+      ]
+    },
+    "status": {
+      "enum": [
+        "COMPLETE",
+        "PARTIAL",
+        "FAILED",
+        "BLOCKED"
+      ]
+    },
+    "delivery_status": {
+      "enum": [
+        "NOT_VERIFIED",
+        "SELFTEST_VERIFIED",
+        "ISOLATED_REVIEW_VERIFIED",
+        "INDEPENDENT_VERIFIED",
+        "PARTIAL_VERIFIED"
+      ]
+    },
+    "independent_review_status": {
+      "enum": [
+        "NOT_APPLICABLE",
+        "UNVERIFIED",
+        "INDEPENDENCE_UNVERIFIED",
+        "INDEPENDENT_REVIEW_PASS",
+        "INDEPENDENT_REVIEW_FAIL"
+      ]
+    },
+    "design_review_status": {
+      "enum": [
+        "NOT_REQUIRED",
+        "MISSING",
+        "INCOMPLETE",
+        "PASS",
+        "FAIL",
+        "UNVERIFIED"
+      ]
+    },
+    "source_fingerprint": {
+      "$ref": "common.v1.3.5.schema.json#/$defs/source_fingerprint"
+    },
+    "runtime_evidence_level": {
+      "enum": [
+        "NONE",
+        "SIMULATED",
+        "NATIVE_APP",
+        "OS_INTEGRATION"
+      ]
+    },
+    "review_isolation_level": {
+      "enum": [
+        "UNVERIFIED",
+        "SELFTEST",
+        "ISOLATED_SESSION",
+        "INDEPENDENT_AGENT"
+      ]
+    },
+    "gates": {
+      "type": "object",
+      "required": [
+        "G0",
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5"
+      ],
+      "properties": {
+        "G0": {
+          "$ref": "gate-results.v1.3.5.schema.json#/$defs/gate_result"
+        },
+        "G1": {
+          "$ref": "gate-results.v1.3.5.schema.json#/$defs/gate_result"
+        },
+        "G2": {
+          "$ref": "gate-results.v1.3.5.schema.json#/$defs/gate_result"
+        },
+        "G3": {
+          "$ref": "gate-results.v1.3.5.schema.json#/$defs/gate_result"
+        },
+        "G4": {
+          "$ref": "gate-results.v1.3.5.schema.json#/$defs/gate_result"
+        },
+        "G5": {
+          "$ref": "gate-results.v1.3.5.schema.json#/$defs/gate_result"
+        }
+      },
+      "additionalProperties": false
+    },
+    "derived_g6": {
+      "$ref": "gate-results.v1.3.5.schema.json#/$defs/g6_result"
+    },
+    "coverage_matrix": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "coverage-matrix.v1.3.5.schema.json#/$defs/record"
+      }
+    },
+    "unverified_paths": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "task_id",
+          "reason_code",
+          "detail"
+        ],
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scenario_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "required_runtime_level": {
+            "enum": [
+              "NONE",
+              "SIMULATED",
+              "NATIVE_APP",
+              "OS_INTEGRATION"
+            ]
+          },
+          "reason_code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "detail": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "blocking_reasons": {
+      "type": "array",
+      "items": {
+        "$ref": "common.v1.3.5.schema.json#/$defs/reason_entry"
+      }
+    },
+    "warn_reviews": {
+      "type": "array",
+      "items": {
+        "$ref": "common.v1.3.5.schema.json#/$defs/warn_review"
+      }
+    },
+    "evidence_manifest": {
+      "type": "string",
+      "minLength": 1
+    },
+    "design_review_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "review_attestation_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "repair_cycles": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2
+    },
+    "created_at": {
+      "$ref": "common.v1.3.5.schema.json#/$defs/iso8601"
+    },
+    "delivery_dimensions": {
+      "type": "object",
+      "required": [
+        "execution_status",
+        "scope_coverage_status",
+        "evidence_integrity_status",
+        "risk_coverage_status",
+        "independence_status",
+        "delivery_status"
+      ],
+      "properties": {
+        "execution_status": {
+          "enum": [
+            "PASS",
+            "PARTIAL",
+            "FAIL",
+            "BLOCKED",
+            "UNVERIFIED"
+          ]
+        },
+        "scope_coverage_status": {
+          "enum": [
+            "COMPLETE",
+            "PARTIAL",
+            "UNMAPPED_GAPS",
+            "UNKNOWN"
+          ]
+        },
+        "evidence_integrity_status": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "UNVERIFIED"
+          ]
+        },
+        "risk_coverage_status": {
+          "enum": [
+            "PASS",
+            "BLOCKED",
+            "UNVERIFIED",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "independence_status": {
+          "enum": [
+            "NOT_APPLICABLE",
+            "UNVERIFIED",
+            "INDEPENDENCE_UNVERIFIED",
+            "INDEPENDENT_REVIEW_PASS",
+            "INDEPENDENT_REVIEW_FAIL"
+          ]
+        },
+        "delivery_status": {
+          "enum": [
+            "NOT_VERIFIED",
+            "SELFTEST_VERIFIED",
+            "ISOLATED_REVIEW_VERIFIED",
+            "INDEPENDENT_VERIFIED",
+            "PARTIAL_VERIFIED",
+            "PARTIAL_SCOPED"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "scope_summary": {
+      "type": "object",
+      "properties": {
+        "declared_scope_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "inventory_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "mapped_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "executed_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "verified_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unverified_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unreachable_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "excluded_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "high_risk_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "high_risk_verified_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "declared_scope_mapping_ratio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "COMPLETE"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "blocking_reasons": {
+            "maxItems": 0
+          },
+          "unverified_paths": {
+            "maxItems": 0
+          },
+          "delivery_status": {
+            "enum": [
+              "SELFTEST_VERIFIED",
+              "ISOLATED_REVIEW_VERIFIED",
+              "INDEPENDENT_VERIFIED"
+            ]
+          },
+          "design_review_status": {
+            "enum": [
+              "NOT_REQUIRED",
+              "PASS"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "FAILED",
+              "BLOCKED"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "blocking_reasons": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "delivery_status": {
+            "const": "INDEPENDENT_VERIFIED"
+          }
+        },
+        "required": [
+          "delivery_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "independent_review_status": {
+            "const": "INDEPENDENT_REVIEW_PASS"
+          },
+          "review_isolation_level": {
+            "const": "INDEPENDENT_AGENT"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "delivery_status": {
+            "const": "ISOLATED_REVIEW_VERIFIED"
+          }
+        },
+        "required": [
+          "delivery_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "review_isolation_level": {
+            "enum": [
+              "ISOLATED_SESSION",
+              "INDEPENDENT_AGENT"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "delivery_status": {
+            "const": "SELFTEST_VERIFIED"
+          }
+        },
+        "required": [
+          "delivery_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "review_isolation_level": {
+            "enum": [
+              "SELFTEST",
+              "ISOLATED_SESSION",
+              "INDEPENDENT_AGENT"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "independent_review_status": {
+            "const": "INDEPENDENT_REVIEW_PASS"
+          }
+        },
+        "required": [
+          "independent_review_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "review_isolation_level": {
+            "const": "INDEPENDENT_AGENT"
+          },
+          "review_attestation_ref": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  ]
+}

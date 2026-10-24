@@ -1,0 +1,397 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uiux-suite.local/contracts/task-request.v1.3.5.schema.json",
+  "title": "UIUX TaskRequest V1.3.5",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "mode",
+    "project_root",
+    "project",
+    "target_scope",
+    "caller",
+    "policy",
+    "execution_policy",
+    "evidence_policy",
+    "runtime_targets",
+    "requested_outputs",
+    "review",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "common.v1.3.5.schema.json#/$defs/schema_version"
+    },
+    "run_id": {
+      "$ref": "common.v1.3.5.schema.json#/$defs/run_id"
+    },
+    "mode": {
+      "enum": [
+        "audit",
+        "design-only",
+        "prototype",
+        "new-build",
+        "redesign",
+        "targeted-fix",
+        "verify"
+      ]
+    },
+    "project_root": {
+      "$ref": "common.v1.3.5.schema.json#/$defs/abs_path"
+    },
+    "project": {
+      "type": "object",
+      "required": [
+        "has_existing_ui",
+        "tech_stack"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "has_existing_ui": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "tech_stack": {
+          "enum": [
+            "web",
+            "tauri",
+            "qt",
+            "winui",
+            "wpf",
+            "unknown"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "target_scope": {
+      "type": "array",
+      "items": {
+        "$ref": "common.v1.3.5.schema.json#/$defs/rel_path"
+      },
+      "uniqueItems": true
+    },
+    "caller": {
+      "type": "object",
+      "required": [
+        "kind",
+        "invoker",
+        "git_management"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "direct",
+            "ci",
+            "external"
+          ]
+        },
+        "invoker": {
+          "type": "string",
+          "minLength": 1
+        },
+        "git_management": {
+          "enum": [
+            "standalone",
+            "caller_managed"
+          ]
+        },
+        "task_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "base_head": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{7,40}$"
+        },
+        "worktree_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "artifact_dir": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "policy": {
+      "$ref": "policy.v1.3.5.schema.json"
+    },
+    "execution_policy": {
+      "type": "object",
+      "required": [
+        "read_only_source",
+        "allow_production_data_write",
+        "allow_uia_input",
+        "allow_physical_os_input",
+        "os_input_target_allowlist",
+        "allowed_write_globs",
+        "max_total_repair_cycles",
+        "require_native_for_production_complete"
+      ],
+      "properties": {
+        "read_only_source": {
+          "type": "boolean"
+        },
+        "allow_production_data_write": {
+          "type": "boolean"
+        },
+        "allow_uia_input": {
+          "type": "boolean"
+        },
+        "allow_physical_os_input": {
+          "type": "boolean"
+        },
+        "os_input_target_allowlist": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "allowed_write_globs": {
+          "type": "array",
+          "items": {
+            "$ref": "common.v1.3.5.schema.json#/$defs/rel_path"
+          },
+          "uniqueItems": true
+        },
+        "max_total_repair_cycles": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "require_native_for_production_complete": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidence_policy": {
+      "type": "object",
+      "required": [
+        "profile",
+        "retention_days",
+        "release_retention_days",
+        "redaction"
+      ],
+      "properties": {
+        "profile": {
+          "enum": [
+            "local_private",
+            "portable_redacted",
+            "release_audit"
+          ]
+        },
+        "retention_days": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3650
+        },
+        "release_retention_days": {
+          "type": "integer",
+          "minimum": 30,
+          "maximum": 36500
+        },
+        "redaction": {
+          "type": "object",
+          "required": [
+            "images",
+            "paths",
+            "fields",
+            "recheck"
+          ],
+          "properties": {
+            "images": {
+              "enum": [
+                "none",
+                "blur",
+                "crop",
+                "full"
+              ]
+            },
+            "paths": {
+              "type": "boolean"
+            },
+            "fields": {
+              "type": "boolean"
+            },
+            "recheck": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "runtime_targets": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "SIMULATED",
+          "NATIVE_APP",
+          "OS_INTEGRATION"
+        ]
+      }
+    },
+    "requested_outputs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "DESIGN_SYSTEM.md",
+          "tokens.json",
+          "flows.json",
+          "qa-report.json",
+          "gate-results.json",
+          "evidence-manifest.json",
+          "coverage-matrix.json",
+          "design-review.json",
+          "diff.patch"
+        ]
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": [
+        "independent_required",
+        "reviewer_context_ref"
+      ],
+      "properties": {
+        "independent_required": {
+          "type": "boolean"
+        },
+        "reviewer_context_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "created_at": {
+      "$ref": "common.v1.3.5.schema.json#/$defs/iso8601"
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "enum": [
+              "audit",
+              "design-only",
+              "prototype",
+              "verify"
+            ]
+          }
+        },
+        "required": [
+          "mode"
+        ]
+      },
+      "then": {
+        "properties": {
+          "execution_policy": {
+            "properties": {
+              "read_only_source": {
+                "const": true
+              },
+              "allow_production_data_write": {
+                "const": false
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "enum": [
+              "new-build",
+              "redesign",
+              "targeted-fix"
+            ]
+          }
+        },
+        "required": [
+          "mode"
+        ]
+      },
+      "then": {
+        "properties": {
+          "execution_policy": {
+            "properties": {
+              "allowed_write_globs": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "caller": {
+            "properties": {
+              "git_management": {
+                "const": "caller_managed"
+              }
+            }
+          }
+        },
+        "required": [
+          "caller"
+        ]
+      },
+      "then": {
+        "properties": {
+          "caller": {
+            "required": [
+              "base_head",
+              "artifact_dir"
+            ],
+            "properties": {
+              "base_head": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{7,40}$"
+              },
+              "artifact_dir": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -17,7 +17,7 @@ SUITE_ROOT = RUNTIME_DIR.parent
 CONTRACTS_DIR = SUITE_ROOT / "contracts"
 
 CURRENT_ENUM_VERSION = "1.3.4"
-SUPPORTED_ENUM_VERSIONS = ("1.3.3", "1.3.4")
+SUPPORTED_ENUM_VERSIONS = ("1.3.3", "1.3.4", "1.3.5")
 
 
 def enums_path(version: str = CURRENT_ENUM_VERSION) -> Path:

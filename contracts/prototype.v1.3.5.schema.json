@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uiux-suite.local/contracts/prototype.v1.3.5.schema.json",
+  "title": "UIUX Prototype Contract V1.3.5",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "prototype_id",
+    "kind",
+    "flows_ref",
+    "states",
+    "anchors",
+    "accessibility",
+    "checks"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "common.v1.3.5.schema.json#/$defs/schema_version"
+    },
+    "prototype_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "kind": {
+      "enum": [
+        "html",
+        "figma",
+        "spec",
+        "code"
+      ]
+    },
+    "flows_ref": {
+      "$ref": "common.v1.3.5.schema.json#/$defs/rel_path"
+    },
+    "source_file": {
+      "$ref": "common.v1.3.5.schema.json#/$defs/rel_path"
+    },
+    "states": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "anchors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "semantic_id"
+        ],
+        "properties": {
+          "semantic_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "testid": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "selector": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "required": [
+        "keyboard",
+        "labels",
+        "contrast"
+      ],
+      "properties": {
+        "keyboard": {
+          "enum": [
+            "VERIFIED",
+            "UNVERIFIED",
+            "FAIL"
+          ]
+        },
+        "labels": {
+          "enum": [
+            "VERIFIED",
+            "UNVERIFIED",
+            "FAIL"
+          ]
+        },
+        "contrast": {
+          "enum": [
+            "VERIFIED",
+            "UNVERIFIED",
+            "FAIL"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "check_id",
+          "status",
+          "detail"
+        ],
+        "properties": {
+          "check_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "UNVERIFIED"
+            ]
+          },
+          "detail": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

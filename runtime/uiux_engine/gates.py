@@ -210,7 +210,7 @@ def _aggregate_runtime_level(
         state = record.get("test_state")
         if state == "NOT_APPLICABLE":
             continue
-        if schema_version == "1.3.4":
+        if schema_version in ("1.3.4", "1.3.5"):
             disposition = record.get("disposition")
             if state == "PASS":
                 levels.append(record.get("observed_runtime_level", "NONE"))
@@ -548,7 +548,7 @@ def evaluate_run(
     if rank("RuntimeEvidenceLevel", aggregate_level) < rank("RuntimeEvidenceLevel", g5_required):
         run.add("G6", "RUNTIME_LEVEL_BELOW_REQUIRED", f"aggregate {aggregate_level} < required {g5_required}")
 
-    if run.schema_version == "1.3.4":
+    if run.schema_version in ("1.3.4", "1.3.5"):
         unverified_paths = [
             {
                 "task_id": record.get("task_id"),
@@ -687,7 +687,7 @@ def evaluate_run(
         "gate_effective_pass": gate_effective_pass,
         "required_gates": policy.required_gates(run.mode, run.facts, run.policy),
     }
-    if run.schema_version == "1.3.4":
+    if run.schema_version in ("1.3.4", "1.3.5"):
         result["delivery_dimensions"] = _delivery_dimensions(
             status=status,
             delivery=delivery,

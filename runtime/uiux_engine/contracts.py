@@ -28,7 +28,7 @@ from referencing.jsonschema import DRAFT202012
 from .enums import CONTRACTS_DIR
 
 CURRENT_SCHEMA_VERSION = "1.3.4"
-SUPPORTED_SCHEMA_VERSIONS = ("1.3.3", "1.3.4")
+SUPPORTED_SCHEMA_VERSIONS = ("1.3.3", "1.3.4", "1.3.5")
 
 
 def schema_files(version: str = CURRENT_SCHEMA_VERSION) -> dict[str, str]:

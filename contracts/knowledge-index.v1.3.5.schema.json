@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uiux-suite.local/contracts/knowledge-index.v1.3.5.schema.json",
+  "title": "UIUX Knowledge Index V1.3.5",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "index_version",
+    "generated_at",
+    "entries"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "common.v1.3.5.schema.json#/$defs/schema_version"
+    },
+    "index_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    },
+    "generated_at": {
+      "$ref": "common.v1.3.5.schema.json#/$defs/iso8601"
+    },
+    "policy": {
+      "type": "string"
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "title",
+          "source",
+          "license",
+          "checksum"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^KN-[A-Z0-9-]{2,}$"
+          },
+          "kind": {
+            "enum": [
+              "design_tokens",
+              "rule_catalog",
+              "guideline",
+              "reference",
+              "example"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "license": {
+            "enum": [
+              "internal",
+              "cc-by-4.0",
+              "mit",
+              "apache-2.0",
+              "proprietary",
+              "unknown"
+            ]
+          },
+          "path": {
+            "$ref": "common.v1.3.5.schema.json#/$defs/rel_path"
+          },
+          "checksum": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "commit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "usage": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,477 @@
+{
+  "schema_version": "1.3.5",
+  "document": "Universal UI/UX Engineering Skill Suite — machine-readable Mode×Gate policy (V1.3.4)",
+  "notes": [
+    "This file replaces the prose matrix in SPEC V1.3.2 §5.1. A cell is exactly one of GateApplicability values; no parenthetical prose is allowed.",
+    "G6 is a derived summary computed by finalize; it is NOT an input gate and therefore not listed in modes[*].gates.",
+    "CONDITIONAL gates must carry a when-condition over declared facts and an else fallback.",
+    "REVIEW_ONLY gates require reading/evaluating existing artifacts; they never create a new version and never alone justify COMPLETE."
+  ],
+  "derived_gates": [
+    "G6"
+  ],
+  "facts": {
+    "project.has_existing_ui": {
+      "type": "boolean",
+      "description": "项目是否已有可审查的 UI/窗口/路由（design-only/prototype 的 G1 条件）"
+    },
+    "request.read_only_source": {
+      "type": "boolean",
+      "description": "TaskRequest.execution_policy.read_only_source"
+    },
+    "request.target_scope_nonempty": {
+      "type": "boolean",
+      "description": "TaskRequest.target_scope 是否非空"
+    },
+    "request.execution_policy.require_native_for_production_complete": {
+      "type": "boolean",
+      "description": "生产交付是否必须 Native 证据"
+    },
+    "request.evidence_policy.profile": {
+      "type": "enum:EvidenceProfile"
+    },
+    "mode": {
+      "type": "enum:Mode"
+    },
+    "request.review.independent_required": {
+      "type": "boolean",
+      "description": "TaskRequest.review.independent_required（运行级独立验收显式请求）"
+    },
+    "deliverable_tier": {
+      "type": "enum:DeliverableTier",
+      "description": "由 mode 对应的交付层级派生；production-code 要求 L4 独立评审"
+    },
+    "runtime_targets": {
+      "type": "array:RuntimeTarget"
+    }
+  },
+  "modes": {
+    "audit": {
+      "deliverable_tier": "report-only",
+      "source_mutation": false,
+      "l4_required": false,
+      "independent_review_required": false,
+      "gates": {
+        "G0": {
+          "applicability": "MANDATORY"
+        },
+        "G1": {
+          "applicability": "MANDATORY"
+        },
+        "G2": {
+          "applicability": "REVIEW_ONLY",
+          "note": "读取现有 flows/行为说明，不生成新版本"
+        },
+        "G3": {
+          "applicability": "REVIEW_ONLY",
+          "note": "读取现有设计系统/Token，不改动"
+        },
+        "G4": {
+          "applicability": "REVIEW_ONLY",
+          "note": "只读静态检查（Lint/规则），不构建、不产生新版本"
+        },
+        "G5": {
+          "applicability": "MANDATORY"
+        }
+      }
+    },
+    "design-only": {
+      "deliverable_tier": "design-spec",
+      "source_mutation": false,
+      "l4_required": true,
+      "independent_review_required": false,
+      "gates": {
+        "G0": {
+          "applicability": "MANDATORY"
+        },
+        "G1": {
+          "applicability": "CONDITIONAL",
+          "when": {
+            "all": [
+              {
+                "fact": "project.has_existing_ui",
+                "op": "eq",
+                "value": true
+              }
+            ]
+          },
+          "else": "NOT_APPLICABLE",
+          "required_evidence": "现有界面/任务基线清单"
+        },
+        "G2": {
+          "applicability": "MANDATORY"
+        },
+        "G3": {
+          "applicability": "MANDATORY"
+        },
+        "G4": {
+          "applicability": "NOT_APPLICABLE"
+        },
+        "G5": {
+          "applicability": "NOT_APPLICABLE"
+        }
+      }
+    },
+    "prototype": {
+      "deliverable_tier": "interactive-prototype",
+      "source_mutation": false,
+      "l4_required": true,
+      "independent_review_required": false,
+      "gates": {
+        "G0": {
+          "applicability": "MANDATORY"
+        },
+        "G1": {
+          "applicability": "CONDITIONAL",
+          "when": {
+            "all": [
+              {
+                "fact": "project.has_existing_ui",
+                "op": "eq",
+                "value": true
+              }
+            ]
+          },
+          "else": "NOT_APPLICABLE",
+          "required_evidence": "现有界面/任务基线清单"
+        },
+        "G2": {
+          "applicability": "MANDATORY"
+        },
+        "G3": {
+          "applicability": "MANDATORY"
+        },
+        "G4": {
+          "applicability": "MANDATORY",
+          "scope": "原型沙箱内构建/Lint"
+        },
+        "G5": {
+          "applicability": "MANDATORY"
+        }
+      }
+    },
+    "new-build": {
+      "deliverable_tier": "production-code",
+      "source_mutation": true,
+      "l4_required": true,
+      "independent_review_required": false,
+      "gates": {
+        "G0": {
+          "applicability": "MANDATORY"
+        },
+        "G1": {
+          "applicability": "NOT_APPLICABLE"
+        },
+        "G2": {
+          "applicability": "MANDATORY"
+        },
+        "G3": {
+          "applicability": "MANDATORY"
+        },
+        "G4": {
+          "applicability": "MANDATORY"
+        },
+        "G5": {
+          "applicability": "MANDATORY"
+        }
+      }
+    },
+    "redesign": {
+      "deliverable_tier": "production-code",
+      "source_mutation": true,
+      "l4_required": true,
+      "independent_review_required": false,
+      "gates": {
+        "G0": {
+          "applicability": "MANDATORY"
+        },
+        "G1": {
+          "applicability": "MANDATORY"
+        },
+        "G2": {
+          "applicability": "MANDATORY"
+        },
+        "G3": {
+          "applicability": "MANDATORY"
+        },
+        "G4": {
+          "applicability": "MANDATORY"
+        },
+        "G5": {
+          "applicability": "MANDATORY"
+        }
+      }
+    },
+    "targeted-fix": {
+      "deliverable_tier": "production-code",
+      "source_mutation": true,
+      "l4_required": false,
+      "independent_review_required": false,
+      "gates": {
+        "G0": {
+          "applicability": "MANDATORY"
+        },
+        "G1": {
+          "applicability": "MANDATORY",
+          "scope": "目标与邻接"
+        },
+        "G2": {
+          "applicability": "MANDATORY",
+          "scope": "目标交互契约（可从既有 flows 复用）"
+        },
+        "G3": {
+          "applicability": "MANDATORY",
+          "scope": "复用既有设计系统，仅记录增量"
+        },
+        "G4": {
+          "applicability": "MANDATORY"
+        },
+        "G5": {
+          "applicability": "MANDATORY",
+          "scope": "目标与邻接"
+        }
+      }
+    },
+    "verify": {
+      "deliverable_tier": "verification-report",
+      "source_mutation": false,
+      "l4_required": false,
+      "independent_review_required": true,
+      "gates": {
+        "G0": {
+          "applicability": "MANDATORY"
+        },
+        "G1": {
+          "applicability": "REVIEW_ONLY",
+          "note": "复核冻结版本基线，不重建"
+        },
+        "G2": {
+          "applicability": "REVIEW_ONLY"
+        },
+        "G3": {
+          "applicability": "REVIEW_ONLY"
+        },
+        "G4": {
+          "applicability": "REVIEW_ONLY",
+          "note": "只读构建/Lint 结果复核"
+        },
+        "G5": {
+          "applicability": "MANDATORY"
+        }
+      }
+    }
+  },
+  "gate_definitions": {
+    "G0": {
+      "title": "Preflight 环境与权限",
+      "required_evidence": [
+        "tool_log"
+      ],
+      "pass_conditions": [
+        "项目技术栈、范围、执行权限、运行条件与依赖已记录",
+        "policy 的四类根与安装根已声明且互不越权",
+        "未对真实用户数据执行副作用性试验"
+      ]
+    },
+    "G1": {
+      "title": "Baseline 现状基线",
+      "required_evidence": [
+        "screenshot",
+        "test_log"
+      ],
+      "pass_conditions": [
+        "页面/窗口/路由与任务流基线已建立",
+        "源码指纹（git_commit 或 dir_digest）已记录",
+        "原始截图等私密证据进入 Vault 并按 evidence-manifest 登记"
+      ]
+    },
+    "G2": {
+      "title": "Flow Contract 任务流契约",
+      "required_evidence": [
+        "coverage_matrix",
+        "tool_log"
+      ],
+      "pass_conditions": [
+        "flows.json 通过 Schema 与能力交叉发现",
+        "destructive/async/long_running 等能力与源码/运行发现无未解释差异",
+        "每个 task 有可测试的 runtime_assertions"
+      ]
+    },
+    "G3": {
+      "title": "Design System 设计系统",
+      "required_evidence": [
+        "tool_log"
+      ],
+      "pass_conditions": [
+        "Token 与排版/图标/组件规范成型且可编译/载入",
+        "已记录被选中方案与被放弃方案的取舍理由"
+      ]
+    },
+    "G4": {
+      "title": "Controlled Build 受控构建与静态检查",
+      "required_evidence": [
+        "tool_log",
+        "diff"
+      ],
+      "pass_conditions": [
+        "改动范围在授权 write scope 内",
+        "静态 Lint、构建、单元测试、危险变更回归通过",
+        "REVIEW_ONLY 模式下只读取结果，不产生新版本"
+      ]
+    },
+    "G5": {
+      "title": "Runtime 分级真实运行",
+      "required_evidence": [
+        "test_log",
+        "screenshot",
+        "coverage_matrix"
+      ],
+      "pass_conditions": [
+        "按 coverage_matrix 逐 task/scenario 达到 required_runtime_level",
+        "探针 probe_id、进程/环境证据与证据层级一致",
+        "Mock/Offscreen 不自动升级为 Native"
+      ]
+    }
+  },
+  "runtime_policy": {
+    "default_gate_levels": {
+      "audit": {
+        "G5": "SIMULATED"
+      },
+      "design-only": {},
+      "prototype": {
+        "G5": "SIMULATED"
+      },
+      "new-build": {
+        "G5": "NATIVE_APP"
+      },
+      "redesign": {
+        "G5": "NATIVE_APP"
+      },
+      "targeted-fix": {
+        "G5": "NATIVE_APP"
+      },
+      "verify": {
+        "G5": "NATIVE_APP"
+      }
+    },
+    "level_overrides": [
+      {
+        "when": {
+          "fact": "runtime_targets",
+          "op": "contains",
+          "value": "OS_INTEGRATION"
+        },
+        "gate": "G5",
+        "min_level": "OS_INTEGRATION"
+      },
+      {
+        "when": {
+          "fact": "request.execution_policy.require_native_for_production_complete",
+          "op": "eq",
+          "value": true
+        },
+        "gate": "G5",
+        "min_level": "NATIVE_APP"
+      }
+    ],
+    "aggregate_rule": "weakest_required_path",
+    "aggregate_rule_text": "总体 runtime_evidence_level 取所有必选 task 路径中最低的 observed_runtime_level；单一 Native PASS 不得代表整体 Native PASS。",
+    "target_coverage_rule": "request.runtime_targets 中每个目标都必须被至少一条 test_state=PASS 且 observed_runtime_level>=目标 的 coverage_matrix 记录覆盖。",
+    "layer_spoof_rule": "Gate 证据声明的 evidence_level 必须与 tool_log.execution_level、probe_id 注册表、进程/窗口/环境证据一致；不一致即 LAYER_SPOOF_OR_MISSING。"
+  },
+  "design_review_policy": {
+    "required_for_modes": [
+      "design-only",
+      "prototype",
+      "new-build",
+      "redesign"
+    ],
+    "required_dimensions": [
+      "goal_discoverability",
+      "task_completeness",
+      "mental_model_ia",
+      "error_recovery",
+      "continuity_resume",
+      "keyboard_efficiency",
+      "visual_hierarchy",
+      "information_density",
+      "learning_cost",
+      "professional_fit"
+    ],
+    "independent_review_when": {
+      "any": [
+        {
+          "fact": "deliverable_tier",
+          "op": "eq",
+          "value": "production-code"
+        },
+        {
+          "fact": "request.evidence_policy.profile",
+          "op": "eq",
+          "value": "release_audit"
+        }
+      ]
+    },
+    "rule": "L4 评审不得替代 L1–L3 硬 Gate；硬 Gate 失败时 L4 结论不改变 COMPLETE 判定。"
+  },
+  "review_policy": {
+    "independent_review_required_when": {
+      "any": [
+        {
+          "fact": "mode",
+          "op": "eq",
+          "value": "verify"
+        },
+        {
+          "fact": "request.review.independent_required",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "fact": "request.evidence_policy.profile",
+          "op": "eq",
+          "value": "release_audit"
+        }
+      ]
+    },
+    "rule": "运行级独立验收只在模式、显式请求或发布审计 profile 要求时强制；COMPLETE 本身不等于 INDEPENDENT_REVIEW_PASS。",
+    "redundancy_note": "modes.*.independent_review_required 为历史字段，运行时只读取本节的 independent_review_required_when；保留仅为兼容旧消费者。"
+  },
+  "complete_policy": {
+    "mandatory_gate_pass_states": [
+      "PASS"
+    ],
+    "review_only_gate_acceptable_states": [
+      "PASS",
+      "WARN_REVIEW_REQUIRED",
+      "UNVERIFIED"
+    ],
+    "warn_requires_review": true,
+    "warn_dispositions_allowed_for_complete": [
+      "FIXED",
+      "ACCEPTED_RISK",
+      "NOT_APPLICABLE",
+      "REJECTED"
+    ],
+    "failed_when": [
+      "任一 MANDATORY Gate 为 FAIL",
+      "L4 design_review_status=FAIL",
+      "任一 REVIEW_ONLY Gate 为 FAIL",
+      "存在明确失败且不可在本次范围修复"
+    ],
+    "evidence_usable_for_pass": [
+      "AVAILABLE"
+    ],
+    "production_complete_rules": [
+      "所有 MANDATORY Gate 必须 PASS",
+      "每个必选 Gate 至少一条 evidence_status=AVAILABLE 的有效证据",
+      "coverage_matrix 覆盖 runtime_policy 要求的全部目标与最低层级",
+      "L4 要求的模式必须 design_review_status=PASS",
+      "verify、显式请求或 release_audit profile 必须 independent_review_status=INDEPENDENT_REVIEW_PASS",
+      "source_fingerprint 必须与冻结基线一致且审查期间未变化"
+    ],
+    "status_escalation_rule": "不满足 COMPLETE 但已有有效部分证据时输出 PARTIAL；存在明确失败输出 FAILED；被环境/权限/不可逆风险阻断输出 BLOCKED。",
+    "independent_review_note": "COMPLETE 不等于 INDEPENDENT_REVIEW_PASS；仅当模式或 profile 要求独立验收时才强制后者。"
+  }
+}
