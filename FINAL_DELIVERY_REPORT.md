@@ -54,6 +54,21 @@ $env:PYTHONPATH='runtime'
 - 交付等级：**ISOLATED_REVIEW_VERIFIED**；`independent_review_status=INDEPENDENCE_UNVERIFIED`（隔离会话审查，不是 host_verified/external 独立来源）。
 - TaskResult：`evidence/T5.4/audit/task-result.json`。
 
+## 3.2 发行生命周期复验（最终包）
+
+- 从最终 ZIP 全新解压到隔离目录，项目级安装 exit 0（85 files）。
+- `uiux` / `uiux-verify` 双入口 `launch.py enums` 均 exit 0；doctor exit 0。
+- 同版本 rollback exit 0；干净安装后卸载 exit 0（removed=85，两个 Skill 目录均移除）。
+- rollback 后再卸载会按安全规则保留被修改的 `suite-link.json`（`MODIFIED_FILE_PRESERVED`），这是设计行为。
+- 证据：`evidence/T5.5/final-lifecycle-check.json`；安装集成测试 11 passed。
+
+## 3.3 明确未通过/未验证
+
+- **G6 = PASS，但仅为 ISOLATED_REVIEW_VERIFIED**；`independent_review_status=INDEPENDENCE_UNVERIFIED`，没有 host_verified/external 外部独立审查。
+- **UI 撤销按钮端到端测试未通过**：Workbench region overlay 本次测量为 0×0，无法点击撤销；撤销能力通过真实 IPC/domain `set_region_type` → `restore_region_revision` 验证（rev3→rev4→rev5, origin=restored），UI wiring 由单测覆盖。
+- 导出使用产品 acceptance bridge 的 mock/local providers 与 2 页合成 fixture；ZIP 不是 Tauri 对话框点击导出。
+- T4.2：Codex runtime 被其 sandbox helper 阻断；Claude/ZCode/Qoder 未验证。
+
 ## 4. 未完成 / 未验证（不得当作 PASS）
 
 | 项 | 状态 | 原因 |

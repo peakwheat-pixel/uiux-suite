@@ -1,0 +1,2662 @@
+{
+  "schema_version": "1.3.3",
+  "evidence_id": "EV-T5.5-FINAL-LIFECYCLE",
+  "kind": "tool_log",
+  "generated_at": "2026-10-24T00:42:00+00:00",
+  "zip_sha256": "cc8dddb8c57f3ba51bb671260e12fae8d339be406cd0ace2c42b1994479ead02",
+  "packaged_root": "G:\\AI\\release-check-20261024084005\\pkg\\uiux-suite-1.3.3",
+  "install": {
+    "ok": true,
+    "installed": true,
+    "version": "1.3.3",
+    "scope": "project",
+    "agents_home": "G:\\AI\\release-check-20261024084005\\project2\\.agents",
+    "suite_root": "G:\\AI\\release-check-20261024084005\\project2\\.agents\\uiux-suite\\versions\\1.3.3",
+    "skills_root": "G:\\AI\\release-check-20261024084005\\project2\\.agents\\skills",
+    "activated": true,
+    "files": 85
+  },
+  "uiux_enums": {
+    "schema_version": "1.3.3",
+    "document": "Universal UI/UX Engineering Skill Suite — canonical enum dictionary (V1.3.3)",
+    "rule": "This file is the single source of truth for every status vocabulary used by contracts, runtime, tests and SPEC_V1.3.3.md. No document, example or schema may introduce a value that is absent here.",
+    "enums": {
+      "Mode": {
+        "values": [
+          "audit",
+          "design-only",
+          "prototype",
+          "new-build",
+          "redesign",
+          "targeted-fix",
+          "verify"
+        ],
+        "meaning": {
+          "audit": "只读审查已有软件，输出 UI/UX 缺陷与建议",
+          "design-only": "设计用户流程、信息架构、Token 与方案，不写生产代码",
+          "prototype": "在隔离沙箱生成可交互原型并测试",
+          "new-build": "新软件/新模块按先设计后开发实施",
+          "redesign": "已有软件模块的完整 UI/UX 重构",
+          "targeted-fix": "只修改目标页面/交互/控件的缺陷",
+          "verify": "对冻结版本独立执行 QA/Review"
+        }
+      },
+      "DeliverableTier": {
+        "values": [
+          "report-only",
+          "design-spec",
+          "interactive-prototype",
+          "production-code",
+          "verification-report"
+        ],
+        "meaning": {
+          "report-only": "只交付审查报告与证据",
+          "design-spec": "交付设计规范与流程契约",
+          "interactive-prototype": "交付隔离沙箱内可交互原型",
+          "production-code": "交付受控生产代码改动",
+          "verification-report": "交付对冻结版本的验证报告"
+        }
+      },
+      "GateState": {
+        "values": [
+          "PASS",
+          "FAIL",
+          "WARN_REVIEW_REQUIRED",
+          "BLOCKED",
+          "UNVERIFIED",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": {
+          "PASS": "该 Gate 必选证据齐全且校验通过",
+          "FAIL": "证据表明不满足 Gate 要求",
+          "WARN_REVIEW_REQUIRED": "存在需人工/独立记录裁决的告警，未处置不得升级为 PASS",
+          "BLOCKED": "被环境、权限、依赖或不可逆风险明确阻断",
+          "UNVERIFIED": "应测但没有可用的有效证据",
+          "NOT_APPLICABLE": "按 Mode×Gate 策略判定不适用"
+        },
+        "terminal_for_pass": [
+          "PASS"
+        ],
+        "non_pass": [
+          "FAIL",
+          "WARN_REVIEW_REQUIRED",
+          "BLOCKED",
+          "UNVERIFIED",
+          "NOT_APPLICABLE"
+        ]
+      },
+      "GateApplicability": {
+        "values": [
+          "MANDATORY",
+          "REVIEW_ONLY",
+          "CONDITIONAL",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": {
+          "MANDATORY": "必须产出并通过该 Gate 的全部必选证据",
+          "REVIEW_ONLY": "必须读取并评估已有产物/状态，引用其摘要，但不生成新版本、不作为 PASS 的充分条件",
+          "CONDITIONAL": "当 when 条件成立时按 MANDATORY 处理；否则按 else 指定的适用性处理",
+          "NOT_APPLICABLE": "该模式下不适用"
+        }
+      },
+      "RuleSeverity": {
+        "values": [
+          "FAIL",
+          "WARNING",
+          "INFO"
+        ],
+        "meaning": {
+          "FAIL": "确定性硬失败（进入 Gate 计算）",
+          "WARNING": "启发式告警（需上下文和裁决，不等同 Gate 状态）",
+          "INFO": "只读提示，不参与 Gate 计算"
+        }
+      },
+      "RunStatus": {
+        "values": [
+          "COMPLETE",
+          "PARTIAL",
+          "FAILED",
+          "BLOCKED"
+        ],
+        "meaning": {
+          "COMPLETE": "范围内全部必选 Gate 与交付条件满足",
+          "PARTIAL": "部分范围完成，存在未验证或被降级的路径",
+          "FAILED": "存在明确失败且不可在本次范围内修复",
+          "BLOCKED": "被环境/权限/依赖/不可逆风险阻断，无法继续"
+        }
+      },
+      "RuntimeEvidenceLevel": {
+        "values": [
+          "NONE",
+          "SIMULATED",
+          "NATIVE_APP",
+          "OS_INTEGRATION"
+        ],
+        "rank": {
+          "NONE": 0,
+          "SIMULATED": 1,
+          "NATIVE_APP": 2,
+          "OS_INTEGRATION": 3
+        },
+        "meaning": {
+          "NONE": "无运行证据",
+          "SIMULATED": "Mock 或 Offscreen 逻辑/布局模拟",
+          "NATIVE_APP": "真实应用进程、真实 WebView/窗口与业务交互",
+          "OS_INTEGRATION": "真实 Windows 系统对话框、菜单、跨窗口等系统集成"
+        },
+        "note": "序关系仅对可比测试场景有意义；不得用 SIMULATED 证据支撑 NATIVE_APP 结论。"
+      },
+      "ReviewIsolationLevel": {
+        "values": [
+          "UNVERIFIED",
+          "SELFTEST",
+          "ISOLATED_SESSION",
+          "INDEPENDENT_AGENT"
+        ],
+        "rank": {
+          "UNVERIFIED": 0,
+          "SELFTEST": 1,
+          "ISOLATED_SESSION": 2,
+          "INDEPENDENT_AGENT": 3
+        },
+        "meaning": {
+          "UNVERIFIED": "没有任何可信来源可证明审查隔离等级",
+          "SELFTEST": "同会话或开发者自测，不得称独立验收",
+          "ISOLATED_SESSION": "可核验的干净会话 + 冻结代码 + 只读执行",
+          "INDEPENDENT_AGENT": "独立 Agent/执行环境、源码受保护、可复核的外部证据"
+        }
+      },
+      "DeliveryStatus": {
+        "values": [
+          "NOT_VERIFIED",
+          "SELFTEST_VERIFIED",
+          "ISOLATED_REVIEW_VERIFIED",
+          "INDEPENDENT_VERIFIED",
+          "PARTIAL_VERIFIED"
+        ],
+        "meaning": {
+          "NOT_VERIFIED": "未达到任何已验证交付状态",
+          "SELFTEST_VERIFIED": "范围内自测完成，不能称独立验收",
+          "ISOLATED_REVIEW_VERIFIED": "隔离会话复核完成，但未达到独立 Agent 验收",
+          "INDEPENDENT_VERIFIED": "具备独立来源证明的独立验收完成",
+          "PARTIAL_VERIFIED": "仅部分范围形成有效证据"
+        }
+      },
+      "IndependentReviewStatus": {
+        "values": [
+          "NOT_APPLICABLE",
+          "UNVERIFIED",
+          "INDEPENDENCE_UNVERIFIED",
+          "INDEPENDENT_REVIEW_PASS",
+          "INDEPENDENT_REVIEW_FAIL"
+        ],
+        "meaning": {
+          "NOT_APPLICABLE": "该交付层级/模式不要求独立验收",
+          "UNVERIFIED": "未发起或未获得独立审查结果",
+          "INDEPENDENCE_UNVERIFIED": "声称独立审查但隔离来源无法核验",
+          "INDEPENDENT_REVIEW_PASS": "在隔离与证据均满足策略的前提下签发的独立审查通过",
+          "INDEPENDENT_REVIEW_FAIL": "独立审查结论为不通过"
+        }
+      },
+      "DesignReviewStatus": {
+        "values": [
+          "NOT_REQUIRED",
+          "MISSING",
+          "INCOMPLETE",
+          "PASS",
+          "FAIL",
+          "UNVERIFIED"
+        ],
+        "meaning": {
+          "NOT_REQUIRED": "该模式/交付层级不要求 L4 专业设计评审",
+          "MISSING": "策略要求 L4 但未提供评审产物",
+          "INCOMPLETE": "评审存在但缺少必选维度/证据/来源",
+          "PASS": "L4 评审完成且结论为通过（仅代表设计评审维度，不覆盖硬 Gate）",
+          "FAIL": "L4 评审结论为不通过",
+          "UNVERIFIED": "L4 评审真实性/来源不可核验"
+        }
+      },
+      "EvidenceStatus": {
+        "values": [
+          "AVAILABLE",
+          "REDACTED_ONLY",
+          "SOURCE_EVIDENCE_UNAVAILABLE",
+          "EXPIRED",
+          "INVALID_HASH",
+          "QUARANTINED"
+        ],
+        "meaning": {
+          "AVAILABLE": "原件可访问且字节摘要校验通过，可支撑结论",
+          "REDACTED_ONLY": "仅有脱敏摘要，不能作为原始证据复核的替代",
+          "SOURCE_EVIDENCE_UNAVAILABLE": "原件已不可获取且无替代",
+          "EXPIRED": "超过保留期限，原件按策略失效",
+          "INVALID_HASH": "摘要与原件不符或无法验证",
+          "QUARANTINED": "因敏感信息/完整性风险被隔离，不得用于签发"
+        },
+        "usable_for_pass": [
+          "AVAILABLE"
+        ],
+        "usable_for_supporting": [
+          "AVAILABLE",
+          "REDACTED_ONLY"
+        ]
+      },
+      "EvidenceKind": {
+        "values": [
+          "screenshot",
+          "dom_snapshot",
+          "uia_tree",
+          "test_log",
+          "tool_log",
+          "diff",
+          "hash_manifest",
+          "design_review",
+          "coverage_matrix",
+          "other"
+        ]
+      },
+      "StorageClass": {
+        "values": [
+          "state",
+          "vault",
+          "evidence"
+        ],
+        "meaning": {
+          "state": "可变运行状态，可清理",
+          "vault": "本地私密原件，默认不入 Git",
+          "evidence": "受控脱敏交付物，可移交"
+        }
+      },
+      "RedactionKind": {
+        "values": [
+          "none",
+          "path",
+          "image",
+          "field",
+          "full"
+        ]
+      },
+      "RedactionMethod": {
+        "values": [
+          "manual",
+          "automated",
+          "hybrid"
+        ]
+      },
+      "RecheckStatus": {
+        "values": [
+          "PASS",
+          "FAIL",
+          "NOT_RECHECKED"
+        ]
+      },
+      "WarnDisposition": {
+        "values": [
+          "FIXED",
+          "ACCEPTED_RISK",
+          "NOT_APPLICABLE",
+          "REJECTED"
+        ],
+        "meaning": {
+          "FIXED": "问题已修复并附回归证据",
+          "ACCEPTED_RISK": "有权限方接受风险并记录理由与到期时间",
+          "NOT_APPLICABLE": "评审确认该告警不适用于本场景",
+          "REJECTED": "评审拒绝该告警（需给出反证）"
+        }
+      },
+      "ReviewVerdict": {
+        "values": [
+          "PASS",
+          "FAIL",
+          "PARTIAL",
+          "UNVERIFIED"
+        ]
+      },
+      "DimensionVerdict": {
+        "values": [
+          "PASS",
+          "WARN",
+          "FAIL",
+          "UNVERIFIED"
+        ]
+      },
+      "HostKind": {
+        "values": [
+          "dsh",
+          "codex",
+          "claude-code",
+          "zcode",
+          "antigravity",
+          "qoder",
+          "generic",
+          "ci"
+        ]
+      },
+      "CapabilityStatus": {
+        "values": [
+          "READY",
+          "MISSING",
+          "INCOMPATIBLE",
+          "UNVERIFIED"
+        ]
+      },
+      "GitManagement": {
+        "values": [
+          "standalone",
+          "caller_managed"
+        ],
+        "meaning": {
+          "standalone": "Runner 管理快照/分支策略（非 Git 项目用目录摘要与备份副本）",
+          "caller_managed": "外部调用方管理 Git；Runner 不得建分支、改 HEAD、提交或清理外部 Worktree"
+        }
+      },
+      "CallerKind": {
+        "values": [
+          "direct",
+          "ci",
+          "external"
+        ],
+        "meaning": {
+          "direct": "用户直接调用",
+          "ci": "CI/自动化流水线调用",
+          "external": "外部编排方被动调用（Runner 不主动依赖任何外部编排器）"
+        }
+      },
+      "EvidenceProfile": {
+        "values": [
+          "local_private",
+          "portable_redacted",
+          "release_audit"
+        ],
+        "meaning": {
+          "local_private": "默认本地私密证据，Vault 保留",
+          "portable_redacted": "仅脱敏可移交证据",
+          "release_audit": "发布级证据，保留期与可复核性要求更高"
+        }
+      },
+      "FingerprintKind": {
+        "values": [
+          "git_commit",
+          "dir_digest"
+        ]
+      },
+      "PathKind": {
+        "values": [
+          "relative_to_skill_root",
+          "absolute"
+        ]
+      },
+      "TestState": {
+        "values": [
+          "PASS",
+          "FAIL",
+          "UNVERIFIED",
+          "BLOCKED",
+          "NOT_APPLICABLE"
+        ]
+      },
+      "GateId": {
+        "values": [
+          "G0",
+          "G1",
+          "G2",
+          "G3",
+          "G4",
+          "G5",
+          "G6"
+        ]
+      },
+      "RuntimeTarget": {
+        "values": [
+          "SIMULATED",
+          "NATIVE_APP",
+          "OS_INTEGRATION"
+        ]
+      },
+      "RequestedOutput": {
+        "values": [
+          "DESIGN_SYSTEM.md",
+          "tokens.json",
+          "flows.json",
+          "qa-report.json",
+          "gate-results.json",
+          "evidence-manifest.json",
+          "coverage-matrix.json",
+          "design-review.json",
+          "diff.patch"
+        ]
+      },
+      "TechStack": {
+        "values": [
+          "web",
+          "tauri",
+          "qt",
+          "winui",
+          "wpf",
+          "unknown"
+        ]
+      },
+      "ViewArchetype": {
+        "values": [
+          "modal_form",
+          "consumer_view",
+          "data_table",
+          "desktop_workbench",
+          "canvas_editor"
+        ]
+      },
+      "ProbeKind": {
+        "values": [
+          "playwright_dom",
+          "tauri_wdio",
+          "pyside6_qt",
+          "win_uia",
+          "static_lint",
+          "flow_validator",
+          "geometry_probe",
+          "other"
+        ]
+      },
+      "CapabilityEvidenceSourceKind": {
+        "values": [
+          "file",
+          "anchor",
+          "task",
+          "runtime"
+        ]
+      },
+      "DiscoverySource": {
+        "values": [
+          "static",
+          "runtime",
+          "contract"
+        ]
+      },
+      "ReviewTrustSource": {
+        "values": [
+          "none",
+          "user_attested",
+          "host_verified",
+          "external_system"
+        ]
+      },
+      "ReadOnlyProofMethod": {
+        "values": [
+          "acl",
+          "sandbox",
+          "readonly_mount",
+          "process_policy",
+          "none"
+        ]
+      },
+      "DesignReviewSource": {
+        "values": [
+          "selftest",
+          "isolated_session",
+          "independent_agent",
+          "external_system",
+          "human_expert"
+        ]
+      },
+      "AuthorizationScope": {
+        "values": [
+          "production_write",
+          "production_data_write",
+          "os_input_uia",
+          "os_input_physical",
+          "install_write"
+        ]
+      },
+      "DesignDimension": {
+        "values": [
+          "goal_discoverability",
+          "task_completeness",
+          "mental_model_ia",
+          "error_recovery",
+          "continuity_resume",
+          "keyboard_efficiency",
+          "visual_hierarchy",
+          "information_density",
+          "learning_cost",
+          "professional_fit"
+        ]
+      },
+      "RetentionPolicy": {
+        "values": [
+          "run_default",
+          "release_audit",
+          "manual"
+        ]
+      },
+      "RuleCategory": {
+        "values": [
+          "COLOR",
+          "TYPE",
+          "SPACE",
+          "FLOW",
+          "GEOM",
+          "A11Y",
+          "COPY",
+          "STATE",
+          "MOTION"
+        ]
+      },
+      "DetectorKind": {
+        "values": [
+          "style_token_linter",
+          "ux_flow_validator",
+          "layout_geometry_probe",
+          "accessibility_checker"
+        ]
+      },
+      "RuleScope": {
+        "values": [
+          "web",
+          "tauri",
+          "qt",
+          "winui",
+          "wpf",
+          "flows",
+          "any"
+        ]
+      },
+      "ConfusionStatus": {
+        "values": [
+          "TP",
+          "TN",
+          "FP",
+          "FN",
+          "PARTIAL"
+        ]
+      },
+      "PageKind": {
+        "values": [
+          "page",
+          "route",
+          "modal",
+          "dialog",
+          "panel",
+          "window",
+          "canvas"
+        ]
+      },
+      "DiscoveryChannel": {
+        "values": [
+          "source",
+          "runtime",
+          "contract"
+        ]
+      },
+      "DiscoveryStatus": {
+        "values": [
+          "OBSERVED",
+          "UNVERIFIED",
+          "MISSING"
+        ]
+      },
+      "PrototypeKind": {
+        "values": [
+          "html",
+          "figma",
+          "spec",
+          "code"
+        ]
+      },
+      "OptionScoreDimension": {
+        "values": [
+          "usability",
+          "visual",
+          "feasibility",
+          "risk",
+          "accessibility"
+        ]
+      },
+      "TokenTheme": {
+        "values": [
+          "light",
+          "dark",
+          "both"
+        ]
+      },
+      "CheckStatus": {
+        "values": [
+          "PASS",
+          "FAIL",
+          "UNVERIFIED",
+          "VERIFIED"
+        ]
+      },
+      "ChangeAction": {
+        "values": [
+          "create",
+          "modify",
+          "delete"
+        ]
+      },
+      "KnowledgeKind": {
+        "values": [
+          "design_tokens",
+          "rule_catalog",
+          "guideline",
+          "reference",
+          "example"
+        ]
+      },
+      "LicenseKind": {
+        "values": [
+          "internal",
+          "cc-by-4.0",
+          "mit",
+          "apache-2.0",
+          "proprietary",
+          "unknown"
+        ]
+      },
+      "AdoptionAction": {
+        "values": [
+          "ADOPT",
+          "OVERRIDE",
+          "KEEP_LOCAL",
+          "CONFLICT"
+        ]
+      },
+      "AdoptionPriority": {
+        "values": [
+          "SUITE",
+          "PROJECT"
+        ]
+      },
+      "Capability": {
+        "values": [
+          "async_load",
+          "collection_display",
+          "user_mutation",
+          "long_running_task",
+          "destructive_operations",
+          "canvas_rendering"
+        ]
+      },
+      "DestructiveGuard": {
+        "values": [
+          "confirmation",
+          "undo",
+          "both",
+          "none"
+        ]
+      },
+      "SkillRootSource": {
+        "values": [
+          "project-dsh",
+          "project-agents",
+          "custom",
+          "user-dsh",
+          "user-agents",
+          "bundled"
+        ]
+      },
+      "PathCasePolicy": {
+        "values": [
+          "case_sensitive",
+          "casefolded_windows"
+        ]
+      },
+      "FileRole": {
+        "values": [
+          "runtime",
+          "schema",
+          "launcher",
+          "skill",
+          "knowledge",
+          "docs",
+          "license",
+          "other"
+        ]
+      },
+      "ImageRedaction": {
+        "values": [
+          "none",
+          "blur",
+          "crop",
+          "full"
+        ]
+      },
+      "DesktopSessionKind": {
+        "values": [
+          "shared_desktop",
+          "isolated_desktop",
+          "vm",
+          "ci",
+          "unknown"
+        ]
+      }
+    },
+    "mappings": {
+      "rule_severity_to_gate_state": {
+        "FAIL": "FAIL",
+        "WARNING": "WARN_REVIEW_REQUIRED",
+        "INFO": "PASS"
+      },
+      "delivery_status_min_isolation": {
+        "SELFTEST_VERIFIED": "SELFTEST",
+        "ISOLATED_REVIEW_VERIFIED": "ISOLATED_SESSION",
+        "INDEPENDENT_VERIFIED": "INDEPENDENT_AGENT",
+        "PARTIAL_VERIFIED": "SELFTEST",
+        "NOT_VERIFIED": "UNVERIFIED"
+      },
+      "independent_review_required_statuses": [
+        "INDEPENDENT_REVIEW_PASS"
+      ],
+      "complete_run_status_requires": {
+        "delivery_status_in": [
+          "SELFTEST_VERIFIED",
+          "ISOLATED_REVIEW_VERIFIED",
+          "INDEPENDENT_VERIFIED"
+        ]
+      }
+    },
+    "reason_codes": [
+      {
+        "code": "SCHEMA_INVALID",
+        "group": "contract",
+        "meaning": "实例不符合对应 JSON Schema"
+      },
+      {
+        "code": "ENUM_INVALID",
+        "group": "contract",
+        "meaning": "取值不在规范枚举内"
+      },
+      {
+        "code": "REQUEST_INVALID",
+        "group": "contract",
+        "meaning": "TaskRequest 校验或交叉字段校验失败"
+      },
+      {
+        "code": "RESULT_INVALID",
+        "group": "contract",
+        "meaning": "TaskResult 校验或交叉字段校验失败"
+      },
+      {
+        "code": "POLICY_INVALID",
+        "group": "contract",
+        "meaning": "policy 实例校验失败"
+      },
+      {
+        "code": "TOOL_LOG_INVALID",
+        "group": "contract",
+        "meaning": "tool-log 实例校验失败"
+      },
+      {
+        "code": "EVIDENCE_MANIFEST_INVALID",
+        "group": "contract",
+        "meaning": "evidence-manifest 校验失败"
+      },
+      {
+        "code": "REVIEW_ATTESTATION_INVALID",
+        "group": "contract",
+        "meaning": "review-attestation 校验失败"
+      },
+      {
+        "code": "DESIGN_REVIEW_INVALID",
+        "group": "contract",
+        "meaning": "design-review 校验失败"
+      },
+      {
+        "code": "COVERAGE_MATRIX_INVALID",
+        "group": "contract",
+        "meaning": "coverage-matrix 校验失败"
+      },
+      {
+        "code": "LINK_MISSING",
+        "group": "install",
+        "meaning": "suite-link.json 不存在或不可读"
+      },
+      {
+        "code": "LINK_INVALID",
+        "group": "install",
+        "meaning": "suite-link.json 结构或路径基准非法"
+      },
+      {
+        "code": "VERSION_MISMATCH",
+        "group": "install",
+        "meaning": "发行根版本与入口期望不一致"
+      },
+      {
+        "code": "MANIFEST_MISMATCH",
+        "group": "install",
+        "meaning": "关键文件哈希与 RELEASE_MANIFEST 不符"
+      },
+      {
+        "code": "MANIFEST_CORRUPT",
+        "group": "install",
+        "meaning": "RELEASE_MANIFEST 结构损坏或缺失"
+      },
+      {
+        "code": "RELEASE_ROOT_MISSING",
+        "group": "install",
+        "meaning": "解析出的发行根不存在"
+      },
+      {
+        "code": "PYTHON_EXE_MISSING",
+        "group": "install",
+        "meaning": "所选 Python 解释器不存在或不可执行"
+      },
+      {
+        "code": "SKILL_SHADOWED",
+        "group": "install",
+        "meaning": "同名 Skill 被更高优先级根遮蔽"
+      },
+      {
+        "code": "HOST_UNVERIFIED",
+        "group": "install",
+        "meaning": "宿主能力未经实测"
+      },
+      {
+        "code": "PATH_INVALID",
+        "group": "install",
+        "meaning": "路径格式非法（分隔符/UNC/相对基准）"
+      },
+      {
+        "code": "PATH_RESOLUTION_FAILED",
+        "group": "install",
+        "meaning": "路径无法解析或越界"
+      },
+      {
+        "code": "PROJECT_ROOT_NOT_FOUND",
+        "group": "install",
+        "meaning": "无法确定项目根"
+      },
+      {
+        "code": "MISSING_EVIDENCE",
+        "group": "evidence",
+        "meaning": "必选 Gate 缺证据"
+      },
+      {
+        "code": "INVALID_EVIDENCE_HASH",
+        "group": "evidence",
+        "meaning": "证据摘要校验失败"
+      },
+      {
+        "code": "EVIDENCE_EXPIRED",
+        "group": "evidence",
+        "meaning": "证据超过保留期"
+      },
+      {
+        "code": "EVIDENCE_SOURCE_UNAVAILABLE",
+        "group": "evidence",
+        "meaning": "原始证据不可获取"
+      },
+      {
+        "code": "EVIDENCE_QUARANTINED",
+        "group": "evidence",
+        "meaning": "证据因敏感/完整性风险被隔离"
+      },
+      {
+        "code": "LAYER_SPOOF_OR_MISSING",
+        "group": "evidence",
+        "meaning": "证据实际层级低于声明层级或层级不可核验"
+      },
+      {
+        "code": "RUNTIME_LEVEL_BELOW_REQUIRED",
+        "group": "evidence",
+        "meaning": "运行证据层级低于该路径要求"
+      },
+      {
+        "code": "RUNTIME_TARGET_NOT_COVERED",
+        "group": "evidence",
+        "meaning": "请求的运行目标未被覆盖"
+      },
+      {
+        "code": "UNVERIFIED_PATH",
+        "group": "evidence",
+        "meaning": "某 task/scenario 路径未达到必选验证状态"
+      },
+      {
+        "code": "PROBE_ID_MISSING",
+        "group": "evidence",
+        "meaning": "证据缺少可追溯 probe_id"
+      },
+      {
+        "code": "TOOL_LOG_MISSING",
+        "group": "evidence",
+        "meaning": "缺少工具执行日志"
+      },
+      {
+        "code": "TOOL_EXIT_NONZERO",
+        "group": "evidence",
+        "meaning": "工具执行退出码非零"
+      },
+      {
+        "code": "EXECUTION_TIMEOUT",
+        "group": "evidence",
+        "meaning": "工具执行超时"
+      },
+      {
+        "code": "GATE_MISSING",
+        "group": "gate",
+        "meaning": "必选 Gate 结果缺失"
+      },
+      {
+        "code": "GATE_NOT_APPLICABLE_REQUIRED",
+        "group": "gate",
+        "meaning": "必选 Gate 被错误标记为不适用"
+      },
+      {
+        "code": "GATE_STATE_INVALID",
+        "group": "gate",
+        "meaning": "Gate 状态不合法或与证据矛盾"
+      },
+      {
+        "code": "MODE_GATE_INCOMPATIBLE",
+        "group": "gate",
+        "meaning": "模式与 Gate 组合无策略依据"
+      },
+      {
+        "code": "WARN_REVIEW_MISSING",
+        "group": "gate",
+        "meaning": "WARN_REVIEW_REQUIRED 无有效处置记录"
+      },
+      {
+        "code": "WARN_REVIEW_INVALID",
+        "group": "gate",
+        "meaning": "WARN 处置记录不合法、过期或与 finding 不匹配"
+      },
+      {
+        "code": "DESIGN_REVIEW_MISSING",
+        "group": "gate",
+        "meaning": "要求 L4 评审但缺失"
+      },
+      {
+        "code": "DESIGN_REVIEW_INSUFFICIENT",
+        "group": "gate",
+        "meaning": "L4 评审维度/证据/来源不足"
+      },
+      {
+        "code": "COMPLETE_CONSTRAINT_VIOLATION",
+        "group": "gate",
+        "meaning": "COMPLETE 的组合约束不满足"
+      },
+      {
+        "code": "RUN_STATUS_INVALID",
+        "group": "gate",
+        "meaning": "运行状态与证据矛盾"
+      },
+      {
+        "code": "DELIVERY_TIER_VIOLATION",
+        "group": "gate",
+        "meaning": "交付层级与模式/策略不符"
+      },
+      {
+        "code": "REVIEW_SOURCE_MISSING",
+        "group": "review",
+        "meaning": "独立审查缺少可信来源"
+      },
+      {
+        "code": "REVIEW_NOT_INDEPENDENT",
+        "group": "review",
+        "meaning": "Reviewer 与 Owner 同源，不构成独立审查"
+      },
+      {
+        "code": "REVIEW_SOURCE_UNVERIFIED",
+        "group": "review",
+        "meaning": "审查来源不可核验"
+      },
+      {
+        "code": "REVIEWED_HEAD_MISMATCH",
+        "group": "review",
+        "meaning": "审查对象与冻结版本不一致"
+      },
+      {
+        "code": "SOURCE_CHANGED_DURING_REVIEW",
+        "group": "review",
+        "meaning": "审查期间源码发生变化"
+      },
+      {
+        "code": "SOURCE_FINGERPRINT_MISMATCH",
+        "group": "source",
+        "meaning": "源码指纹与基线不一致"
+      },
+      {
+        "code": "REQUEST_DIGEST_MISMATCH",
+        "group": "source",
+        "meaning": "TaskRequest 摘要与 gate-results 记录不一致（禁止事后调低 runtime_targets）"
+      },
+      {
+        "code": "WRITE_SCOPE_VIOLATION",
+        "group": "source",
+        "meaning": "写入越出授权范围"
+      },
+      {
+        "code": "UNAUTHORIZED_PATH",
+        "group": "source",
+        "meaning": "路径未在授权根内"
+      },
+      {
+        "code": "READ_ONLY_VIOLATION",
+        "group": "source",
+        "meaning": "只读模式发生源码/生产数据写入"
+      },
+      {
+        "code": "PRODUCTION_DATA_WRITE_BLOCKED",
+        "group": "source",
+        "meaning": "禁止写入真实生产数据"
+      },
+      {
+        "code": "OS_INPUT_NOT_ALLOWED",
+        "group": "source",
+        "meaning": "未授权的 OS 输入模拟"
+      },
+      {
+        "code": "AUTHORIZATION_MISSING",
+        "group": "source",
+        "meaning": "缺少授权证据"
+      },
+      {
+        "code": "GIT_OPERATION_FORBIDDEN",
+        "group": "source",
+        "meaning": "caller_managed 下执行了被禁止的 Git 操作"
+      },
+      {
+        "code": "NON_GIT_SNAPSHOT_MISSING",
+        "group": "source",
+        "meaning": "非 Git 项目缺少目录快照/备份"
+      },
+      {
+        "code": "SNAPSHOT_MISMATCH",
+        "group": "source",
+        "meaning": "快照与当前源码不一致"
+      },
+      {
+        "code": "ENVIRONMENT_UNAVAILABLE",
+        "group": "runtime",
+        "meaning": "缺少运行所需环境"
+      },
+      {
+        "code": "PERMISSION_DENIED",
+        "group": "runtime",
+        "meaning": "权限不足"
+      },
+      {
+        "code": "UNSUPPORTED_MODE",
+        "group": "runtime",
+        "meaning": "不支持的模式/组合"
+      },
+      {
+        "code": "REPAIR_BUDGET_EXHAUSTED",
+        "group": "runtime",
+        "meaning": "修复轮次耗尽仍未收敛"
+      },
+      {
+        "code": "INTERNAL_ERROR",
+        "group": "runtime",
+        "meaning": "运行器内部错误"
+      }
+    ]
+  },
+  "verify_enums": {
+    "schema_version": "1.3.3",
+    "document": "Universal UI/UX Engineering Skill Suite — canonical enum dictionary (V1.3.3)",
+    "rule": "This file is the single source of truth for every status vocabulary used by contracts, runtime, tests and SPEC_V1.3.3.md. No document, example or schema may introduce a value that is absent here.",
+    "enums": {
+      "Mode": {
+        "values": [
+          "audit",
+          "design-only",
+          "prototype",
+          "new-build",
+          "redesign",
+          "targeted-fix",
+          "verify"
+        ],
+        "meaning": {
+          "audit": "只读审查已有软件，输出 UI/UX 缺陷与建议",
+          "design-only": "设计用户流程、信息架构、Token 与方案，不写生产代码",
+          "prototype": "在隔离沙箱生成可交互原型并测试",
+          "new-build": "新软件/新模块按先设计后开发实施",
+          "redesign": "已有软件模块的完整 UI/UX 重构",
+          "targeted-fix": "只修改目标页面/交互/控件的缺陷",
+          "verify": "对冻结版本独立执行 QA/Review"
+        }
+      },
+      "DeliverableTier": {
+        "values": [
+          "report-only",
+          "design-spec",
+          "interactive-prototype",
+          "production-code",
+          "verification-report"
+        ],
+        "meaning": {
+          "report-only": "只交付审查报告与证据",
+          "design-spec": "交付设计规范与流程契约",
+          "interactive-prototype": "交付隔离沙箱内可交互原型",
+          "production-code": "交付受控生产代码改动",
+          "verification-report": "交付对冻结版本的验证报告"
+        }
+      },
+      "GateState": {
+        "values": [
+          "PASS",
+          "FAIL",
+          "WARN_REVIEW_REQUIRED",
+          "BLOCKED",
+          "UNVERIFIED",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": {
+          "PASS": "该 Gate 必选证据齐全且校验通过",
+          "FAIL": "证据表明不满足 Gate 要求",
+          "WARN_REVIEW_REQUIRED": "存在需人工/独立记录裁决的告警，未处置不得升级为 PASS",
+          "BLOCKED": "被环境、权限、依赖或不可逆风险明确阻断",
+          "UNVERIFIED": "应测但没有可用的有效证据",
+          "NOT_APPLICABLE": "按 Mode×Gate 策略判定不适用"
+        },
+        "terminal_for_pass": [
+          "PASS"
+        ],
+        "non_pass": [
+          "FAIL",
+          "WARN_REVIEW_REQUIRED",
+          "BLOCKED",
+          "UNVERIFIED",
+          "NOT_APPLICABLE"
+        ]
+      },
+      "GateApplicability": {
+        "values": [
+          "MANDATORY",
+          "REVIEW_ONLY",
+          "CONDITIONAL",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": {
+          "MANDATORY": "必须产出并通过该 Gate 的全部必选证据",
+          "REVIEW_ONLY": "必须读取并评估已有产物/状态，引用其摘要，但不生成新版本、不作为 PASS 的充分条件",
+          "CONDITIONAL": "当 when 条件成立时按 MANDATORY 处理；否则按 else 指定的适用性处理",
+          "NOT_APPLICABLE": "该模式下不适用"
+        }
+      },
+      "RuleSeverity": {
+        "values": [
+          "FAIL",
+          "WARNING",
+          "INFO"
+        ],
+        "meaning": {
+          "FAIL": "确定性硬失败（进入 Gate 计算）",
+          "WARNING": "启发式告警（需上下文和裁决，不等同 Gate 状态）",
+          "INFO": "只读提示，不参与 Gate 计算"
+        }
+      },
+      "RunStatus": {
+        "values": [
+          "COMPLETE",
+          "PARTIAL",
+          "FAILED",
+          "BLOCKED"
+        ],
+        "meaning": {
+          "COMPLETE": "范围内全部必选 Gate 与交付条件满足",
+          "PARTIAL": "部分范围完成，存在未验证或被降级的路径",
+          "FAILED": "存在明确失败且不可在本次范围内修复",
+          "BLOCKED": "被环境/权限/依赖/不可逆风险阻断，无法继续"
+        }
+      },
+      "RuntimeEvidenceLevel": {
+        "values": [
+          "NONE",
+          "SIMULATED",
+          "NATIVE_APP",
+          "OS_INTEGRATION"
+        ],
+        "rank": {
+          "NONE": 0,
+          "SIMULATED": 1,
+          "NATIVE_APP": 2,
+          "OS_INTEGRATION": 3
+        },
+        "meaning": {
+          "NONE": "无运行证据",
+          "SIMULATED": "Mock 或 Offscreen 逻辑/布局模拟",
+          "NATIVE_APP": "真实应用进程、真实 WebView/窗口与业务交互",
+          "OS_INTEGRATION": "真实 Windows 系统对话框、菜单、跨窗口等系统集成"
+        },
+        "note": "序关系仅对可比测试场景有意义；不得用 SIMULATED 证据支撑 NATIVE_APP 结论。"
+      },
+      "ReviewIsolationLevel": {
+        "values": [
+          "UNVERIFIED",
+          "SELFTEST",
+          "ISOLATED_SESSION",
+          "INDEPENDENT_AGENT"
+        ],
+        "rank": {
+          "UNVERIFIED": 0,
+          "SELFTEST": 1,
+          "ISOLATED_SESSION": 2,
+          "INDEPENDENT_AGENT": 3
+        },
+        "meaning": {
+          "UNVERIFIED": "没有任何可信来源可证明审查隔离等级",
+          "SELFTEST": "同会话或开发者自测，不得称独立验收",
+          "ISOLATED_SESSION": "可核验的干净会话 + 冻结代码 + 只读执行",
+          "INDEPENDENT_AGENT": "独立 Agent/执行环境、源码受保护、可复核的外部证据"
+        }
+      },
+      "DeliveryStatus": {
+        "values": [
+          "NOT_VERIFIED",
+          "SELFTEST_VERIFIED",
+          "ISOLATED_REVIEW_VERIFIED",
+          "INDEPENDENT_VERIFIED",
+          "PARTIAL_VERIFIED"
+        ],
+        "meaning": {
+          "NOT_VERIFIED": "未达到任何已验证交付状态",
+          "SELFTEST_VERIFIED": "范围内自测完成，不能称独立验收",
+          "ISOLATED_REVIEW_VERIFIED": "隔离会话复核完成，但未达到独立 Agent 验收",
+          "INDEPENDENT_VERIFIED": "具备独立来源证明的独立验收完成",
+          "PARTIAL_VERIFIED": "仅部分范围形成有效证据"
+        }
+      },
+      "IndependentReviewStatus": {
+        "values": [
+          "NOT_APPLICABLE",
+          "UNVERIFIED",
+          "INDEPENDENCE_UNVERIFIED",
+          "INDEPENDENT_REVIEW_PASS",
+          "INDEPENDENT_REVIEW_FAIL"
+        ],
+        "meaning": {
+          "NOT_APPLICABLE": "该交付层级/模式不要求独立验收",
+          "UNVERIFIED": "未发起或未获得独立审查结果",
+          "INDEPENDENCE_UNVERIFIED": "声称独立审查但隔离来源无法核验",
+          "INDEPENDENT_REVIEW_PASS": "在隔离与证据均满足策略的前提下签发的独立审查通过",
+          "INDEPENDENT_REVIEW_FAIL": "独立审查结论为不通过"
+        }
+      },
+      "DesignReviewStatus": {
+        "values": [
+          "NOT_REQUIRED",
+          "MISSING",
+          "INCOMPLETE",
+          "PASS",
+          "FAIL",
+          "UNVERIFIED"
+        ],
+        "meaning": {
+          "NOT_REQUIRED": "该模式/交付层级不要求 L4 专业设计评审",
+          "MISSING": "策略要求 L4 但未提供评审产物",
+          "INCOMPLETE": "评审存在但缺少必选维度/证据/来源",
+          "PASS": "L4 评审完成且结论为通过（仅代表设计评审维度，不覆盖硬 Gate）",
+          "FAIL": "L4 评审结论为不通过",
+          "UNVERIFIED": "L4 评审真实性/来源不可核验"
+        }
+      },
+      "EvidenceStatus": {
+        "values": [
+          "AVAILABLE",
+          "REDACTED_ONLY",
+          "SOURCE_EVIDENCE_UNAVAILABLE",
+          "EXPIRED",
+          "INVALID_HASH",
+          "QUARANTINED"
+        ],
+        "meaning": {
+          "AVAILABLE": "原件可访问且字节摘要校验通过，可支撑结论",
+          "REDACTED_ONLY": "仅有脱敏摘要，不能作为原始证据复核的替代",
+          "SOURCE_EVIDENCE_UNAVAILABLE": "原件已不可获取且无替代",
+          "EXPIRED": "超过保留期限，原件按策略失效",
+          "INVALID_HASH": "摘要与原件不符或无法验证",
+          "QUARANTINED": "因敏感信息/完整性风险被隔离，不得用于签发"
+        },
+        "usable_for_pass": [
+          "AVAILABLE"
+        ],
+        "usable_for_supporting": [
+          "AVAILABLE",
+          "REDACTED_ONLY"
+        ]
+      },
+      "EvidenceKind": {
+        "values": [
+          "screenshot",
+          "dom_snapshot",
+          "uia_tree",
+          "test_log",
+          "tool_log",
+          "diff",
+          "hash_manifest",
+          "design_review",
+          "coverage_matrix",
+          "other"
+        ]
+      },
+      "StorageClass": {
+        "values": [
+          "state",
+          "vault",
+          "evidence"
+        ],
+        "meaning": {
+          "state": "可变运行状态，可清理",
+          "vault": "本地私密原件，默认不入 Git",
+          "evidence": "受控脱敏交付物，可移交"
+        }
+      },
+      "RedactionKind": {
+        "values": [
+          "none",
+          "path",
+          "image",
+          "field",
+          "full"
+        ]
+      },
+      "RedactionMethod": {
+        "values": [
+          "manual",
+          "automated",
+          "hybrid"
+        ]
+      },
+      "RecheckStatus": {
+        "values": [
+          "PASS",
+          "FAIL",
+          "NOT_RECHECKED"
+        ]
+      },
+      "WarnDisposition": {
+        "values": [
+          "FIXED",
+          "ACCEPTED_RISK",
+          "NOT_APPLICABLE",
+          "REJECTED"
+        ],
+        "meaning": {
+          "FIXED": "问题已修复并附回归证据",
+          "ACCEPTED_RISK": "有权限方接受风险并记录理由与到期时间",
+          "NOT_APPLICABLE": "评审确认该告警不适用于本场景",
+          "REJECTED": "评审拒绝该告警（需给出反证）"
+        }
+      },
+      "ReviewVerdict": {
+        "values": [
+          "PASS",
+          "FAIL",
+          "PARTIAL",
+          "UNVERIFIED"
+        ]
+      },
+      "DimensionVerdict": {
+        "values": [
+          "PASS",
+          "WARN",
+          "FAIL",
+          "UNVERIFIED"
+        ]
+      },
+      "HostKind": {
+        "values": [
+          "dsh",
+          "codex",
+          "claude-code",
+          "zcode",
+          "antigravity",
+          "qoder",
+          "generic",
+          "ci"
+        ]
+      },
+      "CapabilityStatus": {
+        "values": [
+          "READY",
+          "MISSING",
+          "INCOMPATIBLE",
+          "UNVERIFIED"
+        ]
+      },
+      "GitManagement": {
+        "values": [
+          "standalone",
+          "caller_managed"
+        ],
+        "meaning": {
+          "standalone": "Runner 管理快照/分支策略（非 Git 项目用目录摘要与备份副本）",
+          "caller_managed": "外部调用方管理 Git；Runner 不得建分支、改 HEAD、提交或清理外部 Worktree"
+        }
+      },
+      "CallerKind": {
+        "values": [
+          "direct",
+          "ci",
+          "external"
+        ],
+        "meaning": {
+          "direct": "用户直接调用",
+          "ci": "CI/自动化流水线调用",
+          "external": "外部编排方被动调用（Runner 不主动依赖任何外部编排器）"
+        }
+      },
+      "EvidenceProfile": {
+        "values": [
+          "local_private",
+          "portable_redacted",
+          "release_audit"
+        ],
+        "meaning": {
+          "local_private": "默认本地私密证据，Vault 保留",
+          "portable_redacted": "仅脱敏可移交证据",
+          "release_audit": "发布级证据，保留期与可复核性要求更高"
+        }
+      },
+      "FingerprintKind": {
+        "values": [
+          "git_commit",
+          "dir_digest"
+        ]
+      },
+      "PathKind": {
+        "values": [
+          "relative_to_skill_root",
+          "absolute"
+        ]
+      },
+      "TestState": {
+        "values": [
+          "PASS",
+          "FAIL",
+          "UNVERIFIED",
+          "BLOCKED",
+          "NOT_APPLICABLE"
+        ]
+      },
+      "GateId": {
+        "values": [
+          "G0",
+          "G1",
+          "G2",
+          "G3",
+          "G4",
+          "G5",
+          "G6"
+        ]
+      },
+      "RuntimeTarget": {
+        "values": [
+          "SIMULATED",
+          "NATIVE_APP",
+          "OS_INTEGRATION"
+        ]
+      },
+      "RequestedOutput": {
+        "values": [
+          "DESIGN_SYSTEM.md",
+          "tokens.json",
+          "flows.json",
+          "qa-report.json",
+          "gate-results.json",
+          "evidence-manifest.json",
+          "coverage-matrix.json",
+          "design-review.json",
+          "diff.patch"
+        ]
+      },
+      "TechStack": {
+        "values": [
+          "web",
+          "tauri",
+          "qt",
+          "winui",
+          "wpf",
+          "unknown"
+        ]
+      },
+      "ViewArchetype": {
+        "values": [
+          "modal_form",
+          "consumer_view",
+          "data_table",
+          "desktop_workbench",
+          "canvas_editor"
+        ]
+      },
+      "ProbeKind": {
+        "values": [
+          "playwright_dom",
+          "tauri_wdio",
+          "pyside6_qt",
+          "win_uia",
+          "static_lint",
+          "flow_validator",
+          "geometry_probe",
+          "other"
+        ]
+      },
+      "CapabilityEvidenceSourceKind": {
+        "values": [
+          "file",
+          "anchor",
+          "task",
+          "runtime"
+        ]
+      },
+      "DiscoverySource": {
+        "values": [
+          "static",
+          "runtime",
+          "contract"
+        ]
+      },
+      "ReviewTrustSource": {
+        "values": [
+          "none",
+          "user_attested",
+          "host_verified",
+          "external_system"
+        ]
+      },
+      "ReadOnlyProofMethod": {
+        "values": [
+          "acl",
+          "sandbox",
+          "readonly_mount",
+          "process_policy",
+          "none"
+        ]
+      },
+      "DesignReviewSource": {
+        "values": [
+          "selftest",
+          "isolated_session",
+          "independent_agent",
+          "external_system",
+          "human_expert"
+        ]
+      },
+      "AuthorizationScope": {
+        "values": [
+          "production_write",
+          "production_data_write",
+          "os_input_uia",
+          "os_input_physical",
+          "install_write"
+        ]
+      },
+      "DesignDimension": {
+        "values": [
+          "goal_discoverability",
+          "task_completeness",
+          "mental_model_ia",
+          "error_recovery",
+          "continuity_resume",
+          "keyboard_efficiency",
+          "visual_hierarchy",
+          "information_density",
+          "learning_cost",
+          "professional_fit"
+        ]
+      },
+      "RetentionPolicy": {
+        "values": [
+          "run_default",
+          "release_audit",
+          "manual"
+        ]
+      },
+      "RuleCategory": {
+        "values": [
+          "COLOR",
+          "TYPE",
+          "SPACE",
+          "FLOW",
+          "GEOM",
+          "A11Y",
+          "COPY",
+          "STATE",
+          "MOTION"
+        ]
+      },
+      "DetectorKind": {
+        "values": [
+          "style_token_linter",
+          "ux_flow_validator",
+          "layout_geometry_probe",
+          "accessibility_checker"
+        ]
+      },
+      "RuleScope": {
+        "values": [
+          "web",
+          "tauri",
+          "qt",
+          "winui",
+          "wpf",
+          "flows",
+          "any"
+        ]
+      },
+      "ConfusionStatus": {
+        "values": [
+          "TP",
+          "TN",
+          "FP",
+          "FN",
+          "PARTIAL"
+        ]
+      },
+      "PageKind": {
+        "values": [
+          "page",
+          "route",
+          "modal",
+          "dialog",
+          "panel",
+          "window",
+          "canvas"
+        ]
+      },
+      "DiscoveryChannel": {
+        "values": [
+          "source",
+          "runtime",
+          "contract"
+        ]
+      },
+      "DiscoveryStatus": {
+        "values": [
+          "OBSERVED",
+          "UNVERIFIED",
+          "MISSING"
+        ]
+      },
+      "PrototypeKind": {
+        "values": [
+          "html",
+          "figma",
+          "spec",
+          "code"
+        ]
+      },
+      "OptionScoreDimension": {
+        "values": [
+          "usability",
+          "visual",
+          "feasibility",
+          "risk",
+          "accessibility"
+        ]
+      },
+      "TokenTheme": {
+        "values": [
+          "light",
+          "dark",
+          "both"
+        ]
+      },
+      "CheckStatus": {
+        "values": [
+          "PASS",
+          "FAIL",
+          "UNVERIFIED",
+          "VERIFIED"
+        ]
+      },
+      "ChangeAction": {
+        "values": [
+          "create",
+          "modify",
+          "delete"
+        ]
+      },
+      "KnowledgeKind": {
+        "values": [
+          "design_tokens",
+          "rule_catalog",
+          "guideline",
+          "reference",
+          "example"
+        ]
+      },
+      "LicenseKind": {
+        "values": [
+          "internal",
+          "cc-by-4.0",
+          "mit",
+          "apache-2.0",
+          "proprietary",
+          "unknown"
+        ]
+      },
+      "AdoptionAction": {
+        "values": [
+          "ADOPT",
+          "OVERRIDE",
+          "KEEP_LOCAL",
+          "CONFLICT"
+        ]
+      },
+      "AdoptionPriority": {
+        "values": [
+          "SUITE",
+          "PROJECT"
+        ]
+      },
+      "Capability": {
+        "values": [
+          "async_load",
+          "collection_display",
+          "user_mutation",
+          "long_running_task",
+          "destructive_operations",
+          "canvas_rendering"
+        ]
+      },
+      "DestructiveGuard": {
+        "values": [
+          "confirmation",
+          "undo",
+          "both",
+          "none"
+        ]
+      },
+      "SkillRootSource": {
+        "values": [
+          "project-dsh",
+          "project-agents",
+          "custom",
+          "user-dsh",
+          "user-agents",
+          "bundled"
+        ]
+      },
+      "PathCasePolicy": {
+        "values": [
+          "case_sensitive",
+          "casefolded_windows"
+        ]
+      },
+      "FileRole": {
+        "values": [
+          "runtime",
+          "schema",
+          "launcher",
+          "skill",
+          "knowledge",
+          "docs",
+          "license",
+          "other"
+        ]
+      },
+      "ImageRedaction": {
+        "values": [
+          "none",
+          "blur",
+          "crop",
+          "full"
+        ]
+      },
+      "DesktopSessionKind": {
+        "values": [
+          "shared_desktop",
+          "isolated_desktop",
+          "vm",
+          "ci",
+          "unknown"
+        ]
+      }
+    },
+    "mappings": {
+      "rule_severity_to_gate_state": {
+        "FAIL": "FAIL",
+        "WARNING": "WARN_REVIEW_REQUIRED",
+        "INFO": "PASS"
+      },
+      "delivery_status_min_isolation": {
+        "SELFTEST_VERIFIED": "SELFTEST",
+        "ISOLATED_REVIEW_VERIFIED": "ISOLATED_SESSION",
+        "INDEPENDENT_VERIFIED": "INDEPENDENT_AGENT",
+        "PARTIAL_VERIFIED": "SELFTEST",
+        "NOT_VERIFIED": "UNVERIFIED"
+      },
+      "independent_review_required_statuses": [
+        "INDEPENDENT_REVIEW_PASS"
+      ],
+      "complete_run_status_requires": {
+        "delivery_status_in": [
+          "SELFTEST_VERIFIED",
+          "ISOLATED_REVIEW_VERIFIED",
+          "INDEPENDENT_VERIFIED"
+        ]
+      }
+    },
+    "reason_codes": [
+      {
+        "code": "SCHEMA_INVALID",
+        "group": "contract",
+        "meaning": "实例不符合对应 JSON Schema"
+      },
+      {
+        "code": "ENUM_INVALID",
+        "group": "contract",
+        "meaning": "取值不在规范枚举内"
+      },
+      {
+        "code": "REQUEST_INVALID",
+        "group": "contract",
+        "meaning": "TaskRequest 校验或交叉字段校验失败"
+      },
+      {
+        "code": "RESULT_INVALID",
+        "group": "contract",
+        "meaning": "TaskResult 校验或交叉字段校验失败"
+      },
+      {
+        "code": "POLICY_INVALID",
+        "group": "contract",
+        "meaning": "policy 实例校验失败"
+      },
+      {
+        "code": "TOOL_LOG_INVALID",
+        "group": "contract",
+        "meaning": "tool-log 实例校验失败"
+      },
+      {
+        "code": "EVIDENCE_MANIFEST_INVALID",
+        "group": "contract",
+        "meaning": "evidence-manifest 校验失败"
+      },
+      {
+        "code": "REVIEW_ATTESTATION_INVALID",
+        "group": "contract",
+        "meaning": "review-attestation 校验失败"
+      },
+      {
+        "code": "DESIGN_REVIEW_INVALID",
+        "group": "contract",
+        "meaning": "design-review 校验失败"
+      },
+      {
+        "code": "COVERAGE_MATRIX_INVALID",
+        "group": "contract",
+        "meaning": "coverage-matrix 校验失败"
+      },
+      {
+        "code": "LINK_MISSING",
+        "group": "install",
+        "meaning": "suite-link.json 不存在或不可读"
+      },
+      {
+        "code": "LINK_INVALID",
+        "group": "install",
+        "meaning": "suite-link.json 结构或路径基准非法"
+      },
+      {
+        "code": "VERSION_MISMATCH",
+        "group": "install",
+        "meaning": "发行根版本与入口期望不一致"
+      },
+      {
+        "code": "MANIFEST_MISMATCH",
+        "group": "install",
+        "meaning": "关键文件哈希与 RELEASE_MANIFEST 不符"
+      },
+      {
+        "code": "MANIFEST_CORRUPT",
+        "group": "install",
+        "meaning": "RELEASE_MANIFEST 结构损坏或缺失"
+      },
+      {
+        "code": "RELEASE_ROOT_MISSING",
+        "group": "install",
+        "meaning": "解析出的发行根不存在"
+      },
+      {
+        "code": "PYTHON_EXE_MISSING",
+        "group": "install",
+        "meaning": "所选 Python 解释器不存在或不可执行"
+      },
+      {
+        "code": "SKILL_SHADOWED",
+        "group": "install",
+        "meaning": "同名 Skill 被更高优先级根遮蔽"
+      },
+      {
+        "code": "HOST_UNVERIFIED",
+        "group": "install",
+        "meaning": "宿主能力未经实测"
+      },
+      {
+        "code": "PATH_INVALID",
+        "group": "install",
+        "meaning": "路径格式非法（分隔符/UNC/相对基准）"
+      },
+      {
+        "code": "PATH_RESOLUTION_FAILED",
+        "group": "install",
+        "meaning": "路径无法解析或越界"
+      },
+      {
+        "code": "PROJECT_ROOT_NOT_FOUND",
+        "group": "install",
+        "meaning": "无法确定项目根"
+      },
+      {
+        "code": "MISSING_EVIDENCE",
+        "group": "evidence",
+        "meaning": "必选 Gate 缺证据"
+      },
+      {
+        "code": "INVALID_EVIDENCE_HASH",
+        "group": "evidence",
+        "meaning": "证据摘要校验失败"
+      },
+      {
+        "code": "EVIDENCE_EXPIRED",
+        "group": "evidence",
+        "meaning": "证据超过保留期"
+      },
+      {
+        "code": "EVIDENCE_SOURCE_UNAVAILABLE",
+        "group": "evidence",
+        "meaning": "原始证据不可获取"
+      },
+      {
+        "code": "EVIDENCE_QUARANTINED",
+        "group": "evidence",
+        "meaning": "证据因敏感/完整性风险被隔离"
+      },
+      {
+        "code": "LAYER_SPOOF_OR_MISSING",
+        "group": "evidence",
+        "meaning": "证据实际层级低于声明层级或层级不可核验"
+      },
+      {
+        "code": "RUNTIME_LEVEL_BELOW_REQUIRED",
+        "group": "evidence",
+        "meaning": "运行证据层级低于该路径要求"
+      },
+      {
+        "code": "RUNTIME_TARGET_NOT_COVERED",
+        "group": "evidence",
+        "meaning": "请求的运行目标未被覆盖"
+      },
+      {
+        "code": "UNVERIFIED_PATH",
+        "group": "evidence",
+        "meaning": "某 task/scenario 路径未达到必选验证状态"
+      },
+      {
+        "code": "PROBE_ID_MISSING",
+        "group": "evidence",
+        "meaning": "证据缺少可追溯 probe_id"
+      },
+      {
+        "code": "TOOL_LOG_MISSING",
+        "group": "evidence",
+        "meaning": "缺少工具执行日志"
+      },
+      {
+        "code": "TOOL_EXIT_NONZERO",
+        "group": "evidence",
+        "meaning": "工具执行退出码非零"
+      },
+      {
+        "code": "EXECUTION_TIMEOUT",
+        "group": "evidence",
+        "meaning": "工具执行超时"
+      },
+      {
+        "code": "GATE_MISSING",
+        "group": "gate",
+        "meaning": "必选 Gate 结果缺失"
+      },
+      {
+        "code": "GATE_NOT_APPLICABLE_REQUIRED",
+        "group": "gate",
+        "meaning": "必选 Gate 被错误标记为不适用"
+      },
+      {
+        "code": "GATE_STATE_INVALID",
+        "group": "gate",
+        "meaning": "Gate 状态不合法或与证据矛盾"
+      },
+      {
+        "code": "MODE_GATE_INCOMPATIBLE",
+        "group": "gate",
+        "meaning": "模式与 Gate 组合无策略依据"
+      },
+      {
+        "code": "WARN_REVIEW_MISSING",
+        "group": "gate",
+        "meaning": "WARN_REVIEW_REQUIRED 无有效处置记录"
+      },
+      {
+        "code": "WARN_REVIEW_INVALID",
+        "group": "gate",
+        "meaning": "WARN 处置记录不合法、过期或与 finding 不匹配"
+      },
+      {
+        "code": "DESIGN_REVIEW_MISSING",
+        "group": "gate",
+        "meaning": "要求 L4 评审但缺失"
+      },
+      {
+        "code": "DESIGN_REVIEW_INSUFFICIENT",
+        "group": "gate",
+        "meaning": "L4 评审维度/证据/来源不足"
+      },
+      {
+        "code": "COMPLETE_CONSTRAINT_VIOLATION",
+        "group": "gate",
+        "meaning": "COMPLETE 的组合约束不满足"
+      },
+      {
+        "code": "RUN_STATUS_INVALID",
+        "group": "gate",
+        "meaning": "运行状态与证据矛盾"
+      },
+      {
+        "code": "DELIVERY_TIER_VIOLATION",
+        "group": "gate",
+        "meaning": "交付层级与模式/策略不符"
+      },
+      {
+        "code": "REVIEW_SOURCE_MISSING",
+        "group": "review",
+        "meaning": "独立审查缺少可信来源"
+      },
+      {
+        "code": "REVIEW_NOT_INDEPENDENT",
+        "group": "review",
+        "meaning": "Reviewer 与 Owner 同源，不构成独立审查"
+      },
+      {
+        "code": "REVIEW_SOURCE_UNVERIFIED",
+        "group": "review",
+        "meaning": "审查来源不可核验"
+      },
+      {
+        "code": "REVIEWED_HEAD_MISMATCH",
+        "group": "review",
+        "meaning": "审查对象与冻结版本不一致"
+      },
+      {
+        "code": "SOURCE_CHANGED_DURING_REVIEW",
+        "group": "review",
+        "meaning": "审查期间源码发生变化"
+      },
+      {
+        "code": "SOURCE_FINGERPRINT_MISMATCH",
+        "group": "source",
+        "meaning": "源码指纹与基线不一致"
+      },
+      {
+        "code": "REQUEST_DIGEST_MISMATCH",
+        "group": "source",
+        "meaning": "TaskRequest 摘要与 gate-results 记录不一致（禁止事后调低 runtime_targets）"
+      },
+      {
+        "code": "WRITE_SCOPE_VIOLATION",
+        "group": "source",
+        "meaning": "写入越出授权范围"
+      },
+      {
+        "code": "UNAUTHORIZED_PATH",
+        "group": "source",
+        "meaning": "路径未在授权根内"
+      },
+      {
+        "code": "READ_ONLY_VIOLATION",
+        "group": "source",
+        "meaning": "只读模式发生源码/生产数据写入"
+      },
+      {
+        "code": "PRODUCTION_DATA_WRITE_BLOCKED",
+        "group": "source",
+        "meaning": "禁止写入真实生产数据"
+      },
+      {
+        "code": "OS_INPUT_NOT_ALLOWED",
+        "group": "source",
+        "meaning": "未授权的 OS 输入模拟"
+      },
+      {
+        "code": "AUTHORIZATION_MISSING",
+        "group": "source",
+        "meaning": "缺少授权证据"
+      },
+      {
+        "code": "GIT_OPERATION_FORBIDDEN",
+        "group": "source",
+        "meaning": "caller_managed 下执行了被禁止的 Git 操作"
+      },
+      {
+        "code": "NON_GIT_SNAPSHOT_MISSING",
+        "group": "source",
+        "meaning": "非 Git 项目缺少目录快照/备份"
+      },
+      {
+        "code": "SNAPSHOT_MISMATCH",
+        "group": "source",
+        "meaning": "快照与当前源码不一致"
+      },
+      {
+        "code": "ENVIRONMENT_UNAVAILABLE",
+        "group": "runtime",
+        "meaning": "缺少运行所需环境"
+      },
+      {
+        "code": "PERMISSION_DENIED",
+        "group": "runtime",
+        "meaning": "权限不足"
+      },
+      {
+        "code": "UNSUPPORTED_MODE",
+        "group": "runtime",
+        "meaning": "不支持的模式/组合"
+      },
+      {
+        "code": "REPAIR_BUDGET_EXHAUSTED",
+        "group": "runtime",
+        "meaning": "修复轮次耗尽仍未收敛"
+      },
+      {
+        "code": "INTERNAL_ERROR",
+        "group": "runtime",
+        "meaning": "运行器内部错误"
+      }
+    ]
+  },
+  "doctor": {
+    "ok": true,
+    "overall_status": "UNVERIFIED",
+    "links": {
+      "uiux": {
+        "found": true,
+        "problems": [],
+        "active_version": "1.3.3",
+        "suite_root": "../../uiux-suite/versions/1.3.3"
+      },
+      "uiux-verify": {
+        "found": true,
+        "problems": [],
+        "active_version": "1.3.3",
+        "suite_root": "../../uiux-suite/versions/1.3.3"
+      }
+    },
+    "problems": [],
+    "host_capability": {
+      "schema_version": "1.3.3",
+      "host": "dsh",
+      "host_version": null,
+      "os": "nt-win32",
+      "python": "3.12.14",
+      "node": "E:\\Program Files\\nodejs\\node.EXE",
+      "skill_roots": [
+        {
+          "path": "G:\\AI\\release-check-20261024084005\\project\\.dsh\\skills",
+          "rank": 100,
+          "source": "project-dsh",
+          "exists": false
+        },
+        {
+          "path": "G:\\AI\\release-check-20261024084005\\project\\.agents\\skills",
+          "rank": 200,
+          "source": "project-agents",
+          "exists": true
+        },
+        {
+          "path": "C:\\Users\\49745\\.dsh\\skills",
+          "rank": 400,
+          "source": "user-dsh",
+          "exists": true
+        },
+        {
+          "path": "C:\\Users\\49745\\.agents\\skills",
+          "rank": 500,
+          "source": "user-agents",
+          "exists": true
+        }
+      ],
+      "entries": [
+        {
+          "name": "uiux",
+          "root": "G:\\AI\\release-check-20261024084005\\project\\.agents\\skills\\uiux",
+          "rank": 200,
+          "shadowed_by": null
+        },
+        {
+          "name": "uiux-verify",
+          "root": "G:\\AI\\release-check-20261024084005\\project\\.agents\\skills\\uiux-verify",
+          "rank": 200,
+          "shadowed_by": null
+        },
+        {
+          "name": "archify",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\archify",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "ask-matt",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\ask-matt",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "code-review",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\code-review",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "codebase-design",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\codebase-design",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "diagnosing-bugs",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\diagnosing-bugs",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "domain-modeling",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\domain-modeling",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "find-skills",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\find-skills",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "git-guardrails-claude-code",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\git-guardrails-claude-code",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "grill-me-2",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\grill-me-2",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "grill-with-docs-2",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\grill-with-docs-2",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "grilling",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\grilling",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "handoff-2",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\handoff-2",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "implement",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\implement",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "improve-codebase-architecture",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\improve-codebase-architecture",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "loop-me",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\loop-me",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "manage-skills",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\manage-skills",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "migrate-to-shoehorn",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\migrate-to-shoehorn",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "ponytail",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\ponytail",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "ponytail-audit",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\ponytail-audit",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "ponytail-debt",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\ponytail-debt",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "ponytail-gain",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\ponytail-gain",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "ponytail-help",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\ponytail-help",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "ponytail-review",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\ponytail-review",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "prototype",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\prototype",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "research",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\research",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "resolving-merge-conflicts",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\resolving-merge-conflicts",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "scaffold-exercises",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\scaffold-exercises",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "setup-matt-pocock-skills",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\setup-matt-pocock-skills",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "setup-pre-commit",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\setup-pre-commit",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "setup-ts-deep-modules",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\setup-ts-deep-modules",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "tdd",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\tdd",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "teach",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\teach",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "to-questionnaire",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\to-questionnaire",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "to-spec",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\to-spec",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "to-tickets",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\to-tickets",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "triage",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\triage",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "wait-what",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\wait-what",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "wayfinder",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\wayfinder",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "wizard",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\wizard",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "writing-beats",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\writing-beats",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "writing-for-agents",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\writing-for-agents",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "writing-fragments",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\writing-fragments",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "writing-shape",
+          "root": "C:\\Users\\49745\\.dsh\\skills\\writing-shape",
+          "rank": 400,
+          "shadowed_by": null
+        },
+        {
+          "name": "antigravity-dispatch",
+          "root": "C:\\Users\\49745\\.agents\\skills\\antigravity-dispatch",
+          "rank": 500,
+          "shadowed_by": null
+        },
+        {
+          "name": "codex-dispatch",
+          "root": "C:\\Users\\49745\\.agents\\skills\\codex-dispatch",
+          "rank": 500,
+          "shadowed_by": null
+        },
+        {
+          "name": "dsh-dispatch",
+          "root": "C:\\Users\\49745\\.agents\\skills\\dsh-dispatch",
+          "rank": 500,
+          "shadowed_by": null
+        },
+        {
+          "name": "multi-agent-project-orchestrator",
+          "root": "C:\\Users\\49745\\.agents\\skills\\multi-agent-project-orchestrator",
+          "rank": 500,
+          "shadowed_by": null
+        },
+        {
+          "name": "qoder-dispatch",
+          "root": "C:\\Users\\49745\\.agents\\skills\\qoder-dispatch",
+          "rank": 500,
+          "shadowed_by": null
+        },
+        {
+          "name": "team-mode",
+          "root": "C:\\Users\\49745\\.agents\\skills\\team-mode",
+          "rank": 500,
+          "shadowed_by": null
+        },
+        {
+          "name": "uiux",
+          "root": "C:\\Users\\49745\\.agents\\skills\\uiux",
+          "rank": 500,
+          "shadowed_by": "G:\\AI\\release-check-20261024084005\\project\\.agents\\skills\\uiux"
+        },
+        {
+          "name": "uiux-verify",
+          "root": "C:\\Users\\49745\\.agents\\skills\\uiux-verify",
+          "rank": 500,
+          "shadowed_by": "G:\\AI\\release-check-20261024084005\\project\\.agents\\skills\\uiux-verify"
+        },
+        {
+          "name": "zcode-dispatch",
+          "root": "C:\\Users\\49745\\.agents\\skills\\zcode-dispatch",
+          "rank": 500,
+          "shadowed_by": null
+        }
+      ],
+      "capabilities": {
+        "skill_discovery": "READY",
+        "script_exec": "READY",
+        "gui_access": "READY",
+        "mcp": "UNVERIFIED",
+        "file_permissions": "READY",
+        "resume": "UNVERIFIED"
+      },
+      "checks": [
+        {
+          "id": "skill:uiux",
+          "status": "READY",
+          "detail": "linked and manifest-verified"
+        },
+        {
+          "id": "skill:uiux-verify",
+          "status": "READY",
+          "detail": "linked and manifest-verified"
+        },
+        {
+          "id": "python",
+          "status": "READY",
+          "detail": "G:\\AI\\universal-uiux-engineering\\.venv\\Scripts\\python.exe (3.12.14)"
+        },
+        {
+          "id": "jsonschema",
+          "status": "READY",
+          "detail": "4.23.0"
+        },
+        {
+          "id": "python_runner",
+          "status": "READY",
+          "detail": "G:\\AI\\universal-uiux-engineering\\.venv\\Scripts\\python.exe (3.12.14)"
+        },
+        {
+          "id": "node",
+          "status": "READY",
+          "detail": "E:\\Program Files\\nodejs\\node.EXE (v24.15.0)"
+        },
+        {
+          "id": "gui",
+          "status": "READY",
+          "detail": "windows desktop"
+        },
+        {
+          "id": "file_permissions",
+          "status": "READY",
+          "detail": "G:\\AI\\release-check-20261024084005\\project\\.agents"
+        },
+        {
+          "id": "mcp",
+          "status": "UNVERIFIED",
+          "detail": "not exercised by doctor"
+        },
+        {
+          "id": "resume",
+          "status": "UNVERIFIED",
+          "detail": "not exercised by doctor"
+        }
+      ],
+      "doctor_version": "1.3.3",
+      "overall_status": "UNVERIFIED",
+      "checked_at": "2026-10-24T00:40:27.885797+00:00"
+    }
+  },
+  "rollback_same_version": {
+    "ok": true,
+    "rolled_back_to": "1.3.3",
+    "activated": [
+      "uiux",
+      "uiux-verify"
+    ]
+  },
+  "clean_uninstall": {
+    "ok": true,
+    "version": "1.3.3",
+    "removed": 85,
+    "skipped": [],
+    "missing": [],
+    "remaining_versions": [],
+    "relinked": []
+  },
+  "after_rollback_uninstall": {
+    "ok": true,
+    "version": "1.3.3",
+    "removed": 83,
+    "skipped": [
+      {
+        "path": "skills/uiux-verify/suite-link.json",
+        "reason": "MODIFIED_FILE_PRESERVED"
+      },
+      {
+        "path": "skills/uiux/suite-link.json",
+        "reason": "MODIFIED_FILE_PRESERVED"
+      }
+    ],
+    "missing": [],
+    "remaining_versions": [],
+    "relinked": []
+  },
+  "checks": {
+    "install_exit": 0,
+    "uiux_enums_exit": 0,
+    "verify_enums_exit": 0,
+    "doctor_exit": 0,
+    "rollback_exit": 0,
+    "clean_uninstall_exit": 0,
+    "clean_uninstall_removed_dirs": true,
+    "pytest_install_tests": "11 passed"
+  },
+  "limitations": [
+    "Rollback was exercised with the same installed version; cross-version rollback is covered by tests/integration/test_install.py (11 passed).",
+    "Uninstall after a rollback preserves modified suite-link.json files by design (MODIFIED_FILE_PRESERVED); a clean install/uninstall removes all 85 files."
+  ]
+}
