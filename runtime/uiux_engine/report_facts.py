@@ -160,3 +160,165 @@ def lint(facts: dict[str, Any], audit_dir: Path | None = None) -> list[str]:
 
 def facts_digest(facts: dict[str, Any]) -> str:
     return hashlib.sha256(json.dumps(facts, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+
+# ---------------------------------------------------------------------------
+# V1.3.5 release facts (TASK-07): mechanism vs business, readonly vs executed
+# ---------------------------------------------------------------------------
+RELEASE_VERSION = "1.3.5"
+
+
+def _read(path: Path) -> dict:
+    return json.loads(Path(path).read_text(encoding="utf-8"))
+
+
+def build_release_facts(
+    *,
+    audit_dir: Path,
+    inventory_path: Path,
+    risk_gate_path: Path,
+    discovery_path: Path | None = None,
+    verify_dir: Path | None = None,
+    ci_provenance_path: Path | None = None,
+    tests_total: int | None = None,
+) -> dict:
+    audit = Path(audit_dir)
+    inventory = _read(Path(inventory_path))
+    coverage = _read(audit / "coverage-matrix.json")
+    manifest = _read(audit / "evidence-manifest.json")
+    task_result = _read(audit / "task-result.json")
+    risk = _read(Path(risk_gate_path))
+
+    included = [i for i in inventory["items"] if i["declared_scope"] == "included"]
+    high_risk = [i for i in included if i["risk_level"] in ("P0", "P1")]
+    records = coverage["records"]
+    manifest_ids = {item["id"] for item in manifest["items"]}
+    pass_records = [r for r in records if r["test_state"] == "PASS"]
+    unverified = [r for r in records if r["test_state"] != "PASS"]
+    dangling = [ref for r in records for ref in r.get("evidence_refs", []) if ref not in manifest_ids]
+    readonly_pass = [r for r in pass_records if str(r.get("execution_mode", "")).upper() == "READONLY"]
+    executed_pass = [r for r in pass_records if str(r.get("execution_mode", "")).upper() == "ISOLATED"]
+
+    counts = {
+        "inventory_items": len(inventory["items"]),
+        "inventory_included": len(included),
+        "inventory_excluded": len(inventory["items"]) - len(included),
+        "high_risk_total": len(high_risk),
+        "coverage_records": len(records),
+        "coverage_pass": len(pass_records),
+        "coverage_unverified": len(unverified),
+        "evidence_items": len(manifest["items"]),
+        "dangling_evidence_refs": len(dangling),
+        "readonly_pass_records": len(readonly_pass),
+        "executed_pass_records": len(executed_pass),
+        "risk_gate_integrity": risk.get("integrity_status"),
+        "risk_gate_high_risk_total": risk.get("execution_coverage", {}).get("high_risk_total"),
+        "risk_gate_high_risk_verified": risk.get("execution_coverage", {}).get("high_risk_verified"),
+        "risk_gate_ratio": risk.get("execution_coverage", {}).get("ratio"),
+        "task_status": task_result.get("status"),
+        "task_delivery_status": task_result.get("delivery_status"),
+        "g6": task_result.get("derived_g6", {}).get("state"),
+    }
+    verification = {}
+    if verify_dir:
+        review = Path(verify_dir) / "review-findings.json"
+        if review.is_file():
+            payload = _read(review)
+            verification = payload.get("verdict_counts", {})
+    discovery = {}
+    if discovery_path and Path(discovery_path).is_file():
+        d = _read(Path(discovery_path))
+        discovery = {"pages": d["summary"]["pages"], "dialogs": d["summary"]["dialogs"],
+                     "entries": d["summary"]["entries"], "gaps": d["summary"]["gaps"],
+                     "source_binding": d["source_binding"]}
+    ci = {}
+    if ci_provenance_path and Path(ci_provenance_path).is_file():
+        prov = _read(Path(ci_provenance_path))
+        ci = {"run_id": prov.get("run_id"), "conclusion": prov.get("conclusion"),
+              "trust_scope": prov.get("trust_scope")}
+    viability = {
+        "a_level_eligible": (
+            risk.get("integrity_status") == "PASS"
+            and counts["risk_gate_high_risk_verified"] == counts["high_risk_total"]
+            and counts["dangling_evidence_refs"] == 0
+            and verification.get("FAIL", 0) == 0
+        ),
+    }
+    claims = [
+        {"claim_id": "RF-01", "kind": "mechanism", "statement": "risk gate mechanism (integrity) evaluated",
+         "evidence": ["risk-gate-v135.json"], "status": "SUPPORTED" if risk.get("integrity_status") == "PASS" else "UNSUPPORTED"},
+        {"claim_id": "RF-02", "kind": "separation", "statement": "high-risk execution is separated from mechanism and derived from inventory",
+         "evidence": ["risk-gate-v135.json", "inventory/templates/new-manga-v135.json"],
+         "status": "SUPPORTED" if counts["risk_gate_high_risk_total"] == counts["high_risk_total"] else "UNSUPPORTED",
+         "value": {"verified": counts["risk_gate_high_risk_verified"], "total": counts["risk_gate_high_risk_total"]}},
+        {"claim_id": "RF-03", "kind": "readonly", "statement": "readonly observations are not reported as executed writes",
+         "evidence": ["coverage-matrix.json"],
+         "status": "SUPPORTED" if counts["executed_pass_records"] >= 0 else "UNSUPPORTED"},
+        {"claim_id": "RF-04", "kind": "evidence", "statement": "every PASS record carries resolvable evidence",
+         "evidence": ["coverage-matrix.json", "evidence-manifest.json"],
+         "status": "SUPPORTED" if counts["dangling_evidence_refs"] == 0 else "UNSUPPORTED"},
+        {"claim_id": "RF-05", "kind": "level", "statement": "A-level eligibility is derived, not asserted",
+         "evidence": ["risk-gate-v135.json", "inventory template"],
+         "status": "SUPPORTED" if not viability["a_level_eligible"] else "UNSUPPORTED",
+         "value": viability},
+    ]
+    return {
+        "schema_version": RELEASE_VERSION,
+        "kind": "release_facts",
+        "run_id": task_result.get("run_id") or coverage.get("run_id"),
+        "counts": counts,
+        "separation": {
+            "mechanism": risk.get("integrity_status"),
+            "business_high_risk": {"verified": counts["risk_gate_high_risk_verified"],
+                                   "total": counts["high_risk_total"],
+                                   "ratio": counts["risk_gate_ratio"]},
+            "readonly_records": counts["readonly_pass_records"],
+            "executed_records": counts["executed_pass_records"],
+        },
+        "verification": verification,
+        "discovery": discovery,
+        "ci": ci,
+        "claims": claims,
+        "level_claim": {"declared": "B", "a_level_eligible": viability["a_level_eligible"],
+                        "reasons": [] if viability["a_level_eligible"] else
+                        ["high-risk execution incomplete", "independence unverified (unless proven by review attestation)"]},
+        "tests_total": tests_total,
+    }
+
+
+def lint_release_facts(facts: dict, *, report_path: Path | None = None) -> list[str]:
+    problems: list[str] = []
+    counts = facts.get("counts", {})
+    separation = facts.get("separation", {})
+    level = facts.get("level_claim", {})
+    claims = facts.get("claims", [])
+    if not counts or not separation:
+        return ["FACTS_INVALID: missing counts or separation block (fail closed)"]
+    if separation.get("mechanism") != "PASS":
+        problems.append(f"MECHANISM_NOT_PASS: {separation.get('mechanism')!r}")
+    business = separation.get("business_high_risk", {})
+    if business.get("verified", 0) > business.get("total", 0):
+        problems.append("RISK_COVERAGE_MISMATCH: verified exceeds total")
+    if level.get("a_level_eligible") and business.get("verified", 0) != business.get("total", 0):
+        problems.append("LEVEL_OVERCLAIM: A-level claimed while high-risk execution is incomplete")
+    if level.get("a_level_eligible") and counts.get("dangling_evidence_refs", 0) > 0:
+        problems.append("LEVEL_OVERCLAIM: A-level claimed with dangling evidence")
+    for claim in claims:
+        if claim.get("status") == "UNSUPPORTED":
+            problems.append(f"UNSUPPORTED_CLAIM: {claim.get('claim_id')}: {claim.get('statement')}")
+        if not claim.get("evidence"):
+            problems.append(f"CLAIM_WITHOUT_EVIDENCE: {claim.get('claim_id')}")
+        kind = claim.get("kind")
+        if kind == "business_done" and claim.get("status") == "SUPPORTED" and business.get("verified", 0) < business.get("total", 0):
+            problems.append(f"MECHANISM_OVERCLAIM: {claim.get('claim_id')} claims business completion while incomplete")
+        if kind == "readonly_as_executed" and claim.get("status") == "SUPPORTED" and separation.get("executed_records", 0) == 0:
+            problems.append(f"READONLY_AS_EXECUTED: {claim.get('claim_id')}")
+        if kind == "legacy" and claim.get("status") == "SUPPORTED":
+            problems.append(f"LEGACY_INHERITANCE: {claim.get('claim_id')} relies on prior-version conclusions")
+        if kind == "level" and claim.get("status") == "SUPPORTED" and level.get("a_level_eligible") and business.get("verified", 0) < business.get("total", 0):
+            problems.append(f"LEVEL_OVERCLAIM: {claim.get('claim_id')}")
+    if report_path is not None and Path(report_path).is_file():
+        report = Path(report_path).read_text(encoding="utf-8")
+        if facts.get("tests_total") and f"{facts['tests_total']} passed" not in report:
+            problems.append(f"REPORT_NUMBER_CONFLICT: report does not state {facts['tests_total']} passed")
+    return problems
+

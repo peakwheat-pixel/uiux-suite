@@ -259,6 +259,43 @@ def cmd_lint(args: argparse.Namespace) -> int:
     return EXIT_OK if not problems else EXIT_INVALID
 
 
+
+def cmd_release_facts(args: argparse.Namespace) -> int:
+    try:
+        facts = report_facts.build_release_facts(
+            audit_dir=Path(args.audit_dir),
+            inventory_path=Path(args.inventory),
+            risk_gate_path=Path(args.risk_gate),
+            discovery_path=Path(args.discovery) if args.discovery else None,
+            verify_dir=Path(args.verify_dir) if args.verify_dir else None,
+            ci_provenance_path=Path(args.ci_provenance) if args.ci_provenance else None,
+            tests_total=args.tests_total,
+        )
+    except (OSError, ValueError) as exc:
+        _emit({"ok": False, "errors": [f"cannot build release facts: {exc}"]})
+        return EXIT_INVALID
+    problems = report_facts.lint_release_facts(facts)
+    if args.out:
+        Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.out).write_text(json.dumps(facts, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    _emit({"ok": not problems, "problems": problems, "counts": facts["counts"],
+           "separation": facts["separation"], "level_claim": facts["level_claim"],
+           "facts_digest": report_facts.facts_digest(facts), "out": args.out})
+    return EXIT_OK if not problems else EXIT_INVALID
+
+
+def cmd_release_lint(args: argparse.Namespace) -> int:
+    try:
+        facts = json.loads(Path(args.facts).read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        _emit({"ok": False, "errors": [f"cannot read facts: {exc}"]})
+        return EXIT_INVALID
+    problems = report_facts.lint_release_facts(facts, report_path=Path(args.report) if args.report else None)
+    _emit({"ok": not problems, "problems": problems, "facts_digest": report_facts.facts_digest(facts)})
+    return EXIT_OK if not problems else EXIT_INVALID
+
+
+
 def cmd_rules(args: argparse.Namespace) -> int:
     try:
         catalog = rules.load_catalog(args.catalog)
@@ -676,6 +713,23 @@ def build_parser() -> argparse.ArgumentParser:
     p_facts.add_argument("--inventory")
     p_facts.add_argument("--out")
     p_facts.set_defaults(func=cmd_facts)
+
+
+    p_rfacts = sub.add_parser("release-facts", help="build V1.3.5 release facts (mechanism vs business)")
+    p_rfacts.add_argument("--audit-dir", required=True)
+    p_rfacts.add_argument("--inventory", required=True)
+    p_rfacts.add_argument("--risk-gate", required=True)
+    p_rfacts.add_argument("--discovery")
+    p_rfacts.add_argument("--verify-dir")
+    p_rfacts.add_argument("--ci-provenance")
+    p_rfacts.add_argument("--tests-total", type=int)
+    p_rfacts.add_argument("--out")
+    p_rfacts.set_defaults(func=cmd_release_facts)
+
+    p_rlint = sub.add_parser("release-lint", help="lint V1.3.5 release facts and report consistency")
+    p_rlint.add_argument("--facts", required=True)
+    p_rlint.add_argument("--report")
+    p_rlint.set_defaults(func=cmd_release_lint)
 
     p_lint = sub.add_parser("lint", help="lint report facts against evidence (TASK-08)")
     p_lint.add_argument("--facts", required=True)

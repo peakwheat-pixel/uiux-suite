@@ -115,7 +115,7 @@ def main() -> int:
             "task_id": task, "scenario_id": scenario,
             "required_runtime_level": required, "observed_runtime_level": observed,
             "test_state": state, "review_isolation_level": "SELFTEST", "probe_id": PROBE_ID,
-            "evidence_refs": ev, "execution_environment": env,
+            "evidence_refs": ev, "execution_mode": "READONLY", "execution_environment": env,
             "source_fingerprint": source_fp, "notes": notes,
         }
         if scope:
