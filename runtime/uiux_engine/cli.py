@@ -17,7 +17,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from . import build_guard, compat, contracts, enums, evidence, external, fixture, gates, input_policy, integrity, inventory, knowledge, modify, policy, rules, safety, snapshot, token_compiler, validation, vault
+from . import binding, build_guard, compat, contracts, enums, evidence, external, fixture, gates, input_policy, integrity, inventory, knowledge, modify, policy, report_facts, rules, safety, snapshot, token_compiler, validation, vault
 
 EXIT_OK = 0
 EXIT_USAGE = 2
@@ -195,6 +195,67 @@ def cmd_inventory(args: argparse.Namespace) -> int:
             return EXIT_INVALID
         problems.extend(inventory.scope_manipulation_check(payload, previous))
     _emit({"ok": not problems, "inventory_id": payload["inventory_id"], "problems": problems})
+    return EXIT_OK if not problems else EXIT_INVALID
+
+
+def cmd_binding(args: argparse.Namespace) -> int:
+    if args.verify:
+        try:
+            record = json.loads(Path(args.verify).read_text(encoding="utf-8"))
+        except (OSError, ValueError) as exc:
+            _emit({"ok": False, "errors": [f"cannot read binding: {exc}"]})
+            return EXIT_INVALID
+        problems = binding.verify_binding(record, Path(args.exe), Path(args.source))
+        _emit({"ok": not problems, "binding_id": record.get("binding_id"), "level": record.get("level"), "problems": problems})
+        return EXIT_OK if not problems else EXIT_INVALID
+    record = binding.bind_runtime(
+        Path(args.exe),
+        Path(args.source),
+        Path(args.build_manifest) if args.build_manifest else None,
+    )
+    if args.out:
+        Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.out).write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    _emit({"ok": True, **record, "out": args.out})
+    return EXIT_OK
+
+
+def cmd_facts(args: argparse.Namespace) -> int:
+    try:
+        facts = report_facts.build_facts(
+            Path(args.audit_dir),
+            Path(args.verify_dir) if args.verify_dir else None,
+            Path(args.inventory) if args.inventory else None,
+        )
+    except (OSError, ValueError) as exc:
+        _emit({"ok": False, "errors": [f"cannot build facts: {exc}"]})
+        return EXIT_INVALID
+    if args.out:
+        Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.out).write_text(json.dumps(facts, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    _emit({
+        "ok": True,
+        "facts_id": facts["facts_id"],
+        "facts_digest": report_facts.facts_digest(facts),
+        "counts": facts["counts"],
+        "out": args.out,
+    })
+    return EXIT_OK
+
+
+def cmd_lint(args: argparse.Namespace) -> int:
+    try:
+        facts = json.loads(Path(args.facts).read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        _emit({"ok": False, "errors": [f"cannot read facts: {exc}"]})
+        return EXIT_INVALID
+    problems = report_facts.lint(facts, Path(args.audit_dir) if args.audit_dir else None)
+    _emit({
+        "ok": not problems,
+        "problems": problems,
+        "facts_digest": report_facts.facts_digest(facts),
+        "run_id": facts.get("run_id"),
+    })
     return EXIT_OK if not problems else EXIT_INVALID
 
 
@@ -600,6 +661,26 @@ def build_parser() -> argparse.ArgumentParser:
     p_inventory.add_argument("--reviewed-by")
     p_inventory.add_argument("--out")
     p_inventory.set_defaults(func=cmd_inventory)
+
+    p_binding = sub.add_parser("binding", help="runtime-to-source binding and verification (TASK-06)")
+    p_binding.add_argument("--exe", required=True)
+    p_binding.add_argument("--source", required=True)
+    p_binding.add_argument("--build-manifest")
+    p_binding.add_argument("--verify", help="verify a stored binding JSON")
+    p_binding.add_argument("--out")
+    p_binding.set_defaults(func=cmd_binding)
+
+    p_facts = sub.add_parser("facts", help="build machine-readable report facts from evidence (TASK-08)")
+    p_facts.add_argument("--audit-dir", required=True)
+    p_facts.add_argument("--verify-dir")
+    p_facts.add_argument("--inventory")
+    p_facts.add_argument("--out")
+    p_facts.set_defaults(func=cmd_facts)
+
+    p_lint = sub.add_parser("lint", help="lint report facts against evidence (TASK-08)")
+    p_lint.add_argument("--facts", required=True)
+    p_lint.add_argument("--audit-dir")
+    p_lint.set_defaults(func=cmd_lint)
 
     p_policy = sub.add_parser("policy", help="resolve the Mode×Gate policy for a mode or request")
     p_policy.add_argument("--mode", choices=sorted(enums.values("Mode")))
