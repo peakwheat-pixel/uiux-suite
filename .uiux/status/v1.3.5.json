@@ -4,63 +4,72 @@
   "version_target": "1.3.5",
   "authority": "single-source-of-truth",
   "phase": "B",
-  "stage": "TASK-02",
-  "updated_at": "2026-10-24T05:55:00Z",
+  "stage": "TASK-03",
+  "updated_at": "2026-10-24T06:25:00Z",
   "source": {
     "repo": "G:\\AI\\universal-uiux-engineering",
     "worktree": "G:\\AI\\uiux-v135-wt",
     "branch": "v1.3.5-reliability",
     "base_commit": "33f792444b585e7af7f3d4d49222bd7d5118b6e78",
-    "latest_commit": "846720f"
+    "latest_commit": "622e555"
   },
   "evidence_root": "G:\\AI\\uiux-v135",
-  "phase_a_r6": {
-    "state": "completed_core",
-    "commit": "846720f",
-    "module": "runtime/uiux_engine/risk_gate.py",
-    "tests": {
-      "negative_fault_injection": 24,
-      "legacy_v134_regression": 2,
-      "full_suite": "551 passed"
-    },
-    "evidence": [
-      "G:\\AI\\uiux-v135\\evidence\\task01\\risk-gate-v134-legacy.json"
-    ],
-    "semantics": {
-      "integrity_status": "mechanism correctness",
-      "execution_coverage": "derived from inventory denominator; ratio 3/10 for V1.3.4 inputs",
-      "a_level_risk_met": false
-    },
-    "pending": [
-      "independent reviewer audit of rules/tests (Phase C)",
-      "integration into v1.3.5 release gate record (Phase D)"
-    ]
-  },
   "tasks": {
-    "TASK-01": {"state": "completed_core", "commit": "846720f"},
-    "TASK-02": {"state": "in_progress", "deps": ["TASK-01"], "goal": "re-run G1 static discovery on the isolated New Manga copy; rebuild inventory baseline; source binding; independent scope review"},
-    "TASK-03": {"state": "pending", "deps": ["TASK-02", "TASK-05"]},
-    "TASK-04": {"state": "pending", "deps": ["TASK-02", "TASK-03", "TASK-05"]},
-    "TASK-05": {"state": "pending", "deps": ["TASK-01"], "note": "fixture/A-B regression can run in parallel with TASK-02..04"},
+    "TASK-01": {
+      "state": "completed_core",
+      "commit": "846720f",
+      "tests": "24 negative/fault-injection + 2 legacy; engine module risk_gate.py",
+      "evidence": "G:\\AI\\uiux-v135\\evidence\\task01\\risk-gate-v134-legacy.json",
+      "pending": ["independent reviewer (Phase C)", "release gate record (Phase D)"]
+    },
+    "TASK-02": {
+      "state": "completed_core",
+      "commit": "622e555",
+      "evidence": [
+        "G:\\AI\\uiux-v135\\evidence\\task02\\discovery.json",
+        "G:\\AI\\uiux-v135\\evidence\\task02\\inventory-reconciliation.json",
+        "G:\\AI\\uiux-v135\\evidence\\task02\\discovery-baseline.json",
+        "G:\\AI\\uiux-v135\\evidence\\task02\\inventory-v135-freeze.json",
+        "G:\\AI\\uiux-v135\\evidence\\task02\\scope-review.json",
+        "G:\\AI\\uiux-v135\\evidence\\task02\\SCOPE_REVIEW.md"
+      ],
+      "results": {
+        "pages": 12,
+        "dialogs": 6,
+        "entries": 581,
+        "gaps": 7,
+        "disabled_features": 7,
+        "state_machines": 24,
+        "inventory_items_found": 15,
+        "inventory_items_not_found": 0,
+        "inventory_excluded": 3,
+        "inventory_baseline_hash": "675de7a2bf3d66b2bec777cfa197b835bfa65bf3af8980a57cb4a01f374e095a",
+        "discovery_baseline_hash": "25dc0d4b342d7a37fb35978ebaa25fb6a3bcb0efce85cc8a846135ad682e6df0"
+      },
+      "critical_findings": [
+        "external uncommitted business-source changes in the isolated copy (8 files; HEAD 349e61faf; NOT modified by this session)",
+        "runtime EXE remains the old build sha256 8730d154... while the worktree source has newer edits -> runtime/source drift must be disclosed in UI audit binding",
+        "search is implemented inline in bookshelf components (bookshelf-search-input), not as a standalone page",
+        "PermanentDeleteConfirmDialog exists in source but its entry (detail-delete-btn) is disabled with GAP-G2",
+        "regioninspector dialog is covered by ITM-REGION-EDIT but not explicitly listed as an inventory item (refinement finding)"
+      ]
+    },
+    "TASK-03": {"state": "in_progress", "deps": ["TASK-02", "TASK-05"], "goal": "backfill search/region/task-state/delete-confirm coverage with real runtime evidence"},
+    "TASK-04": {"state": "pending", "deps": ["TASK-03", "TASK-05"]},
+    "TASK-05": {"state": "pending", "deps": ["TASK-01"], "note": "fixture/A-B regression can run in parallel"},
     "TASK-06": {"state": "pending", "deps": ["TASK-03", "TASK-04"]},
     "TASK-07": {"state": "pending", "deps": ["TASK-04"]}
   },
-  "baseline_v134": {
-    "level": "B",
-    "tests": 525,
-    "mapping_ratio": 1.0,
-    "success_ratio": 0.4667,
-    "high_risk_ratio": 0.3,
-    "full_product_coverage": "UNKNOWN",
-    "g1": "UNVERIFIED",
-    "independence": "ISOLATED_SESSION / INDEPENDENCE_UNVERIFIED",
-    "cjk": "P0 product defect, unfixed"
+  "tests": {
+    "baseline_v134": 525,
+    "current": 557,
+    "added": ["risk_gate 24", "legacy regression 2", "discovery_g1 6"]
   },
   "gates": {
     "R0": "pending", "R1": "pending", "R2": "pending", "R3": "pending",
-    "R4": "pending", "R5": "pending", "R6": "pending (new semantics available)",
-    "R7": "pending", "R8": "pending", "R9": "pending"
+    "R4": "pending", "R5": "pending", "R6": "pending", "R7": "pending",
+    "R8": "pending", "R9": "pending"
   },
   "blockers": [],
-  "next_action": "TASK-02: implement discovery module → run on G:\\AI\\uiux-workbench-copy → reconcile with existing inventory → freeze new baseline hash + source binding; then TASK-05 fixture regression (parallel) → TASK-03 coverage backfill → TASK-04 isolated execution → TASK-06/TASK-07 → Phase D release"
+  "next_action": "TASK-05 fixture/A-B regression (parallel) then TASK-03 runtime coverage backfill: capture bookshelf search, region overlay/inspector, TaskProgressPanel states, delete-confirm disabled entry; use EXE 8730d154 with explicit runtime/source drift disclosure"
 }
