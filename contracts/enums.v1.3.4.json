@@ -1169,6 +1169,30 @@
     {
       "code": "AUDITOR_OMISSION",
       "group": "coverage"
+    },
+    {
+      "code": "TOOL_UNAVAILABLE",
+      "group": "disposition"
+    },
+    {
+      "code": "NATIVE_INTERACTION_UNAVAILABLE",
+      "group": "disposition"
+    },
+    {
+      "code": "NOT_APPLICABLE",
+      "group": "disposition"
+    },
+    {
+      "code": "PRODUCT_FAILURE",
+      "group": "disposition"
+    },
+    {
+      "code": "EVIDENCE_MISSING",
+      "group": "disposition"
+    },
+    {
+      "code": "INDEPENDENCE_UNVERIFIED",
+      "group": "disposition"
     }
   ]
 }

@@ -254,7 +254,6 @@ def _scope_summary(
         "high_risk_total": len(high_risk),
         "high_risk_verified_total": high_risk_passed,
         "declared_scope_mapping_ratio": round(passed / total, 4) if total else 0.0,
-        "note": "computed from coverage records until TASK-02 inventory scope is supplied",
     }
 
 

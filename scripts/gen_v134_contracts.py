@@ -183,6 +183,12 @@ def main() -> int:
     for code, group in NEW_REASON_CODES:
         if code not in existing_codes:
             enums_doc["reason_codes"].append({"code": code, "group": group})
+            existing_codes.add(code)
+    # dispositions double as unverified-path reason codes (V1.3.4)
+    for code in DISPOSITIONS:
+        if code not in existing_codes:
+            enums_doc["reason_codes"].append({"code": code, "group": "disposition"})
+            existing_codes.add(code)
     digest = write_json(CONTRACTS / f"enums.v{V134}.json", enums_doc)
     generated.append({"file": f"enums.v{V134}.json", "sha256": digest})
 
