@@ -17,7 +17,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from . import build_guard, compat, contracts, enums, evidence, external, fixture, gates, input_policy, integrity, knowledge, modify, policy, rules, safety, snapshot, token_compiler, validation, vault
+from . import build_guard, compat, contracts, enums, evidence, external, fixture, gates, input_policy, integrity, inventory, knowledge, modify, policy, rules, safety, snapshot, token_compiler, validation, vault
 
 EXIT_OK = 0
 EXIT_USAGE = 2
@@ -139,6 +139,63 @@ def cmd_fixture(args: argparse.Namespace) -> int:
         return EXIT_INVALID
     _emit({"ok": True, **applied})
     return EXIT_OK
+
+
+def cmd_inventory(args: argparse.Namespace) -> int:
+    try:
+        payload = inventory.load_inventory(args.inventory)
+    except inventory.InventoryError as exc:
+        _emit({"ok": False, "errors": [str(exc)]})
+        return EXIT_INVALID
+
+    if args.action == "validate":
+        problems = inventory.verify_baseline(payload)
+        _emit({
+            "ok": True,
+            "inventory_id": payload["inventory_id"],
+            "declared_scope_id": payload["scope"]["declared_scope_id"],
+            "items": len(payload["items"]),
+            "baseline_verified": not problems,
+            "baseline_problems": problems,
+        })
+        return EXIT_OK
+
+    if args.action == "freeze":
+        frozen = inventory.freeze(payload, reviewed_by=args.reviewed_by)
+        if args.out:
+            Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+            Path(args.out).write_text(json.dumps(frozen, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        _emit({
+            "ok": True,
+            "inventory_id": frozen["inventory_id"],
+            "baseline_hash": frozen["scope"]["baseline_hash"],
+            "out": args.out,
+        })
+        return EXIT_OK
+
+    if args.action == "stats":
+        records: list[dict] = []
+        if args.coverage:
+            try:
+                coverage_doc = json.loads(Path(args.coverage).read_text(encoding="utf-8"))
+            except (OSError, ValueError) as exc:
+                _emit({"ok": False, "errors": [f"cannot read coverage: {exc}"]})
+                return EXIT_INVALID
+            records = coverage_doc.get("records", [])
+        stats = inventory.mapping_stats(payload, records)
+        _emit({"ok": True, **stats})
+        return EXIT_OK
+
+    problems = inventory.verify_baseline(payload)
+    if args.previous:
+        try:
+            previous = inventory.load_inventory(args.previous)
+        except inventory.InventoryError as exc:
+            _emit({"ok": False, "errors": [str(exc)]})
+            return EXIT_INVALID
+        problems.extend(inventory.scope_manipulation_check(payload, previous))
+    _emit({"ok": not problems, "inventory_id": payload["inventory_id"], "problems": problems})
+    return EXIT_OK if not problems else EXIT_INVALID
 
 
 def cmd_rules(args: argparse.Namespace) -> int:
@@ -534,6 +591,15 @@ def build_parser() -> argparse.ArgumentParser:
     p_fixture.add_argument("--fixture", required=True)
     p_fixture.add_argument("--sandbox", help="sandbox root that replaces <sandbox> placeholders")
     p_fixture.set_defaults(func=cmd_fixture)
+
+    p_inventory = sub.add_parser("inventory", help="declared-scope inventory: validate/freeze/stats/check (TASK-02)")
+    p_inventory.add_argument("action", choices=["validate", "freeze", "stats", "check"])
+    p_inventory.add_argument("--inventory", required=True)
+    p_inventory.add_argument("--coverage", help="coverage-matrix JSON used for mapping stats")
+    p_inventory.add_argument("--previous", help="previous inventory for scope-manipulation checks")
+    p_inventory.add_argument("--reviewed-by")
+    p_inventory.add_argument("--out")
+    p_inventory.set_defaults(func=cmd_inventory)
 
     p_policy = sub.add_parser("policy", help="resolve the Mode×Gate policy for a mode or request")
     p_policy.add_argument("--mode", choices=sorted(enums.values("Mode")))
