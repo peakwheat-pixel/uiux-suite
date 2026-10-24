@@ -3,66 +3,40 @@
   "project": "universal-uiux-engineering",
   "version_target": "1.3.5",
   "authority": "single-source-of-truth",
-  "phase": "B",
-  "stage": "TASK-04",
-  "updated_at": "2026-10-24T07:20:00Z",
+  "phase": "D",
+  "stage": "RELEASE_AUDIT",
+  "updated_at": "2026-10-24T08:10:00Z",
   "source": {
     "repo": "G:\\AI\\universal-uiux-engineering",
     "worktree": "G:\\AI\\uiux-v135-wt",
     "branch": "v1.3.5-reliability",
     "base_commit": "33f792444b585e7af7f3d4d49222bd7d5118b6e78",
-    "latest_commit": "ce2a2e1"
+    "latest_commit": "81dc9c7"
   },
   "evidence_root": "G:\\AI\\uiux-v135",
-  "contracts": {
-    "v135_layer": "26 schemas + enums.v1.3.5 + mode-gate-policy.v1.3.5",
-    "old_layers_untouched": ["1.3.3", "1.3.4"],
-    "dispatch": "SUPPORTED_SCHEMA_VERSIONS = 1.3.3/1.3.4/1.3.5; explicit version required for mixed inputs",
-    "coverage_additions": ["capability_available", "capability_evidence_refs", "execution_mode", "executed", "backup_verified", "restore_verified", "restore_consistent"]
-  },
+  "contracts": {"v135": "26 schemas + enums + policy; v1.3.3/v1.3.4 frozen", "dispatch": "1.3.3/1.3.4/1.3.5"},
   "tasks": {
-    "TASK-01": {"state": "completed_core", "commit": "846720f", "summary": "risk_gate fail-closed + 24 negative tests; legacy 3/10"},
-    "TASK-02": {"state": "completed_core", "commit": "622e555", "summary": "G1 discovery 12 pages/6 dialogs/581 entries/7 GAPs; inventory v135 baseline 675de7a2; external dirty source recorded"},
-    "TASK-03": {
-      "state": "completed_core",
-      "commit": "ce2a2e1",
-      "runs": ["pilot-run-v135 (12 captures)", "pilot-run-v135b (6 captures)"],
-      "results": {
-        "captures": 18,
-        "evidence_items": 38,
-        "coverage_records": 16,
-        "pass": 8,
-        "unverified": 8,
-        "finalize": "PARTIAL / PARTIAL_VERIFIED / G6 UNVERIFIED (schema 1.3.5)",
-        "risk_gate_integrity": "PASS",
-        "high_risk_coverage": "3/10 (30%)",
-        "a_level_risk_met": false
-      },
-      "verified_now": ["ITM-PAGE-SEARCH (search/sort/filter)", "ITM-PAGE-READER", "ITM-PAGE-WORKBENCH", "ITM-PAGE-SETTINGS", "ITM-IMPORT-FLOW (dialog)", "ITM-MENU-MAIN", "ITM-ENTRY-DESKTOP"],
-      "still_unverified": [
-        "ITM-REGION-LIST/EDIT (no region data in fixture -> ENVIRONMENT_UNAVAILABLE)",
-        "ITM-TASK-STATES (Core lacks ListRuns -> TOOL_UNAVAILABLE)",
-        "ITM-DIALOG-DELETE (entry disabled GAP-G2 -> NOT_APPLICABLE with capability evidence)",
-        "ITM-DIALOG-IMPORT-CONFIRM / ITM-CMD-PERMANENT-DELETE / ITM-CMD-IMPORT-EXECUTE (NATIVE_INTERACTION_UNAVAILABLE)",
-        "ITM-EXPORT-FLOW (export-dialog did not open -> AUDITOR_OMISSION)"
-      ],
-      "evidence": [
-        "G:\\AI\\uiux-v135\\evidence\\audit\\probe\\pilot-run-v135",
-        "G:\\AI\\uiux-v135\\evidence\\audit\\probe\\pilot-run-v135b",
-        "G:\\AI\\uiux-v135\\evidence\\audit\\v135"
-      ]
-    },
-    "TASK-04": {"state": "next", "goal": "isolated execution of safe high-risk flows (synthetic import/export/delete) with backup+restore proof; target >3/10 with real evidence only"},
-    "TASK-05": {"state": "completed_core", "commit": "ce2a2e1", "summary": "7 historical A/B environment cases classified ENVIRONMENT; 11 tests", "evidence": "G:\\AI\\uiux-v135\\evidence\\task05\\ab-regression.json"},
-    "TASK-06": {"state": "pending"},
-    "TASK-07": {"state": "pending"}
+    "TASK-01": {"state": "completed_core", "commit": "846720f"},
+    "TASK-02": {"state": "completed_core", "commit": "622e555"},
+    "TASK-03": {"state": "completed_core", "commit": "ce2a2e1"},
+    "TASK-04": {"state": "completed_core", "commit": "d4edf70",
+      "summary": "isolated_exec harness (backup/restore/consistency), 302 files, restore consistent=true; real sandbox writes: settings save + synthetic book; disabled delete entry attempted; recycle-bin surface captured",
+      "high_risk_coverage": "3/10 unchanged (product capability/native interaction blocked)"},
+    "TASK-05": {"state": "completed_core", "commit": "ce2a2e1"},
+    "TASK-06": {"state": "completed_core", "commit": "81dc9c7",
+      "summary": "independent-process reviewer: 11/11 CONFIRMED, 0 DISPUTED; ISOLATED_SESSION/INDEPENDENCE_UNVERIFIED"},
+    "TASK-07": {"state": "completed_core", "commit": "81dc9c7",
+      "summary": "release-facts: mechanism PASS vs business 3/10, readonly 8 / executed 0, A-level false; lint clean; 10 negative tests"}
   },
-  "tests": {"baseline": 525, "current": 568, "added": ["risk_gate 24", "legacy 2", "discovery 6", "ab regression 11", "version dispatch v1.3.5"]},
-  "gates": {
-    "R0": "pending", "R1": "pending", "R2": "pending", "R3": "pending",
-    "R4": "pending", "R5": "pending", "R6": "pending", "R7": "pending",
-    "R8": "pending", "R9": "pending"
+  "tests": {"baseline": 525, "current": 584, "added": 59},
+  "gate_results": {
+    "risk_gate_v135": {"integrity": "PASS", "high_risk": "3/10", "a_level": false, "violations": 0},
+    "finalize_v135": {"status": "PARTIAL", "delivery": "PARTIAL_VERIFIED", "g6": "UNVERIFIED"},
+    "reviewer_v135": {"confirmed": 11, "disputed": 0}
   },
+  "gates": {"R0": "pending", "R1": "pending", "R2": "pending", "R3": "pending",
+            "R4": "pending", "R5": "pending", "R6": "pending", "R7": "pending",
+            "R8": "pending", "R9": "pending"},
   "blockers": [],
-  "next_action": "TASK-04 isolated execution: build a synthetic fixture data root with regions + tasks + deletable objects; execute safe writes in the sandbox with backup/restore proof; re-run risk gate to raise real high-risk coverage. Then TASK-06 reviewer/CI, TASK-07 report facts/linter, Phase D release."
+  "next_action": "Phase D: implement scripts/v135_gates.py (R0-R9), update release metadata (VERSION 1.3.5, SPEC/README/CHANGELOG), build uiux-suite-1.3.5-win64.zip, clean-install verification, push tag v1.3.5 to trigger CI provenance, final Chinese acceptance report with A/B/C verdicts"
 }
