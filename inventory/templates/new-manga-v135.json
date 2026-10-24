@@ -1,0 +1,207 @@
+{
+  "schema_version": "1.0",
+  "inventory_id": "INV-NEW-MANGA-V135-01",
+  "description": "V1.3.5 declared-scope inventory for the isolated New Manga copy. Rebuilt from G1 static discovery; the V1.3.4 inventory remains the frozen comparison baseline.",
+  "scope": {
+    "declared_scope_id": "SCOPE-NEW-MANGA-V135-01",
+    "included": [
+      "可访问页面：阅读器、工作台、搜索、设置",
+      "区域与任务状态机：列表、编辑、状态迁移",
+      "导入/导出流程（只读观察范围）",
+      "危险操作入口：永久删除、导入执行、删除确认对话框"
+    ],
+    "excluded": [
+      "原生文件选择器/保存对话框的真实系统交互",
+      "原生 UIA 树级交互验证"
+    ],
+    "source_binding": {
+      "kind": "git_commit",
+      "value": "349e61faff5f93067af5d4ce2d9e394e0d665b8c"
+    },
+    "risk_tier": "P1",
+    "baseline_hash": "675de7a2bf3d66b2bec777cfa197b835bfa65bf3af8980a57cb4a01f374e095a",
+    "reviewed_by": "lead"
+  },
+  "items": [
+    {
+      "stable_id": "ITM-PAGE-READER",
+      "type": "page",
+      "risk_level": "P1",
+      "applicability": "applicable",
+      "discovery_source": "g1_static_discovery",
+      "declared_scope": "included",
+      "disposition": "unmapped",
+      "evidence_reference": "G:\\AI\\uiux-v135\\evidence\\task02\\discovery.json"
+    },
+    {
+      "stable_id": "ITM-PAGE-WORKBENCH",
+      "type": "page",
+      "risk_level": "P1",
+      "applicability": "applicable",
+      "discovery_source": "g1_static_discovery",
+      "declared_scope": "included",
+      "disposition": "unmapped",
+      "evidence_reference": "G:\\AI\\uiux-v135\\evidence\\task02\\discovery.json"
+    },
+    {
+      "stable_id": "ITM-PAGE-SEARCH",
+      "type": "page",
+      "risk_level": "P2",
+      "applicability": "applicable",
+      "discovery_source": "g1_static_discovery",
+      "declared_scope": "included",
+      "disposition": "unmapped",
+      "evidence_reference": "G:\\AI\\uiux-v135\\evidence\\task02\\discovery.json"
+    },
+    {
+      "stable_id": "ITM-PAGE-SETTINGS",
+      "type": "page",
+      "risk_level": "P2",
+      "applicability": "applicable",
+      "discovery_source": "g1_static_discovery",
+      "declared_scope": "included",
+      "disposition": "unmapped",
+      "evidence_reference": "G:\\AI\\uiux-v135\\evidence\\task02\\discovery.json"
+    },
+    {
+      "stable_id": "ITM-REGION-LIST",
+      "type": "region",
+      "risk_level": "P1",
+      "applicability": "applicable",
+      "discovery_source": "g1_static_discovery",
+      "declared_scope": "included",
+      "disposition": "unmapped",
+      "evidence_reference": "G:\\AI\\uiux-v135\\evidence\\task02\\discovery.json"
+    },
+    {
+      "stable_id": "ITM-REGION-EDIT",
+      "type": "region",
+      "risk_level": "P1",
+      "applicability": "applicable",
+      "discovery_source": "g1_static_discovery",
+      "declared_scope": "included",
+      "disposition": "unmapped",
+      "evidence_reference": "G:\\AI\\uiux-v135\\evidence\\task02\\discovery.json"
+    },
+    {
+      "stable_id": "ITM-TASK-STATES",
+      "type": "state_machine",
+      "risk_level": "P1",
+      "applicability": "applicable",
+      "discovery_source": "g1_static_discovery",
+      "declared_scope": "included",
+      "disposition": "unmapped",
+      "evidence_reference": "G:\\AI\\uiux-v135\\evidence\\task02\\discovery.json"
+    },
+    {
+      "stable_id": "ITM-IMPORT-FLOW",
+      "type": "flow",
+      "risk_level": "P1",
+      "applicability": "applicable",
+      "discovery_source": "g1_static_discovery",
+      "declared_scope": "included",
+      "disposition": "unmapped",
+      "evidence_reference": "G:\\AI\\uiux-v135\\evidence\\task02\\discovery.json"
+    },
+    {
+      "stable_id": "ITM-EXPORT-FLOW",
+      "type": "flow",
+      "risk_level": "P2",
+      "applicability": "applicable",
+      "discovery_source": "g1_static_discovery",
+      "declared_scope": "included",
+      "disposition": "unmapped",
+      "evidence_reference": "G:\\AI\\uiux-v135\\evidence\\task02\\discovery.json"
+    },
+    {
+      "stable_id": "ITM-DIALOG-DELETE",
+      "type": "dialog",
+      "risk_level": "P0",
+      "applicability": "applicable",
+      "discovery_source": "g1_static_discovery",
+      "declared_scope": "included",
+      "disposition": "unmapped",
+      "evidence_reference": "G:\\AI\\uiux-v135\\evidence\\task02\\discovery.json"
+    },
+    {
+      "stable_id": "ITM-DIALOG-IMPORT-CONFIRM",
+      "type": "dialog",
+      "risk_level": "P1",
+      "applicability": "applicable",
+      "discovery_source": "g1_static_discovery",
+      "declared_scope": "included",
+      "disposition": "unmapped",
+      "evidence_reference": "G:\\AI\\uiux-v135\\evidence\\task02\\discovery.json"
+    },
+    {
+      "stable_id": "ITM-MENU-MAIN",
+      "type": "menu",
+      "risk_level": "P2",
+      "applicability": "applicable",
+      "discovery_source": "g1_static_discovery",
+      "declared_scope": "included",
+      "disposition": "unmapped",
+      "evidence_reference": "G:\\AI\\uiux-v135\\evidence\\task02\\discovery.json"
+    },
+    {
+      "stable_id": "ITM-CMD-PERMANENT-DELETE",
+      "type": "command",
+      "risk_level": "P0",
+      "applicability": "applicable",
+      "discovery_source": "g1_static_discovery",
+      "declared_scope": "included",
+      "disposition": "unmapped",
+      "evidence_reference": "G:\\AI\\uiux-v135\\evidence\\task02\\discovery.json"
+    },
+    {
+      "stable_id": "ITM-CMD-IMPORT-EXECUTE",
+      "type": "command",
+      "risk_level": "P0",
+      "applicability": "applicable",
+      "discovery_source": "g1_static_discovery",
+      "declared_scope": "included",
+      "disposition": "unmapped",
+      "evidence_reference": "G:\\AI\\uiux-v135\\evidence\\task02\\discovery.json"
+    },
+    {
+      "stable_id": "ITM-ENTRY-DESKTOP",
+      "type": "entrypoint",
+      "risk_level": "P2",
+      "applicability": "applicable",
+      "discovery_source": "g1_static_discovery",
+      "declared_scope": "included",
+      "disposition": "unmapped",
+      "evidence_reference": "G:\\AI\\uiux-v135\\evidence\\task02\\discovery.json"
+    },
+    {
+      "stable_id": "ITM-NATIVE-FILE-PICKER",
+      "type": "dialog",
+      "risk_level": "P1",
+      "applicability": "applicable",
+      "discovery_source": "g1_static_discovery",
+      "declared_scope": "excluded",
+      "disposition": "excluded",
+      "evidence_reference": "G:\\AI\\uiux-v135\\evidence\\task02\\discovery.json"
+    },
+    {
+      "stable_id": "ITM-NATIVE-SAVE-DIALOG",
+      "type": "dialog",
+      "risk_level": "P1",
+      "applicability": "applicable",
+      "discovery_source": "g1_static_discovery",
+      "declared_scope": "excluded",
+      "disposition": "excluded",
+      "evidence_reference": "G:\\AI\\uiux-v135\\evidence\\task02\\discovery.json"
+    },
+    {
+      "stable_id": "ITM-UIA-TREE",
+      "type": "region",
+      "risk_level": "P3",
+      "applicability": "not_applicable",
+      "discovery_source": "g1_static_discovery",
+      "declared_scope": "excluded",
+      "disposition": "excluded",
+      "evidence_reference": "G:\\AI\\uiux-v135\\evidence\\task02\\discovery.json"
+    }
+  ]
+}
