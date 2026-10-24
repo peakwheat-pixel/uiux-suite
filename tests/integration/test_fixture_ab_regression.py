@@ -119,7 +119,6 @@ def test_failure_class_matrix_covers_seven_classes():
 
 
 def test_ab_regression_evidence_is_reproducible():
-    OUT.mkdir(parents=True, exist_ok=True)
     rows = []
     for case in CASES:
         result = _classify(case)
@@ -146,5 +145,12 @@ def test_ab_regression_evidence_is_reproducible():
         "source_evidence": "G:\\AI\\uiux-v134\\evidence\\audit\\PILOT_RUN_NOTES.md",
         "note": "replay of the frozen A/B contract; does not re-run the historical pilot",
     }
-    (OUT / "ab-regression.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     assert payload["summary"]["failures"] == 0
+    try:
+        OUT.mkdir(parents=True, exist_ok=True)
+        (OUT / "ab-regression.json").write_text(
+            json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    except OSError:
+        # The acceptance evidence root only exists on the audit host; CI runners
+        # cannot create it. The contract assertions above already ran.
+        pytest.skip("acceptance evidence root unavailable in this environment")
