@@ -14,7 +14,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DIST = REPO_ROOT / "dist"
-VERSION = "1.3.4"
+VERSION = "1.3.5"
 RELEASE_VERSION = VERSION
 SUITE_NAME = f"uiux-suite-{RELEASE_VERSION}"
 ZIP_PATH = DIST / f"{SUITE_NAME}-win64.zip"
@@ -23,7 +23,9 @@ EVIDENCE = REPO_ROOT / "evidence" / "T5.5"
 
 INCLUDE_DIRS = ["runtime", "contracts", "knowledge", "skills", "scripts", "docs", "qa", "sandbox", "fixtures", "inventory"]
 INCLUDE_FILES = [
+    "SPEC_V1.3.5.md",
     "SPEC_V1.3.4.md",
+    "CHANGELOG.md",
     "SPEC_V1.3.3.md",
     "README.md",
     "FINAL_DELIVERY_REPORT.md",

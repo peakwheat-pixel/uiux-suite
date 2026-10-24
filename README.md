@@ -1,10 +1,10 @@
-# Universal UI/UX Engineering Suite — V1.3.4
+# Universal UI/UX Engineering Suite — V1.3.5
 
 面向 DSH（DeepSeek Harness）的 UI/UX 工程能力包：双 Skill 入口、7 模式契约、G0–G6 门禁、原生/模拟证据分层、L4 设计评审与可复核的安装/验收链路。
 
-> **版本：1.3.4（开发中 — Phase A，rc1 构建前）**
+> **版本：1.3.5（Reliability Closure）**
 > **兼容：V1.3.3 契约与历史证据保持只读可读**
-> **本轮新增：双契约版本分派、Coverage disposition、交付六维度、跨版本升级/回滚回归**
+> **本轮新增：R6 fail-closed 风险门禁、G1 全量发现、Inventory v1.3.5、隔离执行、Release Facts/Linter、CI 发行来源**
 
 ## V1.3.4 增量
 

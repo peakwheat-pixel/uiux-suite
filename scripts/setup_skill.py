@@ -33,9 +33,9 @@ from uiux_engine import contracts  # noqa: E402
 
 SUITE_ID = "universal-uiux-engineering"
 SKILLS = ("uiux", "uiux-verify")
-DEFAULT_VERSION = "1.3.4"
-SCHEMA_VERSION = "1.3.4"
-SUPPORTED_INSTALL_VERSIONS = ("1.3.3", "1.3.4")
+DEFAULT_VERSION = "1.3.5"
+SCHEMA_VERSION = "1.3.5"
+SUPPORTED_INSTALL_VERSIONS = ("1.3.3", "1.3.4", "1.3.5")
 MANIFEST_NAME = "RELEASE_MANIFEST.json"
 EXCLUDE = {"__pycache__", ".pytest_cache", ".venv"}
 
