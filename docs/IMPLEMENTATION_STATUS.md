@@ -5,7 +5,7 @@
 ## 1. 当前结论
 
 - **Release Candidate（整体 PARTIAL）**：`dist/uiux-suite-1.3.3-win64.zip` 可安装并验证（install/enums/doctor exit 0）。
-- **不是 G6 PASS**：T3.1–T3.6 DONE、T5.3 导出/撤销、T5.4 独立 G6、其他 Agent 宿主、MCP/断点恢复未验证，见 `FINAL_DELIVERY_REPORT.md` §4。
+- **不是 G6 PASS**：T3.1–T3.6 DONE、T5.3/T5.4 已完成；G6 PASS 为隔离复审等级，独立来源 UNVERIFIED、MCP/断点恢复未验证，见 `FINAL_DELIVERY_REPORT.md` §4。
 - 分支：`v1.3.3-contract-closure`；基线 `main` `e7e921e`（tag `v1.3.2-baseline`，SHA256 `70f5f339…9411ea04` 未变）。
 - 当前测试：**460 passed**（`$env:PYTHONPATH='runtime'; .venv\Scripts\python.exe -m pytest tests -q`）。
 
@@ -30,7 +30,7 @@
 | 2 | **DONE** | T2.1–T2.6、M11、M12 均有测试/证据 |
 | 3 | **DONE** | T3.1–T3.6 全部有证据；WinUI 动作/全局物理输入限制见 STAGE3 |
 | 4 | PARTIAL | T4.1/T4.3/T4.4 DONE；T4.2 其他宿主 UNVERIFIED |
-| 5 | RC / PARTIAL | T5.1/T5.2 真实 New Manga 试点与改造 DONE；T5.3 导出/撤销受产品限制；T5.4 独立复审 INCOMPLETE |
+| 5 | **DONE** | T5.1–T5.4 完成；真实 G0–G5 Runner → G6 PASS（ISOLATED_REVIEW_VERIFIED） |
 
 ## 4. 机器验收命令
 
