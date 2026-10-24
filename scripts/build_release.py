@@ -15,12 +15,13 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DIST = REPO_ROOT / "dist"
 VERSION = "1.3.4"
-SUITE_NAME = f"uiux-suite-{VERSION}"
+RELEASE_VERSION = VERSION
+SUITE_NAME = f"uiux-suite-{RELEASE_VERSION}"
 ZIP_PATH = DIST / f"{SUITE_NAME}-win64.zip"
 STAGING = DIST / SUITE_NAME
 EVIDENCE = REPO_ROOT / "evidence" / "T5.5"
 
-INCLUDE_DIRS = ["runtime", "contracts", "knowledge", "skills", "scripts", "docs", "qa", "sandbox"]
+INCLUDE_DIRS = ["runtime", "contracts", "knowledge", "skills", "scripts", "docs", "qa", "sandbox", "fixtures", "inventory"]
 INCLUDE_FILES = [
     "SPEC_V1.3.4.md",
     "SPEC_V1.3.3.md",
@@ -175,6 +176,8 @@ def verify_package() -> dict:
                 str(project),
                 "--source",
                 str(suite_root),
+                "--version",
+                VERSION,
             ],
             capture_output=True,
             text=True,
@@ -217,7 +220,20 @@ def verify_package() -> dict:
         return result
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--label", default="", help="release label for the package name, e.g. rc1")
+    args = parser.parse_args(argv)
+    global RELEASE_VERSION, SUITE_NAME, ZIP_PATH, STAGING
+    # the contract version stays strict semver (1.3.4); a label only marks the
+    # package/artifact as a release candidate
+    RELEASE_VERSION = VERSION
+    suffix = f"-{args.label}" if args.label else ""
+    SUITE_NAME = f"uiux-suite-{VERSION}{suffix}"
+    ZIP_PATH = DIST / f"{SUITE_NAME}-win64.zip"
+    STAGING = DIST / SUITE_NAME
     DIST.mkdir(exist_ok=True)
     stage()
     manifest = make_manifest()

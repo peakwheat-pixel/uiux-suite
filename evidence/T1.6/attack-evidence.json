@@ -2,75 +2,75 @@
   "schema_version": "1.3.3",
   "evidence_id": "EV-T1.6-ATTACK-SUITE",
   "kind": "test_log",
-  "generated_at": "2026-10-23T20:25:37.926798+00:00",
+  "generated_at": "2026-10-24T03:24:59.427043+00:00",
   "git": {
-    "commit": "92250c1b6fbe44ecb33ed0912c54b3715883f478"
+    "commit": "410760483fb685259d85e2a6c06f04b31c51bd1e"
   },
   "command": [
     "G:\\AI\\universal-uiux-engineering\\.venv\\Scripts\\python.exe",
     "-m",
     "pytest",
-    "G:\\AI\\universal-uiux-engineering\\tests\\integration\\test_attacks.py",
+    "G:\\AI\\uiux-v134-wt\\tests\\integration\\test_attacks.py",
     "-q",
-    "--junitxml=G:\\AI\\universal-uiux-engineering\\evidence\\T1.6\\attack-junit.xml"
+    "--junitxml=G:\\AI\\uiux-v134-wt\\evidence\\T1.6\\attack-junit.xml"
   ],
   "exit_code": 0,
-  "duration_s": 3.225,
+  "duration_s": 3.045,
   "cases": [
     {
       "name": "test_attack_fake_all_pass_without_evidence_is_rejected",
       "status": "PASS",
-      "time_s": 0.226
+      "time_s": 0.252
     },
     {
       "name": "test_attack_deleted_evidence_blocks",
       "status": "PASS",
-      "time_s": 0.22
+      "time_s": 0.238
     },
     {
       "name": "test_attack_mock_tool_log_claiming_native_is_rejected",
       "status": "PASS",
-      "time_s": 0.223
+      "time_s": 0.235
     },
     {
       "name": "test_attack_coverage_claiming_native_with_mock_provenance_is_rejected",
       "status": "PASS",
-      "time_s": 0.22
+      "time_s": 0.235
     },
     {
       "name": "test_attack_nonzero_tool_exit_is_rejected",
       "status": "PASS",
-      "time_s": 0.222
+      "time_s": 0.24
     },
     {
       "name": "test_attack_warn_without_review_is_rejected",
       "status": "PASS",
-      "time_s": 0.221
+      "time_s": 0.238
     },
     {
       "name": "test_attack_warn_review_bound_to_old_head_is_rejected",
       "status": "PASS",
-      "time_s": 0.224
+      "time_s": 0.247
     },
     {
       "name": "test_attack_request_digest_tamper_is_rejected",
       "status": "PASS",
-      "time_s": 0.219
+      "time_s": 0.231
     },
     {
       "name": "test_attack_top_level_g6_is_rejected_at_schema",
       "status": "PASS",
-      "time_s": 0.217
+      "time_s": 0.23
     },
     {
       "name": "test_attack_self_declared_independent_attestation_is_rejected",
       "status": "PASS",
-      "time_s": 0.223
+      "time_s": 0.235
     },
     {
       "name": "test_attack_expired_evidence_is_rejected",
       "status": "PASS",
-      "time_s": 0.224
+      "time_s": 0.236
     }
   ],
   "summary": {
@@ -80,8 +80,8 @@
   },
   "inputs_sha256": {
     "test_attacks.py": "3bf24cb6d354f9f3bfdeadf62a504407100ede85059f35275cc4281525cb2c1b",
-    "scenario_request": "e4a2d50f06f3e30456e1e0a734e2eefbc067361a8f3da5e4461cf4033bce6a9f",
-    "scenario_gate_results": "851e6ec99be3f8f2135598ea6abedcb23de17705c8da2a7fd816d8476442b1df",
-    "stdout": "34cb4b9111845d355c3f5fdf5ed584bcd4d6bf3d67667d418dd347c8ea0baf4f"
+    "scenario_request": "35a765603737e6250b5e75cee6de305594679f44e567ea6b414b8677091591eb",
+    "scenario_gate_results": "442994a15d02f3937e569613e2cc4b7a6270ce8ec351eefb4d945240edce019e",
+    "stdout": "67b394342e338dbcc5d49208fa3142df566f1b24502a8cf7c786ba1a9bebb5be"
   }
 }

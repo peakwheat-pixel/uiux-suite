@@ -1,8 +1,8 @@
 {
   "schema_version": "1.3.3",
   "suite": "stage1-detectors",
-  "git_commit": "92250c1b6fbe44ecb33ed0912c54b3715883f478",
-  "generated_at": "2026-10-23T20:25:38.206831+00:00",
+  "git_commit": "410760483fb685259d85e2a6c06f04b31c51bd1e",
+  "generated_at": "2026-10-24T03:24:59.721310+00:00",
   "matrix": {
     "tp": 38,
     "fp": 0,
