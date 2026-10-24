@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.3.5",
+  "project": "universal-uiux-engineering",
+  "version_target": "1.3.5",
+  "authority": "single-source-of-truth",
+  "phase": "B",
+  "stage": "TASK-02",
+  "updated_at": "2026-10-24T05:55:00Z",
+  "source": {
+    "repo": "G:\\AI\\universal-uiux-engineering",
+    "worktree": "G:\\AI\\uiux-v135-wt",
+    "branch": "v1.3.5-reliability",
+    "base_commit": "33f792444b585e7af7f3d4d49222bd7d5118b6e78",
+    "latest_commit": "846720f"
+  },
+  "evidence_root": "G:\\AI\\uiux-v135",
+  "phase_a_r6": {
+    "state": "completed_core",
+    "commit": "846720f",
+    "module": "runtime/uiux_engine/risk_gate.py",
+    "tests": {
+      "negative_fault_injection": 24,
+      "legacy_v134_regression": 2,
+      "full_suite": "551 passed"
+    },
+    "evidence": [
+      "G:\\AI\\uiux-v135\\evidence\\task01\\risk-gate-v134-legacy.json"
+    ],
+    "semantics": {
+      "integrity_status": "mechanism correctness",
+      "execution_coverage": "derived from inventory denominator; ratio 3/10 for V1.3.4 inputs",
+      "a_level_risk_met": false
+    },
+    "pending": [
+      "independent reviewer audit of rules/tests (Phase C)",
+      "integration into v1.3.5 release gate record (Phase D)"
+    ]
+  },
+  "tasks": {
+    "TASK-01": {"state": "completed_core", "commit": "846720f"},
+    "TASK-02": {"state": "in_progress", "deps": ["TASK-01"], "goal": "re-run G1 static discovery on the isolated New Manga copy; rebuild inventory baseline; source binding; independent scope review"},
+    "TASK-03": {"state": "pending", "deps": ["TASK-02", "TASK-05"]},
+    "TASK-04": {"state": "pending", "deps": ["TASK-02", "TASK-03", "TASK-05"]},
+    "TASK-05": {"state": "pending", "deps": ["TASK-01"], "note": "fixture/A-B regression can run in parallel with TASK-02..04"},
+    "TASK-06": {"state": "pending", "deps": ["TASK-03", "TASK-04"]},
+    "TASK-07": {"state": "pending", "deps": ["TASK-04"]}
+  },
+  "baseline_v134": {
+    "level": "B",
+    "tests": 525,
+    "mapping_ratio": 1.0,
+    "success_ratio": 0.4667,
+    "high_risk_ratio": 0.3,
+    "full_product_coverage": "UNKNOWN",
+    "g1": "UNVERIFIED",
+    "independence": "ISOLATED_SESSION / INDEPENDENCE_UNVERIFIED",
+    "cjk": "P0 product defect, unfixed"
+  },
+  "gates": {
+    "R0": "pending", "R1": "pending", "R2": "pending", "R3": "pending",
+    "R4": "pending", "R5": "pending", "R6": "pending (new semantics available)",
+    "R7": "pending", "R8": "pending", "R9": "pending"
+  },
+  "blockers": [],
+  "next_action": "TASK-02: implement discovery module → run on G:\\AI\\uiux-workbench-copy → reconcile with existing inventory → freeze new baseline hash + source binding; then TASK-05 fixture regression (parallel) → TASK-03 coverage backfill → TASK-04 isolated execution → TASK-06/TASK-07 → Phase D release"
+}
