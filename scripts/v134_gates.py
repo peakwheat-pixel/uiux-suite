@@ -305,7 +305,39 @@ def r7() -> dict:
             "checks": checks, "independent_review_pass": False}
 
 
-GATES = {"R0": r0, "R1": r1, "R2": r2, "R3": r3, "R4": r4, "R5": r5, "R6": r6, "R7": r7, "R8": r8}
+def r9() -> dict:
+    checks = []
+    pkg = ACCEPTANCE_ROOT / "packages" / "uiux-suite-1.3.4-win64.zip"
+    sums_path = ACCEPTANCE_ROOT / "packages" / "uiux-suite-1.3.4-SHA256SUMS.txt"
+    verify_path = ACCEPTANCE_ROOT / "evidence" / "release" / "release-install-verification.json"
+    checks.append(check("package_present", pkg.is_file(), str(pkg)))
+    if pkg.is_file() and sums_path.is_file():
+        sums = {}
+        for line in sums_path.read_text(encoding="utf-8").splitlines():
+            if line.strip():
+                digest, name = line.split(maxsplit=1)
+                sums[name.strip()] = digest
+        checks.append(check("zip_sha256_matches_sums", sums.get(pkg.name) == sha256_file(pkg),
+                            f"sha256={sha256_file(pkg)}"))
+    else:
+        checks.append(check("zip_sha256_matches_sums", False, "missing sums"))
+    verify = json.loads(verify_path.read_text(encoding="utf-8")) if verify_path.is_file() else {}
+    checks.append(check("clean_install_verified", bool(verify.get("ok")),
+                        f"install={verify.get('install', {}).get('exit')} "
+                        f"doctor={verify.get('doctor', {}).get('exit')}"))
+    checks.append(check("no_private_payload", verify.get("extract", {}).get("forbidden_payload") == [],
+                        str(verify.get("extract", {}).get("forbidden_payload"))))
+    checks.append(check("dual_entrypoints",
+                        verify.get("entrypoints", {}).get("uiux_enums_exit") == 0
+                        and verify.get("entrypoints", {}).get("verify_enums_exit") == 0,
+                        "uiux + uiux-verify enums exit 0"))
+    checks.append(check("manifest_complete", verify.get("extract", {}).get("manifest_file_mismatch") == [],
+                        "manifest file hashes match extracted files"))
+    return {"gate": "R9", "state": "PASS" if all(c["ok"] for c in checks if c["blocking"]) else "FAIL",
+            "checks": checks, "package": str(pkg), "verify_evidence": str(verify_path)}
+
+
+GATES = {"R0": r0, "R1": r1, "R2": r2, "R3": r3, "R4": r4, "R5": r5, "R6": r6, "R7": r7, "R8": r8, "R9": r9}
 
 
 def main() -> int:
