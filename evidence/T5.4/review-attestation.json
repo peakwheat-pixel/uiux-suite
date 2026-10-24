@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.3.3",
+  "run_id": "UIUX-20261024-RC3",
+  "reviewed_head": "218d34af3d0be3ec1fd78badcf3232d9f414b0b4a4f564183ce5f3d52098c531",
+  "source_fingerprint": {
+    "kind": "dir_digest",
+    "value": "218d34af3d0be3ec1fd78badcf3232d9f414b0b4a4f564183ce5f3d52098c531",
+    "algorithm": "sha256-tree"
+  },
+  "builder_context_ref": "runner-20261024-rc3",
+  "reviewer_context_ref": "REVIEWER-V133-ISOLATED-SESSION",
+  "review_origin": {
+    "host": "dsh",
+    "launched_by": "isolated-subagent",
+    "verified_identity": "reviewer-v133",
+    "trust_source": "user_attested"
+  },
+  "isolation_level": "ISOLATED_SESSION",
+  "read_only_proof": {
+    "enforced": true,
+    "method": "sandbox",
+    "evidence_ref": "EV-G0"
+  },
+  "tool_digest": "0e8cb1eedaa737da4d77d21aeef1ee22ed25e2c364b0623987ab7229bdfc59e4",
+  "evidence_manifest_hash": "5b9a46271a4854be6dc6c638ade9c407de5ba4bccf5677d8d5273ec116f297ac",
+  "source_unchanged": true,
+  "verdict": "PASS",
+  "dissent": [],
+  "reviewed_at": "2026-10-24T00:21:25+00:00"
+}

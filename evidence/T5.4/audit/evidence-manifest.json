@@ -1,0 +1,195 @@
+{
+  "schema_version": "1.3.3",
+  "run_id": "UIUX-20261024-RC3",
+  "evidence_policy": {
+    "profile": "local_private",
+    "retention_days": 180,
+    "release_retention_days": 180
+  },
+  "items": [
+    {
+      "id": "EV-G0",
+      "status": "AVAILABLE",
+      "kind": "tool_log",
+      "storage_class": "evidence",
+      "source_sha256": "cc81ca67aa574b72c443c8edc4ef935f16604bd69b18815c494b5dcf32e97a68",
+      "redacted_sha256": "cc81ca67aa574b72c443c8edc4ef935f16604bd69b18815c494b5dcf32e97a68",
+      "references": [
+        "evidence/T5.4/audit/logs/P-G0.json"
+      ],
+      "created_at": "2026-10-24T00:20:44.088248+00:00",
+      "retention_policy": "release_audit",
+      "expiry_at": "2027-10-24T00:00:00+00:00",
+      "redaction": {
+        "kind": "path",
+        "method": "automated",
+        "recheck_status": "PASS"
+      },
+      "provenance": {
+        "producer": "uiux-release-audit-runner",
+        "probe_id": "P-G0",
+        "execution_level": "NONE",
+        "tool_log_ref": "TL-P-G0",
+        "environment_digest": "3b3f8a4393ed5b0cf8ea17ab403016c2664f245671c7f814f3884ca0b36c1771"
+      }
+    },
+    {
+      "id": "EV-G1",
+      "status": "AVAILABLE",
+      "kind": "screenshot",
+      "storage_class": "evidence",
+      "source_sha256": "866637f3c37f5c6845190ac9f4c523bcc12cb402b2abb6dfe0e06ba9ef18ca93",
+      "redacted_sha256": "866637f3c37f5c6845190ac9f4c523bcc12cb402b2abb6dfe0e06ba9ef18ca93",
+      "references": [
+        "evidence/T5.1/real-bookshelf-with-data.png"
+      ],
+      "created_at": "2026-10-24T00:20:44.088248+00:00",
+      "retention_policy": "release_audit",
+      "expiry_at": "2027-10-24T00:00:00+00:00",
+      "redaction": {
+        "kind": "image",
+        "method": "automated",
+        "recheck_status": "PASS"
+      },
+      "provenance": {
+        "producer": "uiux-release-audit-runner",
+        "probe_id": "P-G1",
+        "execution_level": "NATIVE_APP",
+        "tool_log_ref": "TL-P-G1",
+        "environment_digest": "3b3f8a4393ed5b0cf8ea17ab403016c2664f245671c7f814f3884ca0b36c1771"
+      }
+    },
+    {
+      "id": "EV-G2",
+      "status": "AVAILABLE",
+      "kind": "tool_log",
+      "storage_class": "evidence",
+      "source_sha256": "8d5b12366719c1719be404a48d24d7cd77cf76f9e40e28b6c998f907876daf27",
+      "redacted_sha256": "8d5b12366719c1719be404a48d24d7cd77cf76f9e40e28b6c998f907876daf27",
+      "references": [
+        "evidence/T5.4/audit/flows.json"
+      ],
+      "created_at": "2026-10-24T00:20:44.088248+00:00",
+      "retention_policy": "release_audit",
+      "expiry_at": "2027-10-24T00:00:00+00:00",
+      "redaction": {
+        "kind": "path",
+        "method": "automated",
+        "recheck_status": "PASS"
+      },
+      "provenance": {
+        "producer": "uiux-release-audit-runner",
+        "probe_id": "P-G2",
+        "execution_level": "NONE",
+        "tool_log_ref": "TL-P-G2",
+        "environment_digest": "3b3f8a4393ed5b0cf8ea17ab403016c2664f245671c7f814f3884ca0b36c1771"
+      }
+    },
+    {
+      "id": "EV-G3",
+      "status": "AVAILABLE",
+      "kind": "tool_log",
+      "storage_class": "evidence",
+      "source_sha256": "2f2698a75175d8111ab2e186e5e2ed6d9ce09ce4e7f758d5b2cfaea65c356968",
+      "redacted_sha256": "2f2698a75175d8111ab2e186e5e2ed6d9ce09ce4e7f758d5b2cfaea65c356968",
+      "references": [
+        "evidence/T5.4/audit/logs/P-G3.json"
+      ],
+      "created_at": "2026-10-24T00:20:44.088248+00:00",
+      "retention_policy": "release_audit",
+      "expiry_at": "2027-10-24T00:00:00+00:00",
+      "redaction": {
+        "kind": "path",
+        "method": "automated",
+        "recheck_status": "PASS"
+      },
+      "provenance": {
+        "producer": "uiux-release-audit-runner",
+        "probe_id": "P-G3",
+        "execution_level": "NONE",
+        "tool_log_ref": "TL-P-G3",
+        "environment_digest": "3b3f8a4393ed5b0cf8ea17ab403016c2664f245671c7f814f3884ca0b36c1771"
+      }
+    },
+    {
+      "id": "EV-G4",
+      "status": "AVAILABLE",
+      "kind": "diff",
+      "storage_class": "evidence",
+      "source_sha256": "04f8fe8c7c317bc84be274398461d322ac7803323af91a0a321b40847b1ea284",
+      "redacted_sha256": "04f8fe8c7c317bc84be274398461d322ac7803323af91a0a321b40847b1ea284",
+      "references": [
+        "evidence/T5.4/audit/source-diff.patch"
+      ],
+      "created_at": "2026-10-24T00:20:44.088248+00:00",
+      "retention_policy": "release_audit",
+      "expiry_at": "2027-10-24T00:00:00+00:00",
+      "redaction": {
+        "kind": "path",
+        "method": "automated",
+        "recheck_status": "PASS"
+      },
+      "provenance": {
+        "producer": "uiux-release-audit-runner",
+        "probe_id": "P-G4",
+        "execution_level": "NONE",
+        "tool_log_ref": "TL-P-G4",
+        "environment_digest": "3b3f8a4393ed5b0cf8ea17ab403016c2664f245671c7f814f3884ca0b36c1771"
+      }
+    },
+    {
+      "id": "EV-G5",
+      "status": "AVAILABLE",
+      "kind": "test_log",
+      "storage_class": "evidence",
+      "source_sha256": "805083abf5cda7f636503cbc529f54b904fe6ff72c8e0668eba0f190493a51eb",
+      "redacted_sha256": "805083abf5cda7f636503cbc529f54b904fe6ff72c8e0668eba0f190493a51eb",
+      "references": [
+        "evidence/T5.3/translated-export.json"
+      ],
+      "created_at": "2026-10-24T00:20:44.088248+00:00",
+      "retention_policy": "release_audit",
+      "expiry_at": "2027-10-24T00:00:00+00:00",
+      "redaction": {
+        "kind": "path",
+        "method": "automated",
+        "recheck_status": "PASS"
+      },
+      "provenance": {
+        "producer": "uiux-release-audit-runner",
+        "probe_id": "P-G5",
+        "execution_level": "NATIVE_APP",
+        "tool_log_ref": "TL-P-G5",
+        "environment_digest": "3b3f8a4393ed5b0cf8ea17ab403016c2664f245671c7f814f3884ca0b36c1771"
+      }
+    },
+    {
+      "id": "EV-U1",
+      "status": "AVAILABLE",
+      "kind": "test_log",
+      "storage_class": "evidence",
+      "source_sha256": "6d77b1041f6ad2e3416a0e7940bffa70735dcde71cb7f3325a2e772bf425c516",
+      "redacted_sha256": "6d77b1041f6ad2e3416a0e7940bffa70735dcde71cb7f3325a2e772bf425c516",
+      "references": [
+        "evidence/T5.3/undo-restore.json"
+      ],
+      "created_at": "2026-10-24T00:20:44.088248+00:00",
+      "retention_policy": "release_audit",
+      "expiry_at": "2027-10-24T00:00:00+00:00",
+      "redaction": {
+        "kind": "path",
+        "method": "automated",
+        "recheck_status": "PASS"
+      },
+      "provenance": {
+        "producer": "uiux-release-audit-runner",
+        "probe_id": "P-U1",
+        "execution_level": "NATIVE_APP",
+        "tool_log_ref": "TL-P-U1",
+        "environment_digest": "3b3f8a4393ed5b0cf8ea17ab403016c2664f245671c7f814f3884ca0b36c1771"
+      }
+    }
+  ],
+  "created_at": "2026-10-24T00:20:44.088248+00:00",
+  "updated_at": "2026-10-24T00:20:44.088248+00:00"
+}

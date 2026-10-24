@@ -37,7 +37,7 @@ python skills\uiux\scripts\launch.py doctor --scope user
 ## 未验证（不得宣称 PASS）
 
 - 原生对话框/WinUI/WPF/Qt UIA 的完整矩阵（T3.4 已过 WPF UIA/对话框/菜单与 WinUI 读写，仍有 WinUI 动作限制）。
-- 真实复杂工作台的翻译/导出/撤销全链路（T5.1/T5.2 真实试点与改造已 DONE；T5.3 导出依赖 translated artifact、撤销/重做产品未提供）。
+- 独立来源审查：G6 PASS 基于隔离会话审查（ISOLATED_REVIEW_VERIFIED）；未取得 host_verified/external 独立来源，INDEPENDENCE_UNVERIFIED。
 - 其他 Agent 宿主（Codex/Claude/ZCode/Antigravity/Qoder）。
 - MCP 与断点恢复。
 - 物理 DPI 变更、真实浏览器中的 Tailwind/CSS 产物执行。

@@ -6,8 +6,8 @@
 |---|---|---|
 | T5.1 真实复杂工作台试点 | **DONE** | 真实 New Manga 完整隔离副本启动；导入 3 页、重复 skip、阅读器 1/3→3/3；`evidence/T5.1/real-app-pilot.json` |
 | T5.2 改版前后对照测量 | **DONE** | 真实应用改造前后截图/指标：小目标 1-2→0、min font 10→11/12、分组工具栏/高级折叠/空态步骤；`evidence/T5.2/before-after.json` |
-| T5.3 数据安全/回滚/导出 | **IN_PROGRESS** | 取消/重复跳过/DB/源未变/Git 回滚 PASS；导出需 translated artifact，撤销/重做产品未提供 |
-| T5.4 独立复审与 G6 | **IN_PROGRESS（INCOMPLETE）** | reviewer-v133 只读复审：G6 不可签发，阻断见 `evidence/T5.4/g6-review.json` |
+| T5.3 数据安全/回滚/导出 | **DONE** | acceptance pipeline 生成 translated artifact；PNG/ZIP 导出 PASS；region retype→restore PASS；取消/重复/DB/源未变/Git 回滚 PASS |
+| T5.4 独立复审与 G6 | **DONE** | 真实 Runner G0–G5 PASS → finalize：COMPLETE、G6 PASS、design PASS、NATIVE_APP；delivery=ISOLATED_REVIEW_VERIFIED，INDEPENDENCE_UNVERIFIED |
 | M16 附录命令一致性 | **DONE** | `scripts/check_command_consistency.py` 0 issue；文档统一 `.venv` 解释器 |
 | T5.5 发行包/文档/交付报告 | **DONE** | 151 载荷 + manifest（ZIP 152 项）；安装/双入口/doctor 实测 exit 0 |
 
@@ -34,5 +34,5 @@ $env:PYTHONPATH='runtime'
 ## 结论
 
 - 发行包、合成应用 E2E、静态基线、before/after 指标已具备；
-- 真实试点与前后对比已完成；T5.3 导出/撤销、独立 G6 未完成，**整体仍为 PARTIAL / RC，不是 G6 PASS**；
+- 真实试点、前后对比、导出/撤销、G6 派生均完成；G6 PASS（隔离复审等级），独立来源仍为 INDEPENDENCE_UNVERIFIED；
 - 禁止把 UNVERIFIED 项写成 PASS；`docs/RELEASE_NOTES.md` 已列全部未验证能力。

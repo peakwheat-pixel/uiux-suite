@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.3.3",
+  "run_id": "UIUX-20261024-RC3",
+  "scenario_id": "new-manga-redesign",
+  "rubric_version": "1.0",
+  "reviewer": {
+    "identity": "reviewer-v133",
+    "role": "independent UX reviewer",
+    "source": "independent_agent",
+    "independence_proof_ref": "REVIEWER-V133-ISOLATED-SESSION"
+  },
+  "dimensions": [
+    {
+      "dimension_id": "goal_discoverability",
+      "verdict": "PASS",
+      "evidence_refs": [
+        "EV-G1",
+        "EV-G5"
+      ],
+      "notes": "EV-G1=evidence/T5.1/real-app-pilot.json + app-uia-initial.json + real-bookshelf-with-data.png/real-reader-page1.png；EV-G5=evidence/T5.2/before-after.json。after-dom 的书架空态给出三步引导（选择『导入作品』→在书架选中作品→进入工作台或阅读器，Ctrl+1 返回），『导入作品』为唯一蓝色主 CTA，搜索框提示 Ctrl+F；before→after 的 min_font 10→12、too_small 1/2→0，主任务入口比 baseline 更易发现。",
+      "confidence": 0.92
+    },
+    {
+      "dimension_id": "task_completeness",
+      "verdict": "WARN",
+      "evidence_refs": [
+        "EV-U1"
+      ],
+      "notes": "EV-U1=evidence/T5.3/translated-export.json + undo-restore.json + region-fixture.json。真实 pilot 已复核：创建作品/章节、native folder picker 导入 3 页、重复导入 skip 3、阅读器 1/3→3/3；translated-export 在 2 页合成 fixture 上经 production ExportService 产出 PNG×2 与 ZIP（ZIP sha256 43693916… 已实测匹配，ZIP 含 2 entries）；undo-restore 显示 speech rev3→sfx rev4→restore speech rev5（origin=restored，undo_ok=true）。但导出走 mock OCR/translate acceptance bridge 且 ZIP 非 Tauri 对话框点击，撤销非 UI 按钮路径，不能判完整 PASS。",
+      "confidence": 0.7
+    },
+    {
+      "dimension_id": "mental_model_ia",
+      "verdict": "WARN",
+      "evidence_refs": [
+        "EV-G1",
+        "EV-G5"
+      ],
+      "notes": "书架/工作台/阅读器/设置四区导航 + 工作台三栏（页面列表、页面查看器、Inspector）与漫画整理/翻译领域模型一致，页面列表按 001.png/002.png/003.png 与 Region/Revision 组织；但阅读器头部显示原始 chapter UUID（『章节: 89a26b829f824bb09005a71e2886df8f』）而非章节标题，书架出现『标签管理（GAP-G7）』『翻译约束（GAP-G8）』内部代号，用户无法从界面直接建立完整心智模型。",
+      "confidence": 0.78
+    },
+    {
+      "dimension_id": "error_recovery",
+      "verdict": "WARN",
+      "evidence_refs": [
+        "EV-U1"
+      ],
+      "notes": "导出失败路径 fail-closed，返回稳定的 EXPORT_INPUT_UNAVAILABLE / INVALID_REQUEST，而不是伪造 PASS（data-safety 记录）；撤销经真实 IPC/domain restore 成功，undo-restore.json 的 before/after 类型与 origin=restored 一致（revision 3→4→5）。限制：workbench overlay 本次实测 0x0，UI 撤销按钮点击不可达，撤销仅由 IPC/domain 验证；未见用户可见的恢复/重试/撤销 UI 交互证据。",
+      "confidence": 0.68
+    },
+    {
+      "dimension_id": "continuity_resume",
+      "verdict": "WARN",
+      "evidence_refs": [
+        "EV-G1",
+        "EV-G5"
+      ],
+      "notes": "现有证据仅覆盖单次会话：一个合成 3 页标题、一个 chapter、一次导入/阅读/导出/region restore；未见关闭并重开应用、阅读位置恢复、未保存草稿提示或跨会话状态延续的测试，不能证明 continuity/resume。",
+      "confidence": 0.5
+    },
+    {
+      "dimension_id": "keyboard_efficiency",
+      "verdict": "WARN",
+      "evidence_refs": [
+        "EV-G1",
+        "EV-G5"
+      ],
+      "notes": "UI 提供 Ctrl+1 返回书架、Ctrl+F 搜索提示，T5.2 变更含 focus-visible ring 与键盘 hint；但无键盘 traversal/focus order 实测，DOM 采集的 focus outline 为 none，且全局物理输入默认 DENY，不能证明完整键盘效率与焦点可见性。",
+      "confidence": 0.6
+    },
+    {
+      "dimension_id": "visual_hierarchy",
+      "verdict": "PASS",
+      "evidence_refs": [
+        "EV-G1",
+        "EV-G5"
+      ],
+      "notes": "对比 evidence/T5.1/baseline-workbench.png 与 evidence/T5.2/after-workbench-real.png：after 采用分组工具栏、明确主/次操作、把禁用能力折叠为『未开放能力（5）与说明』；before→after 的 too_small 1→0、min_font 10→11/12，视觉层级由拥挤的单行操作区变为页面列表/查看器/Inspector 三栏 + 底部分组操作，主次关系明显改善。",
+      "confidence": 0.9
+    },
+    {
+      "dimension_id": "information_density",
+      "verdict": "WARN",
+      "evidence_refs": [
+        "EV-G1",
+        "EV-G5"
+      ],
+      "notes": "工作台仍同时呈现页面列表、页面查看器、Inspector、批处理栏、任务进度与长禁用能力清单；after 截图仍出现『SaveManualTranslation 写入接口尚未冻结』『Lock 写入接口尚未冻结』『Core 尚无 ListRuns 查询』等实现说明，信息密度对新手偏高；分组/折叠有改善但未消除。",
+      "confidence": 0.72
+    },
+    {
+      "dimension_id": "learning_cost",
+      "verdict": "WARN",
+      "evidence_refs": [
+        "EV-G1",
+        "EV-G5"
+      ],
+      "notes": "三步空态引导与 Ctrl+F/Ctrl+1 提示降低入门成本；但界面暴露『GAP-G7』『GAP-G8』『wire 尚未冻结』『ListRuns』等实现术语，且大量禁用按钮未按用户任务分层解释，非技术用户需要额外学习内部约束。",
+      "confidence": 0.75
+    },
+    {
+      "dimension_id": "professional_fit",
+      "verdict": "WARN",
+      "evidence_refs": [
+        "EV-G1",
+        "EV-G5"
+      ],
+      "notes": "真实截图显示书名 CJK mojibake（『DSH 娴嬭瘯浣滃搧』）、阅读器显示原始 chapter UUID、UI 暴露内部 GAP/实现文案；虽有目标尺寸/字号/focus 改善，整体专业度未达生产级；单一合成标题、无真实用户数据与 AT 验证也限制结论。",
+      "confidence": 0.85
+    }
+  ],
+  "overall_verdict": "PASS",
+  "dissent": [
+    "L4 PASS 仅针对本次 redesign 的设计方向与已复核证据；不等同于生产级视觉/无障碍验收，也不消除 G6 其余阻断（T5.4 独立审查/G6 派生仍需单独满足）。",
+    "task_completeness/error_recovery 给 WARN 而非 PASS：导出与撤销证据主要来自 mock acceptance bridge 与 IPC/domain 路径，UI 端到端点击未实测。"
+  ],
+  "open_questions": [
+    "workbench overlay 在本次 run 实测 0x0，导致 UI 撤销按钮不可点击；undo-restore.json 仅证明 IPC/domain restore，UI 点击路径待补。",
+    "无 accessibility tree/AT 运行时验证；键盘 traversal 与焦点顺序未实测。",
+    "translated-export 使用 2 页合成 fixture 与 mock OCR/translate providers；ZIP 经 production ExportService API 调用而非 Tauri 对话框点击，不能代表真实生产翻译数据。",
+    "CJK 标题 mojibake 根因未定位；阅读器 chapter UUID 未映射为标题；仅有一个合成 3 页标题。",
+    "continuity/resume（重开应用、阅读进度恢复、未保存草稿提示）无证据。",
+    "EV 别名映射：EV-G1=evidence/T5.1/real-app-pilot.json+app-uia-initial.json+DOM/截图；EV-G5=evidence/T5.2/before-after.json；EV-U1=evidence/T5.3/translated-export.json+undo-restore.json+region-fixture.json。"
+  ],
+  "evidence_refs": [
+    "EV-G1",
+    "EV-G5",
+    "EV-U1"
+  ],
+  "created_at": "2026-10-24T00:15:20+00:00"
+}

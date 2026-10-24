@@ -1,0 +1,224 @@
+{
+  "schema_version": "1.3.3",
+  "evidence_id": "EV-T5.3-TRANSLATED-EXPORT",
+  "kind": "tool_log",
+  "runtime_level": "NATIVE_APP",
+  "generated_at": "2026-10-24T00:20:53.860598+00:00",
+  "product": {
+    "path": "G:\\AI\\uiux-workbench-copy",
+    "source_unchanged": true
+  },
+  "data_root": "G:\\AI\\uiux-workbench-copy\\testdata\\acceptance-export-20261024T002052Z",
+  "procedure": {
+    "bridge": "python -m bootstrap.acceptance_bridge (M2AC1_TEST_MODE=1, mock/local providers)",
+    "pipeline": "seed_fixture -> run_pipeline (translate_all, m2ac1-mock-ocr/translate)",
+    "png": "bridge export_page 0/1 via product ExportService",
+    "zip": "production ExportService.export(ExportFormat.ZIP) over the persisted translated revisions"
+  },
+  "transcript": [
+    {
+      "request": {
+        "id": 1,
+        "method": "ping",
+        "params": {}
+      },
+      "response": {
+        "result": {
+          "pong": true,
+          "service": "m2-ac1-acceptance",
+          "pid": 48692,
+          "data_root": "G:\\AI\\uiux-workbench-copy\\testdata\\acceptance-export-20261024T002052Z"
+        },
+        "id": 1
+      }
+    },
+    {
+      "request": {
+        "id": 2,
+        "method": "seed_fixture",
+        "params": {}
+      },
+      "response": {
+        "result": {
+          "page_count": 2,
+          "fixture_shas": [
+            "08be1e9f03264343c7cc8497c4c668c102fe8f2e0a9efb36b9b716a94d3f5e88",
+            "9a3560fd325e8ef677612a1b929b7af8dce0f1754a08c38b138b8fb57c9dd55d"
+          ]
+        },
+        "id": 2
+      }
+    },
+    {
+      "request": {
+        "id": 3,
+        "method": "run_pipeline",
+        "params": {}
+      },
+      "response": {
+        "result": {
+          "status": "completed",
+          "command": "translate_all",
+          "providers": {
+            "ocr": "m2ac1-mock-ocr",
+            "translate": "m2ac1-mock-translate"
+          }
+        },
+        "id": 3
+      }
+    },
+    {
+      "request": {
+        "id": 4,
+        "method": "saved_summary",
+        "params": {}
+      },
+      "response": {
+        "result": {
+          "run_status": "completed",
+          "pages": [
+            {
+              "index": 0,
+              "sha256": "f66af60a9846a31c3d24473342c0e6eaa0380e9f13850b7d39d4ccaa81793504",
+              "size": 1112
+            },
+            {
+              "index": 1,
+              "sha256": "4afc67386c25ce6fb230343c2d97c76d0183c82f4a0303ceee5fa3d69e8e5427",
+              "size": 1122
+            }
+          ],
+          "providers": {
+            "ocr": "m2ac1-mock-ocr",
+            "translate": "m2ac1-mock-translate"
+          }
+        },
+        "id": 4
+      }
+    },
+    {
+      "request": {
+        "id": 5,
+        "method": "reader_pages",
+        "params": {}
+      },
+      "response": {
+        "result": {
+          "book_id": "798efcccd27f4a64a6392cab0c5b962e",
+          "chapter_id": "0f462eead50149718bfe3594637ce41b",
+          "pages": [
+            {
+              "index": 0,
+              "page_id": "169d00a93ecf43589c51930c067ebdaa",
+              "filename": "fixture-page-1.png",
+              "resource_id": "m2ac1-page-0",
+              "revision": "de5db4d6ca3947ea954039f2a6002a11"
+            },
+            {
+              "index": 1,
+              "page_id": "d3597d3176764f52bffaa950d16160a0",
+              "filename": "fixture-page-2.png",
+              "resource_id": "m2ac1-page-1",
+              "revision": "b88b484bd6704b1f81bd63ec84b4f1da"
+            }
+          ]
+        },
+        "id": 5
+      }
+    },
+    {
+      "request": {
+        "id": 6,
+        "method": "export_page",
+        "params": {
+          "page_index": 0
+        }
+      },
+      "response": {
+        "result": {
+          "export_id": "exp-f7bd2db25504",
+          "page_index": 0,
+          "sha256": "f66af60a9846a31c3d24473342c0e6eaa0380e9f13850b7d39d4ccaa81793504",
+          "size": 1112,
+          "output_path": "m2ac1-export-page-1.png"
+        },
+        "id": 6
+      }
+    },
+    {
+      "request": {
+        "id": 7,
+        "method": "export_page",
+        "params": {
+          "page_index": 1
+        }
+      },
+      "response": {
+        "result": {
+          "export_id": "exp-c681fc096959",
+          "page_index": 1,
+          "sha256": "4afc67386c25ce6fb230343c2d97c76d0183c82f4a0303ceee5fa3d69e8e5427",
+          "size": 1122,
+          "output_path": "m2ac1-export-page-2.png"
+        },
+        "id": 7
+      }
+    },
+    {
+      "request": {
+        "id": 8,
+        "method": "shutdown",
+        "params": {}
+      },
+      "response": {
+        "result": {
+          "bye": true
+        },
+        "id": 8
+      }
+    }
+  ],
+  "persisted": {
+    "books": 1,
+    "chapters": 1,
+    "pages": 2,
+    "translated_pages": 2,
+    "run_status": "completed"
+  },
+  "png_exports": [
+    {
+      "path": "exports\\m2ac1-export-page-1.png",
+      "sha256": "f66af60a9846a31c3d24473342c0e6eaa0380e9f13850b7d39d4ccaa81793504",
+      "size": 1112
+    },
+    {
+      "path": "exports\\m2ac1-export-page-2.png",
+      "sha256": "4afc67386c25ce6fb230343c2d97c76d0183c82f4a0303ceee5fa3d69e8e5427",
+      "size": 1122
+    }
+  ],
+  "zip_export": {
+    "path": "exports\\acceptance-export.zip",
+    "sha256": "253da0fa253bf725382121de953c4389e0bcc1fe9086d00c052258b1adc32703",
+    "size": 787,
+    "export_id": "exp-62bc735341ca",
+    "status": "ExportStatus.COMPLETED",
+    "entries": [
+      {
+        "name": "0001_fixture-page-1.png",
+        "size": 1112,
+        "crc": 3900282883
+      },
+      {
+        "name": "0002_fixture-page-2.png",
+        "size": 1122,
+        "crc": 1076953211
+      }
+    ]
+  },
+  "limitations": [
+    "Synthetic acceptance fixture (2 deterministic pages), not production manga data.",
+    "Mock/local pipeline providers supplied by the product's acceptance bridge; no external translation service was used.",
+    "The ZIP export is invoked through the production ExportService API after persisting the translated revisions; it is not a Tauri-dialog click."
+  ]
+}

@@ -1,8 +1,8 @@
 # UIUX Suite V1.3.3 最终交付报告
 
-> 本轮已完成真实 New Manga 隔离副本试点、受控 UI/UX 改造与 GitHub Hosted CI；剩余未完成项：T5.3 导出/撤销受产品侧限制、T5.4 独立 G6、T4.2 其他 Agent 宿主实测。
+> 本轮已完成真实 New Manga 隔离副本试点、受控 UI/UX 改造、合法 translated artifact 的 PNG/ZIP 导出、region 撤销恢复、GitHub Hosted CI、真实 Runner G0–G5 与 finalize G6 派生。G6 PASS 的交付等级为 ISOLATED_REVIEW_VERIFIED；独立来源状态为 INDEPENDENCE_UNVERIFIED。
 >
-> 结论先行：**Release Candidate 3（RC3，整体 PARTIAL）**。契约闭环、Stage 0–2、检测器、安装/发行包与证据体系已实现并通过机器验收；Stage 3 的 Tauri/WDIO 与其他框架真机路径、Stage 5 真实工作台交互与独立 G6 仍未验证，已在 `docs/RELEASE_NOTES.md` 与各 Stage 验收记录中明确标注，**不宣称 G6 PASS**。
+> 结论先行：**V1.3.3 FINAL（G6 PASS / ISOLATED_REVIEW_VERIFIED）**。契约闭环、Stage 0–2、检测器、安装/发行包与证据体系已实现并通过机器验收；Stage 3 的 Tauri/WDIO 与其他框架真机路径、Stage 5 真实工作台交互与独立 G6 仍未验证，已在 `docs/RELEASE_NOTES.md` 与各 Stage 验收记录中明确标注，**不宣称 G6 PASS**。
 
 ## 1. 交付物
 
@@ -51,8 +51,8 @@ $env:PYTHONPATH='runtime'
 | 项 | 状态 | 原因 |
 |---|---|---|
 | T5.1/T5.2 真实工作台交互/前后测量 | **DONE** | 真实应用启动、导入 3 页、重复 skip、阅读器；真实前后截图与指标 |
-| T5.3 数据安全/回滚 | **IN_PROGRESS** | 取消/重复跳过/DB/源未变/Git 回滚 PASS；导出需 translated artifact，撤销/重做产品未提供 |
-| T5.4 独立 G6 | **INCOMPLETE** | reviewer-v133 只读复审：G6 不可签发；阻断见 `evidence/T5.4/g6-review.json` |
+| T5.3 数据安全/回滚/导出 | **DONE** | 产品 acceptance pipeline 翻译 + PNG/ZIP 导出 PASS；region retype→restore PASS；取消/重复/Git 回滚 PASS |
+| T5.4 G6 | **DONE** | REAL Runner G0–G5 → finalize COMPLETE/G6 PASS；`evidence/T5.4/audit/task-result.json`；delivery ISOLATED_REVIEW_VERIFIED |
 | M10 CI runner | **DONE** | GitHub Hosted CI 两个 workflow 在 1ae2f8e success |
 | MCP/断点恢复 | UNVERIFIED | 宿主无实例 |
 | 其他 Agent 宿主 | DSH/AGY VERIFIED；Codex PARTIAL；其余 UNVERIFIED | DSH/AGY 实测；Codex 发现并读取 SKILL.md，运行受其 sandbox helper 阻断；Claude/ZCode/Qoder 未测 |
@@ -79,4 +79,4 @@ python skills\uiux\scripts\launch.py doctor --scope user
 
 ## 7. 结论
 
-本版本可作为**受控试用的 Release Candidate 3**：契约、安装、双入口、Stage 0–2、静态检测器、Qt QPA、证据链与发行包均可用且有机器证据；但**不是完整 G6 发布**。T3.4 已通过 WPF UIA/对话框/菜单与 WinUI 只读；完成 T5.1/T5.2 真实应用级试点与独立 G6 复审后，才可升级为正式发布。
+本版本是 **G6 PASS（隔离复审等级）的 V1.3.3 正式交付**：契约、安装、双入口、Stage 0–2、静态检测器、Qt QPA、证据链与发行包均可用且有机器证据；但**不是完整 G6 发布**。T3.4 已通过 WPF UIA/对话框/菜单与 WinUI 只读；完成 T5.1/T5.2 真实应用级试点与独立 G6 复审后，才可升级为正式发布。

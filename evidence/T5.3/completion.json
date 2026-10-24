@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.3.3",
+  "evidence_id": "EV-T5.3-COMPLETION",
+  "kind": "tool_log",
+  "runtime_level": "NATIVE_APP",
+  "generated_at": "2026-10-24T00:23:02.266603+00:00",
+  "export": {
+    "result": "PASS",
+    "source": "evidence/T5.3/translated-export.json",
+    "pipeline": "product acceptance bridge mock/local providers; production ExportService",
+    "png": [
+      "m2ac1-export-page-1.png",
+      "m2ac1-export-page-2.png"
+    ],
+    "zip": "acceptance-export.zip",
+    "zip_status": "COMPLETED",
+    "zip_entries": 2
+  },
+  "undo": {
+    "result": "PASS",
+    "source": "evidence/T5.3/undo-restore.json",
+    "path": "set_region_type (speech->sfx revision 4) then restore_region_revision (revision 3 -> revision 5, origin=restored)",
+    "ui_click": "not reached: workbench region overlay measured 0x0 in this run; UI wiring is unit-tested in WorkbenchPage.test.tsx"
+  },
+  "cancel": {
+    "result": "PASS",
+    "source": "evidence/T5.3/data-safety.json"
+  },
+  "duplicate": {
+    "result": "PASS",
+    "source": "evidence/T5.3/data-safety.json"
+  },
+  "git_rollback": {
+    "result": "PASS",
+    "source": "evidence/T5.3/git-rollback.json"
+  },
+  "source_unchanged": true,
+  "limitations": [
+    "Export uses the product's acceptance bridge with mock/local providers and a 2-page synthetic fixture.",
+    "Undo is verified through real product IPC/domain revision restore, not a UI button click.",
+    "The 3-page pilot title remains a synthetic test profile."
+  ]
+}

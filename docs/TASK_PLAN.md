@@ -38,8 +38,8 @@
 | T4.4 | Stage 4 | DONE | Stage 4 Exit | T4.1 | 退化路径（缺 Node/GUI/旧宿主/离线/软链） | 每项返回稳定 ReasonCode 与可恢复建议 |
 | T5.1 | Stage 5 | DONE | Stage 5 Exit | T3.3 | 真实复杂工作台试点（隔离副本） | 启动真实 New Manga；导入/浏览/阅读/编辑与真实界面基线 |
 | T5.2 | Stage 5 | DONE | Stage 5 Exit | T5.1 | 改版前后对照测量 | 真实应用受控改造与前后对照；功能回归 |
-| T5.3 | Stage 5 | IN_PROGRESS | Stage 5 Exit | T5.1 | 真实项目数据安全与回滚演练 | 隔离数据读写、取消/撤销、导出、Git 回滚、源未变更 |
-| T5.4 | Stage 5 | IN_PROGRESS | Stage 5 Exit | T5.3 | 独立复审与 G6 签发 | 冻结版本独立复验；未覆盖项 PARTIAL/UNVERIFIED 明示 |
+| T5.3 | Stage 5 | DONE | Stage 5 Exit | T5.1 | 真实项目数据安全与回滚演练 | 隔离数据读写、取消/撤销、导出、Git 回滚、源未变更 |
+| T5.4 | Stage 5 | DONE | Stage 5 Exit | T5.1, T5.2, T5.3 | 独立复审与 G6 签发 | 冻结版本、独立 Reviewer、G6 裁决 |
 | T5.5 | Stage 5 | DONE | Stage 5 Exit | T5.4 | 发行包、文档、许可证与交付报告 | dist/ 可安装 ZIP、手册、兼容矩阵、证据索引、FINAL_DELIVERY_REPORT.md |
 | M1 | Stage 0 | DONE | T0.2 | T0.1 | 安装登记/升级/回滚状态契约 | install-<version>.json 登记全部安装文件；upgrade/rollback 可复现；版本并存 |
 | M2 | Stage 0 | DONE | T0.4 | T0.1 | DSH_HOME/AGENTS_HOME 与项目根/遮蔽检测 | 解析环境变量；5 级 rank；shadowed_by；非 Git/monorepo 说明 |
@@ -73,6 +73,6 @@
 | 状态 | 数量 |
 |---|---|
 | BLOCKED | 0 |
-| DONE | 59 |
-| IN_PROGRESS | 2 |
+| DONE | 61 |
+| IN_PROGRESS | 0 |
 | TODO | 0 |

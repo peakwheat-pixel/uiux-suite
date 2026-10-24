@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.3.3",
+  "evidence_id": "EV-T5.3-REGION-FIXTURE",
+  "kind": "tool_log",
+  "generated_at": "2026-10-24T00:06:53.846129+00:00",
+  "db_path": "C:\\Users\\49745\\AppData\\Roaming\\com.newmanga.m2rc1.desktop\\data\\library.db",
+  "db_backup": "G:\\AI\\universal-uiux-engineering\\evidence\\T5.3\\library-before-region-20261024T000653Z.db",
+  "book_id": "48e6fd51c7cd4eb68740f4388f028f09",
+  "chapter_id": "89a26b829f824bb09005a71e2886df8f",
+  "page_id": "740e2b7db0f24641a721dd64cdeb7264",
+  "region_id": "85072ecd4e2d45838e385db6e07e2135",
+  "region_type": "speech",
+  "revision_no": null,
+  "created": true,
+  "note": "Synthetic test profile only; no production New Manga data touched."
+}

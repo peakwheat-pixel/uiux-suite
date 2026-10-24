@@ -3,7 +3,7 @@
   "evidence_id": "EV-T5.2-REAL-APP-AFTER",
   "kind": "tool_log",
   "runtime_level": "NATIVE_APP",
-  "generated_at": "2026-10-23T23:04:00.354Z",
+  "generated_at": "2026-10-24T00:20:47.423Z",
   "transport": "WebView2 CDP via tauri.conf additionalBrowserArgs --remote-debugging-port=9222",
   "app": {
     "source": "G:\\CODEX\\New Manga (read-only)",
@@ -24,8 +24,8 @@
   "pages": [
     {
       "name": "bookshelf",
-      "bodyText": "NM\n📚\n书架\n🛠️\n工作台\n📖\n阅读器\n⚙️\n设置\n+ 新建作品\n导入作品\n🗑️ 回收站\n★ 收藏\n归档\n按标题排序\n按更新时间\n⊞\n☰\n📚\n还没有作品\n\n书架当前为空。导入已有漫画后，可在这里浏览作品、打开阅读器或进入工作台处理页面。\n\n1\n选择「导入作品」，支持本地漫画文件或文件夹。\n2\n在书架中选中作品，查看章节与详情。\n3\n进入工作台或阅读器继续处理；可随时按 Ctrl+1 返回书架。\n导入作品\n新建作品\n📖\n未选择作品\n从左侧列表中点击选择一部漫画以查看章节和详情",
-      "buttonCount": 13,
+      "bodyText": "NM\n📚\n书架\n🛠️\n工作台\n📖\n阅读器\n⚙️\n设置\n+ 新建作品\n导入作品\n🗑️ 回收站\n★ 收藏\n归档\n按标题排序\n按更新时间\n⊞\n☰\n☆\nDSH 娴嬭瘯浣滃搧\n页数\n3 页\nDSH 娴嬭瘯浣滃搧\n总页数\n3 页\n章节数\n1 章\n更新时间\n2026/10/24\n阅读摘要\n最近阅读\n—\n累计时长\n—\n导入页面\n删除作品\n标签管理 (GAP-G7)\n翻译约束 (GAP-G8)\n章节列表\n+ 新建章节\n#1\nChapter 1\n(3 页)\n导入\n翻译\n阅读",
+      "buttonCount": 19,
       "tooSmallButtons": [],
       "minFont": 12,
       "fontUnder12": 0,
@@ -38,11 +38,11 @@
     },
     {
       "name": "workbench",
-      "bodyText": "NM\n📚\n书架\n🛠️\n工作台\n📖\n阅读器\n⚙️\n设置\n选择作品与章节\n拖动调整页序\n页序写入 wire 尚未冻结，页面顺序保持 Core 投影结果。\n页面缩略图\n当前只有原图资源通道，低清缩略图能力尚未接入。\n按页面 ID 定位\n暂无作品\n页面查看器\n−\n100%\n＋\n适配\n选择页面以查看图像\nInspector\n\nno region selected\n\n人工译文\n保存人工译文\nSaveManualTranslation 写入接口尚未冻结，因此人工译文与 Ctrl+Enter 提交保持禁用。\n设置/解除锁定\nLock 写入接口尚未冻结；当前锁态只读显示。\n固定此修订\nRevision pin 写入接口尚未冻结；历史固定状态只读显示。\n选择作品与章节\nRegion 0\n批处理\n全章翻译\n翻译未完成页\n翻译选择页\n翻译当前页\n重渲染全章\n重渲染选择页\n重渲染当前页\n重修复全章\n重修复选择页\n重修复当前页\n重新 OCR 全章\n重新 OCR 选择页\n重新 OCR 当前页\nOCR 当前 Region\n重翻译当前 Region\n重翻译当前 Region（全流程）\n重修复当前 Region\n重渲染当前 Region\n启动\n查看模式\n查看\n平移\nRegion 选择\n导入页面\n导出选择页\n未开放能力（5）与说明\n任务进度\n折叠\n没有本次会话中已知的 Run。\n查看已有任务与中断 Run\n暂不可用：Core 尚无 ListRuns 查询；仅能查看本次工作台明确启动的 Run。\n暂停\n停止\n继续\n重新启动\n放弃\n解除阻塞\n重试失败页",
-      "buttonCount": 29,
+      "bodyText": "NM\n📚\n书架\n🛠️\n工作台\n📖\n阅读器\n⚙️\n设置\n页面列表\n拖动调整页序\n页序写入 wire 尚未冻结，页面顺序保持 Core 投影结果。\n页面缩略图\n当前只有原图资源通道，低清缩略图能力尚未接入。\n按页面 ID 定位\nDSH 娴嬭瘯浣滃搧(3)\nChapter 1\n001.png\n未处理\n002.png\n未处理\n003.png\n未处理\n页面查看器\n−\n100%\n＋\n适配\nInspector\n\nno region selected\n\n人工译文\n保存人工译文\nSaveManualTranslation 写入接口尚未冻结，因此人工译文与 Ctrl+Enter 提交保持禁用。\n设置/解除锁定\nLock 写入接口尚未冻结；当前锁态只读显示。\n固定此修订\nRevision pin 写入接口尚未冻结；历史固定状态只读显示。\nDSH 娴嬭瘯浣滃搧 · Chapter 1\nRegion 1\n批处理\n全章翻译\n翻译未完成页\n翻译选择页\n翻译当前页\n重渲染全章\n重渲染选择页\n重渲染当前页\n重修复全章\n重修复选择页\n重修复当前页\n重新 OCR 全章\n重新 OCR 选择页\n重新 OCR 当前页\nOCR 当前 Region\n重翻译当前 Region\n重翻译当前 Region（全流程）\n重修复当前 Region\n重渲染当前 Region\n启动\n查看模式\n查看\n平移\nRegion 选择\n导入页面\n导出选择页\n未开放能力（5）与说明\n任务进度\n折叠\n没有本次会话中已知的 Run。\n查看已有任务与中断 Run\n暂不可用：Core 尚无 ListRuns 查询；仅能查看本次工作台明确启动的 Run。\n暂停\n停止\n继续\n重新启动\n放弃\n解除阻塞\n重试失败页",
+      "buttonCount": 34,
       "tooSmallButtons": [],
-      "minFont": 11,
-      "fontUnder12": 9,
+      "minFont": 10,
+      "fontUnder12": 11,
       "hasHorizontalOverflow": false,
       "focus": {
         "outline": "rgb(107, 114, 128) none 3px",

@@ -1,0 +1,308 @@
+{
+  "schema_version": "1.3.3",
+  "evidence_id": "EV-T5.3-UNDO-RESTORE",
+  "kind": "tool_log",
+  "runtime_level": "NATIVE_APP",
+  "generated_at": "2026-10-24T00:20:54.156Z",
+  "command": "node scripts/run_undo_check.js (CDP -> Tauri IPC set_region_type / restore_region_revision)",
+  "page_id": "740e2b7db0f24641a721dd64cdeb7264",
+  "region_id": "85072ecd4e2d45838e385db6e07e2135",
+  "transcript": {
+    "before": {
+      "page_size": {
+        "height": 900,
+        "width": 600
+      },
+      "regions": [
+        {
+          "geometry": {
+            "bbox": [
+              0.08,
+              0.05333333333333334,
+              0.4,
+              0.13333333333333333
+            ],
+            "polygon": [
+              [
+                0.08,
+                0.05333333333333334
+              ],
+              [
+                0.48,
+                0.05333333333333334
+              ],
+              [
+                0.48,
+                0.18666666666666668
+              ],
+              [
+                0.08,
+                0.18666666666666668
+              ]
+            ]
+          },
+          "origin": "restored",
+          "region_id": "85072ecd4e2d45838e385db6e07e2135",
+          "region_type": "speech",
+          "revision_no": 11,
+          "sfx_policy": "skip"
+        }
+      ]
+    },
+    "set": {
+      "region_id": "85072ecd4e2d45838e385db6e07e2135",
+      "region_type": "sfx",
+      "revision_no": 12,
+      "sfx_policy": "skip"
+    },
+    "mid": {
+      "page_size": {
+        "height": 900,
+        "width": 600
+      },
+      "regions": [
+        {
+          "geometry": {
+            "bbox": [
+              0.08,
+              0.05333333333333334,
+              0.4,
+              0.13333333333333333
+            ],
+            "polygon": [
+              [
+                0.08,
+                0.05333333333333334
+              ],
+              [
+                0.48,
+                0.05333333333333334
+              ],
+              [
+                0.48,
+                0.18666666666666668
+              ],
+              [
+                0.08,
+                0.18666666666666668
+              ]
+            ]
+          },
+          "origin": "user",
+          "region_id": "85072ecd4e2d45838e385db6e07e2135",
+          "region_type": "sfx",
+          "revision_no": 12,
+          "sfx_policy": "skip"
+        }
+      ]
+    },
+    "revisions": {
+      "current_revision_no": 12,
+      "region_id": "85072ecd4e2d45838e385db6e07e2135",
+      "revisions": [
+        {
+          "created_at": "2026-10-24T00:06:53.845+00:00",
+          "is_current": false,
+          "is_pinned": false,
+          "origin": "machine",
+          "region_revision_id": "699259ed8d1643518ecc4921e86a573c",
+          "region_type": "speech",
+          "restored_from_revision_id": null,
+          "review_state": "unreviewed",
+          "revision_no": 1,
+          "sfx_policy": "skip"
+        },
+        {
+          "created_at": "2026-10-24T00:08:39.270+00:00",
+          "is_current": false,
+          "is_pinned": false,
+          "origin": "user",
+          "region_revision_id": "ba3773715e1342bfa073e7992938d3df",
+          "region_type": "sfx",
+          "restored_from_revision_id": null,
+          "review_state": "unreviewed",
+          "revision_no": 2,
+          "sfx_policy": "skip"
+        },
+        {
+          "created_at": "2026-10-24T00:08:39.286+00:00",
+          "is_current": false,
+          "is_pinned": false,
+          "origin": "restored",
+          "region_revision_id": "f99f8c22268c4efeab14468fc28846d0",
+          "region_type": "speech",
+          "restored_from_revision_id": "699259ed8d1643518ecc4921e86a573c",
+          "review_state": "needs_review",
+          "revision_no": 3,
+          "sfx_policy": "skip"
+        },
+        {
+          "created_at": "2026-10-24T00:12:52.968+00:00",
+          "is_current": false,
+          "is_pinned": false,
+          "origin": "user",
+          "region_revision_id": "67b8edd19e4d46cd985999f24fc2b69d",
+          "region_type": "sfx",
+          "restored_from_revision_id": null,
+          "review_state": "unreviewed",
+          "revision_no": 4,
+          "sfx_policy": "skip"
+        },
+        {
+          "created_at": "2026-10-24T00:12:52.974+00:00",
+          "is_current": false,
+          "is_pinned": false,
+          "origin": "restored",
+          "region_revision_id": "19093fefafd14628b9d253efff572c82",
+          "region_type": "speech",
+          "restored_from_revision_id": "f99f8c22268c4efeab14468fc28846d0",
+          "review_state": "needs_review",
+          "revision_no": 5,
+          "sfx_policy": "skip"
+        },
+        {
+          "created_at": "2026-10-24T00:17:36.077+00:00",
+          "is_current": false,
+          "is_pinned": false,
+          "origin": "user",
+          "region_revision_id": "2dc69156a97a4161a3b0b1dfb6e3fd23",
+          "region_type": "sfx",
+          "restored_from_revision_id": null,
+          "review_state": "unreviewed",
+          "revision_no": 6,
+          "sfx_policy": "skip"
+        },
+        {
+          "created_at": "2026-10-24T00:17:36.082+00:00",
+          "is_current": false,
+          "is_pinned": false,
+          "origin": "restored",
+          "region_revision_id": "90052c5181da40a99373746a2c399dee",
+          "region_type": "speech",
+          "restored_from_revision_id": "19093fefafd14628b9d253efff572c82",
+          "review_state": "needs_review",
+          "revision_no": 7,
+          "sfx_policy": "skip"
+        },
+        {
+          "created_at": "2026-10-24T00:18:19.418+00:00",
+          "is_current": false,
+          "is_pinned": false,
+          "origin": "user",
+          "region_revision_id": "d2eec2bdfb6c427799dd2ae124c826f9",
+          "region_type": "sfx",
+          "restored_from_revision_id": null,
+          "review_state": "unreviewed",
+          "revision_no": 8,
+          "sfx_policy": "skip"
+        },
+        {
+          "created_at": "2026-10-24T00:18:19.423+00:00",
+          "is_current": false,
+          "is_pinned": false,
+          "origin": "restored",
+          "region_revision_id": "dacee0cdb36d48338f18dc502f5daf03",
+          "region_type": "speech",
+          "restored_from_revision_id": "90052c5181da40a99373746a2c399dee",
+          "review_state": "needs_review",
+          "revision_no": 9,
+          "sfx_policy": "skip"
+        },
+        {
+          "created_at": "2026-10-24T00:18:56.252+00:00",
+          "is_current": false,
+          "is_pinned": false,
+          "origin": "user",
+          "region_revision_id": "3ea8676a1ae6490a92f0547758afe14d",
+          "region_type": "sfx",
+          "restored_from_revision_id": null,
+          "review_state": "unreviewed",
+          "revision_no": 10,
+          "sfx_policy": "skip"
+        },
+        {
+          "created_at": "2026-10-24T00:18:56.257+00:00",
+          "is_current": false,
+          "is_pinned": false,
+          "origin": "restored",
+          "region_revision_id": "a8da48f4745f4c8f8819e6c3d2e9a62b",
+          "region_type": "speech",
+          "restored_from_revision_id": "dacee0cdb36d48338f18dc502f5daf03",
+          "review_state": "needs_review",
+          "revision_no": 11,
+          "sfx_policy": "skip"
+        },
+        {
+          "created_at": "2026-10-24T00:20:54.142+00:00",
+          "is_current": true,
+          "is_pinned": false,
+          "origin": "user",
+          "region_revision_id": "77cb52d27bf84d468cff64a7fb870578",
+          "region_type": "sfx",
+          "restored_from_revision_id": null,
+          "review_state": "unreviewed",
+          "revision_no": 12,
+          "sfx_policy": "skip"
+        }
+      ]
+    },
+    "restore": {
+      "region_id": "85072ecd4e2d45838e385db6e07e2135",
+      "region_type": "speech",
+      "revision_no": 13,
+      "sfx_policy": "skip"
+    },
+    "after": {
+      "page_size": {
+        "height": 900,
+        "width": 600
+      },
+      "regions": [
+        {
+          "geometry": {
+            "bbox": [
+              0.08,
+              0.05333333333333334,
+              0.4,
+              0.13333333333333333
+            ],
+            "polygon": [
+              [
+                0.08,
+                0.05333333333333334
+              ],
+              [
+                0.48,
+                0.05333333333333334
+              ],
+              [
+                0.48,
+                0.18666666666666668
+              ],
+              [
+                0.08,
+                0.18666666666666668
+              ]
+            ]
+          },
+          "origin": "restored",
+          "region_id": "85072ecd4e2d45838e385db6e07e2135",
+          "region_type": "speech",
+          "revision_no": 13,
+          "sfx_policy": "skip"
+        }
+      ]
+    }
+  },
+  "result": {
+    "before_type": "speech",
+    "before_revision": 11,
+    "retyped_type": "sfx",
+    "retyped_revision": 12,
+    "restored_type": "speech",
+    "restored_revision": 13,
+    "restore_origin": "restored",
+    "undo_ok": true
+  },
+  "limitation": "Undo exercised through the real product IPC/domain path; the workbench overlay measured 0x0 in this run so the UI button click itself was not reachable. UI wiring is covered by WorkbenchPage.test.tsx."
+}

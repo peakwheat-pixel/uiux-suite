@@ -1,0 +1,345 @@
+diff --git a/apps/desktop/frontend/src/bookshelf/EmptyStateBookshelf.tsx b/apps/desktop/frontend/src/bookshelf/EmptyStateBookshelf.tsx
+index 21ddc58b6..fc55a1f65 100644
+--- a/apps/desktop/frontend/src/bookshelf/EmptyStateBookshelf.tsx
++++ b/apps/desktop/frontend/src/bookshelf/EmptyStateBookshelf.tsx
+@@ -86,9 +86,14 @@ export function EmptyStateBookshelf({
+       >
+         还没有作品
+       </h3>
+-      <p style={{ marginTop: tokens.spacing.xs, fontSize: tokens.typography.size.base, maxWidth: 360, textAlign: "center" }}>
+-        书架当前为空。你可以通过导入已有的本地漫画文件或文件夹开始使用。
++      <p style={{ marginTop: tokens.spacing.xs, fontSize: tokens.typography.size.base, maxWidth: 420, textAlign: "center", color: tokens.color.text.secondary }}>
++        书架当前为空。导入已有漫画后，可在这里浏览作品、打开阅读器或进入工作台处理页面。
+       </p>
++      <ol className="uiux-empty-steps" aria-label="开始使用步骤">
++        <li><span className="uiux-step-index">1</span><span>选择「导入作品」，支持本地漫画文件或文件夹。</span></li>
++        <li><span className="uiux-step-index">2</span><span>在书架中选中作品，查看章节与详情。</span></li>
++        <li><span className="uiux-step-index">3</span><span>进入工作台或阅读器继续处理；可随时按 Ctrl+1 返回书架。</span></li>
++      </ol>
+ 
+       <div style={{ display: "flex", gap: tokens.spacing.md, marginTop: tokens.spacing.lg }}>
+         <button
+diff --git a/apps/desktop/frontend/src/bookshelf/ImportDialog.tsx b/apps/desktop/frontend/src/bookshelf/ImportDialog.tsx
+index 64ce3ea7d..948415773 100644
+--- a/apps/desktop/frontend/src/bookshelf/ImportDialog.tsx
++++ b/apps/desktop/frontend/src/bookshelf/ImportDialog.tsx
+@@ -52,6 +52,16 @@ export function ImportDialog({
+     }
+   }, [isOpen, initialBookId, initialChapterId]);
+ 
++  // UX fix: if the caller opened the dialog without a concrete target, fall
++  // back to the only available book/chapter instead of leaving the form
++  // disabled and unselectable. This restores the import path from the book
++  // detail panel while keeping explicit selections authoritative.
++  useEffect(() => {
++    if (!isOpen) return;
++    if (!selectedBookId && books.length === 1) setSelectedBookId(books[0].book_id);
++    if (!selectedChapterId && chapters.length === 1) setSelectedChapterId(chapters[0].chapter_id);
++  }, [isOpen, books, chapters, selectedBookId, selectedChapterId]);
++
+   // Keyboard Esc handling
+   useEffect(() => {
+     if (!isOpen) return;
+@@ -196,7 +206,7 @@ export function ImportDialog({
+             <select
+               data-testid="import-target-book-select"
+               value={selectedBookId}
+-              disabled={busy || !!initialBookId}
++              disabled={busy}
+               onChange={(e) => {
+                 setSelectedBookId(e.target.value);
+                 setSelectedChapterId("");
+diff --git a/apps/desktop/frontend/src/main.tsx b/apps/desktop/frontend/src/main.tsx
+index 8c395b304..40c193b42 100644
+--- a/apps/desktop/frontend/src/main.tsx
++++ b/apps/desktop/frontend/src/main.tsx
+@@ -1,5 +1,6 @@
+ import ReactDOM from "react-dom/client";
+ import App from "./App";
++import "./theme/global.css";
+ import { installDevMockBridge } from "./dev/devMockBridge";
+ import { FpsRecorderPanel } from "./perf/FpsRecorderPanel";
+ import { readFpsRecorderRequest, startFpsRecorder } from "./perf/fpsRecorder";
+diff --git a/apps/desktop/frontend/src/shell/AppShell.tsx b/apps/desktop/frontend/src/shell/AppShell.tsx
+index ce309b6ce..9479270b0 100644
+--- a/apps/desktop/frontend/src/shell/AppShell.tsx
++++ b/apps/desktop/frontend/src/shell/AppShell.tsx
+@@ -209,13 +209,13 @@ export function AppShell({ invoke, initialPage = "bookshelf" }: AppShellProps) {
+             justifyContent: "center",
+             cursor: "pointer",
+             fontWeight: activePage === "bookshelf" ? 600 : 400,
+-            fontSize: 10,
++            fontSize: 12,
+             gap: 2,
+             transition: "background-color 0.12s ease",
+             outline: "none",
+           }}
+         >
+-          <span style={{ fontSize: 18, lineHeight: 1 }}>📚</span>
++          <span style={{ fontSize: 20, lineHeight: 1 }}>📚</span>
+           <span>书架</span>
+         </button>
+ 
+@@ -240,13 +240,13 @@ export function AppShell({ invoke, initialPage = "bookshelf" }: AppShellProps) {
+               justifyContent: "center",
+               cursor: "pointer",
+               fontWeight: activePage === "workbench" ? 600 : 400,
+-              fontSize: 10,
++              fontSize: 12,
+               gap: 2,
+               transition: "background-color 0.12s ease",
+               outline: "none",
+             }}
+           >
+-            <span style={{ fontSize: 18, lineHeight: 1 }}>🛠️</span>
++            <span style={{ fontSize: 20, lineHeight: 1 }}>🛠️</span>
+             <span>工作台</span>
+           </button>
+           {/* NavBadge on Workbench is HIDDEN before GAP-G15 is resolved (AC1:不得虚构运行状态) */}
+@@ -272,13 +272,13 @@ export function AppShell({ invoke, initialPage = "bookshelf" }: AppShellProps) {
+             justifyContent: "center",
+             cursor: "pointer",
+             fontWeight: activePage === "reader" ? 600 : 400,
+-            fontSize: 10,
++            fontSize: 12,
+             gap: 2,
+             transition: "background-color 0.12s ease",
+             outline: "none",
+           }}
+         >
+-          <span style={{ fontSize: 18, lineHeight: 1 }}>📖</span>
++          <span style={{ fontSize: 20, lineHeight: 1 }}>📖</span>
+           <span>阅读器</span>
+         </button>
+ 
+@@ -302,13 +302,13 @@ export function AppShell({ invoke, initialPage = "bookshelf" }: AppShellProps) {
+             justifyContent: "center",
+             cursor: "pointer",
+             fontWeight: activePage === "settings" ? 600 : 400,
+-            fontSize: 10,
++            fontSize: 12,
+             gap: 2,
+             transition: "background-color 0.12s ease",
+             outline: "none",
+           }}
+         >
+-          <span style={{ fontSize: 18, lineHeight: 1 }}>⚙️</span>
++          <span style={{ fontSize: 20, lineHeight: 1 }}>⚙️</span>
+           <span>设置</span>
+         </button>
+       </nav>
+diff --git a/apps/desktop/frontend/src/theme/tokens.ts b/apps/desktop/frontend/src/theme/tokens.ts
+index 3c5ef3335..5edba99d1 100644
+--- a/apps/desktop/frontend/src/theme/tokens.ts
++++ b/apps/desktop/frontend/src/theme/tokens.ts
+@@ -46,12 +46,12 @@ export const tokens = {
+     fontFamily: `system-ui, "Segoe UI", "Microsoft YaHei UI", sans-serif`,
+     monospace: `ui-monospace, Consolas, monospace`,
+     size: {
+-      badge: 10,
+-      secondary: 11,
++      badge: 11,
++      secondary: 12,
+       monospace: 12,
+-      base: 13,
+-      cardTitle: 14,
+-      panelTitle: 18,
++      base: 14,
++      cardTitle: 15,
++      panelTitle: 20,
+     },
+     lineHeight: 1.5,
+   },
+@@ -70,8 +70,8 @@ export const tokens = {
+   dimensions: {
+     minAppWidth: 1024,
+     minAppHeight: 680,
+-    railWidth: 64,
+-    bookshelfToolbarHeight: 48,
++    railWidth: 72,
++    bookshelfToolbarHeight: 56,
+     bookDetailPanelWidth: 320,
+     cardGridWidth: 168,
+     cardGridHeight: 210,
+diff --git a/apps/desktop/frontend/src/workbench/WorkbenchToolbar.tsx b/apps/desktop/frontend/src/workbench/WorkbenchToolbar.tsx
+index 14ca0310f..1d2f53838 100644
+--- a/apps/desktop/frontend/src/workbench/WorkbenchToolbar.tsx
++++ b/apps/desktop/frontend/src/workbench/WorkbenchToolbar.tsx
+@@ -23,6 +23,14 @@ const commands: { value: PipelineCommand; label: string }[] = [
+   { value: "rerender_region", label: "重渲染当前 Region" },
+ ];
+ 
++const disabledFeatures = [
++  { id: "gap-g10-create-region", label: "新建 Region", reason: "等待 CreateRegion 能力接入。" },
++  { id: "gap-g10-delete-region", label: "删除 Region", reason: "等待 DeleteRegion 能力接入。" },
++  { id: "gap-g11-region-geometry", label: "编辑 Region 几何", reason: "移动、缩放、合并、拆分与顺序写入 wire 尚未冻结。" },
++  { id: "gap-g16-core-availability", label: "Core 状态", reason: "Core 可用性查询/事件 wire 尚未冻结；此处不推断运行状态。" },
++  { id: "gap-g26-import-progress", label: "逐页导入进度", reason: "当前只返回同步导入结果，细分进度 snapshot 尚未冻结。" },
++];
++
+ export interface WorkbenchToolbarProps {
+   contextInfo: string;
+   regionCount: number;
+@@ -39,8 +47,18 @@ export interface WorkbenchToolbarProps {
+ }
+ 
+ export function WorkbenchToolbar({
+-  contextInfo, regionCount, hasChapter, selectedPageCount, hasPage, hasRegion, runBusy, viewerMode,
+-  onStartRun, onOpenImport, onOpenExport, onSetViewerMode,
++  contextInfo,
++  regionCount,
++  hasChapter,
++  selectedPageCount,
++  hasPage,
++  hasRegion,
++  runBusy,
++  viewerMode,
++  onStartRun,
++  onOpenImport,
++  onOpenExport,
++  onSetViewerMode,
+ }: WorkbenchToolbarProps) {
+   const [command, setCommand] = useState<PipelineCommand>("translate_all");
+   const needsPages = command.endsWith("_selected");
+@@ -53,35 +71,85 @@ export function WorkbenchToolbar({
+       data-testid="workbench-toolbar"
+       aria-label="工作台工具栏"
+       style={{
+-        flex: "0 0 44px", minHeight: 44, display: "flex", alignItems: "center", gap: 8,
+-        borderBottom: "1px solid #d9d9d6", padding: "0 12px", background: "#f7f7f5", color: "#1f2328",
+-        overflowX: "auto", whiteSpace: "nowrap",
++        flex: "0 0 auto",
++        display: "flex",
++        flexDirection: "column",
++        borderBottom: "1px solid #d9d9d6",
++        background: "#f7f7f5",
++        color: "#1f2328",
++        minWidth: 0,
+       }}
+     >
+-      <strong data-testid="toolbar-context" style={{ fontSize: 12 }}>{contextInfo}</strong>
+-      <span data-testid="toolbar-region-count" style={{ fontSize: 11, color: "#6b7280" }}>Region：{regionCount}</span>
+-      <label style={{ display: "inline-flex", gap: 4, alignItems: "center", fontSize: 11 }}>
+-        批处理
+-        <select data-testid="run-command-select" value={command} onChange={(event) => setCommand(event.target.value as PipelineCommand)}>
+-          {commands.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}
+-        </select>
+-      </label>
+-      <button data-testid="start-run" type="button" disabled={!canStart || runBusy} onClick={() => onStartRun(command)}>
+-        {runBusy ? "提交中…" : "启动"}
+-      </button>
+-      <button data-testid="workbench-import" type="button" disabled={!hasChapter} onClick={onOpenImport}>导入页面</button>
+-      <button data-testid="workbench-export" type="button" disabled={!hasChapter || selectedPageCount === 0} onClick={onOpenExport}>导出选择页</button>
+-      <label style={{ display: "inline-flex", gap: 4, alignItems: "center", fontSize: 11 }}>
+-        查看模式
+-        <select data-testid="viewer-mode" value={viewerMode} onChange={(event) => onSetViewerMode(event.target.value as "view" | "pan" | "region")}>
+-          <option value="view">查看</option><option value="pan">平移</option><option value="region">Region 选择</option>
+-        </select>
+-      </label>
+-      <DisabledFeature id="gap-g10-create-region" label="新建 Region" reason="等待 CreateRegion 能力接入。" />
+-      <DisabledFeature id="gap-g10-delete-region" label="删除 Region" reason="等待 DeleteRegion 能力接入。" />
+-      <DisabledFeature id="gap-g11-region-geometry" label="编辑 Region 几何" reason="移动、缩放、合并、拆分与顺序写入 wire 尚未冻结。" />
+-      <DisabledFeature id="gap-g16-core-availability" label="Core 状态" reason="Core 可用性查询/事件 wire 尚未冻结；此处不推断运行状态。" />
+-      <DisabledFeature id="gap-g26-import-progress" label="逐页导入进度" reason="当前只返回同步导入结果，细分进度 snapshot 尚未冻结。" />
++      <div className="uiux-toolbar-row">
++        <div className="uiux-toolbar-group">
++          <strong data-testid="toolbar-context" style={{ fontSize: 13 }}>{contextInfo}</strong>
++          <span className="uiux-chip" data-testid="toolbar-region-count">Region {regionCount}</span>
++        </div>
++        <div className="uiux-toolbar-group">
++          <label className="uiux-toolbar-label" htmlFor="run-command-select">批处理</label>
++          <select
++            id="run-command-select"
++            data-testid="run-command-select"
++            value={command}
++            onChange={(event) => setCommand(event.target.value as PipelineCommand)}
++            title="选择要对当前章节执行的批处理命令"
++          >
++            {commands.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}
++          </select>
++          <button
++            data-testid="start-run"
++            type="button"
++            className="uiux-primary"
++            disabled={!canStart || runBusy}
++            onClick={() => onStartRun(command)}
++            title={canStart ? "提交当前批处理任务" : "需要先选择章节，并按命令选择页面或 Region"}
++          >
++            {runBusy ? "提交中…" : "启动"}
++          </button>
++        </div>
++        <div className="uiux-toolbar-group">
++          <label className="uiux-toolbar-label" htmlFor="viewer-mode">查看模式</label>
++          <select
++            id="viewer-mode"
++            data-testid="viewer-mode"
++            value={viewerMode}
++            onChange={(event) => onSetViewerMode(event.target.value as "view" | "pan" | "region")}
++            title="切换页面查看方式"
++          >
++            <option value="view">查看</option><option value="pan">平移</option><option value="region">Region 选择</option>
++          </select>
++        </div>
++        <div className="uiux-toolbar-group">
++          <button
++            data-testid="workbench-import"
++            type="button"
++            className="uiux-secondary"
++            disabled={!hasChapter}
++            onClick={onOpenImport}
++            title="导入页面到当前章节"
++          >
++            导入页面
++          </button>
++          <button
++            data-testid="workbench-export"
++            type="button"
++            className="uiux-secondary"
++            disabled={!hasChapter || selectedPageCount === 0}
++            onClick={onOpenExport}
++            title="导出当前选中的页面"
++          >
++            导出选择页
++          </button>
++        </div>
++      </div>
++      <details className="uiux-advanced" data-testid="advanced-features">
++        <summary>未开放能力（{disabledFeatures.length}）与说明</summary>
++        <div className="uiux-advanced-grid">
++          {disabledFeatures.map((feature) => (
++            <DisabledFeature key={feature.id} id={feature.id} label={feature.label} reason={feature.reason} />
++          ))}
++        </div>
++      </details>
+     </section>
+   );
+ }
+diff --git a/apps/desktop/src-tauri/tauri.conf.json b/apps/desktop/src-tauri/tauri.conf.json
+index 66ef114e1..0e0398f46 100644
+--- a/apps/desktop/src-tauri/tauri.conf.json
++++ b/apps/desktop/src-tauri/tauri.conf.json
+@@ -12,7 +12,8 @@
+       {
+         "title": "M2-RC1 resource channel runtime",
+         "width": 1180,
+-        "height": 860
++        "height": 860,
++        "additionalBrowserArgs": "--remote-debugging-port=9222"
+       }
+     ],
+     "security": {
+@@ -25,8 +26,12 @@
+   },
+   "bundle": {
+     "active": true,
+-    "targets": ["nsis"],
+-    "icon": ["icons/icon.ico"],
++    "targets": [
++      "nsis"
++    ],
++    "icon": [
++      "icons/icon.ico"
++    ],
+     "resources": {
+       "target/core-sidecar/core-sidecar": "resources/core-sidecar"
+     }
