@@ -1,0 +1,231 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uiux-suite.local/contracts/host-capability.v1.3.4.schema.json",
+  "title": "UIUX Host Capability Record V1.3.4",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "host",
+    "host_version",
+    "os",
+    "skill_roots",
+    "entries",
+    "capabilities",
+    "checks",
+    "doctor_version",
+    "overall_status",
+    "checked_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "common.v1.3.4.schema.json#/$defs/schema_version"
+    },
+    "host": {
+      "enum": [
+        "dsh",
+        "codex",
+        "claude-code",
+        "zcode",
+        "antigravity",
+        "qoder",
+        "generic"
+      ]
+    },
+    "host_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "os": {
+      "type": "string",
+      "minLength": 1
+    },
+    "python": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "node": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "skill_roots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "rank",
+          "source"
+        ],
+        "properties": {
+          "path": {
+            "$ref": "common.v1.3.4.schema.json#/$defs/abs_path"
+          },
+          "rank": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "source": {
+            "enum": [
+              "project-dsh",
+              "project-agents",
+              "custom",
+              "user-dsh",
+              "user-agents",
+              "bundled"
+            ]
+          },
+          "exists": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "root",
+          "rank",
+          "shadowed_by"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "root": {
+            "$ref": "common.v1.3.4.schema.json#/$defs/abs_path"
+          },
+          "rank": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "shadowed_by": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "required": [
+        "skill_discovery",
+        "script_exec",
+        "gui_access",
+        "mcp",
+        "file_permissions",
+        "resume"
+      ],
+      "properties": {
+        "skill_discovery": {
+          "enum": [
+            "READY",
+            "MISSING",
+            "INCOMPATIBLE",
+            "UNVERIFIED"
+          ]
+        },
+        "script_exec": {
+          "enum": [
+            "READY",
+            "MISSING",
+            "INCOMPATIBLE",
+            "UNVERIFIED"
+          ]
+        },
+        "gui_access": {
+          "enum": [
+            "READY",
+            "MISSING",
+            "INCOMPATIBLE",
+            "UNVERIFIED"
+          ]
+        },
+        "mcp": {
+          "enum": [
+            "READY",
+            "MISSING",
+            "INCOMPATIBLE",
+            "UNVERIFIED"
+          ]
+        },
+        "file_permissions": {
+          "enum": [
+            "READY",
+            "MISSING",
+            "INCOMPATIBLE",
+            "UNVERIFIED"
+          ]
+        },
+        "resume": {
+          "enum": [
+            "READY",
+            "MISSING",
+            "INCOMPATIBLE",
+            "UNVERIFIED"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "detail"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "READY",
+              "MISSING",
+              "INCOMPATIBLE",
+              "UNVERIFIED"
+            ]
+          },
+          "detail": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "doctor_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "overall_status": {
+      "enum": [
+        "READY",
+        "MISSING",
+        "INCOMPATIBLE",
+        "UNVERIFIED"
+      ]
+    },
+    "checked_at": {
+      "$ref": "common.v1.3.4.schema.json#/$defs/iso8601"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uiux-suite.local/contracts/design-tokens.v1.3.4.schema.json",
+  "title": "UIUX Design Tokens V1.3.4",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "token_set_version",
+    "theme",
+    "colors",
+    "spacing",
+    "typography"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "common.v1.3.4.schema.json#/$defs/schema_version"
+    },
+    "token_set_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    },
+    "theme": {
+      "enum": [
+        "light",
+        "dark",
+        "both"
+      ]
+    },
+    "colors": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\(.+\\)|var\\(--[a-zA-Z0-9-]+\\))$"
+      }
+    },
+    "spacing": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "number",
+            "minimum": 0
+          },
+          {
+            "type": "string",
+            "pattern": "^[0-9]+(\\.[0-9]+)?(px|rem|em)$"
+          }
+        ]
+      }
+    },
+    "typography": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "fontSize",
+          "lineHeight"
+        ],
+        "properties": {
+          "fontSize": {
+            "type": "number",
+            "minimum": 8
+          },
+          "lineHeight": {
+            "type": "number",
+            "minimum": 1
+          },
+          "fontWeight": {
+            "type": "integer",
+            "minimum": 100,
+            "maximum": 900
+          },
+          "fontFamily": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "radii": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0
+      }
+    },
+    "motion": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "duration_ms"
+        ],
+        "properties": {
+          "duration_ms": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 5000
+          },
+          "easing": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

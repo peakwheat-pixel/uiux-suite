@@ -83,8 +83,9 @@ def _parse_now(value: str | None) -> datetime | None:
     return parsed
 
 
-def cmd_enums(_: argparse.Namespace) -> int:
-    _emit(enums.load_enums())
+def cmd_enums(args: argparse.Namespace) -> int:
+    version = getattr(args, "version", None) or enums.CURRENT_ENUM_VERSION
+    _emit(enums.load_enums(version))
     return EXIT_OK
 
 
@@ -97,13 +98,15 @@ def cmd_validate(args: argparse.Namespace) -> int:
         instance = _load(args.instance)
     except Exception as exc:  # noqa: BLE001 - report file errors uniformly
         return _invalid([str(exc)], context=args.instance)
-    errors.extend(contracts.validation_errors(args.schema, instance))
+    version = getattr(args, "schema_version", None)
+    errors.extend(contracts.validation_errors(args.schema, instance, version))
     if args.schema == "task-request" and not errors:
         for problem in validation.request_semantic_errors(instance):
             errors.append(f"{problem['code']}: {problem['detail']}")
     if errors:
         return _invalid(errors, context=f"schema={args.schema}")
-    _emit({"ok": True, "schema": args.schema, "instance": args.instance})
+    resolved = version or (instance.get("schema_version") if isinstance(instance, dict) else None)
+    _emit({"ok": True, "schema": args.schema, "schema_version": resolved, "instance": args.instance})
     return EXIT_OK
 
 
@@ -356,6 +359,33 @@ def cmd_finalize(args: argparse.Namespace) -> int:
     coverage = loaded["coverage"]
     manifest = loaded["evidence_manifest"]
 
+    # V1.3.4: explicit or inferred contract version; mixed/missing versions fail closed.
+    requested_version = getattr(args, "schema_version", None)
+    contract_version = requested_version or request.get("schema_version")
+    if contract_version not in contracts.SUPPORTED_SCHEMA_VERSIONS:
+        schema_errors.append(
+            f"SCHEMA_VERSION_UNSUPPORTED: {contract_version!r}"
+        )
+    elif requested_version and request.get("schema_version") != requested_version:
+        schema_errors.append(
+            "SCHEMA_VERSION_MISMATCH: --schema-version differs from request.schema_version"
+        )
+    if contract_version:
+        schema_errors.extend(
+            contracts.version_consistency_errors(
+                contract_version,
+                {
+                    "request": request,
+                    "gate_results": gate_results,
+                    "coverage": coverage,
+                    "evidence_manifest": manifest,
+                    "tool_logs": tool_logs,
+                    "design_review": design_review,
+                    "review_attestation": attestation,
+                },
+            )
+        )
+
     for problem in validation.request_semantic_errors(request):
         schema_errors.append(f"request: {problem['code']}: {problem['detail']}")
     for problem in validation.gate_results_semantic_errors(gate_results):
@@ -388,10 +418,11 @@ def cmd_finalize(args: argparse.Namespace) -> int:
         warn_reviews=warn_reviews,
         repair_cycles=args.repair_cycles or 0,
         now=now,
+        schema_version=contract_version,
     )
 
     result = {
-        "schema_version": "1.3.3",
+        "schema_version": outcome["schema_version"],
         "run_id": request["run_id"],
         "mode": request["mode"],
         "status": outcome["status"],
@@ -413,6 +444,11 @@ def cmd_finalize(args: argparse.Namespace) -> int:
         "repair_cycles": outcome["repair_cycles"],
         "created_at": now.isoformat(),
     }
+    if contract_version == "1.3.4":
+        if "delivery_dimensions" in outcome:
+            result["delivery_dimensions"] = outcome["delivery_dimensions"]
+        if "scope_summary" in outcome:
+            result["scope_summary"] = outcome["scope_summary"]
 
     result_errors = contracts.validation_errors("task-result", result)
     result_errors.extend(
@@ -434,6 +470,7 @@ def cmd_finalize(args: argparse.Namespace) -> int:
             "design_review_status": outcome["design_review_status"],
             "runtime_evidence_level": outcome["runtime_evidence_level"],
             "review_isolation_level": outcome["review_isolation_level"],
+            "schema_version": outcome["schema_version"],
             "g6": outcome["derived_g6"]["state"],
             "resolved_gates": outcome["resolved_gates"],
             "blocking_reasons": outcome["blocking_reasons"],
@@ -445,15 +482,20 @@ def cmd_finalize(args: argparse.Namespace) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="uiux-engine", description="Universal UI/UX Engineering engine (V1.3.3)")
+    parser = argparse.ArgumentParser(prog="uiux-engine", description="Universal UI/UX Engineering engine (V1.3.4)")
     sub = parser.add_subparsers(dest="command", required=True)
 
     p_enums = sub.add_parser("enums", help="print the canonical enum dictionary")
+    p_enums.add_argument("--version", choices=list(enums.SUPPORTED_ENUM_VERSIONS), help="enum dictionary version (default: current)")
     p_enums.set_defaults(func=cmd_enums)
 
     p_validate = sub.add_parser("validate", help="validate one JSON instance against a contract schema")
     p_validate.add_argument("--schema", required=True, choices=sorted(contracts.SCHEMA_FILES))
     p_validate.add_argument("--instance", required=True)
+    p_validate.add_argument(
+        "--schema-version", choices=list(contracts.SUPPORTED_SCHEMA_VERSIONS),
+        help="contract version (default: inferred from the instance schema_version)",
+    )
     p_validate.set_defaults(func=cmd_validate)
 
     p_policy = sub.add_parser("policy", help="resolve the Mode×Gate policy for a mode or request")
@@ -534,6 +576,10 @@ def build_parser() -> argparse.ArgumentParser:
     p_finalize.add_argument("--warn-reviews")
     p_finalize.add_argument("--repair-cycles", type=int, help="actual repair cycles performed (0..2)")
     p_finalize.add_argument("--now", help="frozen ISO8601 timestamp for reproducible tests")
+    p_finalize.add_argument(
+        "--schema-version", choices=list(contracts.SUPPORTED_SCHEMA_VERSIONS),
+        help="force the contract version (must match request.schema_version)",
+    )
     p_finalize.add_argument("--out")
     p_finalize.set_defaults(func=cmd_finalize)
     return parser

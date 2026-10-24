@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.3.4",
+  "project": "universal-uiux-engineering",
+  "version_target": "1.3.4",
+  "authority": "single-source-of-truth (plan/tasks.v1.3.3.json is read-only history)",
+  "phase": "A",
+  "stage": "TASK-00",
+  "updated_at": "2026-10-24T03:10:00Z",
+  "source": {
+    "repo": "G:\\AI\\universal-uiux-engineering",
+    "worktree": "G:\\AI\\uiux-v134-wt",
+    "branch": "v1.3.4-hardening",
+    "base_commit": "314e803ceaec6e03781da2c6e94bb548297b95a8",
+    "v133_tag_target": "314e803ceaec6e03781da2c6e94bb548297b95a8",
+    "v133_zip_sha256": "a348c0888ea70aad3b2a50103b8c5bd5eaf3a365f7d035d889e67b952a410526"
+  },
+  "evidence_root": "G:\\AI\\uiux-v134",
+  "tasks": {
+    "TASK-00": {"state": "in_progress", "deps": [], "owner": "lead", "note": "dual-contract versioning"},
+    "TASK-01": {"state": "pending", "deps": ["TASK-00"], "owner": null},
+    "TASK-03": {"state": "pending", "deps": ["TASK-00"], "owner": null},
+    "TASK-02": {"state": "pending", "deps": ["TASK-00", "TASK-03-interface"], "owner": null},
+    "TASK-04": {"state": "pending", "deps": ["TASK-01", "TASK-02"], "owner": null},
+    "TASK-05": {"state": "pending", "deps": ["TASK-01", "TASK-02", "TASK-03"], "owner": null},
+    "TASK-06": {"state": "pending", "deps": ["TASK-03"], "owner": null},
+    "TASK-08": {"state": "pending", "deps": ["TASK-02", "TASK-03"], "owner": null},
+    "TASK-07": {"state": "deferred_phase_c", "deps": ["CI"], "owner": null}
+  },
+  "gates": {
+    "R0": {"state": "PASS", "evidence": ["G:\\AI\\uiux-v134\\evidence\\phase0\\repo-state.json"]},
+    "R1": {"state": "pending", "evidence": []},
+    "R2": {"state": "pending", "evidence": []},
+    "R3": {"state": "pending", "evidence": []},
+    "R4": {"state": "pending", "evidence": []},
+    "R5": {"state": "pending", "evidence": []},
+    "R6": {"state": "pending", "evidence": []},
+    "R7": {"state": "pending", "evidence": []},
+    "R8": {"state": "pending", "evidence": []},
+    "R9": {"state": "pending", "evidence": []}
+  },
+  "recent_commits": [],
+  "last_verified": {
+    "pytest": null,
+    "baseline_note": "460 tests collected in V1.3.3; run baseline pytest in worktree before changes"
+  },
+  "blockers": [],
+  "next_action": "TASK-00: create v1.3.4 contract set + version dispatch + migration matrix + compatibility regression"
+}

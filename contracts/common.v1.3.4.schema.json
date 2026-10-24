@@ -1,0 +1,355 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uiux-suite.local/contracts/common.v1.3.4.schema.json",
+  "title": "Common V1.3.4 definitions",
+  "$defs": {
+    "schema_version": {
+      "const": "1.3.4"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$",
+      "description": "小写十六进制 SHA-256，对原始字节计算，不做换行归一化"
+    },
+    "iso8601": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{2,63}$"
+    },
+    "rel_path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*[\\\\:])(?!.*\\.\\./).+$",
+      "description": "发行/仓库内相对路径，统一正斜杠，禁止盘符、反斜杠与 .. 越界"
+    },
+    "relative_locator": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*[\\\\:]).+$",
+      "description": "相对定位（允许 ..），用于 suite-link 指向共享发行根；统一正斜杠，禁止盘符与反斜杠"
+    },
+    "abs_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_fingerprint": {
+      "type": "object",
+      "required": [
+        "kind",
+        "value"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "git_commit",
+            "dir_digest"
+          ]
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "algorithm": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "reason_entry": {
+      "type": "object",
+      "required": [
+        "gate",
+        "code",
+        "detail"
+      ],
+      "properties": {
+        "gate": {
+          "enum": [
+            "G0",
+            "G1",
+            "G2",
+            "G3",
+            "G4",
+            "G5",
+            "G6"
+          ]
+        },
+        "code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "detail": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "probe_ref": {
+      "type": "object",
+      "required": [
+        "probe_id",
+        "probe_kind",
+        "execution_level"
+      ],
+      "properties": {
+        "probe_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "probe_kind": {
+          "enum": [
+            "playwright_dom",
+            "tauri_wdio",
+            "pyside6_qt",
+            "win_uia",
+            "static_lint",
+            "flow_validator",
+            "geometry_probe",
+            "other"
+          ]
+        },
+        "execution_level": {
+          "enum": [
+            "NONE",
+            "SIMULATED",
+            "NATIVE_APP",
+            "OS_INTEGRATION"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidence_ref": {
+      "type": "object",
+      "required": [
+        "evidence_id",
+        "kind",
+        "status",
+        "sha256",
+        "probe_id",
+        "evidence_level"
+      ],
+      "properties": {
+        "evidence_id": {
+          "type": "string",
+          "pattern": "^EV-[A-Za-z0-9._-]+$"
+        },
+        "kind": {
+          "enum": [
+            "screenshot",
+            "dom_snapshot",
+            "uia_tree",
+            "test_log",
+            "tool_log",
+            "diff",
+            "hash_manifest",
+            "design_review",
+            "coverage_matrix",
+            "other"
+          ]
+        },
+        "status": {
+          "enum": [
+            "AVAILABLE",
+            "REDACTED_ONLY",
+            "SOURCE_EVIDENCE_UNAVAILABLE",
+            "EXPIRED",
+            "INVALID_HASH",
+            "QUARANTINED"
+          ]
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "probe_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_level": {
+          "enum": [
+            "NONE",
+            "SIMULATED",
+            "NATIVE_APP",
+            "OS_INTEGRATION"
+          ]
+        },
+        "expiry_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "redaction": {
+          "type": "object",
+          "required": [
+            "kind",
+            "method",
+            "recheck_status"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "none",
+                "path",
+                "image",
+                "field",
+                "full"
+              ]
+            },
+            "method": {
+              "enum": [
+                "manual",
+                "automated",
+                "hybrid"
+              ]
+            },
+            "recheck_status": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "NOT_RECHECKED"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "warn_review": {
+      "type": "object",
+      "required": [
+        "finding_id",
+        "gate",
+        "disposition",
+        "reviewer_source",
+        "reviewer_identity",
+        "reviewed_head",
+        "evidence_refs",
+        "expires_at",
+        "rationale"
+      ],
+      "properties": {
+        "finding_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "gate": {
+          "enum": [
+            "G0",
+            "G1",
+            "G2",
+            "G3",
+            "G4",
+            "G5"
+          ]
+        },
+        "disposition": {
+          "enum": [
+            "FIXED",
+            "ACCEPTED_RISK",
+            "NOT_APPLICABLE",
+            "REJECTED"
+          ]
+        },
+        "reviewer_source": {
+          "enum": [
+            "selftest",
+            "isolated_session",
+            "independent_agent",
+            "external_system"
+          ]
+        },
+        "reviewer_identity": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewed_head": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "expires_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "authorization": {
+      "type": "object",
+      "required": [
+        "granted_by",
+        "granted_at",
+        "scopes",
+        "evidence_ref"
+      ],
+      "properties": {
+        "granted_by": {
+          "type": "string",
+          "minLength": 1
+        },
+        "granted_at": {
+          "$ref": "#/$defs/iso8601"
+        },
+        "expires_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "scopes": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "enum": [
+              "production_write",
+              "production_data_write",
+              "os_input_uia",
+              "os_input_physical",
+              "install_write"
+            ]
+          }
+        },
+        "evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "disposition": {
+      "enum": [
+        "ENVIRONMENT_UNAVAILABLE",
+        "AUDITOR_OMISSION",
+        "TOOL_UNAVAILABLE",
+        "FIXTURE_INVALID",
+        "NATIVE_INTERACTION_UNAVAILABLE",
+        "NOT_APPLICABLE",
+        "PRODUCT_FAILURE",
+        "EVIDENCE_MISSING",
+        "INDEPENDENCE_UNVERIFIED"
+      ],
+      "description": "V1.3.4：未通过项的处置原因，用于区分合理不可达与审计遗漏"
+    }
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uiux-suite.local/contracts/design-review.v1.3.4.schema.json",
+  "title": "UIUX L4 Design Review V1.3.4",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "scenario_id",
+    "rubric_version",
+    "reviewer",
+    "dimensions",
+    "overall_verdict",
+    "evidence_refs",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "common.v1.3.4.schema.json#/$defs/schema_version"
+    },
+    "run_id": {
+      "$ref": "common.v1.3.4.schema.json#/$defs/run_id"
+    },
+    "scenario_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rubric_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+(\\.\\d+)?$"
+    },
+    "reviewer": {
+      "type": "object",
+      "required": [
+        "identity",
+        "role",
+        "source",
+        "independence_proof_ref"
+      ],
+      "properties": {
+        "identity": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "enum": [
+            "selftest",
+            "isolated_session",
+            "independent_agent",
+            "external_system",
+            "human_expert"
+          ]
+        },
+        "independence_proof_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "dimensions": {
+      "type": "array",
+      "minItems": 10,
+      "items": {
+        "$ref": "#/$defs/dimension"
+      }
+    },
+    "overall_verdict": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "PARTIAL",
+        "UNVERIFIED"
+      ]
+    },
+    "dissent": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "open_questions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "created_at": {
+      "$ref": "common.v1.3.4.schema.json#/$defs/iso8601"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "dimension": {
+      "type": "object",
+      "required": [
+        "dimension_id",
+        "verdict",
+        "evidence_refs",
+        "notes"
+      ],
+      "properties": {
+        "dimension_id": {
+          "enum": [
+            "goal_discoverability",
+            "task_completeness",
+            "mental_model_ia",
+            "error_recovery",
+            "continuity_resume",
+            "keyboard_efficiency",
+            "visual_hierarchy",
+            "information_density",
+            "learning_cost",
+            "professional_fit"
+          ]
+        },
+        "verdict": {
+          "enum": [
+            "PASS",
+            "WARN",
+            "FAIL",
+            "UNVERIFIED"
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 1
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

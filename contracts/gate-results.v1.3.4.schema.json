@@ -1,0 +1,338 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uiux-suite.local/contracts/gate-results.v1.3.4.schema.json",
+  "title": "UIUX GateResults V1.3.4",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "mode",
+    "source_fingerprint",
+    "request_digest",
+    "gates",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "common.v1.3.4.schema.json#/$defs/schema_version"
+    },
+    "run_id": {
+      "$ref": "common.v1.3.4.schema.json#/$defs/run_id"
+    },
+    "mode": {
+      "enum": [
+        "audit",
+        "design-only",
+        "prototype",
+        "new-build",
+        "redesign",
+        "targeted-fix",
+        "verify"
+      ]
+    },
+    "source_fingerprint": {
+      "$ref": "common.v1.3.4.schema.json#/$defs/source_fingerprint"
+    },
+    "request_digest": {
+      "$ref": "common.v1.3.4.schema.json#/$defs/sha256",
+      "description": "TaskRequest 规范化摘要，用于阻止事后调低 runtime_targets 或扩大写范围"
+    },
+    "gates": {
+      "type": "object",
+      "required": [
+        "G0",
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5"
+      ],
+      "properties": {
+        "G0": {
+          "$ref": "#/$defs/gate_result"
+        },
+        "G1": {
+          "$ref": "#/$defs/gate_result"
+        },
+        "G2": {
+          "$ref": "#/$defs/gate_result"
+        },
+        "G3": {
+          "$ref": "#/$defs/gate_result"
+        },
+        "G4": {
+          "$ref": "#/$defs/gate_result"
+        },
+        "G5": {
+          "$ref": "#/$defs/gate_result"
+        }
+      },
+      "additionalProperties": false
+    },
+    "created_at": {
+      "$ref": "common.v1.3.4.schema.json#/$defs/iso8601"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "gate_result": {
+      "type": "object",
+      "required": [
+        "gate_id",
+        "state",
+        "applicability",
+        "evidence_refs",
+        "probe_ids",
+        "tool_log_refs",
+        "reason_codes",
+        "computed_at"
+      ],
+      "properties": {
+        "gate_id": {
+          "enum": [
+            "G0",
+            "G1",
+            "G2",
+            "G3",
+            "G4",
+            "G5"
+          ]
+        },
+        "state": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "WARN_REVIEW_REQUIRED",
+            "BLOCKED",
+            "UNVERIFIED",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "applicability": {
+          "enum": [
+            "MANDATORY",
+            "REVIEW_ONLY",
+            "CONDITIONAL",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "required_runtime_level": {
+          "enum": [
+            "NONE",
+            "SIMULATED",
+            "NATIVE_APP",
+            "OS_INTEGRATION"
+          ]
+        },
+        "observed_runtime_level": {
+          "enum": [
+            "NONE",
+            "SIMULATED",
+            "NATIVE_APP",
+            "OS_INTEGRATION"
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "common.v1.3.4.schema.json#/$defs/evidence_ref"
+          }
+        },
+        "probe_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "tool_log_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "reviewed_artifacts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "warn_review": {
+          "anyOf": [
+            {
+              "$ref": "common.v1.3.4.schema.json#/$defs/warn_review"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason_codes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "notes": {
+          "type": "string"
+        },
+        "computed_at": {
+          "$ref": "common.v1.3.4.schema.json#/$defs/iso8601"
+        },
+        "dispositions": {
+          "type": "array",
+          "items": {
+            "$ref": "common.v1.3.4.schema.json#/$defs/disposition"
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "PASS"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_refs": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "applicability": {
+                "const": "NOT_APPLICABLE"
+              }
+            },
+            "required": [
+              "applicability"
+            ]
+          },
+          "then": {
+            "properties": {
+              "state": {
+                "const": "NOT_APPLICABLE"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "applicability": {
+                "const": "MANDATORY"
+              }
+            },
+            "required": [
+              "applicability"
+            ]
+          },
+          "then": {
+            "properties": {
+              "state": {
+                "not": {
+                  "const": "NOT_APPLICABLE"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "WARN_REVIEW_REQUIRED"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_refs": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "g6_check": {
+      "type": "object",
+      "required": [
+        "id",
+        "state",
+        "detail"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "state": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "BLOCKED",
+            "UNVERIFIED",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "detail": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "g6_result": {
+      "type": "object",
+      "required": [
+        "state",
+        "checks",
+        "computed_at"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "BLOCKED",
+            "UNVERIFIED",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/g6_check"
+          },
+          "minItems": 1
+        },
+        "computed_at": {
+          "$ref": "common.v1.3.4.schema.json#/$defs/iso8601"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -14,7 +14,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DIST = REPO_ROOT / "dist"
-VERSION = "1.3.3"
+VERSION = "1.3.4"
 SUITE_NAME = f"uiux-suite-{VERSION}"
 ZIP_PATH = DIST / f"{SUITE_NAME}-win64.zip"
 STAGING = DIST / SUITE_NAME
@@ -22,6 +22,7 @@ EVIDENCE = REPO_ROOT / "evidence" / "T5.5"
 
 INCLUDE_DIRS = ["runtime", "contracts", "knowledge", "skills", "scripts", "docs", "qa", "sandbox"]
 INCLUDE_FILES = [
+    "SPEC_V1.3.4.md",
     "SPEC_V1.3.3.md",
     "README.md",
     "FINAL_DELIVERY_REPORT.md",
@@ -85,7 +86,7 @@ def make_manifest() -> dict:
         rel = path.relative_to(STAGING).as_posix()
         files.append({"path": rel, "sha256": sha256_file(path), "size": path.stat().st_size, "role": role_for(rel)})
     manifest = {
-        "schema_version": "1.3.3",
+        "schema_version": VERSION,
         "suite_version": VERSION,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "builder": "scripts/build_release.py",

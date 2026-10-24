@@ -157,7 +157,7 @@ def test_cli_policy_matrix_design_only():
 def test_cli_enums_prints_dictionary():
     proc = run_cli("enums", expect=0)
     payload = json.loads(proc.stdout)
-    assert payload["schema_version"] == "1.3.3"
+    assert payload["schema_version"] == "1.3.4"
     assert "GateState" in payload["enums"]
     assert "ReasonCode" not in payload["enums"]  # reason codes live in their own section
 

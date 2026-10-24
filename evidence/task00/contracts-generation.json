@@ -1,0 +1,126 @@
+{
+  "schema_version": "1.3.4",
+  "generator": "scripts/gen_v134_contracts.py",
+  "source_version": "1.3.3",
+  "generated_files": 28,
+  "files": [
+    {
+      "file": "brownfield-report.v1.3.4.schema.json",
+      "sha256": "fcd7777b09a8b4e0c1e0f312133975636d5d0ef1d610229c969c4438f7c58493"
+    },
+    {
+      "file": "change-plan.v1.3.4.schema.json",
+      "sha256": "5b39e00faf53cdd07b3ccff3c538c3e35dffb18e3148cb9ea257c27d852bf33d"
+    },
+    {
+      "file": "common.v1.3.4.schema.json",
+      "sha256": "b3da273715e36e51fe7974b3523f0776680e550b154dcdfbfe831f6217679135"
+    },
+    {
+      "file": "component-matrix.v1.3.4.schema.json",
+      "sha256": "fb37713ffd7fbfa7122b46ae742b1eb5e64bd9d15f5450593cdf912aad60e686"
+    },
+    {
+      "file": "confusion-matrix.v1.3.4.schema.json",
+      "sha256": "5b2250345f3e4562f59ca91f041d640019df9cbc69d36e4dd5e23832cee3d86a"
+    },
+    {
+      "file": "coverage-matrix.v1.3.4.schema.json",
+      "sha256": "7956f5f24d205f8e4642a727bb8f24239da5bc461fa0a198b710841b76d71a36"
+    },
+    {
+      "file": "design-options.v1.3.4.schema.json",
+      "sha256": "017f397642d608cbd445f37f5c40d241ba7d2a92896821c7b9327ed36759cc87"
+    },
+    {
+      "file": "design-review.v1.3.4.schema.json",
+      "sha256": "e323f807a9889aa747227ae334ab7e4001ddc6f7109f2ca6381e543f7b2cdcaa"
+    },
+    {
+      "file": "design-tokens.v1.3.4.schema.json",
+      "sha256": "91d66770a129cd3654887058c6d682f3c68c45b52e381afe9cf356c7337d2ad4"
+    },
+    {
+      "file": "discovery.v1.3.4.schema.json",
+      "sha256": "48333fc2c8f57d23d955d192894c4942a21ce3fa61503f4cd3986a55fb0a389f"
+    },
+    {
+      "file": "evidence-manifest.v1.3.4.schema.json",
+      "sha256": "7edc36b88b5227a3b5e8deb243cad8270edaa03d4958cd40a47717b28a4616f0"
+    },
+    {
+      "file": "flows.v1.3.4.schema.json",
+      "sha256": "9469e0f1d5fd224a2248ab23be7d3f0f9e3985e7b8d0a2c5bcd8f637e55e7295"
+    },
+    {
+      "file": "gate-results.v1.3.4.schema.json",
+      "sha256": "ba5c4e109d31c0a0e0ce4b5e32573d6516e40b68045b2dafdb848f7bf7e55236"
+    },
+    {
+      "file": "host-capability.v1.3.4.schema.json",
+      "sha256": "09d4599d3dcf573d94c3110897dfebc1f642c4ec482fb463c000846c5b65fdf6"
+    },
+    {
+      "file": "knowledge-index.v1.3.4.schema.json",
+      "sha256": "050b53b975d76d68a979075c361b46e467ff6d1f1b31c6682fdb5427bdca41f5"
+    },
+    {
+      "file": "policy.v1.3.4.schema.json",
+      "sha256": "4beeead9cad0b98e0da9283b3cc6cd1276ade4973f93407c035a199a08b99de8"
+    },
+    {
+      "file": "prototype.v1.3.4.schema.json",
+      "sha256": "aa76131657d853809f0b26e4882fe530073c80aa00fa43d75422035fdde3b780"
+    },
+    {
+      "file": "qa-report.v1.3.4.schema.json",
+      "sha256": "a5944c65bb43a3ca88c268b69070d596ba28c5b979bc984f42a74b3044da8fc8"
+    },
+    {
+      "file": "release-manifest.v1.3.4.schema.json",
+      "sha256": "9c0d2888db29662fc9268c7a1c71e02cb763c6692a337a978cf3112f90064ebe"
+    },
+    {
+      "file": "review-attestation.v1.3.4.schema.json",
+      "sha256": "c176ebeba27054cddf5beeab4c65c178010e6ae55eb227fbf899232b4200b98e"
+    },
+    {
+      "file": "rule-catalog.v1.3.4.schema.json",
+      "sha256": "ec700746b2527123eea2b67a5e04b060a23a7be00e7f5eb2195ed4b65eb67b39"
+    },
+    {
+      "file": "rule-exemption.v1.3.4.schema.json",
+      "sha256": "cd77cd534c55945a1ac643da72f6105d5593512637102b9f617f80531ff5d77f"
+    },
+    {
+      "file": "suite-link.v1.3.4.schema.json",
+      "sha256": "6786e45c2b34b3bff0a3e896404355b3cf890fbe348c78edee2c8a8eaad737e5"
+    },
+    {
+      "file": "task-request.v1.3.4.schema.json",
+      "sha256": "a1cfaf2ef5e7c848776191bd0cea1dcd21e6dfc950728d85610fb0b140b80a65"
+    },
+    {
+      "file": "task-result.v1.3.4.schema.json",
+      "sha256": "405c53a89a170acd923ba365cffb7b9ef4004c58da14433290fc91775cec6d67"
+    },
+    {
+      "file": "tool-log.v1.3.4.schema.json",
+      "sha256": "84e99f0659e1970e4067046616d098ca89af2992b2b6ff125a2c76a52ecdd980"
+    },
+    {
+      "file": "enums.v1.3.4.json",
+      "sha256": "1d5bff2e14357c6bf6e8a6e030eba1db2818e2f27dfa51fac148340ed7371c38"
+    },
+    {
+      "file": "mode-gate-policy.v1.3.4.json",
+      "sha256": "e1ea126b240171ce7550b5432568d913065019019d0ad3e683998523260d4f5e"
+    }
+  ],
+  "notes": [
+    "v1.3.3 contract files remain untouched",
+    "coverage-matrix: disposition/scope_ref/risk_ref are additive optional fields",
+    "task-result: delivery_dimensions/scope_summary are additive optional fields",
+    "enums: new enums and reason codes are additive only"
+  ]
+}

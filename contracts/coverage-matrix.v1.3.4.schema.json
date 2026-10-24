@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uiux-suite.local/contracts/coverage-matrix.v1.3.4.schema.json",
+  "title": "UIUX Coverage Matrix V1.3.4",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "source_fingerprint",
+    "records",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "common.v1.3.4.schema.json#/$defs/schema_version"
+    },
+    "run_id": {
+      "$ref": "common.v1.3.4.schema.json#/$defs/run_id"
+    },
+    "source_fingerprint": {
+      "$ref": "common.v1.3.4.schema.json#/$defs/source_fingerprint"
+    },
+    "records": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/record"
+      }
+    },
+    "created_at": {
+      "$ref": "common.v1.3.4.schema.json#/$defs/iso8601"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "execution_environment": {
+      "type": "object",
+      "required": [
+        "host",
+        "os"
+      ],
+      "properties": {
+        "host": {
+          "enum": [
+            "dsh",
+            "codex",
+            "claude-code",
+            "zcode",
+            "antigravity",
+            "qoder",
+            "generic",
+            "ci"
+          ]
+        },
+        "os": {
+          "type": "string",
+          "minLength": 1
+        },
+        "os_version": {
+          "type": "string"
+        },
+        "dpi_scale": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "process_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "window_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "window_title": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "session_kind": {
+          "enum": [
+            "shared_desktop",
+            "isolated_desktop",
+            "vm",
+            "ci",
+            "unknown"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "record": {
+      "type": "object",
+      "required": [
+        "task_id",
+        "scenario_id",
+        "required_runtime_level",
+        "observed_runtime_level",
+        "test_state",
+        "review_isolation_level",
+        "probe_id",
+        "evidence_refs",
+        "execution_environment",
+        "source_fingerprint"
+      ],
+      "properties": {
+        "task_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scenario_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "required_runtime_level": {
+          "enum": [
+            "NONE",
+            "SIMULATED",
+            "NATIVE_APP",
+            "OS_INTEGRATION"
+          ]
+        },
+        "observed_runtime_level": {
+          "enum": [
+            "NONE",
+            "SIMULATED",
+            "NATIVE_APP",
+            "OS_INTEGRATION"
+          ]
+        },
+        "test_state": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "UNVERIFIED",
+            "BLOCKED",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "review_isolation_level": {
+          "enum": [
+            "UNVERIFIED",
+            "SELFTEST",
+            "ISOLATED_SESSION",
+            "INDEPENDENT_AGENT"
+          ]
+        },
+        "probe_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "execution_environment": {
+          "$ref": "#/$defs/execution_environment"
+        },
+        "source_fingerprint": {
+          "$ref": "common.v1.3.4.schema.json#/$defs/source_fingerprint"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "disposition": {
+          "$ref": "common.v1.3.4.schema.json#/$defs/disposition"
+        },
+        "scope_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "risk_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

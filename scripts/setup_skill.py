@@ -33,8 +33,9 @@ from uiux_engine import contracts  # noqa: E402
 
 SUITE_ID = "universal-uiux-engineering"
 SKILLS = ("uiux", "uiux-verify")
-DEFAULT_VERSION = "1.3.3"
-SCHEMA_VERSION = "1.3.3"
+DEFAULT_VERSION = "1.3.4"
+SCHEMA_VERSION = "1.3.4"
+SUPPORTED_INSTALL_VERSIONS = ("1.3.3", "1.3.4")
 MANIFEST_NAME = "RELEASE_MANIFEST.json"
 EXCLUDE = {"__pycache__", ".pytest_cache", ".venv"}
 
@@ -241,6 +242,7 @@ def collect_skill_files(source: Path, skill: str) -> list[tuple[str, Path]]:
 
 
 def build_manifest(source: Path, version: str, files: list[tuple[str, Path, str]]) -> dict:
+    contract_version = version if version in SUPPORTED_INSTALL_VERSIONS else SCHEMA_VERSION
     entries = []
     for relative, path, role in files:
         entries.append(
@@ -253,7 +255,7 @@ def build_manifest(source: Path, version: str, files: list[tuple[str, Path, str]
         )
     files_payload = sorted(entries, key=lambda item: item["path"])
     return {
-        "schema_version": SCHEMA_VERSION,
+        "schema_version": contract_version,
         "suite_version": version,
         "generated_at": now(),
         "builder": f"setup_skill.py/{SCHEMA_VERSION}",
@@ -329,7 +331,7 @@ def suite_link_payload(agents_home: Path, suite_root: Path, skill_root: Path, ve
     except ValueError:
         record_relative = None
     return {
-        "schema_version": SCHEMA_VERSION,
+        "schema_version": version if version in SUPPORTED_INSTALL_VERSIONS else SCHEMA_VERSION,
         "suite_id": SUITE_ID,
         "active_version": version,
         "path_kind": path_kind,

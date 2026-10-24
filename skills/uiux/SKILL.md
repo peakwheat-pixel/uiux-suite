@@ -43,4 +43,4 @@ python <suite_root>\runtime\uiux_engine\cli.py finalize ...
 
 - 不能签发独立验收；需要独立结论时使用 `uiux-verify`。
 - 不主动依赖任何外部编排器。
-- 证据分级、WARN 处置与 COMPLETE 约束见 `SPEC_V1.3.3.md`。
+- 证据分级、WARN 处置与 COMPLETE 约束见 `SPEC_V1.3.4.md`（V1.3.3 历史规范见 `SPEC_V1.3.3.md`）。

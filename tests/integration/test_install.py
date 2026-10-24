@@ -39,7 +39,7 @@ def make_source(tmp_path: Path) -> Path:
     return source
 
 
-def install(source: Path, agents_home: Path, version: str = "1.3.3") -> subprocess.CompletedProcess:
+def install(source: Path, agents_home: Path, version: str = "1.3.4") -> subprocess.CompletedProcess:
     return run_script(SETUP, "install", "--scope", "user", "--source", str(source), "--version", version, agents_home=agents_home)
 
 
@@ -51,12 +51,12 @@ def test_install_doctor_launch_and_uninstall(tmp_path: Path):
     payload = json.loads(proc.stdout)
     assert payload["ok"] is True and payload["activated"] is True
 
-    suite_root = agents / "uiux-suite" / "versions" / "1.3.3"
+    suite_root = agents / "uiux-suite" / "versions" / "1.3.4"
     assert (suite_root / "RELEASE_MANIFEST.json").is_file()
     link = json.loads((agents / "skills" / "uiux" / "suite-link.json").read_text(encoding="utf-8"))
-    assert link["active_version"] == "1.3.3"
+    assert link["active_version"] == "1.3.4"
     assert link["path_kind"] == "relative_to_skill_root"
-    record = agents / "uiux-suite" / "state" / "install-1.3.3.json"
+    record = agents / "uiux-suite" / "state" / "install-1.3.4.json"
     assert record.is_file()
 
     doctor = run_script(SETUP, "doctor", "--scope", "user", agents_home=agents)
@@ -74,11 +74,11 @@ def test_install_doctor_launch_and_uninstall(tmp_path: Path):
         errors="replace",
     )
     assert launch.returncode == 0, launch.stdout + launch.stderr
-    assert json.loads(launch.stdout)["schema_version"] == "1.3.3"
+    assert json.loads(launch.stdout)["schema_version"] == "1.3.4"
 
     project_artifact = tmp_path / "project" / ".uiux" / "evidence"
     project_artifact.mkdir(parents=True)
-    uninstall = run_script(UNINSTALL, "--scope", "user", "--version", "1.3.3", agents_home=agents)
+    uninstall = run_script(UNINSTALL, "--scope", "user", "--version", "1.3.4", agents_home=agents)
     assert uninstall.returncode == 0, uninstall.stdout + uninstall.stderr
     assert not (agents / "skills" / "uiux").exists()
     assert not suite_root.exists()
@@ -108,7 +108,7 @@ def test_installed_launcher_exposes_doctor_after_source_deletion(tmp_path: Path)
     agents = tmp_path / "agents"
     assert install(source, agents).returncode == 0
     manifest = json.loads(
-        (agents / "uiux-suite" / "versions" / "1.3.3" / "RELEASE_MANIFEST.json").read_text(encoding="utf-8")
+        (agents / "uiux-suite" / "versions" / "1.3.4" / "RELEASE_MANIFEST.json").read_text(encoding="utf-8")
     )
     assert "setup_skill.py" in {entry["path"] for entry in manifest["files"]}
 
@@ -128,7 +128,7 @@ def test_installed_launcher_exposes_doctor_after_source_deletion(tmp_path: Path)
     assert proc.returncode == 0, proc.stdout + proc.stderr
     payload = json.loads(proc.stdout)
     assert payload["links"]["uiux"]["found"] is True
-    assert payload["host_capability"]["schema_version"] == "1.3.3"
+    assert payload["host_capability"]["schema_version"] == "1.3.4"
 
 
 def test_unknown_existing_skill_is_not_overwritten(tmp_path: Path):
@@ -143,23 +143,23 @@ def test_unknown_existing_skill_is_not_overwritten(tmp_path: Path):
     payload = json.loads(proc.stdout)
     assert payload["code"] == "SKILL_EXISTS"
     assert sentinel.read_text(encoding="utf-8") == "user-owned-content"
-    assert not (agents / "uiux-suite" / "versions" / "1.3.3").exists()
+    assert not (agents / "uiux-suite" / "versions" / "1.3.4").exists()
 
 
 def test_version_coexistence_and_uninstall_old(tmp_path: Path):
     source = make_source(tmp_path)
     agents = tmp_path / "agents"
-    assert install(source, agents, "1.3.3").returncode == 0
+    assert install(source, agents, "1.3.4").returncode == 0
     assert install(source, agents, "1.3.2").returncode == 0
     assert (agents / "uiux-suite" / "versions" / "1.3.2").is_dir()
-    assert (agents / "uiux-suite" / "versions" / "1.3.3").is_dir()
+    assert (agents / "uiux-suite" / "versions" / "1.3.4").is_dir()
     link = json.loads((agents / "skills" / "uiux" / "suite-link.json").read_text(encoding="utf-8"))
-    assert link["active_version"] == "1.3.3", "older install must not downgrade the active entry"
+    assert link["active_version"] == "1.3.4", "older install must not downgrade the active entry"
 
     uninstall = run_script(UNINSTALL, "--scope", "user", "--version", "1.3.2", agents_home=agents)
     assert uninstall.returncode == 0
     assert not (agents / "uiux-suite" / "versions" / "1.3.2").exists()
-    assert (agents / "uiux-suite" / "versions" / "1.3.3").is_dir()
+    assert (agents / "uiux-suite" / "versions" / "1.3.4").is_dir()
     launch = subprocess.run(
         [sys.executable, str(agents / "skills" / "uiux" / "scripts" / "launch.py"), "enums"],
         cwd=str(tmp_path),
@@ -234,7 +234,7 @@ def test_launch_rejects_manifest_hash_mismatch(tmp_path: Path):
     source = make_source(tmp_path)
     agents = tmp_path / "agents"
     assert install(source, agents).returncode == 0
-    target = agents / "uiux-suite" / "versions" / "1.3.3" / "contracts" / "enums.v1.3.3.json"
+    target = agents / "uiux-suite" / "versions" / "1.3.4" / "contracts" / "enums.v1.3.4.json"
     target.write_text(target.read_text(encoding="utf-8") + " ", encoding="utf-8")
     proc = _launch(agents)
     assert proc.returncode == 6, proc.stdout + proc.stderr
@@ -273,12 +273,13 @@ def test_launch_falls_back_when_linked_python_missing(tmp_path: Path):
     link_path.write_text(json.dumps(link), encoding="utf-8")
     proc = _launch(agents)
     assert proc.returncode == 0, proc.stdout + proc.stderr
-    assert json.loads(proc.stdout)["schema_version"] == "1.3.3"
+    assert json.loads(proc.stdout)["schema_version"] == "1.3.4"
 
 
 def test_upgrade_and_rollback_switch_active_version(tmp_path: Path):
     source = make_source(tmp_path)
     agents = tmp_path / "agents"
+    # Cross-version: install 1.3.3, upgrade to 1.3.4, roll back to 1.3.3.
     assert install(source, agents, "1.3.3").returncode == 0
 
     upgrade = run_script(SETUP, "upgrade", "--scope", "user", "--source", str(source), "--version", "1.3.4", agents_home=agents)
