@@ -128,7 +128,7 @@ def test_installed_launcher_exposes_doctor_after_source_deletion(tmp_path: Path)
     assert proc.returncode == 0, proc.stdout + proc.stderr
     payload = json.loads(proc.stdout)
     assert payload["links"]["uiux"]["found"] is True
-    assert payload["host_capability"]["schema_version"] == "1.3.4"
+    assert payload["host_capability"]["schema_version"] == "1.3.5"
 
 
 def test_unknown_existing_skill_is_not_overwritten(tmp_path: Path):
