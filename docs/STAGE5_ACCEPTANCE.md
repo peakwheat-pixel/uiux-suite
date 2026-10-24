@@ -4,12 +4,12 @@
 
 | 任务 | 状态 | 证据 |
 |---|---|---|
-| T5.1 真实复杂工作台试点 | **IN_PROGRESS** | 合成 Qt 参考应用 E2E 12/12（含拖拽/快捷键/焦点）（`evidence/T5.1/workbench-e2e-evidence.json`）；New Manga 仅隔离源码静态基线（`workbench-static-baseline.json`），应用未启动 |
-| T5.2 改版前后对照测量 | **IN_PROGRESS** | 合成应用 before/after：字号 11→14、目标 22→38px、对比度 2.08→15.8；真实工作台前后对照未做 |
-| T5.3 数据安全/回滚/导出 | **IN_PROGRESS（PARTIAL）** | `safety.py`、`modify.py` 回滚测试；合成数据 E2E 保存/导出；真实项目演练未执行 |
-| T5.4 独立复审与 G6 | **IN_PROGRESS** | 待独立 Reviewer 签发 G6 |
+| T5.1 真实复杂工作台试点 | **DONE** | 真实 New Manga 完整隔离副本启动；导入 3 页、重复 skip、阅读器 1/3→3/3；`evidence/T5.1/real-app-pilot.json` |
+| T5.2 改版前后对照测量 | **DONE** | 真实应用改造前后截图/指标：小目标 1-2→0、min font 10→11/12、分组工具栏/高级折叠/空态步骤；`evidence/T5.2/before-after.json` |
+| T5.3 数据安全/回滚/导出 | **DONE** | acceptance pipeline 生成 translated artifact；PNG/ZIP 导出 PASS；region retype→restore PASS；取消/重复/DB/源未变/Git 回滚 PASS |
+| T5.4 独立复审与 G6 | **DONE** | 真实 Runner G0–G5 PASS → finalize：COMPLETE、G6 PASS、design PASS、NATIVE_APP；delivery=ISOLATED_REVIEW_VERIFIED，INDEPENDENCE_UNVERIFIED |
 | M16 附录命令一致性 | **DONE** | `scripts/check_command_consistency.py` 0 issue；文档统一 `.venv` 解释器 |
-| T5.5 发行包/文档/交付报告 | **DONE** | 147 载荷 + manifest（ZIP 148 项）；安装/双入口/doctor 实测 exit 0 |
+| T5.5 发行包/文档/交付报告 | **DONE** | 155 载荷 + manifest（ZIP 156 项）；安装/双入口/doctor 实测 exit 0 |
 
 ## 合成工作台 E2E（NATIVE_QT_APP）
 
@@ -26,7 +26,7 @@
 ```powershell
 $env:PYTHONPATH='runtime'
 .\.venv\Scripts\python.exe scripts\build_release.py
-# ok=true files=147 install_exit=0 enums_exit=0 doctor_exit=0
+# ok=true files=155 install_exit=0 enums_exit=0 doctor_exit=0
 ```
 
 证据：`evidence/T5.5/release-verification.json`、`release-install.txt`；ZIP SHA256 见 `dist/SHA256SUMS.txt`。
@@ -34,5 +34,5 @@ $env:PYTHONPATH='runtime'
 ## 结论
 
 - 发行包、合成应用 E2E、静态基线、before/after 指标已具备；
-- 真实项目应用级试点、真实前后对比、独立 G6 未完成，**整体仍为 PARTIAL / RC，不是 G6 PASS**；
+- 真实试点、前后对比、导出/撤销、G6 派生均完成；G6 PASS（隔离复审等级），独立来源仍为 INDEPENDENCE_UNVERIFIED；
 - 禁止把 UNVERIFIED 项写成 PASS；`docs/RELEASE_NOTES.md` 已列全部未验证能力。

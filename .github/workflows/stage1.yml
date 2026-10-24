@@ -1,8 +1,5 @@
 name: stage1-contract-and-detectors
 
-env:
-  PYTHONUTF8: "1"
-
 on:
   push:
     branches: ["v1.3.3-contract-closure", "main"]

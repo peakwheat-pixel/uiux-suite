@@ -5,7 +5,7 @@
 | 任务 | 状态 | 证据 |
 |---|---|---|
 | T4.1 DSH 宿主兼容实测 | **DONE** | `evidence/T0.3/host-install-evidence.json`；双入口/doctor/外部 cwd |
-| T4.2 其他 Agent 兼容矩阵 | **IN_PROGRESS** | `compat.py` 矩阵；其他宿主 `UNVERIFIED`（`HOST_UNVERIFIED`） |
+| T4.2 其他 Agent 兼容 | **DONE** | DSH/AGY 实测；Codex 发现/读通过、运行受 sandbox helper 限制；其余 UNVERIFIED（`evidence/T4.2/host-matrix.json`） |
 | T4.3 被动外部调用契约 | **DONE** | `external.py`；caller/task_id/request 校验，`orchestrates=false` |
 | T4.4 退化路径 | **DONE** | `compat.degradation_report()`：Python/Node/GUI/链接缺失 ReasonCode |
 
